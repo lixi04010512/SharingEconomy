@@ -1,0 +1,272 @@
+{{ define "Static/myneed.html" }}
+<!doctype html>
+<html class="no-js">
+
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="description" content="">
+    <meta name="keywords" content="">
+    <!-- <meta name="viewport" content="width=device-width, initial-scale=0"><meta name="viewport" content="width=drvice-width,height=device-height,inital-scale=1.0,maximum-scale=1.0,user-scalable=no;">-->
+    <meta name="viewport" content="width=device-width,user-scalable=no, initial-scale=1">
+    <title>ShareFish</title>
+    <script src="share/static/js/public.js"></script>
+    <link rel="stylesheet" href="share/css/tabbar.css">
+
+    <link rel="stylesheet" href="share/assets/css/style.css">
+    <!-- App css -->
+    <link href="share/static/css/bootstrap.min.css" rel="stylesheet" type="text/css">
+    <link href="share/static/css/icons.min.css" rel="stylesheet" type="text/css">
+    <link href="share/static/css/app.min.css" rel="stylesheet" type="text/css">
+
+</head>
+
+<body>
+
+    <header>
+        <div class="header-wrapper border-bottom">
+            <div class="container space-y--15">
+                <div class="row align-items-center">
+                    <div class="col-auto">
+                        <!-- header logo -->
+                        <div class="header-logo">
+                            <a href="../index">
+                               <img src="share/assets/img/logo.png" class="img-fluid" alt="" style="width: 75px;">
+                            </a>
+                        </div>
+                    </div>
+                    <div class="col d-flex justify-content-center">
+                        <!-- 搜索框 -->
+                        <div class="header-search" style="padding-top: 8px;">
+                            <a href="../search-page">
+                                <div class="input-group">
+                                    <input type="text" id="chat-search" name="chat-search" class="form-control"
+                                        placeholder="搜索好物" style="    padding-left: 30px;">
+                            </a>
+
+                            <span style="position: absolute;padding-top: 7px;padding-left: 10px;
+                                       "><i class="fa fa-search"></i></span>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-auto">
+                    <button class="header-menu-trigger" id="header-menu-trigger">
+                        <i class="fas fa-align-right" style="font-size: 20px;padding-right: 8px;
+                            padding-top: 15px;
+                                color: grey;"></i>
+                    </button>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    {{ template "Static/menu.html" . }}
+
+    <div class="row" style="    padding-top: 85px;">
+        <div class="col-lg-6">
+            <h5 class="m-0 font-14" style="padding-left: 10px;
+          
+            padding-top: 7px;">我发布的需求 <span class="badge badge-soft-pink">4</span></h5>
+        </div>
+        <!--end col-->
+
+    </div>
+    <!--end row-->
+    <div class="row" style="    padding-top: 12px;">
+        <div class="col-lg-4">
+            <div class="card team-card">
+                <div class="card-body">
+                    <div class="float-end">
+                        <div class="dropdown d-inline-block">
+                            <a class="dropdown-toggle" id="dLabel1" data-bs-toggle="dropdown" href="#" role="button"
+                                aria-haspopup="false" aria-expanded="false">
+                                <i class="las la-ellipsis-v font-24 text-muted"></i>
+                            </a>
+                            <div class="dropdown-menu dropdown-menu-end" aria-labelledby="dLabel1">
+                                <a class="dropdown-item" href="../edit-need">编辑</a>
+                                <a class="dropdown-item" href="#">删除</a>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="media align-items-center">
+                        <div class="img-group">
+                            <a class="user-avatar me-1" href="#">
+
+                                <span class="avatar-badge online"></span>
+                            </a>
+                        </div>
+                        <div class="media-body ms-2 align-self-center">
+                            <h5 class="m-0">笔记本</h5>
+                            <p class="text-muted font-12 mb-0">等待中...</p>
+                        </div>
+                    </div>
+                    <h4 class="m-0 mt-3 font-13 mb-0 fw-bold">需要一台笔记本急用！！！</h4>
+                    <!-- <p class="text-muted mb-0 fw-semibold">需要一台笔记本急用！！！</p> -->
+
+                    <hr class="hr-dashed my-3">
+
+                </div>
+                <!--end card-body-->
+            </div>
+            <!--end card-->
+        </div>
+        <div class="col-lg-4">
+            <div class="card team-card">
+                <div class="card-body">
+                    <div class="float-end">
+                        <div class="dropdown d-inline-block">
+                            <a class="dropdown-toggle" id="dLabel1" data-bs-toggle="dropdown" href="#" role="button"
+                                aria-haspopup="false" aria-expanded="false">
+                                <i class="las la-ellipsis-v font-24 text-muted"></i>
+                            </a>
+                            <div class="dropdown-menu dropdown-menu-end" aria-labelledby="dLabel1">
+                                <a class="dropdown-item" href="../edit-need">编辑</a>
+                                <a class="dropdown-item" href="#">删除</a>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="media align-items-center">
+                        <div class="img-group">
+                            <a class="user-avatar me-1" href="#">
+
+                                <span class="avatar-badge online"></span>
+                            </a>
+                        </div>
+                        <div class="media-body ms-2 align-self-center">
+                            <h5 class="m-0">笔记本</h5>
+                            <p class="text-muted font-12 mb-0">等待中...</p>
+                        </div>
+                    </div>
+                    <h4 class="m-0 mt-3 font-13 mb-0 fw-bold">需要一台笔记本急用！！！</h4>
+                    <!-- <p class="text-muted mb-0 fw-semibold">需要一台笔记本急用！！！</p> -->
+
+                    <hr class="hr-dashed my-3">
+
+                </div>
+                <!--end card-body-->
+            </div>
+            <!--end card-->
+        </div>
+        <div class="col-lg-4">
+            <div class="card team-card">
+                <div class="card-body">
+                    <div class="float-end">
+                        <div class="dropdown d-inline-block">
+                            <a class="dropdown-toggle" id="dLabel1" data-bs-toggle="dropdown" href="#" role="button"
+                                aria-haspopup="false" aria-expanded="false">
+                                <i class="las la-ellipsis-v font-24 text-muted"></i>
+                            </a>
+                            <div class="dropdown-menu dropdown-menu-end" aria-labelledby="dLabel1">
+                                <a class="dropdown-item" href="../edit-need">编辑</a>
+                                <a class="dropdown-item" href="#">删除</a>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="media align-items-center">
+                        <div class="img-group">
+                            <a class="user-avatar me-1" href="#">
+
+                                <span class="avatar-badge online"></span>
+                            </a>
+                        </div>
+                        <div class="media-body ms-2 align-self-center">
+                            <h5 class="m-0">笔记本</h5>
+                            <p class="text-muted font-12 mb-0">等待中...</p>
+                        </div>
+                    </div>
+                    <h4 class="m-0 mt-3 font-13 mb-0 fw-bold">需要一台笔记本急用！！！</h4>
+                    <!-- <p class="text-muted mb-0 fw-semibold">需要一台笔记本急用！！！</p> -->
+
+                    <hr class="hr-dashed my-3">
+
+                </div>
+                <!--end card-body-->
+            </div>
+            <!--end card-->
+        </div>
+        <div class="col-lg-4">
+            <div class="card team-card">
+                <div class="card-body">
+                    <div class="float-end">
+                        <div class="dropdown d-inline-block">
+                            <a class="dropdown-toggle" id="dLabel1" data-bs-toggle="dropdown" href="#" role="button"
+                                aria-haspopup="false" aria-expanded="false">
+                                <i class="las la-ellipsis-v font-24 text-muted"></i>
+                            </a>
+                            <div class="dropdown-menu dropdown-menu-end" aria-labelledby="dLabel1">
+                                <a class="dropdown-item" href="../edit-need">编辑</a>
+                                <a class="dropdown-item" href="#">删除</a>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="media align-items-center">
+                        <div class="img-group">
+                            <a class="user-avatar me-1" href="#">
+
+                                <span class="avatar-badge online"></span>
+                            </a>
+                        </div>
+                        <div class="media-body ms-2 align-self-center">
+                            <h5 class="m-0">笔记本</h5>
+                            <p class="text-muted font-12 mb-0">等待中...</p>
+                        </div>
+                    </div>
+                    <h4 class="m-0 mt-3 font-13 mb-0 fw-bold">需要一台笔记本急用！！！</h4>
+                    <!-- <p class="text-muted mb-0 fw-semibold">需要一台笔记本急用！！！</p> -->
+
+                    <hr class="hr-dashed my-3">
+
+                </div>
+                <!--end card-body-->
+            </div>
+            <!--end card-->
+        </div>
+    </div>
+
+
+    <footer>
+
+        <div class="sc-bottom-bar">
+            <a class="sc-menu-item " href="../index"><i class="fas fa-home"></i></a>
+            <a class="sc-menu-item " href="../goods-category"><i class="fas  fa-list"></i></a>
+            <a href="../chat" class="sc-menu-item "><i class="fas fa-plus"></i></a>
+
+            <a class="sc-menu-item" href="../cart"><i class="fas fa-clipboard"></i></a>
+            <a class="sc-menu-item " href="../ui-me"><i class="fas fa-user"></i></a>
+        </div>
+
+    </footer>
+
+    <script src="share/static/js/app.js"></script>
+    <script type="text/javascript" src="themes/js/jquery.min.js"></script>
+    <script src="share/js/tabbar.js"></script>
+    <!-- Modernizer JS -->
+    <script src="share/assets/js/modernizr-2.8.3.min.js"></script>
+    <!-- jQuery JS -->
+    <script src="share/assets/js/jquery-3.4.1.min.js"></script>
+    <!-- Bootstrap JS -->
+    <script src="share/assets/js/bootstrap.min.js"></script>
+    <!-- IonRanger JS -->
+    <script src="share/assets/js/plugins/ion.rangeSlider.min.js"></script>
+    <!-- SVG inject JS -->
+    <script src="share/assets/js/plugins/svg-inject.min.js"></script>
+    <!-- Slick slider JS -->
+    <script src="share/assets/js/plugins/slick.min.js"></script>
+    <!-- Main JS -->
+    <script src="share/assets/js/main.js"></script>
+    <script src="share/js/popbox.js"></script>
+    <script>
+        function okFunction() {
+            window.location.href = "login.html";
+        }
+        function cancelFunction() {
+            alert('Cancel!');
+        }
+    </script>
+
+
+
+
+</body>
+{{ end }}
+</html>

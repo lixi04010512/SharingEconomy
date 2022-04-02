@@ -1,0 +1,442 @@
+{{ define "Static/wishlist.html" }}
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <title>Share Fish-公益</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta content="Premium Multipurpose Admin & Dashboard Template" name="description">
+    <meta content="" name="author">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <script src="share/static/js/public.js"></script>
+    <!-- 底部导航栏 -->
+    <link rel="stylesheet" href="share/css/tabbar.css">
+
+    <link rel="stylesheet" href="share/assets/css/style.css">
+
+    <!-- App css -->
+    <link href="share/static/css/bootstrap.min.css" rel="stylesheet" type="text/css">
+    <link href="share/static/css/icons.min.css" rel="stylesheet" type="text/css">
+    <link href="share/static/css/app.min.css" rel="stylesheet" type="text/css">
+</head>
+<body id="body" class="dark-sidebar">
+<header>
+    <div class="header-wrapper border-bottom">
+        <div class="container space-y--15">
+            <div class="row align-items-center">
+                <div class="col-auto">
+                    <!-- header logo -->
+                    <div class="header-logo">
+                        <a href="../index">
+                           <img src="share/assets/img/logo.png" class="img-fluid" alt="" style="width: 75px;">
+                        </a>
+                    </div>
+                </div>
+                <div class="col d-flex justify-content-center">
+                    <!-- 搜索框 -->
+                    <div class="header-search">
+                        <a href="../search-page">
+                            <div class="input-group">
+                                <input type="text" id="chat-search" name="chat-search" class="form-control"
+                                    placeholder="搜索好物" style="    padding-left: 30px;">
+                        </a>
+
+                        <span style="position: absolute;padding-top: 7px;padding-left: 10px;
+                                       "><i class="fa fa-search"></i></span>
+                    </div>
+                </div>
+            </div>
+            <div class="col-auto">
+                <button class="header-menu-trigger" id="header-menu-trigger">
+                    <i class="fas fa-align-right" style="font-size: 20px;
+                                color: grey;"></i>
+                </button>
+            </div>
+        </div>
+    </div>
+</header>
+
+
+{{ template "Static/menu.html" . }}
+
+    <div class="page-wrapper">
+        <!-- Page Content-->
+        <div class="page-content-tab">
+
+            <div class="container-fluid">
+                <!-- Page-Title -->
+                <div class="row">
+                    <div class="container space-y--15">
+                        <div class="row align-items-center">
+                            <div class="col-3">
+                                <a class="back-link" onClick="javascript :history.back(-1);"> <i
+                                        class="fa fa-angle-left"></i>
+                                    返回</a>
+                            </div>
+                            <div class="col-6">
+                                <h4 class="category-title text-center">我的公益</h4>
+                            </div>
+                        </div>
+                    </div>
+                    <!--end col-->
+                </div>
+
+                <div class="row">
+                    <div class="col-md-6 col-lg-3 order-lg-1 order-md-1">
+                        <div class="card report-card">
+                            <div class="card-body">
+                                <div class="row d-flex justify-content-center">
+                                    <div class="col">
+                                        <p class="text-dark mb-1 fw-semibold">总公益数</p>
+                                        <h4 class="font-22 fw-bold">77</h4>
+                                    </div>
+                                    <div class="col-auto align-self-center">
+                                        <div
+                                            class="bg-light-alt d-flex justify-content-center align-items-center thumb-md  rounded-circle">
+                                            <i data-feather="layers" class="align-self-center text-muted icon-sm"></i>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <!--end card-body-->
+                        </div>
+                        <!--end card-->
+                    </div>
+                    <!--end col-->
+                    <div class="col-md-6 col-lg-3 order-lg-1 order-md-1">
+                        <div class="card report-card">
+                            <div class="card-body">
+                                <div class="row d-flex justify-content-center">
+                                    <div class="col">
+                                        <p class="text-dark mb-1 fw-semibold">已完成的公益</p>
+                                        <h4 class="font-22 fw-bold">41</h4>
+                                        <p class="mb-0 text-truncate text-muted"><span
+                                                class="badge badge-soft-success">Active</span></p>
+                                    </div>
+                                    <div class="col-auto align-self-center">
+                                        <div
+                                            class="bg-light-alt d-flex justify-content-center align-items-center thumb-md  rounded-circle">
+                                            <i data-feather="check-square"
+                                                class="align-self-center text-muted icon-sm"></i>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <!--end card-body-->
+                        </div>
+                        <!--end card-->
+
+                    </div>
+                    <!--end col-->
+                    <div class="col-md-6 col-lg-3 order-lg-1 order-md-1">
+                        <div class="card report-card">
+                            <div class="card-body">
+                                <div class="row d-flex justify-content-center">
+                                    <div class="col">
+                                        <p class="text-dark mb-1 fw-semibold">剩余积分</p>
+                                        <h4 class="font-22 fw-bold">241</h4>
+
+                                    </div>
+                                    <div class="col-auto align-self-center">
+                                        <div
+                                            class="bg-light-alt d-flex justify-content-center align-items-center thumb-md  rounded-circle">
+                                            <i data-feather="dollar-sign"
+                                                class="align-self-center text-muted icon-sm"></i>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <!--end card-body-->
+                        </div>
+                        <!--end card-->
+                    </div>
+                    <!--end col-->
+                </div>
+                <!--end row-->
+
+                <div class="row">
+                    <div class="col-lg-6">
+                        <ul class="list-inline">
+                            <li class="list-inline-item">
+                                <h5 class="mt-0">所有的公益项目</h5>
+                            </li>
+                        </ul>
+                    </div>
+                    <!--end col-->
+
+                    <div class="col-lg-6 text-end">
+                        <div class="text-end">
+                            <ul class="list-inline">
+
+
+                                <li class="list-inline-item">
+                                    <a href="../public-benefit"><button type="button"
+                                            class="btn btn-primary btn-sm">更多公益</button></a>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                    <!--end col-->
+                </div>
+                <!--end row-->
+
+                <div class="row">
+                    <div class="col-lg-6">
+                        <a href="../public-details">
+                            <div class="card">
+                                <div class="card-body">
+                                    <div class="task-box">
+                                        <div class="task-priority-icon"><i class="fas fa-circle text-secondary"></i>
+                                        </div>
+                                        <p class="text-muted float-right">
+                                            <span class="text-muted">01:33</span> /
+                                            <span class="text-muted">9:30</span>
+                                            <span class="mx-1">·</span>
+                                            <span><i class="far fa-fw fa-clock"></i> June 06</span>
+                                        </p>
+                                        <h5 class="mt-0 mb-1">小书包守护我的梦想</h5>
+                                        <p class="text-muted mb-1">关爱困境儿童，帮助他们好好读书、上好学。
+                                        </p>
+                                        <p class="text-muted text-end mb-1">50% 完成</p>
+                                        <div class="progress mb-4" style="height: 4px;">
+                                            <div class="progress-bar bg-pink" role="progressbar" style="width: 50%;"
+                                                aria-valuenow="50" aria-valuemin="0" aria-valuemax="100"></div>
+                                        </div>
+                                        <div class="d-flex justify-content-between">
+                                            <div class="img-group">
+                                                <a class="user-avatar user-avatar-group" href="#">
+                                                    <img src="share/static/picture/user-2.jpg" alt="user"
+                                                        class="rounded-circle thumb-xs">
+                                                </a>
+                                                <a class="user-avatar user-avatar-group" href="#">
+                                                    <img src="share/static/picture/user-5.jpg" alt="user"
+                                                        class="rounded-circle thumb-xs">
+                                                </a>
+                                                <a class="user-avatar user-avatar-group" href="#">
+                                                    <img src="share/static/picture/user-7.jpg" alt="user"
+                                                        class="rounded-circle thumb-xs">
+                                                </a>
+                                            </div>
+                                            <!--end img-group-->
+                                            <ul class="list-inline mb-0 align-self-center">
+                                                <li class="list-item d-inline-block me-2">
+                                                    <a class="" href="#">
+
+                                                        <span class="text-muted fw-bold">25/50</span>
+                                                    </a>
+                                                </li>
+
+                                            </ul>
+                                        </div>
+                                    </div>
+                                    <!--end task-box-->
+                                </div>
+                                <!--end card-body-->
+                            </div>
+                        </a>
+                        <!--end card-->
+                        <a href="../public-details">
+                            <div class="card">
+                                <div class="card-body">
+                                    <div class="task-box">
+                                        <div class="task-priority-icon"><i class="fas fa-check text-success"></i></div>
+                                        <p class="text-muted float-right">
+                                            <span class="text-muted">01:20</span> /
+                                            <span class="text-muted">1:30</span>
+                                            <span class="mx-1">·</span>
+                                            <span><i class="far fa-fw fa-clock"></i> June 06</span>
+                                        </p>
+                                        <h5 class="mt-0 mb-1">为困境家庭送温暖</h5>
+                                        <p class="text-muted mb-1">为困难群体提供医疗救助、物资关怀、生活救助等方面的支持。
+                                        </p>
+                                        <p class="text-muted text-end mb-1">100% 完成</p>
+                                        <div class="progress mb-4" style="height: 4px;">
+                                            <div class="progress-bar bg-success" role="progressbar" style="width: 100%;"
+                                                aria-valuenow="100" aria-valuemin="0" aria-valuemax="100"></div>
+                                        </div>
+                                        <div class="d-flex justify-content-between">
+                                            <div class="img-group">
+                                                <a class="user-avatar user-avatar-group" href="#">
+                                                    <img src="share/static/picture/user-2.jpg" alt="user"
+                                                        class="rounded-circle thumb-xs">
+                                                </a>
+                                                <a class="user-avatar user-avatar-group" href="#">
+                                                    <img src="share/static/picture/user-4.jpg" alt="user"
+                                                        class="rounded-circle thumb-xs">
+                                                </a>
+                                                <a class="user-avatar user-avatar-group" href="#">
+                                                    <img src="share/static/picture/user-6.jpg" alt="user"
+                                                        class="rounded-circle thumb-xs">
+                                                </a>
+                                            </div>
+                                            <!--end img-group-->
+                                            <ul class="list-inline mb-0 align-self-center">
+                                                <li class="list-item d-inline-block me-2">
+                                                    <a class="" href="#">
+
+                                                        <span class="text-muted fw-bold">128/128</span>
+                                                    </a>
+                                                </li>
+
+                                            </ul>
+                                        </div>
+                                    </div>
+                                    <!--end task-box-->
+                                </div>
+                                <!--end card-body-->
+                            </div>
+                        </a>
+                        <!--end card-->
+                    </div>
+                    <!--end col-->
+                    <div class="col-lg-6">
+                        <a href="../public-details">
+                            <div class="card">
+                                <div class="card-body">
+                                    <div class="task-box">
+                                        <div class="task-priority-icon"><i class="fas fa-circle text-info"></i></div>
+                                        <p class="text-muted float-right">
+                                            <span class="badge bg-danger me-2">停止</span>
+                                            <span class="text-muted">01:33</span> /
+                                            <span class="text-muted">9:30</span>
+                                            <span class="mx-1">·</span>
+                                            <span><i class="far fa-fw fa-clock"></i> June 18</span>
+                                        </p>
+                                        <h5 class="mt-0 mb-1">为困境家庭送温暖</h5>
+                                        <p class="text-muted mb-1">为困难群体提供医疗救助、物资关怀、生活救助等方面的支持。
+                                        </p>
+                                        <p class="text-muted text-end mb-1">37% 完成</p>
+                                        <div class="progress mb-4" style="height: 4px;">
+                                            <div class="progress-bar bg-secondary" role="progressbar"
+                                                style="width: 37%;" aria-valuenow="37" aria-valuemin="0"
+                                                aria-valuemax="100"></div>
+                                        </div>
+                                        <div class="d-flex justify-content-between">
+                                            <div class="img-group">
+                                                <a class="user-avatar user-avatar-group" href="#">
+                                                    <img src="share/static/picture/user-8.jpg" alt="user"
+                                                        class="rounded-circle thumb-xs">
+                                                </a>
+                                                <a class="user-avatar user-avatar-group" href="#">
+                                                    <img src="share/static/picture/user-5.jpg" alt="user"
+                                                        class="rounded-circle thumb-xs">
+                                                </a>
+                                                <a class="user-avatar user-avatar-group" href="#">
+                                                    <img src="share/static/picture/user-7.jpg" alt="user"
+                                                        class="rounded-circle thumb-xs">
+                                                </a>
+                                            </div>
+                                            <!--end img-group-->
+                                            <ul class="list-inline mb-0 align-self-center">
+                                                <li class="list-item d-inline-block me-2">
+                                                    <a class="" href="#">
+
+                                                        <span class="text-muted fw-bold">55/150</span>
+                                                    </a>
+                                                </li>
+
+                                            </ul>
+                                        </div>
+                                    </div>
+                                    <!--end task-box-->
+                                </div>
+                                <!--end card-body-->
+                            </div>
+                        </a>
+                        <!--end card-->
+                        <a href="../public-details">
+                        <div class="card">
+                            <div class="card-body">
+                                <div class="task-box">
+                                    <div class="task-priority-icon"><i class="fas fa-circle text-info"></i></div>
+                                    <p class="text-muted float-right">
+                                        <span class="badge bg-warning me-2">等待</span>
+                                        <span class="text-muted">01:33</span> /
+                                        <span class="text-muted">9:30</span>
+                                        <span class="mx-1">·</span>
+                                        <span><i class="far fa-fw fa-clock"></i> June 18</span>
+                                    </p>
+                                    <h5 class="mt-0 mb-1">小书包守护我的梦想</h5>
+                                    <p class="text-muted mb-1">关爱困境儿童，帮助他们好好读书、上好学。
+                                    </p>
+                                    <p class="text-muted text-end mb-1">01% Complete</p>
+                                    <div class="progress mb-4" style="height: 4px;">
+                                        <div class="progress-bar bg-info" role="progressbar" style="width: 1%;"
+                                            aria-valuenow="1" aria-valuemin="0" aria-valuemax="100"></div>
+                                    </div>
+                                    <div class="d-flex justify-content-between">
+                                        <div class="img-group">
+                                            <a class="user-avatar user-avatar-group" href="#">
+                                                <img src="share/static/picture/user-10.jpg" alt="user"
+                                                    class="rounded-circle thumb-xs">
+                                            </a>
+                                            <a class="user-avatar user-avatar-group" href="#">
+                                                <img src="share/static/picture/user-8.jpg" alt="user"
+                                                    class="rounded-circle thumb-xs">
+                                            </a>
+                                            <a class="user-avatar user-avatar-group" href="#">
+                                                <img src="share/static/picture/user-6.jpg" alt="user"
+                                                    class="rounded-circle thumb-xs">
+                                            </a>
+                                        </div>
+                                        <!--end img-group-->
+                                        <ul class="list-inline mb-0 align-self-center">
+                                            <li class="list-item d-inline-block me-2">
+                                                <a class="" href="#">
+
+                                                    <span class="text-muted fw-bold">01/80</span>
+                                                </a>
+                                            </li>
+
+                                        </ul>
+                                    </div>
+                                </div>
+                                <!--end task-box-->
+                            </div>
+                            <!--end card-body-->
+                        </div>
+                        </a>
+                        <!--end card-->
+                    </div>
+                    <!--end col-->
+                </div> <!-- end row -->
+            </div><!-- container -->
+        </div>
+        <!-- end page content -->
+    </div>
+    <!-- end page-wrapper -->
+
+    <footer>
+
+        <div class="sc-bottom-bar">
+            <a class="sc-menu-item " href="../index"><i class="fas fa-home"></i></a>
+            <a class="sc-menu-item " href="../goods-category"><i class="fas  fa-list"></i></a>
+            <a href="../chat" class="sc-menu-item "><i class="fas fa-plus"></i></a>
+            <a class="sc-menu-item" href="../cart"><i class="fas fa-clipboard"></i></a>
+            <a class="sc-menu-item" href="../ui-me"><i class="fas fa-user"></i></a>
+        </div>
+
+    </footer>
+
+    <!-- Javascript  -->
+    <!-- App js -->
+    <script src="share/static/js/app.js"></script>
+    <!-- jQuery JS -->
+    <script src="share/assets/js/jquery-3.4.1.min.js"></script>
+    <!-- Main JS -->
+    <script src="share/assets/js/main.js"></script>
+
+    <script src="share/js/popbox.js"></script>
+    <script>
+        function okFunction() {
+            window.location.href = "login.html";
+        }
+        function cancelFunction() {
+            alert('Cancel!');
+        }
+    </script>
+</body>
+<!--end body-->
+{{ end }}
+</html>

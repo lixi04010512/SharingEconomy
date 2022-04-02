@@ -1,0 +1,166 @@
+{{ define "Static/login.html" }}
+<!doctype html>
+<html lang="zxx">
+
+<head>
+
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <script src="share/static/js/public.js"></script>
+    <link rel="stylesheet" href="share/css/tabbar.css">
+
+    <link rel="stylesheet" href="share/static/css/boxicon.min.css">
+    <link rel="stylesheet" href="share/static/css/login.css">
+    <link rel="stylesheet" href="share/static/css/responsive.css">
+
+    <link rel="stylesheet" href="share/assets/css/style.css">
+
+    <!-- App css搜索框 -->
+    <link href="share/static/css/bootstrap.min.css" rel="stylesheet" type="text/css">
+    <link href="share/static/css/icons.min.css" rel="stylesheet" type="text/css">
+    <link href="share/static/css/app.min.css" rel="stylesheet" type="text/css">
+    <title>Share Fish-登录</title>
+
+</head>
+
+<body>
+
+    <header>
+        <div class="header-wrapper border-bottom">
+            <div class="container space-y--15">
+                <div class="row align-items-center">
+                    <div class="col-auto">
+                        <!-- header logo -->
+                        <div class="header-logo">
+                            <a href="../index">
+                               <img src="share/assets/img/logo.png" class="img-fluid" alt="" style="width: 75px;">
+                            </a>
+                        </div>
+                    </div>
+                    <div class="col d-flex justify-content-center">
+                        <!-- 搜索框 -->
+                        <div class="header-search">
+                            <a href="../search-page">
+                                <div class="input-group">
+                                    <input type="text" id="chat-search" name="chat-search" class="form-control"
+                                        placeholder="搜索好物" style="    padding-left: 30px;">
+                            </a>
+
+                            <span style="position: absolute;padding-top: 7px;padding-left: 10px;
+                                       "><i class="fa fa-search"></i></span>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-auto">
+                    <button class="header-menu-trigger" id="header-menu-trigger">
+                        <i class="fas fa-align-right" style="font-size: 20px;
+                                color: grey;"></i>
+                    </button>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    {{ template "Static/menu.html" . }}
+    <div class="loader-content">
+        <div class="d-table">
+            <div class="d-table-cell">
+                <div class="sk-circle">
+                    <div class="sk-circle1 sk-child"></div>
+                    <div class="sk-circle2 sk-child"></div>
+                    <div class="sk-circle3 sk-child"></div>
+                    <div class="sk-circle4 sk-child"></div>
+                    <div class="sk-circle5 sk-child"></div>
+                    <div class="sk-circle6 sk-child"></div>
+                    <div class="sk-circle7 sk-child"></div>
+                    <div class="sk-circle8 sk-child"></div>
+                    <div class="sk-circle9 sk-child"></div>
+                    <div class="sk-circle10 sk-child"></div>
+                    <div class="sk-circle11 sk-child"></div>
+                    <div class="sk-circle12 sk-child"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <section class="page-title title-bg12">
+        <div class="d-table">
+            <div class="d-table-cell">
+                <h2>登录</h2>
+                <ul>
+                    <li>
+                        <a href="../index">首页</a>
+                    </li>
+                    <li>登录</li>
+                </ul>
+            </div>
+        </div>
+        <div class="lines">
+            <div class="line"></div>
+            <div class="line"></div>
+            <div class="line"></div>
+        </div>
+    </section>
+
+
+    <div class="signin-section ptb-100">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-6 col-md-8 offset-md-2 offset-lg-3">
+                    <form class="signin-form"  action="/loginPost" method="POST" enctype="multipart/form-data">
+
+                        <div class="form-group">
+                            <label>账户</label>
+                            <input class="form-control" type="file" id="formFileMultiple" name="log_addr" style="font-size: 17px;
+                                                            padding-top: 12px;">
+
+                        </div>
+
+                        <div class="form-group">
+                            <label>密码</label>
+                            <input type="password" class="form-control" placeholder="输入你的密码" id="use_password" name="log_passwd">
+                            <p id="p_password"></p>
+                        </div>
+
+                        <div class="signin-btn text-center">
+                            <button type="submit">登录</button>
+                        </div>
+
+                        <div class="create-btn text-center">
+                            <p>没有账号？
+                                <a href="../register">
+                                    创建一个账号
+                                    <i class='bx bx-chevrons-right bx-fade-right'></i>
+                                </a>
+                            </p>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+    <footer>
+
+        <div class="sc-bottom-bar">
+            <a class="sc-menu-item " href="../index"><i class="fas fa-home"></i></a>
+            <a class="sc-menu-item " href="../goods-category"><i class="fas  fa-list"></i></a>
+            <a href="../chat" class="sc-menu-item "><i class="fas fa-plus"></i></a>
+            <a class="sc-menu-item" href="../cart"><i class="fas fas fa-shopping-cart"></i></a>
+            <a class="sc-menu-item" href="../ui-me"><i class="fas fa-user"></i></a>
+        </div>
+
+    </footer>
+
+    <script src="share/static/js/jquery.min.js"></script>
+    <script src="share/static/js/owl.carousel.min.js"></script>
+    <script src="share/static/js/jquery.nice-select.min.js"></script>
+    <script src="share/static/js/jquery.magnific-popup.min.js"></script>
+    <script src="share/static/js/jquery.ajaxchimp.min.js"></script>
+    <script src="share/static/js/form-validator.min.js"></script>
+    <script src="share/static/js/meanmenu.js"></script>
+    <script src="share/static/js/custom.js"></script>
+    <!-- Main JS -->
+    <script src="share/assets/js/main.js"></script>
+</body>
+{{ end }}
+</html>
