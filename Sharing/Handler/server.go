@@ -19,38 +19,37 @@ func Start(addr, webDir string) (err error) {
 	{
 		// 定义增改查的接口，并注册到web服务器
 
-		todo.POST("/addStickerPost",addSticker)
-		todo.POST("/isStickExistPost",isStickExist)
-		todo.POST("/registerPost",register)
-		todo.POST("/loginPost",login)
-		todo.POST("/logoutPost",logout)
-		todo.POST("/sendEmailPost",sendEmail)
+		todo.POST("/addStickerPost", addSticker)
+		todo.POST("/isStickExistPost", isStickExist)
+		todo.POST("/registerPost", register)
+		todo.POST("/loginPost", login)
+		todo.POST("/logoutPost", logout)
+		todo.POST("/sendEmailPost", sendEmail)
 
 	}
 	share := r.Group("")
 	{
-		share.GET("/profile",UserProfile)
-		share.GET("/index",IndexStatic)
-		share.GET("/cart",CartStatic)
-		share.GET("/category-details",CategoryStatic)
-		share.GET("/chat",ChatStatic)
-		share.GET("/edit-need",EditNeedStatic)
-		share.GET("/edit-profile",EditProfileStatic)
-		share.GET("/goods-category",GoodsStatic)
-		share.GET("/lend-items",LendStatic)
-		share.GET("/login",LoginStatic)
-		share.GET("/myneed",MyNeedStatic)
-		share.GET("/order",OrderStatic)
-		share.GET("/post-need",PostNeedStatic)
-		share.GET("/public-benefit",PubBenefitStatic)
-		share.GET("/public-details",PubDetailsStatic)
-		share.GET("/register",RegisterStatic)
-		share.GET("/search-page",SearchPageStatic)
-		share.GET("/shop",ShopStatic)
-		share.GET("/shop-product",ShopProfilerStatic)
-		share.GET("/ui-me",UiMeStatic)
-		share.GET("/wishlist",WishlistStatic)
-
+		share.GET("/profile", UserProfile)
+		share.GET("/index", addIndex)
+		share.GET("/cart", CartStatic)
+		share.GET("/category-details", CategoryStatic)
+		share.GET("/chat", ChatStatic)
+		share.GET("/edit-need", EditNeedStatic)
+		share.GET("/edit-profile", EditProfileStatic)
+		share.GET("/goods-category", goodsCategory)
+		share.GET("/lend-items", LendStatic)
+		share.GET("/login", LoginStatic)
+		share.GET("/myneed", MyNeedStatic)
+		share.GET("/order", OrderStatic)
+		share.GET("/post-need", PostNeedStatic)
+		share.GET("/public-benefit", PubBenefitStatic)
+		share.GET("/public-details", PubDetailsStatic)
+		share.GET("/register", RegisterStatic)
+		share.GET("/search-page", SearchPageStatic)
+		share.GET("/shop", ShopStatic)
+		share.GET("/shop-product", shopPorduct)
+		share.GET("/ui-me", UiMeStatic)
+		share.GET("/wishlist", WishlistStatic)
 	}
 	// 启动web服务
 	err = r.Run(addr)
@@ -72,4 +71,3 @@ func respError(c *gin.Context, msg interface{}) {
 		"message": msg,
 	})
 }
-

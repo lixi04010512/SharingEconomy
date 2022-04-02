@@ -7,25 +7,32 @@ import (
 	"crypto/rand"
 	"fmt"
 	"github.com/ethereum/go-ethereum/accounts/abi/bind"
+	"github.com/ethereum/go-ethereum/accounts/keystore"
 	"github.com/ethereum/go-ethereum/common"
 	"github.com/ethereum/go-ethereum/core/types"
-	"github.com/gin-gonic/gin"
-	"github.com/jordan-wright/email"
 	"github.com/ethereum/go-ethereum/crypto"
 	"github.com/ethereum/go-ethereum/ethclient"
+	"github.com/gin-gonic/gin"
+	"github.com/jordan-wright/email"
 	"io"
+	"io/ioutil"
 	"log"
 	"math/big"
 	"net/smtp"
+	"os"
 	"path"
 	"strings"
 )
 
 const (
 	//chainID = 8565 //8888
-	Prikey       = "9e64387a398fa1a813e2a8614cd2ebd04751755d1c2046cb0cecf0498a78591f"
-	ShareFishAddress = "0x687168Bf096C205323936E2a435F99D38fEb5676"
-	gasLimit      = 3000000
+	//Prikey       = "9e64387a398fa1a813e2a8614cd2ebd04751755d1c2046cb0cecf0498a78591f"
+	//ShareFishAddress = "0x687168Bf096C205323936E2a435F99D38fEb5676"
+	gasLimit         = 3000000
+	fileKeystore     = "UTC--2022-03-17T08-08-40.600466800Z--59b0f8a34d8f0dd0e0eef44d02cef0c12fffb9de"
+	Prikey           = "c5b9c7fd467335bd829b3b2a3098a72ac39b7f5efa162220b7907cfc684df9a3"
+	privateKey       = "111"
+	ShareFishAddress = "0x1415f8284C54Fbbf5b5300B6177a24A491b1bd07"
 )
 
 //获取client
@@ -38,6 +45,28 @@ func GetClient() (*ethclient.Client, error) {
 	}
 	defer client.Close()
 	return client, nil
+}
+func HaveClient() (*ethclient.Client, error) {
+	client, err := ethclient.Dial("https://rinkeby.infura.io/v3/9aa3d95b3bc440fa88ea12eaa4456161")
+	if err != nil {
+		log.Fatal(err)
+	}
+	defer client.Close()
+	chainID, err := client.NetworkID(context.Background())
+	if err != nil {
+		log.Fatal(err)
+	}
+	fmt.Println(chainID)
+	return client, err
+}
+
+//只写实例 获取UserCaller对象
+func HaveUserWrite(client *ethclient.Client) (*Agreement.UserTransactor, error) {
+	ins, err := Agreement.NewUserTransactor(common.HexToAddress(ShareFishAddress), client)
+	if err != nil {
+		log.Fatal(err)
+	}
+	return ins, err
 }
 
 // 获取合约对象
@@ -57,9 +86,10 @@ func Getopts() *bind.TransactOpts {
 	fmt.Println("opts:", opts)
 	return opts
 }
+
 //只读实例 获取UserCaller对象
 func HaveUserRead(client *ethclient.Client) (*Agreement.UserCaller, error) {
-	contract, err :=Agreement.NewUserCaller(common.HexToAddress(ShareFishAddress), client)
+	contract, err := Agreement.NewUserCaller(common.HexToAddress(ShareFishAddress), client)
 	if err != nil {
 		log.Fatal(err)
 	}
@@ -75,6 +105,28 @@ func GetPrivateKey() *ecdsa.PrivateKey {
 	return privateKey
 }
 
+//获取账户文件和密码 opts
+func HaveGetOpts() *bind.TransactOpts {
+	//账户文件
+	b, err := ioutil.ReadFile(fileKeystore)
+	if err != nil {
+		log.Fatal("错误", err)
+	}
+	//账户密码
+	key, err := keystore.DecryptKey(b, privateKey)
+	if err != nil {
+		log.Fatal(err)
+	}
+	fmt.Println("key:", key)
+	reader, _ := os.Open(fileKeystore)
+	//opts, err := bind.NewTransactor(reader, "111")
+	opts, err := bind.NewTransactorWithChainID(reader, "111", big.NewInt(9696))
+	if err != nil {
+		log.Fatal("NewTransactor ", err)
+	}
+	return opts
+}
+
 // 获取 gasPrice
 func GetgasPrice(client *ethclient.Client) (*big.Int, error) {
 	gasPrice, err := client.SuggestGasPrice(context.Background())
@@ -88,20 +140,20 @@ func GetgasPrice(client *ethclient.Client) (*big.Int, error) {
 
 }
 
-func GetMsgOpts(privateKey *ecdsa.PrivateKey) *bind.TransactOpts  {
+func GetMsgOpts(privateKey *ecdsa.PrivateKey) *bind.TransactOpts {
 	opts := bind.NewKeyedTransactor(privateKey)
 	fmt.Println("opts:", opts)
 	return opts
 }
 
 //封装注册方法
-func RegisterMethod(client *ethclient.Client,contract *Agreement.User ,Address common.Address,name string,email string,password string) (*types.Transaction, error) {
-	opts :=Getopts()
-	opts.Value=big.NewInt(1000000000000000000)
-	res, err := contract.Register(opts,name,Address,email,password)
-	fmt.Println("register:",res)
-	opts.GasLimit=3000000
-	opts.GasPrice,err=GetgasPrice(client)
+func RegisterMethod(client *ethclient.Client, contract *Agreement.User, Address common.Address, name string, email string, password string) (*types.Transaction, error) {
+	opts := Getopts()
+	opts.Value = big.NewInt(1000000000000000000)
+	res, err := contract.Register(opts, name, Address, email, password)
+	fmt.Println("register:", res)
+	opts.GasLimit = 3000000
+	opts.GasPrice, err = GetgasPrice(client)
 	if err != nil {
 		log.Fatal(err)
 	}
@@ -109,7 +161,7 @@ func RegisterMethod(client *ethclient.Client,contract *Agreement.User ,Address c
 }
 
 //发送邮箱验证码方法
-func EmailSend(userEmail string)  string{
+func EmailSend(userEmail string) string {
 	// 简单设置 log 参数
 	log.SetFlags(log.Lshortfile | log.LstdFlags)
 
@@ -123,9 +175,9 @@ func EmailSend(userEmail string)  string{
 	// 设置主题
 	em.Subject = "ShareFish注册账户"
 
-	code:=EncodeToString(6)
+	code := EncodeToString(6)
 	// 简单设置文件发送的内容，暂时设置成纯文本
-	em.Text = []byte("[ShareFish],您正在验证邮箱，您的验证码是："+code+",请尽快验证。请勿泄露您的验证码。如非本人操作请忽略。")
+	em.Text = []byte("[ShareFish],您正在验证邮箱，您的验证码是：" + code + ",请尽快验证。请勿泄露您的验证码。如非本人操作请忽略。")
 
 	//设置服务器相关的配置
 	err := em.Send("smtp.qq.com:25", smtp.PlainAuth("", "1784420499@qq.com", "qydemwctecedfceb", "smtp.qq.com"))
@@ -151,13 +203,13 @@ func EncodeToString(max int) string {
 }
 
 //封装登录方法
-func LoginMethod(client *ethclient.Client,contract *Agreement.User ,Address common.Address,privateKey *ecdsa.PrivateKey) (*types.Transaction, error) {
-	opts:=GetMsgOpts(privateKey)
-	res, err := contract.Login(opts,Address)
+func LoginMethod(client *ethclient.Client, contract *Agreement.User, Address common.Address, privateKey *ecdsa.PrivateKey) (*types.Transaction, error) {
+	opts := GetMsgOpts(privateKey)
+	res, err := contract.Login(opts, Address)
 
-	fmt.Println("login:",res)
-	opts.GasLimit=gasLimit
-	opts.GasPrice,err=GetgasPrice(client)
+	fmt.Println("login:", res)
+	opts.GasLimit = gasLimit
+	opts.GasPrice, err = GetgasPrice(client)
 	if err != nil {
 		log.Fatal(err)
 	}
@@ -165,21 +217,21 @@ func LoginMethod(client *ethclient.Client,contract *Agreement.User ,Address comm
 }
 
 //封装获取用户信息方法
-func GetUserMethod(contract *Agreement.User,address common.Address) (string,common.Address,*big.Int,string,string,*big.Int,*big.Int,error)  {
-	res,err:=contract.GetUser(nil,address)
+func GetUserMethod(contract *Agreement.User, address common.Address) (string, common.Address, *big.Int, string, string, *big.Int, *big.Int, error) {
+	res, err := contract.GetUser(nil, address)
 	if err != nil {
 		log.Fatal(err)
 	}
-	return res.Name,res.People,res.Integral,res.Email,res.Sign,res.GoodsNum,res.Balance,nil
+	return res.Name, res.People, res.Integral, res.Email, res.Sign, res.GoodsNum, res.Balance, nil
 }
 
 //封装注销方法
-func LogoutMethod(client *ethclient.Client,contract *Agreement.User ,Address common.Address,privateKey *ecdsa.PrivateKey) (*types.Transaction, error) {
-	opts :=GetMsgOpts(privateKey)
-	res, err := contract.Logout(opts,Address)
-	fmt.Println("login:",res)
-	opts.GasLimit=gasLimit
-	opts.GasPrice,err=GetgasPrice(client)
+func LogoutMethod(client *ethclient.Client, contract *Agreement.User, Address common.Address, privateKey *ecdsa.PrivateKey) (*types.Transaction, error) {
+	opts := GetMsgOpts(privateKey)
+	res, err := contract.Logout(opts, Address)
+	fmt.Println("login:", res)
+	opts.GasLimit = gasLimit
+	opts.GasPrice, err = GetgasPrice(client)
 	if err != nil {
 		log.Fatal(err)
 	}
@@ -187,12 +239,12 @@ func LogoutMethod(client *ethclient.Client,contract *Agreement.User ,Address com
 }
 
 //封装添加公益方法
-func AddCommunityMethod(client *ethclient.Client,contract *Agreement.User ,number *big.Int,beneficiaryAddr common.Address, communityName string,communityIntroduce string,communityAmounts *big.Int) (*types.Transaction, error) {
-	opts :=Getopts()
-	res, err := contract.AddCommunity(opts,number,beneficiaryAddr,communityName,communityIntroduce,communityAmounts)
-	fmt.Println("addCommunity:",res)
-	opts.GasLimit=gasLimit
-	opts.GasPrice,err=GetgasPrice(client)
+func AddCommunityMethod(client *ethclient.Client, contract *Agreement.User, number *big.Int, beneficiaryAddr common.Address, communityName string, communityIntroduce string, communityAmounts *big.Int) (*types.Transaction, error) {
+	opts := Getopts()
+	res, err := contract.AddCommunity(opts, number, beneficiaryAddr, communityName, communityIntroduce, communityAmounts)
+	fmt.Println("addCommunity:", res)
+	opts.GasLimit = gasLimit
+	opts.GasPrice, err = GetgasPrice(client)
 	if err != nil {
 		log.Fatal(err)
 	}
@@ -200,34 +252,36 @@ func AddCommunityMethod(client *ethclient.Client,contract *Agreement.User ,numbe
 }
 
 //封装下架公益方法
-func DelCommunityMethod(client *ethclient.Client,contract *Agreement.User ,number *big.Int) (*types.Transaction, error) {
-	opts :=Getopts()
-	res, err := contract.DelCommunity(opts,number)
-	fmt.Println("addCommunity:",res)
-	opts.GasLimit=gasLimit
-	opts.GasPrice,err=GetgasPrice(client)
+func DelCommunityMethod(client *ethclient.Client, contract *Agreement.User, number *big.Int) (*types.Transaction, error) {
+	opts := Getopts()
+	res, err := contract.DelCommunity(opts, number)
+	fmt.Println("addCommunity:", res)
+	opts.GasLimit = gasLimit
+	opts.GasPrice, err = GetgasPrice(client)
 	if err != nil {
 		log.Fatal(err)
 	}
 	return res, nil
 }
+
 //封装捐赠积分方法
-func DonateMethod(client *ethclient.Client,contract *Agreement.User ,number *big.Int, donator common.Address, amount *big.Int, donatorName string) (*types.Transaction, error) {
-	opts :=Getopts()
-	opts.Value=big.NewInt(1000000000000000000)
-	res, err := contract.Donate(opts,number,donator,amount,donatorName)
-	fmt.Println("addCommunity:",res)
-	opts.GasLimit=gasLimit
-	opts.GasPrice,err=GetgasPrice(client)
+func DonateMethod(client *ethclient.Client, contract *Agreement.User, number *big.Int, donator common.Address, amount *big.Int, donatorName string) (*types.Transaction, error) {
+	opts := Getopts()
+	opts.Value = big.NewInt(1000000000000000000)
+	res, err := contract.Donate(opts, number, donator, amount, donatorName)
+	fmt.Println("addCommunity:", res)
+	opts.GasLimit = gasLimit
+	opts.GasPrice, err = GetgasPrice(client)
 	if err != nil {
 		log.Fatal(err)
 	}
 	return res, nil
 }
+
 //封装查看进度方法
-func CommunityScheduleView(contract *Agreement.User ,number *big.Int) (*big.Int, error) {
-	res, err := contract.CommunitySchedule(nil,number)
-	fmt.Println("addCommunity:",res)
+func CommunityScheduleView(contract *Agreement.User, number *big.Int) (*big.Int, error) {
+	res, err := contract.CommunitySchedule(nil, number)
+	fmt.Println("addCommunity:", res)
 	if err != nil {
 		log.Fatal(err)
 	}
@@ -235,12 +289,12 @@ func CommunityScheduleView(contract *Agreement.User ,number *big.Int) (*big.Int,
 }
 
 //封装物品上架方法
-func AddGoodsMethod(client *ethclient.Client,contract *Agreement.User ,owner common.Address, name string, species string, rent *big.Int, ethPledge *big.Int,goodsImgs []string) (*types.Transaction, error) {
-	opts :=Getopts()
-	res, err := contract.AddGoods(opts,owner,name,species,rent,ethPledge,goodsImgs)
-	fmt.Println("addCommunity:",res)
-	opts.GasLimit=gasLimit
-	opts.GasPrice,err=GetgasPrice(client)
+func AddGoodsMethod(client *ethclient.Client, contract *Agreement.User, owner common.Address, name string, species string, rent *big.Int, ethPledge *big.Int, goodsImgs []string) (*types.Transaction, error) {
+	opts := Getopts()
+	res, err := contract.AddGoods(opts, owner, name, species, rent, ethPledge, goodsImgs)
+	fmt.Println("addCommunity:", res)
+	opts.GasLimit = gasLimit
+	opts.GasPrice, err = GetgasPrice(client)
 	if err != nil {
 		log.Fatal(err)
 	}
@@ -248,12 +302,12 @@ func AddGoodsMethod(client *ethclient.Client,contract *Agreement.User ,owner com
 }
 
 //封装物品下架方法
-func DelGoodsMethod(client *ethclient.Client,contract *Agreement.User ,id *big.Int) (*types.Transaction, error) {
-	opts :=Getopts()
-	res, err := contract.DelGoods(opts,id)
-	fmt.Println("addCommunity:",res)
-	opts.GasLimit=gasLimit
-	opts.GasPrice,err=GetgasPrice(client)
+func DelGoodsMethod(client *ethclient.Client, contract *Agreement.User, id *big.Int) (*types.Transaction, error) {
+	opts := Getopts()
+	res, err := contract.DelGoods(opts, id)
+	fmt.Println("addCommunity:", res)
+	opts.GasLimit = gasLimit
+	opts.GasPrice, err = GetgasPrice(client)
 	if err != nil {
 		log.Fatal(err)
 	}
@@ -261,12 +315,12 @@ func DelGoodsMethod(client *ethclient.Client,contract *Agreement.User ,id *big.I
 }
 
 //封装物品下架方法
-func BorrowGoodsMethod(client *ethclient.Client,contract *Agreement.User , id *big.Int,borrowDays *big.Int) (*types.Transaction, error) {
-	opts :=Getopts()
-	res, err := contract.BorrowGoods(opts,id,borrowDays)
-	fmt.Println("addCommunity:",res)
-	opts.GasLimit=gasLimit
-	opts.GasPrice,err=GetgasPrice(client)
+func BorrowGoodsMethod(client *ethclient.Client, contract *Agreement.User, id *big.Int, borrowDays *big.Int) (*types.Transaction, error) {
+	opts := Getopts()
+	res, err := contract.BorrowGoods(opts, id, borrowDays)
+	fmt.Println("addCommunity:", res)
+	opts.GasLimit = gasLimit
+	opts.GasPrice, err = GetgasPrice(client)
 	if err != nil {
 		log.Fatal(err)
 	}
@@ -274,12 +328,12 @@ func BorrowGoodsMethod(client *ethclient.Client,contract *Agreement.User , id *b
 }
 
 //封装物品归还方法
-func DoGoodsReturnMethod(client *ethclient.Client,contract *Agreement.User,id *big.Int) (*types.Transaction, error) {
-	opts :=Getopts()
-	res, err := contract.DoGoodsReturn(opts,id)
-	fmt.Println("addCommunity:",res)
-	opts.GasLimit=gasLimit
-	opts.GasPrice,err=GetgasPrice(client)
+func DoGoodsReturnMethod(client *ethclient.Client, contract *Agreement.User, id *big.Int) (*types.Transaction, error) {
+	opts := Getopts()
+	res, err := contract.DoGoodsReturn(opts, id)
+	fmt.Println("addCommunity:", res)
+	opts.GasLimit = gasLimit
+	opts.GasPrice, err = GetgasPrice(client)
 	if err != nil {
 		log.Fatal(err)
 	}
@@ -287,69 +341,70 @@ func DoGoodsReturnMethod(client *ethclient.Client,contract *Agreement.User,id *b
 }
 
 //首页-更多好物
-func HaveIndex(client *ethclient.Client ,id *big.Int) (  common.Address,string,string, *big.Int,*big.Int, error) {
+func HaveIndex(client *ethclient.Client, id *big.Int) (common.Address, string, string, *big.Int, *big.Int, []string, error) {
 	//opts := HaveGetOpts()
 	ins, err := HaveUserRead(client)
 	//var id *big.Int
 	//var opts *bind.CallOpts
-	goodsD, err := ins.GetGoods(nil,id)
-	fmt.Println("goodid",goodsD)
+	goodsD, err := ins.GetGoods(nil, id)
+	//fmt.Println("goodid",goodsD)
 	if err != nil {
-		log.Fatal("GETGOOD错误",err)
+		log.Fatal("GETGOOD错误", err)
 	}
-	return goodsD.Owner,goodsD.Name,goodsD.Species,goodsD.Rent,goodsD.EthPledge, err
+	return goodsD.Owner, goodsD.Name, goodsD.Species, goodsD.Rent, goodsD.EthPledge, goodsD.GoodImg, err
 }
 
 //获取id
-func HaveId(client *ethclient.Client)[] *big.Int{
-	ins,_:=HaveUserRead(client)
-	id,err:=ins.GetGoodsId(nil)
+func HaveId(client *ethclient.Client) []*big.Int {
+	ins, _ := HaveUserRead(client)
+	id, err := ins.GetGoodsId(nil)
 	if err != nil {
-		log.Fatal("GETGOOD错误",err)
+		log.Fatal("GETGOOD错误", err)
 	}
 	return id
 }
+
 //首页-口碑推荐
-func HaveIndex1(client *ethclient.Client ,id *big.Int) ( common.Address,string,string, *big.Int,*big.Int, error) {
+func HaveIndex1(client *ethclient.Client, id *big.Int) (common.Address, string, string, *big.Int, *big.Int, error) {
 	//opts := HaveGetOpts()
 	ins, err := HaveUserRead(client)
 	//var id *big.Int
 	//var opts *bind.CallOpts
-	goodsD, err := ins.GetGoods(nil,id)
-	fmt.Println("goodid",goodsD)
+	goodsD, err := ins.GetGoods(nil, id)
+	fmt.Println("goodid", goodsD)
 	if err != nil {
-		log.Fatal("GETGOOD错误",err)
+		log.Fatal("GETGOOD错误", err)
 	}
-	return goodsD.Owner,goodsD.Name,goodsD.Species,goodsD.Rent,goodsD.EthPledge, err
+	return goodsD.Owner, goodsD.Name, goodsD.Species, goodsD.Rent, goodsD.EthPledge, err
 }
 
 //图片上传
-func UploadUserImg(c *gin.Context){
+func UploadUserImg(c *gin.Context) {
 	f, err := c.FormFile("imgname")
 	//file, handler, err := c.FormFile("imgname")
 	fmt.Println(err)
 	if err != nil {
 		log.Printf("Error when try to get file: %v", err)
 	} else {
-		fileExt:=strings.ToLower(path.Ext(f.Filename))
-		if fileExt!=".png"&&fileExt!=".jpg"&&fileExt!=".jpeg"{
+		fileExt := strings.ToLower(path.Ext(f.Filename))
+		if fileExt != ".png" && fileExt != ".jpg" && fileExt != ".jpeg" {
 			c.JSON(200, gin.H{
 				"code": 400,
 				"msg":  "上传失败!只允许png,jpg,jpeg文件",
 			})
 			return
 		}
-		fileName:=f.Filename
-		fildDir:="./Static/images"
+		fileName := f.Filename
+		fildDir := "./Static/images"
 
-		filepath:=fmt.Sprintf("%s%s",fildDir,fileName)
+		filepath := fmt.Sprintf("%s%s", fildDir, fileName)
 		c.SaveUploadedFile(f, filepath)
-		fmt.Println("filename",fileName)
+		fmt.Println("filename", fileName)
 		c.JSON(200, gin.H{
 			"code": 200,
 			"msg":  "上传成功!",
-			"result":gin.H{
-				"path":filepath,
+			"result": gin.H{
+				"path": filepath,
 			},
 		})
 	}

@@ -102,45 +102,22 @@ $("#register").click(function(){
 			url:"/registerPost",
 			data:{"use_name":$("#use_name").val(),"use_email":$("#use_email").val(),"use_password":$("#use_password").val()},
 			success:function(data){
-				console.log(data)
 				alert("用户注册成功!");
-				window.location="/login";
 		  }
 		})
 	}
 })
-let number=null;
-//邮箱发送按钮
-function setTime(time) {
-	if (!isNaN(time) && time > 0) {
-		$('#deliver').html("倒计时" + time + "秒");
-		$('#deliver').attr('disabled', true);
-		var b = setInterval(function () {
-			time--;
-			if (time <= 0) {
-				$('#deliver').html('重新发送');
-				$('#deliver').attr('disabled', false);
-				clearInterval(b);
-			} else {
-				$('#deliver').html("倒计时" + time + "秒");
-			}
-		}, 1000);
-	} else {
-		alert('时间有误')
-	}
-}
 
+//邮箱发送按钮
+    let number=null;
     $("#deliver").click(function(){
-		setTime(60);
 	  $.ajax({
 		  type:"POST",
-		  url:"/sendEmailPost",
+		  url:"/",
 		  data:{"use_email":$("#use_email").val()},
-		  success:function (data) {
-			  number=data.data;
-			  console.log(number)
-			  alert("发送成功！");
-
-		  }
+		  success:function(data){
+				number=data.random;
+                  alert("发送成功！");
+		}
 	})
 })

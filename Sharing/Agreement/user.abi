@@ -27,6 +27,45 @@
 		"inputs": [
 			{
 				"internalType": "uint256",
+				"name": "",
+				"type": "uint256"
+			}
+		],
+		"name": "CommunitysData",
+		"outputs": [
+			{
+				"internalType": "string",
+				"name": "communityName",
+				"type": "string"
+			},
+			{
+				"internalType": "string",
+				"name": "communityIntroduce",
+				"type": "string"
+			},
+			{
+				"internalType": "address",
+				"name": "beneficiaryAddr",
+				"type": "address"
+			},
+			{
+				"internalType": "uint256",
+				"name": "communityAmounts",
+				"type": "uint256"
+			},
+			{
+				"internalType": "uint256",
+				"name": "communitySchedule",
+				"type": "uint256"
+			}
+		],
+		"stateMutability": "view",
+		"type": "function"
+	},
+	{
+		"inputs": [
+			{
+				"internalType": "uint256",
 				"name": "number",
 				"type": "uint256"
 			},
@@ -84,9 +123,9 @@
 				"type": "uint256"
 			},
 			{
-				"internalType": "uint256",
-				"name": "theNew",
-				"type": "uint256"
+				"internalType": "string[]",
+				"name": "goodsImgs",
+				"type": "string[]"
 			}
 		],
 		"name": "addGoods",
@@ -117,28 +156,139 @@
 		"inputs": [
 			{
 				"internalType": "address",
-				"name": "borrower",
+				"name": "people",
 				"type": "address"
 			},
 			{
-				"internalType": "uint256",
-				"name": "since",
-				"type": "uint256"
-			},
-			{
 				"internalType": "string",
-				"name": "species",
+				"name": "headImg",
 				"type": "string"
-			},
+			}
+		],
+		"name": "addUserImg",
+		"outputs": [],
+		"stateMutability": "nonpayable",
+		"type": "function"
+	},
+	{
+		"inputs": [
 			{
 				"internalType": "uint256",
 				"name": "id",
 				"type": "uint256"
+			},
+			{
+				"internalType": "uint256",
+				"name": "backs",
+				"type": "uint256"
+			}
+		],
+		"name": "agreeBack",
+		"outputs": [],
+		"stateMutability": "nonpayable",
+		"type": "function"
+	},
+	{
+		"inputs": [
+			{
+				"internalType": "uint256",
+				"name": "id",
+				"type": "uint256"
+			},
+			{
+				"internalType": "uint256",
+				"name": "deal",
+				"type": "uint256"
+			},
+			{
+				"internalType": "string",
+				"name": "since",
+				"type": "string"
+			},
+			{
+				"internalType": "address",
+				"name": "borrower",
+				"type": "address"
+			}
+		],
+		"name": "agreeBorrow",
+		"outputs": [],
+		"stateMutability": "nonpayable",
+		"type": "function"
+	},
+	{
+		"inputs": [
+			{
+				"internalType": "uint256",
+				"name": "id",
+				"type": "uint256"
+			},
+			{
+				"internalType": "uint256",
+				"name": "backs",
+				"type": "uint256"
+			},
+			{
+				"internalType": "string",
+				"name": "over",
+				"type": "string"
+			}
+		],
+		"name": "backGoods",
+		"outputs": [],
+		"stateMutability": "payable",
+		"type": "function"
+	},
+	{
+		"inputs": [
+			{
+				"internalType": "uint256",
+				"name": "id",
+				"type": "uint256"
+			},
+			{
+				"internalType": "uint256",
+				"name": "deal",
+				"type": "uint256"
+			}
+		],
+		"name": "borrow",
+		"outputs": [],
+		"stateMutability": "payable",
+		"type": "function"
+	},
+	{
+		"inputs": [
+			{
+				"internalType": "uint256",
+				"name": "id",
+				"type": "uint256"
+			},
+			{
+				"internalType": "uint256",
+				"name": "borrowDays",
+				"type": "uint256"
 			}
 		],
 		"name": "borrowGoods",
-		"outputs": [],
-		"stateMutability": "payable",
+		"outputs": [
+			{
+				"internalType": "uint256",
+				"name": "",
+				"type": "uint256"
+			},
+			{
+				"internalType": "address",
+				"name": "",
+				"type": "address"
+			},
+			{
+				"internalType": "uint256",
+				"name": "",
+				"type": "uint256"
+			}
+		],
+		"stateMutability": "nonpayable",
 		"type": "function"
 	},
 	{
@@ -157,16 +307,6 @@
 	{
 		"inputs": [
 			{
-				"internalType": "address",
-				"name": "owner",
-				"type": "address"
-			},
-			{
-				"internalType": "string",
-				"name": "species",
-				"type": "string"
-			},
-			{
 				"internalType": "uint256",
 				"name": "id",
 				"type": "uint256"
@@ -179,21 +319,6 @@
 	},
 	{
 		"inputs": [
-			{
-				"internalType": "address",
-				"name": "borrower",
-				"type": "address"
-			},
-			{
-				"internalType": "uint256",
-				"name": "over",
-				"type": "uint256"
-			},
-			{
-				"internalType": "string",
-				"name": "species",
-				"type": "string"
-			},
 			{
 				"internalType": "uint256",
 				"name": "id",
@@ -307,9 +432,9 @@
 				"type": "uint256"
 			},
 			{
-				"internalType": "uint256",
-				"name": "theNew",
-				"type": "uint256"
+				"internalType": "string[]",
+				"name": "goodImg",
+				"type": "string[]"
 			}
 		],
 		"stateMutability": "view",
@@ -330,12 +455,171 @@
 	},
 	{
 		"inputs": [],
+		"name": "getStick",
+		"outputs": [
+			{
+				"internalType": "string[]",
+				"name": "",
+				"type": "string[]"
+			}
+		],
+		"stateMutability": "view",
+		"type": "function"
+	},
+	{
+		"inputs": [
+			{
+				"internalType": "address",
+				"name": "user",
+				"type": "address"
+			}
+		],
 		"name": "getUser",
 		"outputs": [
 			{
-				"internalType": "address[]",
+				"internalType": "string",
+				"name": "name",
+				"type": "string"
+			},
+			{
+				"internalType": "address",
+				"name": "people",
+				"type": "address"
+			},
+			{
+				"internalType": "uint256",
+				"name": "integral",
+				"type": "uint256"
+			},
+			{
+				"internalType": "string",
+				"name": "email",
+				"type": "string"
+			},
+			{
+				"internalType": "string",
+				"name": "sign",
+				"type": "string"
+			},
+			{
+				"internalType": "uint256",
+				"name": "goodsNum",
+				"type": "uint256"
+			},
+			{
+				"internalType": "uint256",
+				"name": "balance",
+				"type": "uint256"
+			}
+		],
+		"stateMutability": "view",
+		"type": "function"
+	},
+	{
+		"inputs": [
+			{
+				"internalType": "address",
+				"name": "user",
+				"type": "address"
+			}
+		],
+		"name": "getUserImg",
+		"outputs": [
+			{
+				"internalType": "string",
+				"name": "img",
+				"type": "string"
+			}
+		],
+		"stateMutability": "view",
+		"type": "function"
+	},
+	{
+		"inputs": [
+			{
+				"internalType": "uint256",
 				"name": "",
-				"type": "address[]"
+				"type": "uint256"
+			}
+		],
+		"name": "goodsData",
+		"outputs": [
+			{
+				"internalType": "address",
+				"name": "owner",
+				"type": "address"
+			},
+			{
+				"components": [
+					{
+						"internalType": "address",
+						"name": "borrower",
+						"type": "address"
+					},
+					{
+						"internalType": "string",
+						"name": "since",
+						"type": "string"
+					},
+					{
+						"internalType": "string",
+						"name": "over",
+						"type": "string"
+					}
+				],
+				"internalType": "struct User.Borrower",
+				"name": "borrowers",
+				"type": "tuple"
+			},
+			{
+				"internalType": "uint256",
+				"name": "id",
+				"type": "uint256"
+			},
+			{
+				"internalType": "string",
+				"name": "name",
+				"type": "string"
+			},
+			{
+				"internalType": "string",
+				"name": "species",
+				"type": "string"
+			},
+			{
+				"internalType": "uint256",
+				"name": "rent",
+				"type": "uint256"
+			},
+			{
+				"internalType": "uint256",
+				"name": "ethPledge",
+				"type": "uint256"
+			},
+			{
+				"internalType": "uint256",
+				"name": "count",
+				"type": "uint256"
+			},
+			{
+				"internalType": "uint256",
+				"name": "deal",
+				"type": "uint256"
+			},
+			{
+				"internalType": "uint256",
+				"name": "backs",
+				"type": "uint256"
+			},
+			{
+				"internalType": "bool",
+				"name": "available",
+				"type": "bool"
+			},
+			{
+				"internalType": "bool",
+				"name": "isBorrow",
+				"type": "bool"
 			}
 		],
 		"stateMutability": "view",
@@ -363,6 +647,75 @@
 	{
 		"inputs": [
 			{
+				"internalType": "address",
+				"name": "",
+				"type": "address"
+			}
+		],
+		"name": "integralData",
+		"outputs": [
+			{
+				"internalType": "string",
+				"name": "name",
+				"type": "string"
+			},
+			{
+				"internalType": "string",
+				"name": "password",
+				"type": "string"
+			},
+			{
+				"internalType": "address",
+				"name": "people",
+				"type": "address"
+			},
+			{
+				"internalType": "uint256",
+				"name": "integral",
+				"type": "uint256"
+			},
+			{
+				"internalType": "string",
+				"name": "email",
+				"type": "string"
+			},
+			{
+				"internalType": "string",
+				"name": "headImg",
+				"type": "string"
+			},
+			{
+				"internalType": "string",
+				"name": "sign",
+				"type": "string"
+			},
+			{
+				"internalType": "uint256",
+				"name": "goodsNum",
+				"type": "uint256"
+			},
+			{
+				"internalType": "uint256",
+				"name": "balance",
+				"type": "uint256"
+			},
+			{
+				"internalType": "bool",
+				"name": "exist",
+				"type": "bool"
+			},
+			{
+				"internalType": "bool",
+				"name": "isLogin",
+				"type": "bool"
+			}
+		],
+		"stateMutability": "view",
+		"type": "function"
+	},
+	{
+		"inputs": [
+			{
 				"internalType": "uint256",
 				"name": "number",
 				"type": "uint256"
@@ -382,11 +735,6 @@
 	{
 		"inputs": [
 			{
-				"internalType": "string",
-				"name": "species",
-				"type": "string"
-			},
-			{
 				"internalType": "uint256",
 				"name": "id",
 				"type": "uint256"
@@ -405,11 +753,6 @@
 	},
 	{
 		"inputs": [
-			{
-				"internalType": "string",
-				"name": "species",
-				"type": "string"
-			},
 			{
 				"internalType": "uint256",
 				"name": "id",
@@ -462,31 +805,30 @@
 	{
 		"inputs": [
 			{
-				"internalType": "uint256",
-				"name": "",
-				"type": "uint256"
-			}
-		],
-		"name": "loginUser",
-		"outputs": [
-			{
-				"internalType": "address",
-				"name": "",
-				"type": "address"
-			}
-		],
-		"stateMutability": "view",
-		"type": "function"
-	},
-	{
-		"inputs": [
-			{
 				"internalType": "address",
 				"name": "people",
 				"type": "address"
 			}
 		],
 		"name": "logout",
+		"outputs": [],
+		"stateMutability": "nonpayable",
+		"type": "function"
+	},
+	{
+		"inputs": [
+			{
+				"internalType": "address",
+				"name": "owner",
+				"type": "address"
+			},
+			{
+				"internalType": "uint256",
+				"name": "id",
+				"type": "uint256"
+			}
+		],
+		"name": "outGoods",
 		"outputs": [],
 		"stateMutability": "nonpayable",
 		"type": "function"
@@ -506,11 +848,6 @@
 	},
 	{
 		"inputs": [
-			{
-				"internalType": "string",
-				"name": "species",
-				"type": "string"
-			},
 			{
 				"internalType": "uint256",
 				"name": "id",
@@ -542,6 +879,11 @@
 			},
 			{
 				"internalType": "string",
+				"name": "email",
+				"type": "string"
+			},
+			{
+				"internalType": "string",
 				"name": "password",
 				"type": "string"
 			}
@@ -549,6 +891,25 @@
 		"name": "register",
 		"outputs": [],
 		"stateMutability": "payable",
+		"type": "function"
+	},
+	{
+		"inputs": [
+			{
+				"internalType": "uint256",
+				"name": "",
+				"type": "uint256"
+			}
+		],
+		"name": "stickData",
+		"outputs": [
+			{
+				"internalType": "string",
+				"name": "",
+				"type": "string"
+			}
+		],
+		"stateMutability": "view",
 		"type": "function"
 	},
 	{
@@ -577,14 +938,37 @@
 				"internalType": "uint256",
 				"name": "ethPledge",
 				"type": "uint256"
-			},
-			{
-				"internalType": "uint256",
-				"name": "theNew",
-				"type": "uint256"
 			}
 		],
 		"name": "updGoods",
+		"outputs": [],
+		"stateMutability": "nonpayable",
+		"type": "function"
+	},
+	{
+		"inputs": [
+			{
+				"internalType": "address",
+				"name": "people",
+				"type": "address"
+			},
+			{
+				"internalType": "string",
+				"name": "name",
+				"type": "string"
+			},
+			{
+				"internalType": "string",
+				"name": "email",
+				"type": "string"
+			},
+			{
+				"internalType": "string",
+				"name": "sign",
+				"type": "string"
+			}
+		],
+		"name": "updateUser",
 		"outputs": [],
 		"stateMutability": "nonpayable",
 		"type": "function"

@@ -1,13 +1,13 @@
-
 {{ define "Static/register.html" }}
 <!doctype html>
 <html>
 
 <head>
+
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <script src="share/static/js/public.js"></script>
-    <link href="share/css/time.css" rel="stylesheet" type="text/css" />
+    <link href="css/time.css" rel="stylesheet" type="text/css" />
     <link rel="stylesheet" href="share/css/tabbar.css">
 
     <link rel="stylesheet" href="share/static/css/boxicon.min.css">
@@ -106,7 +106,7 @@
         <div class="container">
             <div class="row">
                 <div class="col-lg-6 col-md-8 offset-md-2 offset-lg-3">
-                    <div class="signin-form">
+                    <form class="signin-form">
 
                         <div class="form-group">
                             <label>昵称</label>
@@ -124,7 +124,7 @@
                             <input type="text" class="form-control" placeholder="输入验证码" id="use_random">
                             <p id="p_random"></p>
                         </div>
-                        <button type="button" id="deliver" class="btn btn-de-danger btn-sm"
+                        <button class="ec-btn" type="button" id="deliver" class="btn btn-de-danger btn-sm"
                             data-bs-toggle="modal" style="float: right;     margin-top: -60px;     font-size: 15px;"
                             data-bs-target="#exampleModalSend"><svg xmlns="http://www.w3.org/2000/svg" width="24"
                                 height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
@@ -160,7 +160,7 @@
                         <div class="signin-btn text-center">
                             <input type="checkbox" id="check">
                             <span>我已阅读并同意</span>
-                            <a href="share/user-agreement.html">《ShareFish服务协议》</a>
+                            <a href="../user-agreement">《ShareFish服务协议》</a>
                             <button id="register">注册</button>
                         </div>
 
@@ -172,7 +172,7 @@
                                 </a>
                             </p>
                         </div>
-                    </div>
+                    </form>
                 </div>
             </div>
         </div>
@@ -189,6 +189,7 @@
         </div>
 
     </footer>
+
     <script src="share/static/js/jquery.min.js"></script>
     <script src="share/static/js/owl.carousel.min.js"></script>
     <script src="share/static/js/jquery.nice-select.min.js"></script>
@@ -199,8 +200,31 @@
     <script src="share/static/js/custom.js"></script>
     <!-- Main JS -->
     <script src="share/assets/js/main.js"></script>
-    <script src="share/static/js/register.js"></script>
 
+    <script>
+        $('.ec-btn').click(function () {
+            setTime(60);
+        })
+
+        function setTime(time) {
+            if (!isNaN(time) && time > 0) {
+                $('.ec-btn').html("倒计时" + time + "秒");
+                $('.ec-btn').attr('disabled', true);
+                var b = setInterval(function () {
+                    time--;
+                    if (time <= 0) {
+                        $('.ec-btn').html('重新发送');
+                        $('.ec-btn').attr('disabled', false);
+                        clearInterval(b);
+                    } else {
+                        $('.ec-btn').html("倒计时" + time + "秒");
+                    }
+                }, 1000);
+            } else {
+                alert('时间有误')
+            }
+        }
+    </script>
 </body>
 {{ end }}
 </html>

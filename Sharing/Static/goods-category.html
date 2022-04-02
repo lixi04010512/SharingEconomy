@@ -102,31 +102,11 @@
 					<a href="javascript:;" class="scrolltab-item">
 						<div class="scrolltab-title">热门推荐</div>
 					</a>
-					<a href="javascript:;" class="scrolltab-item">
-						<div class="scrolltab-title">严选手机</div>
-					</a>
-					<a href="javascript:;" class="scrolltab-item">
-						<div class="scrolltab-title">电脑设备</div>
-					</a>
-					<a href="javascript:;" class="scrolltab-item">
-						<div class="scrolltab-title">平板iPad</div>
-					</a>
-					<a href="javascript:;" class="scrolltab-item">
-						<div class="scrolltab-title">相机摄影</div>
-					</a>
-					<a href="javascript:;" class="scrolltab-item">
-						<div class="scrolltab-title">游戏设备</div>
-					</a>
-					<a href="javascript:;" class="scrolltab-item">
-						<div class="scrolltab-title">耳机乐器</div>
-					</a>
-					<a href="javascript:;" class="scrolltab-item">
-						<div class="scrolltab-title">手表饰品</div>
-					</a>
-					<a href="javascript:;" class="scrolltab-item">
-						<div class="scrolltab-title">家用电器</div>
-					</a>
-
+					{{ range $key ,$value:=.goodsCategory }}
+						<a href="javascript:;" class="scrolltab-item">
+							<div class="scrolltab-title">{{$value.Species}}</div>
+						</a>
+					{{end}}
 				</div>
 				<div class="scrolltab-content">
 					<div class="scrolltab-content-item">
@@ -173,8 +153,9 @@
 							</div>
 						</div>
 					</div>
+					{{ range $key ,$value:=.goodsCategory }}
 					<div class="scrolltab-content-item">
-						<span>严选手机</span>
+						<span>{{$value.Species}}</span>
 						<a href="../category-details" style="float: right;padding-top: 8px;">
 							更多<i class="ti ti-chevron-right"></i>
 						</a>
@@ -186,237 +167,18 @@
 								</a>
 							</div>
 							<div class="aui-flex-links">
-								<a href="../category-details" class="aui-flex-links-item">
-									<div class="aui-flex-links-img">
-										<img src="share/themes/img/ad/x-sf-1.jpg" alt="">
-									</div>
-									<div class="aui-flex-links-text">手机数码</div>
-								</a>
-								<a href="../category-details" class="aui-flex-links-item">
-									<div class="aui-flex-links-img">
-										<img src="share/themes/img/ad/x-sf-1.jpg" alt="">
-									</div>
-									<div class="aui-flex-links-text">苹果手机</div>
-								</a>
-								<a href="../category-details" class="aui-flex-links-item">
-									<div class="aui-flex-links-img">
-										<img src="share/themes/img/ad/x-sf-1.jpg" alt="">
-									</div>
-									<div class="aui-flex-links-text">华为手机</div>
-								</a>
-
+								{{ range $k ,$v:=$value.GoodImg}}
+									<a href="../category-details" class="aui-flex-links-item">
+										<div class="aui-flex-links-img">
+											<img src={{$v}} alt="">
+										</div>
+										<div class="aui-flex-links-text">{{$value.Names}}</div>
+									</a>
+								{{end}}
 							</div>
 						</div>
 					</div>
-					<div class="scrolltab-content-item">
-						<span>电脑设备</span>
-						<a href="../category-details" style="float: right;padding-top: 8px;">
-							更多<i class="ti ti-chevron-right"></i>
-						</a>
-						<div>
-							<div class="aui-class-ad-img">
-								<a href="../category-details">
-									<img src="share/images/ad2.jpg" alt="">
-								</a>
-							</div>
-							<div class="aui-flex-links">
-								<a href="../category-details" class="aui-flex-links-item">
-									<div class="aui-flex-links-img">
-										<img src="share/images/4.jpg" alt="">
-									</div>
-									<div class="aui-flex-links-text">苹果电脑</div>
-								</a>
-								<a href="../category-details" class="aui-flex-links-item">
-									<div class="aui-flex-links-img">
-										<img src="share/images/4.jpg" alt="">
-									</div>
-									<div class="aui-flex-links-text">联想电脑</div>
-								</a>
-
-							</div>
-						</div>
-					</div>
-					<div class="scrolltab-content-item">
-						<span>平板iPad</span>
-							<a href="../category-details" style="float: right;padding-top: 8px;">
-							更多<i class="ti ti-chevron-right"></i>
-						</a>
-						<div>
-							<div class="aui-class-ad-img">
-								<a href="../category-details">
-									<img src="share/images/ad3.jpg" alt="">
-								</a>
-							</div>
-							<div class="aui-flex-links">
-								<a href="../category-details" class="aui-flex-links-item">
-									<div class="aui-flex-links-img">
-										<img src="share/images/5.jpg" alt="">
-									</div>
-									<div class="aui-flex-links-text">iPad pro</div>
-								</a>
-								<a href="../category-details" class="aui-flex-links-item">
-									<div class="aui-flex-links-img">
-										<img src="share/images/5.jpg" alt="">
-									</div>
-									<div class="aui-flex-links-text">iPad air</div>
-								</a>
-								<a href="../category-details" class="aui-flex-links-item">
-									<div class="aui-flex-links-img">
-										<img src="share/images/5.jpg" alt="">
-									</div>
-									<div class="aui-flex-links-text">华为平板</div>
-								</a>
-
-							</div>
-						</div>
-					</div>
-					<div class="scrolltab-content-item">
-						<span>相机摄影</span>
-						<a href="../category-details" style="float: right;padding-top: 8px;">
-							更多<i class="ti ti-chevron-right"></i>
-						</a>
-						<div>
-							<div class="aui-class-ad-img">
-								<a href="../category-details">
-									<img src="share/images/ad4.jpg" alt="">
-								</a>
-							</div>
-							<div class="aui-flex-links">
-								<a href="../category-details" class="aui-flex-links-item">
-									<div class="aui-flex-links-img">
-										<img src="share/images/1.jpg" alt="">
-									</div>
-									<div class="aui-flex-links-text">佳能相机</div>
-								</a>
-								<a href="../category-details" class="aui-flex-links-item">
-									<div class="aui-flex-links-img">
-										<img src="share/images/1.jpg" alt="">
-									</div>
-									<div class="aui-flex-links-text">索尼相机</div>
-								</a>
-
-							</div>
-						</div>
-					</div>
-					<div class="scrolltab-content-item">
-						<span>游戏设备</span>
-						<a href="../category-details" style="float: right;padding-top: 8px;">
-							更多<i class="ti ti-chevron-right"></i>
-						</a>
-						<div>
-							<div class="aui-class-ad-img">
-								<a href="../category-details">
-									<img src="share/images/ad5.jpg" alt="">
-								</a>
-							</div>
-							<div class="aui-flex-links">
-								<a href="../category-details" class="aui-flex-links-item">
-									<div class="aui-flex-links-img">
-										<img src="share/images/2.jpg" alt="">
-									</div>
-									<div class="aui-flex-links-text">Switch</div>
-								</a>
-								<a href="../category-details" class="aui-flex-links-item">
-									<div class="aui-flex-links-img">
-										<img src="share/images/2.jpg" alt="">
-									</div>
-									<div class="aui-flex-links-text">Switch手柄</div>
-								</a>
-
-							</div>
-						</div>
-					</div>
-					<div class="scrolltab-content-item">
-						<span>耳机乐器</span>
-						<a href="../category-details" style="float: right;padding-top: 8px;">
-							更多<i class="ti ti-chevron-right"></i>
-						</a>
-						<div>
-							<div class="aui-class-ad-img">
-								<a href="../category-details">
-									<img src="share/images/ad6.jpg" alt="">
-								</a>
-							</div>
-							<div class="aui-flex-links">
-								<a href="../category-details" class="aui-flex-links-item">
-									<div class="aui-flex-links-img">
-										<img src="share/images/3.jpg" alt="">
-									</div>
-									<div class="aui-flex-links-text">蓝牙耳机</div>
-								</a>
-								<a href="../category-details" class="aui-flex-links-item">
-									<div class="aui-flex-links-img">
-										<img src="share/images/3.jpg" alt="">
-									</div>
-									<div class="aui-flex-links-text">蓝牙耳机</div>
-								</a>
-
-							</div>
-						</div>
-					</div>
-					<div class="scrolltab-content-item">
-						<span>手表饰品</span>
-						<a href="../category-details" style="float: right;padding-top: 8px;">
-							更多<i class="ti ti-chevron-right"></i>
-						</a>
-						<div>
-							<div class="aui-class-ad-img">
-								<a href="../category-details">
-									<img src="share/images/ad7.jpg" alt="">
-								</a>
-							</div>
-							<div class="aui-flex-links">
-								<a href="../category-details" class="aui-flex-links-item">
-									<div class="aui-flex-links-img">
-										<img src="" alt="">
-									</div>
-									<div class="aui-flex-links-text">早春新品</div>
-								</a>
-								<a href="../category-details" class="aui-flex-links-item">
-									<div class="aui-flex-links-img">
-										<img src="" alt="">
-									</div>
-									<div class="aui-flex-links-text">项链</div>
-								</a>
-
-							</div>
-						</div>
-					</div>
-					<div class="scrolltab-content-item">
-						<span>家用电器</span>
-						<a href="../category-details" style="float: right;padding-top: 8px;">
-							更多<i class="ti ti-chevron-right"></i>
-						</a>
-						<div>
-							<div class="aui-class-ad-img">
-								<a href="../category-details">
-									<img src="share/themes/img/pd/cf-8.jpg" alt="">
-								</a>
-							</div>
-							<div class="aui-flex-links">
-								<a href="../category-details" class="aui-flex-links-item">
-									<div class="aui-flex-links-img">
-										<img src="" alt="">
-									</div>
-									<div class="aui-flex-links-text">冰箱</div>
-								</a>
-								<a href="../category-details" class="aui-flex-links-item">
-									<div class="aui-flex-links-img">
-										<img src="" alt="">
-									</div>
-									<div class="aui-flex-links-text">洗衣机</div>
-								</a>
-								<a href="../category-details" class="aui-flex-links-item">
-									<div class="aui-flex-links-img">
-										<img src="" alt="">
-									</div>
-									<div class="aui-flex-links-text">床</div>
-								</a>
-
-							</div>
-						</div>
-					</div>
-
+{{end}}
 
 				</div>
 			</div>

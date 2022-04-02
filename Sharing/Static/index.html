@@ -220,6 +220,7 @@
                         </div>
                        
                     </div>
+
                     <div class="category-slider-wrapper">
                         <div class="category-item">
                             <div class="category-item__image">
@@ -304,57 +305,29 @@
                         <!-- featured products -->
                         <div class="featured-product-wrapper space-mb-m--15">
                             <div class="row row-5">
-                                <div class="col-4">
-                                    <div class="featured-product space-mb--15">
-                                        <div class="featured-product__image">
-                                            <a href="../shop-product">
-                                                <img src="share/images/1.jpg" class="img-fluid" alt="">
-                                            </a>
-                                        </div>
-                                        <div class="featured-product__content">
-                                            <div class="price" style="padding-left: 15px;
-                                            padding-right: 15px;">
-                                                <span class="main-price">$26</span>
-                                                <span class="discounted-price">$12/天</span>
-                                            </div>
+                                {{ range $key ,$value:=.goodsPor }}
+                                    {{if  le 3 $key}}<div></div>
+                                    {{else}}
+                                        <div class="col-4">
+                                            <div class="featured-product space-mb--15">
+                                                <div class="featured-product__image">
+                                                    <a href="share/shop-product.html">
+                                                        {{ range $k ,$v:=$value.GoodImg}}
+                                                            <img src={{$v}} class="img-fluid" alt="">
+                                                        {{end}}
+                                                    </a>
+                                                </div>
+                                                <div class="featured-product__content">
+                                                    <div class="price" style="padding-left: 17px;
+                                            padding-right: 17px;">
+                                                        <span class="discounted-price">{{ $value.Rent }}元/天</span>
+                                                    </div>
 
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="col-4">
-                                    <div class="featured-product space-mb--15">
-                                        <div class="featured-product__image">
-                                            <a href="../shop-product">
-                                                <img src="share/images/2.jpg" class="img-fluid" alt="">
-                                            </a>
-                                        </div>
-                                        <div class="featured-product__content">
-                                            <div class="price" style="padding-left: 15px;
-                                            padding-right: 15px;">
-                                                <span class="main-price">$26</span>
-                                                <span class="discounted-price">$12/天</span>
+                                                </div>
                                             </div>
-
                                         </div>
-                                    </div>
-                                </div>
-                                <div class="col-4">
-                                    <div class="featured-product space-mb--15">
-                                        <div class="featured-product__image">
-                                            <a href="../shop-product">
-                                                <img src="share/images/3.jpg" class="img-fluid" alt="">
-                                            </a>
-                                        </div>
-                                        <div class="featured-product__content">
-                                            <div class="price" style="padding-left: 13px;
-                                            padding-right: 13px;">
-                                                <span class="main-price">$26</span>
-                                                <span class="discounted-price">$10 /天</span>
-                                            </div>
-
-                                        </div>
-                                    </div>
-                                </div>
+                                    {{end}}
+                                {{end}}
                             </div>
                         </div>
                     </div>
@@ -374,209 +347,28 @@
                         <!-- all products -->
                         <div class="all-products-wrapper space-mb-m--20">
                             <div class="row">
-                                <div class="col-6">
-                                    <div class="grid-product space-mb--20">
-                                        <div class="grid-product__image">
-                                            <a href="../shop-product">
-                                                <img src="share/images/4.jpg" class="img-fluid" alt="">
-                                            </a>
-                                            <!-- <button class="icon"><img src="assets/img/icons/heart-dark.svg"
-                                                    class="injectable" alt=""></button> -->
-                                        </div>
-                                        <div class="grid-product__content">
-                                            <h3 class="title"><a href="../shop-product">笔记本电脑</a></h3>
-                                            <span class="category">电脑设备</span>
-                                            <div class="price">
-                                                <span class="main-price">$26</span>
-                                                <span class="discounted-price">$10/天</span>
+                                {{ range $key ,$value:=.goodsPor }}
+                                    <div class="col-6">
+                                        <div class="grid-product space-mb--20">
+                                            <div class="grid-product__image">
+                                                <a href="shop-product.html">
+                                                    {{ range $k ,$v:=$value.GoodImg}}
+                                                        <img src={{$v}} class="img-fluid" alt="">
+                                                    {{end}}
+                                                </a>
                                             </div>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="col-6">
-                                    <div class="grid-product space-mb--20">
-                                        <div class="grid-product__image">
-                                            <a href="../shop-product">
-                                                <img src="share/images/5.jpg" class="img-fluid" alt="">
-                                            </a>
-                                            <!-- <button class="icon"><img src="assets/img/icons/heart-dark.svg"
-                                                    class="injectable" alt=""></button> -->
+                                            <div class="grid-product__content">
+                                                <h3 class="title"><a href="static/shop-product.html">{{ $value.Names }}</a></h3>
 
-                                            <!-- <div class="wishlist-btn">
-                                                <i class="iconly-Heart icli"></i>
-                                                <i class="iconly-Heart icbo"></i>
-                                                <div class="effect-group">
-                                                  <span class="effect"></span>
-                                                  <span class="effect"></span>
-                                                  <span class="effect"></span>
-                                                  <span class="effect"></span>
-                                                  <span class="effect"></span>
+                                                <span class="category">{{ $value.Species }}</span>
+                                                <div class="price">
+                                                    <span class="discounted-price">{{ $value.Rent }}元/天</span>
+
                                                 </div>
-                                              </div> -->
-
-                                        </div>
-                                        <div class="grid-product__content">
-                                            <h3 class="title"><a href="../shop-product">iPad pro</a></h3>
-                                            <span class="category">平板iPad</span>
-                                            <div class="price">
-                                                <span class="main-price">$24</span>
-                                                <span class="discounted-price">$10/天</span>
                                             </div>
                                         </div>
                                     </div>
-                                </div>
-                                <div class="col-6">
-                                    <div class="grid-product space-mb--20">
-                                        <div class="grid-product__image">
-                                            <a href="../shop-product">
-                                                <img src="share/images/6.jpg" class="img-fluid" alt="">
-                                            </a>
-                                            <!-- <button class="icon"><img src="assets/img/icons/heart-dark.svg"
-                                                    class="injectable" alt=""></button> -->
-                                        </div>
-                                        <div class="grid-product__content">
-                                            <h3 class="title"><a href="../shop-product">VR眼镜</a></h3>
-                                            <span class="category">游戏设备</span>
-                                            <div class="price">
-                                                <span class="main-price">$25</span>
-                                                <span class="discounted-price">$12/天</span>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="col-6">
-                                    <div class="grid-product space-mb--20">
-                                        <div class="grid-product__image">
-                                            <a href="../shop-product">
-                                                <img src="share/images/7.jpg" class="img-fluid" alt="">
-                                            </a>
-                                            <!-- <button class="icon"><img src="assets/img/icons/heart-dark.svg"
-                                                    class="injectable" alt=""></button> -->
-                                        </div>
-                                        <div class="grid-product__content">
-                                            <h3 class="title"><a href="../shop-product">电子体温计</a></h3>
-                                            <span class="category">医疗健康</span>
-                                            <div class="price">
-                                                <span class="main-price">$15</span>
-                                                <span class="discounted-price">$5/天</span>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="col-6">
-                                    <div class="grid-product space-mb--20">
-                                        <div class="grid-product__image">
-                                            <a href="../shop-product">
-                                                <img src="share/images/1.jpg" class="img-fluid" alt="">
-                                            </a>
-                                            <!-- <button class="icon"><img src="assets/img/icons/heart-dark.svg"
-                                                    class="injectable" alt=""></button> -->
-                                        </div>
-                                        <div class="grid-product__content">
-                                            <h3 class="title"><a href="../shop-product">佳能相机</a></h3>
-                                            <span class="category">相机摄影</span>
-                                            <div class="price">
-                                                <span class="main-price">$26</span>
-                                                <span class="discounted-price">$12/天</span>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="col-6">
-                                    <div class="grid-product space-mb--20">
-                                        <div class="grid-product__image">
-                                            <a href="../shop-product">
-                                                <img src="share/images/2.jpg" class="img-fluid" alt="">
-                                            </a>
-                                            <!-- <button class="icon"><img src="assets/img/icons/heart-dark.svg"
-                                                    class="injectable" alt=""></button> -->
-                                        </div>
-                                        <div class="grid-product__content">
-                                            <h3 class="title"><a href="../shop-product">Switch</a></h3>
-                                            <span class="category">游戏设备</span>
-                                            <div class="price">
-                                                <span class="main-price">$24</span>
-                                                <span class="discounted-price">$13/天</span>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="col-6">
-                                    <div class="grid-product space-mb--20">
-                                        <div class="grid-product__image">
-                                            <a href="../shop-product">
-                                                <img src="share/assets/img/products/product3.png" class="img-fluid" alt="">
-                                            </a>
-                                            <!-- <button class="icon"><img src="assets/img/icons/heart-dark.svg"
-                                                    class="injectable" alt=""></button> -->
-                                        </div>
-                                        <div class="grid-product__content">
-                                            <h3 class="title"><a href="../shop-product">低帮运动鞋</a></h3>
-                                            <span class="category">服饰鞋子</span>
-                                            <div class="price">
-                                                <span class="main-price">$15</span>
-                                                <span class="discounted-price">$4/天</span>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="col-6">
-                                    <div class="grid-product space-mb--20">
-                                        <div class="grid-product__image">
-                                            <a href="../shop-product">
-                                                <img src="share/assets/img/products/product4.png" class="img-fluid" alt="">
-                                            </a>
-                                            <!-- <button class="icon"><img src="assets/img/icons/heart-dark.svg"
-                                                    class="injectable" alt=""></button> -->
-                                        </div>
-                                        <div class="grid-product__content">
-                                            <h3 class="title"><a href="../shop-product">高帮运动鞋</a></h3>
-                                            <span class="category">服饰鞋子</span>
-                                            <div class="price">
-                                                <span class="main-price">$15</span>
-                                                <span class="discounted-price">$9/天</span>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="col-6">
-                                    <div class="grid-product space-mb--20">
-                                        <div class="grid-product__image">
-                                            <a href="../shop-product">
-                                                <img src="share/assets/img/products/product1.png" class="img-fluid" alt="">
-                                            </a>
-                                            <!-- <button class="icon"><img src="assets/img/icons/heart-dark.svg"
-                                                    class="injectable" alt=""></button> -->
-                                        </div>
-                                        <div class="grid-product__content">
-                                            <h3 class="title"><a href="../shop-product">手提包</a></h3>
-                                            <span class="category">包包饰品</span>
-                                            <div class="price">
-                                                <span class="main-price">$26</span>
-                                                <span class="discounted-price">$12/天</span>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="col-6">
-                                    <div class="grid-product space-mb--20">
-                                        <div class="grid-product__image">
-                                            <a href="../shop-product">
-                                                <img src="share/assets/img/products/product2.png" class="img-fluid" alt="">
-                                            </a>
-                                            <!-- <button class="icon"><img src="assets/img/icons/heart-dark.svg"
-                                                    class="injectable" alt=""></button> -->
-                                        </div>
-                                        <div class="grid-product__content">
-                                            <h3 class="title"><a href="../shop-product">美妆粉扑</a></h3>
-                                            <span class="category">美妆用品</span>
-                                            <div class="price">
-                                                <span class="main-price">$20</span>
-                                                <span class="discounted-price">$13/天</span>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
+                                {{end}}
 
                             </div>
                         </div>
