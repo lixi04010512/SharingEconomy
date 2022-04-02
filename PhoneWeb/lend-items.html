@@ -1,0 +1,311 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="utf-8">
+    <title>Share Fish-上架物品</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta content="Premium Multipurpose Admin & Dashboard Template" name="description">
+    <meta content="" name="author">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <script src="static/js/public.js"></script>
+    <link rel="stylesheet" href="css/defaultStyle.css" />
+    <link rel="stylesheet" href="css/tabbar.css">
+
+    <link rel="stylesheet" href="assets/css/bootstrap.min.css">
+    <link rel="stylesheet" href="assets/css/style.css">
+    <!-- App css -->
+    <link href="static/css/bootstrap.min.css" rel="stylesheet" type="text/css">
+    <link href="static/css/icons.min.css" rel="stylesheet" type="text/css">
+    <link href="static/css/app.min.css" rel="stylesheet" type="text/css">
+    <link href="css/upload.css" rel="stylesheet" />
+</head>
+<body id="body" class="dark-sidebar">
+    <!-- leftbar-menu -->
+    <header>
+        <div class="header-wrapper border-bottom">
+            <div class="container space-y--15">
+                <div class="row align-items-center">
+                    <div class="col-auto">
+                        <!-- header logo -->
+                        <div class="header-logo">
+                            <a href="index.html">
+                                <img src="assets/img/logo.png" class="img-fluid" alt="" style="width: 75px;">
+                            </a>
+                        </div>
+                    </div>
+                    <div class="col d-flex justify-content-center">
+                        <!-- 搜索框 -->
+                        <div class="header-search">
+                            <a href="search-page.html">
+                                <div class="input-group">
+                                    <input type="text" id="chat-search" name="chat-search" class="form-control"
+                                        placeholder="搜索好物" style="    padding-left: 30px;">
+                            </a>
+
+                            <span style="position: absolute;padding-top: 7px;padding-left: 10px;
+                                   "><i class="fa fa-search"></i></span>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-auto">
+                    <button class="header-menu-trigger" id="header-menu-trigger">
+                        <i class="fas fa-align-right" style="font-size: 20px;
+                            color: grey;"></i>
+                    </button>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <div class="offcanvas-menu" id="offcanvas-menu">
+        <div class="profile-card text-center">
+            <div class="profile-card__image space-mb--10">
+                <img src="assets/img/profile.jpg" class="img-fluid" alt="">
+            </div>
+            <div class="profile-card__content">
+                <p class="name">0x5B38Da6a701c568545dCfcB03F <span class="id">John</span></p>
+            </div>
+        </div>
+        <div class="offcanvas-navigation-wrapper space-mt--40">
+            <ul class="offcanvas-navigation">
+               <li><span class="icon"><i class="ti ti-login" style="font-size: 25px;"></i></span><a
+                        href="login.html">登录/注册</a></li>
+                <li><span class="icon"><i class="ti ti-plus" style="font-size: 25px;"></i></span><a
+                        href="lend-items.html">上传物品</a></li>
+                <li><span class="icon"><i class="ti ti-shopping-cart" style="font-size: 25px;"></i></span><a
+                        href="shop.html">我租入的物品</a></li>
+                <li><span class="icon"><i class="ti ti-box" style="font-size: 25px;"></i></span><a
+                        href="order.html">我借出的物品</a></li>
+                <li><span class="icon"><i class="ti ti-power" style="font-size: 25px;"></i></span><a
+                        onclick="Qual.confirmd('您确定要退出当前账号吗？', '点击OK按钮或者关闭', inf, 'OK', '', 'okFunction', 'cancelFunction')">退出登入</a>
+                </li>
+            </ul>
+        </div>
+    </div>
+
+
+
+
+    <div class="page-wrapper">
+        <!-- Page Content-->
+        <div class="page-content-tab">
+
+            <div class="container-fluid">
+                <!-- Page-Title -->
+                <div class="row">
+                    <div class="container space-y--15">
+                        <div class="row align-items-center">
+                            <div class="col-3">
+                                <a class="back-link" onClick="javascript :history.back(-1);"> <i
+                                        class="fa fa-angle-left"></i>
+                                    返回</a>
+                            </div>
+                            <div class="col-6">
+                                <h4 class="category-title text-center">上架物品</h4>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!-- end page title end breadcrumb -->
+                <div class="row">
+                    <div class="col-12">
+                        <div class="card">
+                            <div class="card-body p-0">
+                                <!-- Nav tabs -->
+                                <ul class="nav nav-tabs" role="tablist">
+                                    <li class="nav-item">
+                                        <a class="nav-link active" data-bs-toggle="tab" href="#Post" role="tab"
+                                            aria-selected="true">上架物品</a>
+                                    </li>
+                                </ul>
+
+                                <!-- Tab panes -->
+                                <div class="tab-content">
+                                    <div class="tab-pane p-3 active" id="Post" role="tabpanel">
+                                        <div class="row">
+                                            <form method="post" action="" id="lendForm">
+                                                <div class="row g-3 align-items-center">
+                                                    <div class="col-md-6">
+                                                        <label for="" class="form-label">物品名称</label>
+                                                        <input type="text" class="form-control" name="goodsName"
+                                                            id="goodsName" value="">
+                                                    </div>
+                                                    <div class="col-md-6">
+                                                        <label for="" class="form-label">每日租金</label>
+                                                        <input type="text" class="form-control" name="rent" id="rent"
+                                                            required="">
+                                                    </div>
+                                                    <div class="col-md-6">
+                                                        <label class="form-label">物品类别</label>
+                                                        <select class="form-select" aria-label="Default select example">
+                                                            <option selected="">服饰</option>
+                                                            <option value="1">电子产品</option>
+                                                            <option value="2">书籍</option>
+                                                            <option value="3">其他</option>
+                                                        </select>
+                                                    </div>
+
+                                                    <div class="col-md-6">
+                                                        <label for="formFileMultiple" class="form-label"> 图片上传 </label>
+            
+                                                        <div id="uploadImgs" style="margin-bottom: 20px;">
+                                    
+                                                            <label for="fileUpIpt" id="labelId">
+                                                                <div class="uploadImgs-add">+</div>
+                                                            </label>
+                                                
+                                                            <div class="type-file-div">
+                                                                <input type="file" class="input-file" name="luTest[]" style="display: none;">
+                                                            </div>
+                                                        </div>
+                                                      
+                                                    </div>
+                                                    <div class="col-md-6">
+                                                        <label for="" class="form-label">押金</label>
+                                                        <input type="text" class="form-control" name="deposit"
+                                                            id="textDeposit" required="">
+                                                    </div>
+                                                    <div class="col-md-12">
+                                                        <label for="addnote" class="form-label">商品描述</label>
+                                                        <textarea class="form-control" name="desc" id="addnote"
+                                                            rows="3"></textarea>
+                                                    </div>
+                                                </div>
+
+                                                <button type="submit" class="btn btn-primary mt-4" id="ensure"
+                                                    onclick="add()">确认上架</button>
+                                            </form>
+                                        </div>
+                                        <!--end row-->
+                                    </div>
+                                </div>
+                            </div>
+                            <!--end card-body-->
+                        </div>
+                        <!--end card-->
+                    </div>
+                    <!--end col-->
+                </div>
+                <!--end row-->
+            </div><!-- container -->
+        </div>
+        <!-- end page content -->
+    </div>
+    <!-- end page-wrapper -->
+    <footer>
+
+        <div class="sc-bottom-bar">
+            <a class="sc-menu-item " href="index.html"><i class="fas fa-home"></i></a>
+            <a class="sc-menu-item " href="goods-category.html"><i class="fas  fa-list"></i></a>
+            <a href="chat.html" class="sc-menu-item "><i class="fas fa-plus"></i></a>
+            <a class="sc-menu-item" href="cart.html"><i class="fas fa-clipboard"></i></a>
+            <a class="sc-menu-item" href="ui-me.html"><i class="fas fa-user"></i></a>
+        </div>
+
+    </footer>
+    <!-- Javascript  -->
+   
+    <script src="static/js/app.js"></script>
+
+    <script src="assets/js/jquery-3.4.1.min.js"></script>
+    <!-- Bootstrap JS -->
+    <script src="assets/js/bootstrap.min.js"></script>
+    <script src="assets/js/main.js"></script>
+    <script src="js/popbox.js"></script>
+    <script>
+        function okFunction() {
+            window.location.href = "login.html";
+        }
+        function cancelFunction() {
+            alert('Cancel!');
+        }
+    </script>
+<script>
+    var gbOption = null; //必须，固定变量名
+    var filesArr=[]; //固定写法 这个就是上传能拿到的 files的集合，
+    var fileClass = 'input-file'; //必须，固定变量名，值可自定义，就是input的 class自定义后 需要在这重新声明
+    var imgObj2 = []; //可自定义，图片上传功能 时必须给的东西，传递到imgsUpload
+    var upoad; //可自定义，上传功能时的  工具人，自定义然后传递到imgsUpload 就行
+    var imgMaxNum=3;  //最多上传3张
+    var ispre; ////反显  时的工具人属性，是一个对象，里面包含了 当前图片预览步骤，和图片数组。 这个最好固定，你要改就一起要改upload.js里面的
+
+    setTimeout(function () { //setTimeout变成异步加载，不然提示有些函数找不到，可自己优化
+        imgsUpload(imgObj2,upoad,imgMaxNum); //上传时调用
+
+        var imgObj = ['./t1.png', './t2.png', './t3.png'] //反显, 模拟反显的数据来源，真实是从服务器获取数据
+        gbOption=ispre = new imgPre(imgObj, true); //反显
+
+        createPreDiv(); //创建用于图片预览的DIV结构，上传和返显都要调用
+    }, 100)
+
+
+
+    function gogoole() {
+        //得到files的集合，后你想new Fromdata 然后ajax, 还是怎么给后台 就随你玩了!!!!
+        if(filesArr.length>0)alert('得到files的集合'); console.log(filesArr)
+    }
+    function ieSubmit() {
+        // 注意：IE方式上传，会动态生成 多个 input ，通过原始表单提交方式提交到服务器，记得上传前删除最后一个 input 。需要打开 测试IE上传的html代码
+        // 如果要统一上传方式，请在 在upload.js 搜索  IE方式 ，能检索到需要注意的地方
+        alert('传统表单方式上传'); $("#isIeform").submit();
+    }
+</script>
+
+<script src="js/upload.js" type="text/javascript"></script>
+
+    <script>
+
+
+        function Add() {
+            $.ajax({
+                url: "/cart",		  //请求的路径，获取数据源
+                type: "post",			  //请求的方式
+                dataType: "json",		  //请求返回的数据类型
+                data: {
+                    goodsName: $("#goodsName").val(),
+                    rent: $("#rent").val()
+                },
+                success: function (data) {
+                    alert("添加成功");
+                    InitPapers();
+
+                }
+
+            }
+            )
+        }
+    </script>
+
+    <script type="text/javascript">
+        $(function () {
+            //绑定滚动条事件
+            //绑定滚动条事件
+            $(window).bind("scroll", function () {
+                var sTop = $(window).scrollTop();
+                var sTop = parseInt(sTop);
+                if (sTop >= 10) {
+                    if (!$("#scrollBg").is(":visible")) {
+                        try {
+                            $("#scrollBg").slideDown();
+                        } catch (e) {
+                            $("#scrollBg").show();
+                        }
+                    }
+                }
+                else {
+                    if ($("#scrollBg").is(":visible")) {
+                        try {
+                            $("#scrollBg").slideUp();
+                        } catch (e) {
+                            $("#scrollBg").hide();
+                        }
+                    }
+                }
+            });
+        })
+    </script>
+</body>
+
+</html>

@@ -1,0 +1,275 @@
+<!DOCTYPE html>
+<html class="no-js" lang="zxx">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Share Fish-需求详情</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1  maximum-scale=1">
+    <meta name="mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-touch-fullscreen" content="yes">
+    <meta name="HandheldFriendly" content="True">
+    <script src="static/js/public.js"></script>
+    <link rel="stylesheet" href="css/materialize.css">
+    <link rel="stylesheet" href="css/sliderbg.css">
+
+    <!-- 底部导航 -->
+   <link rel="stylesheet" href="css/tabbar.css">
+    <!-- CSS -->
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="assets/css/bootstrap.min.css">
+    <!-- Main Style CSS -->
+    <link rel="stylesheet" href="assets/css/style.css">
+
+    <!-- App css搜索框 -->
+    <link href="static/css/bootstrap.min.css" rel="stylesheet" type="text/css">
+    <link href="static/css/icons.min.css" rel="stylesheet" type="text/css">
+    <link href="static/css/app.min.css" rel="stylesheet" type="text/css">
+</head>
+
+<body>
+
+    <header>
+        <div class="header-wrapper border-bottom">
+            <div class="container space-y--15">
+                <div class="row align-items-center">
+                    <div class="col-auto">
+                        <!-- header logo -->
+                        <div class="header-logo">
+                            <a href="index.html">
+                                <img src="assets/img/logo.png" class="img-fluid" alt="" style="width: 75px;">
+                            </a>
+                        </div>
+                    </div>
+                    <div class="col d-flex justify-content-center">
+                        <!-- 搜索框 -->
+                        <div class="header-search" style="padding-top: 8px;">
+                            <a href="search-page.html">
+                                <div class="input-group">
+                                    <input type="text" id="chat-search" name="chat-search" class="form-control"
+                                        placeholder="搜索好物" style="    padding-left: 30px;">
+                            </a>
+
+                            <span style="position: absolute;padding-top: 7px;padding-left: 10px;
+                                       "><i class="fa fa-search"></i></span>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-auto">
+                    <button class="header-menu-trigger" id="header-menu-trigger">
+                        <i class="fas fa-align-right" style="font-size: 20px;padding-right: 8px;
+                            padding-top: 15px;
+                                color: grey;"></i>
+                    </button>
+                </div>
+            </div>
+        </div>
+    </header>
+    <!--====================  End of header area  ====================-->
+    <!--====================  mobile menu overlay ====================-->
+    <div class="offcanvas-menu" id="offcanvas-menu">
+        <div class="profile-card text-center">
+            <div class="profile-card__image space-mb--10">
+                <img src="assets/img/profile.jpg" class="img-fluid" alt="">
+            </div>
+            <div class="profile-card__content">
+                <p class="name">0x5B38Da6a701c568545dCfcB03F <span class="id">John</span></p>
+            </div>
+        </div>
+        <div class="offcanvas-navigation-wrapper space-mt--40">
+            <ul class="offcanvas-navigation">
+                <li><span class="icon"><i class="ti ti-login" style="font-size: 25px;"></i></span><a
+                        href="login.html">登录/注册</a></li>
+                <li><span class="icon"><i class="ti ti-plus" style="font-size: 25px;"></i></span><a
+                        href="lend-items.html">上传物品</a></li>
+                <li><span class="icon"><i class="ti ti-shopping-cart" style="font-size: 25px;"></i></span><a
+                        href="shop.html">我租入的物品</a></li>
+                <li><span class="icon"><i class="ti ti-box" style="font-size: 25px;"></i></span><a
+                        href="order.html">我借出的物品</a></li>
+                <li><span class="icon"><i class="ti ti-power" style="font-size: 25px;"></i></span><a
+                        onclick="Qual.confirmd('您确定要退出当前账号吗？', '点击OK按钮或者关闭', inf, 'OK', '', 'okFunction', 'cancelFunction')">退出登入</a>
+                </li>
+            </ul>
+        </div>
+    </div>
+
+
+    <!-- slider -->
+    <div class="slider">
+        <ul class="slides" style="background: none;">
+            <li><img src="images/1.jpg" alt="">
+                <div class="caption slider-content center-align ">
+                    <div class="container">
+                        <h2>想要更多...</h2>
+                        <h4>去发布</h4><a href="post-need.html" class="button-default">发布需求</a>
+                    </div>
+                </div>
+            </li>
+            <li><img src="images/2.jpg" alt="">
+                <div class="caption slider-content center-align">
+                    <div class="container">
+                        <h2>更多好物</h2>
+                        <h4>Share Fish</h4><a href="post-need.html" class="button-default">发布需求</a>
+                    </div>
+                </div>
+            </li>
+            <li><img src="images/3.jpg" alt="">
+                <div class="caption slider-content center-align">
+                    <div class="container">
+                        <h2>没有你想要的?</h2>
+                        <h4>找人帮忙</h4><a href="post-need.html" class="button-default">发布需求</a>
+                    </div>
+                </div>
+            </li>
+        </ul>
+    </div>
+
+  
+
+        <div class="col-lg-6 text-end" style="padding-top: 14px;">
+           <a href="myneed.html"><button type="button" class="btn btn-primary btn-sm mb-3">我的需求</button> </a>                      
+        </div><!--end col-->
+    
+    <div class="col-md-12">
+        <label for="addnote" class="form-label" style="
+        padding-top: 0px;
+    font-size: 16px;
+    padding-left: 12px;
+    ">需求详情</label>
+    </div>
+
+    <div class="col-lg-6">
+        <div class="card">
+            <div class="card-body">
+                <div class="task-box">
+                    <div class="task-priority-icon"><i class="fas fa-circle text-info"></i></div>
+                    <p class="text-muted float-right">
+                     <a href="lend-items.html">   <span class="badge bg-warning me-2" style="  margin-top: 14px;">去接单</span></a>
+                        <span class="text-muted">01:33</span> /
+                        <span class="text-muted">9:30</span>
+                        <span class="mx-1">·</span>
+                        <span><i class="far fa-fw fa-clock"></i> June 18</span>
+                    </p>
+                    <h5 class="mt-0 mb-1">ipad</h5>
+                    <p class="text-muted mb-1">需要一个ipad pro急用！！！
+                    </p>
+                </div>
+                <!--end task-box-->
+            </div>
+            <!--end card-body-->
+        </div>
+        <!--end card-->
+    </div>
+    <!--end col-->
+    <div class="col-lg-6">
+
+        <div class="card">
+            <div class="card-body">
+                <div class="task-box">
+                    <div class="task-priority-icon"><i class="fas fa-circle text-info"></i></div>
+                    <p class="text-muted float-right">
+                        <a href="lend-items.html">   <span class="badge bg-warning me-2" style="  margin-top: 14px;">去接单</span></a>
+                        <span class="text-muted">01:33</span> /
+                        <span class="text-muted">9:30</span>
+                        <span class="mx-1">·</span>
+                        <span><i class="far fa-fw fa-clock"></i> June 18</span>
+                    </p>
+                    <h5 class="mt-0 mb-1">相机</h5>
+                    <p class="text-muted mb-1">需要一个数码相机急用！！！
+                    </p>
+                </div>
+                <!--end task-box-->
+            </div>
+            <!--end card-body-->
+        </div>
+        <!--end card-->
+        <div class="card">
+            <div class="card-body">
+                <div class="task-box">
+                    <div class="task-priority-icon"><i class="fas fa-circle text-info"></i></div>
+                    <p class="text-muted float-right">
+                        <a href="lend-items.html">   <span class="badge bg-warning me-2" style="  margin-top: 14px;">去接单</span></a>
+                        <span class="text-muted">01:33</span> /
+                        <span class="text-muted">9:30</span>
+                        <span class="mx-1">·</span>
+                        <span><i class="far fa-fw fa-clock"></i> June 18</span>
+                    </p>
+                    <h5 class="mt-0 mb-1">笔记本</h5>
+                    <p class="text-muted mb-1">需要一台笔记本急用！！！
+                    </p>
+                </div>
+                <!--end task-box-->
+            </div>
+            <!--end card-body-->
+        </div>
+        <div class="card">
+            <div class="card-body">
+                <div class="task-box">
+                    <div class="task-priority-icon"><i class="fas fa-circle text-info"></i></div>
+                    <p class="text-muted float-right">
+                        <a href="lend-items.html">   <span class="badge bg-warning me-2" style="  margin-top: 14px;">去接单</span></a>
+                        <span class="text-muted">01:33</span> /
+                        <span class="text-muted">9:30</span>
+                        <span class="mx-1">·</span>
+                        <span><i class="far fa-fw fa-clock"></i> June 18</span>
+                    </p>
+                    <h5 class="mt-0 mb-1">笔记本</h5>
+                    <p class="text-muted mb-1">需要一台笔记本急用！！！
+                    </p>
+                </div>
+                <!--end task-box-->
+            </div>
+            <!--end card-body-->
+        </div>
+        <!--end card-->
+    </div>
+    <!--end col-->
+    </div> <!-- end row -->
+    </div>
+    </div>
+    <!--end card-body-->
+    </div>
+    <!--end card-->
+    </div>
+    <!--end col-->
+    </div>
+    <!--end row-->
+    </div><!-- container -->
+    </div>
+
+
+    <!-- footer -->
+    <footer>
+
+        <div class="sc-bottom-bar">
+            <a class="sc-menu-item " href="index.html"><i class="fas fa-home"></i></a>
+            <a class="sc-menu-item " href="goods-category.html"><i class="fas  fa-list"></i></a>
+            <a href="chat.html" class="sc-menu-item sc-current"><i class="fas fa-plus"></i></a>
+             <a class="sc-menu-item" href="cart.html"><i class="fas fa-clipboard"></i></a>
+            <a class="sc-nav-indicator"></a>
+            <a class="sc-menu-item" href="ui-me.html"><i class="fas fa-user"></i></a>
+        </div>
+
+    </footer>
+    <!-- scripts -->
+    <script src="js/jquery.min.js"></script>
+    <script src="js/materialize.min.js"></script>
+    <script src="js/sliderbg.js"></script>
+    <!-- Modernizer JS -->
+    <script src="js/tabbar.js"></script>
+    <!-- Bootstrap JS -->
+    <script src="assets/js/bootstrap.min.js"></script>
+    <script src="assets/js/main.js"></script>
+    <!-- script js -->
+    <script src="js/popbox.js"></script>
+    <script>
+        function okFunction() {
+            window.location.href = "login.html";
+        }
+        function cancelFunction() {
+            alert('Cancel!');
+        }
+    </script>
+</body>
+
+</html>

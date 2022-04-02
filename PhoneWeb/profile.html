@@ -1,0 +1,299 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>Share Fish</title>
+    <meta name="description" content="">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <script src="static/js/public.js"></script>
+    <link rel="stylesheet" href="css/tabbar.css">
+
+    <link rel="stylesheet" href="assets/css/bootstrap.min.css">
+    <link rel="stylesheet" href="assets/css/style.css">
+
+    <!-- App css搜索框 -->
+    <link href="static/css/bootstrap.min.css" rel="stylesheet" type="text/css">
+    <link href="static/css/icons.min.css" rel="stylesheet" type="text/css">
+    <link href="static/css/app.min.css" rel="stylesheet" type="text/css">
+</head>
+
+<body>
+
+    <!--====================  End of preloader area  ====================-->
+    <div class="body-wrapper bg-color--gradient space-pt--70 space-pb--120">
+        <!--====================  header area ====================-->
+        <header>
+            <div class="header-wrapper border-bottom">
+                <div class="container space-y--15">
+                    <div class="row align-items-center">
+                        <div class="col-auto">
+                            <!-- header logo -->
+                            <div class="header-logo">
+                                <a href="index.html">
+                                    <img src="assets/img/logo.png" class="img-fluid" alt="" style="width: 75px;">
+                                </a>
+                            </div>
+                        </div>
+                        <div class="col d-flex justify-content-center">
+                            <!-- 搜索框 -->
+                            <div class="header-search">
+                                <a href="search-page.html">
+                                    <div class="input-group">
+                                        <input type="text" id="chat-search" name="chat-search" class="form-control"
+                                            placeholder="搜索好物" style="    padding-left: 30px;">
+                                </a>
+
+                                <span style="position: absolute;padding-top: 7px;padding-left: 10px;
+                                       "><i class="fa fa-search"></i></span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-auto">
+                        <button class="header-menu-trigger" id="header-menu-trigger">
+                            <i class="fas fa-align-right" style="font-size: 20px;
+                                color: grey;"></i>
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </header>
+        <!--====================  End of header area  ====================-->
+        <!--====================  mobile menu overlay ====================-->
+        <div class="offcanvas-menu" id="offcanvas-menu">
+            <div class="profile-card text-center">
+                <div class="profile-card__image space-mb--10">
+                    <img src="assets/img/profile.jpg" class="img-fluid" alt="">
+                </div>
+                <div class="profile-card__content">
+                    <p class="name">0x5B38Da6a701c568545dCfcB03F <span class="id">John</span></p>
+                </div>
+            </div>
+            <div class="offcanvas-navigation-wrapper space-mt--40">
+                <ul class="offcanvas-navigation">
+                   <li><span class="icon"><i class="ti ti-login" style="font-size: 25px;"></i></span><a
+                        href="login.html">登录/注册</a></li>
+                <li><span class="icon"><i class="ti ti-plus" style="font-size: 25px;"></i></span><a
+                        href="lend-items.html">上传物品</a></li>
+                <li><span class="icon"><i class="ti ti-shopping-cart" style="font-size: 25px;"></i></span><a
+                        href="shop.html">我租入的物品</a></li>
+                <li><span class="icon"><i class="ti ti-box" style="font-size: 25px;"></i></span><a
+                        href="order.html">我借出的物品</a></li>
+                <li><span class="icon"><i class="ti ti-power" style="font-size: 25px;"></i></span><a
+                        onclick="Qual.confirmd('您确定要退出当前账号吗？', '点击OK按钮或者关闭', inf, 'OK', '', 'okFunction', 'cancelFunction')">退出登入</a>
+                </li>
+                </ul>
+            </div>
+        </div>
+        <!--====================  End of mobile menu overlay  ====================-->
+        <!--====================  profile header ====================-->
+
+        <div class="shop-header bg-color--grey">
+            <div class="container space-y--15">
+                <div class="row align-items-center">
+                    <div class="col-3">
+                        <a class="back-link" onClick="javascript :history.back(-1);"> <i class="fa fa-angle-left"></i>
+                            返回</a>
+                    </div>
+                    <div class="col-6">
+                        <h4 class="category-title text-center">我的主页</h4>
+                    </div>
+                </div>
+            </div>
+
+            <div class="profile-header-area space-pt--30 space-mb--40">
+                <div class="container">
+
+
+                    <div class="row">
+                        <div class="col-12">
+                            <div class="profile-header">
+                                <!-- <div class="profile-header__image">
+                                    <a href="mod-picure.html">
+                                        <img src="assets/img/profile.jpg" class="img-fluid" alt=""></a>
+                                </div> -->
+                                <div id="addCommodityIndex">
+                                    <div class="input-group row">
+                                        
+                                        <div class="col-sm-9 big-photo">
+                                            <div id="preview">
+                                                <img id="imghead" border="0" src="images/photo_icon.png" width="90"
+                                                    height="90" onclick="$('#previewImg').click();">
+                                            </div>
+                                            <input type="file" onchange="previewImage(this)" style="display: none;"
+                                                id="previewImg">
+                                        </div>
+                                    </div>
+                                    <!--input-group end-->
+
+                                </div>
+                                <div class="profile-header__content " style=" padding-left: 12px;">
+                                    <h3 class="name space-mb--15">0x5B38Da6a701c568545dCfcB03F</h3>
+                                    <div class="profile-info space-mb--10">
+                                        <div class="profile-info-block">
+                                            <div class="profile-info-block__value">
+                                                ETH 500
+                                            </div>
+                                            <div class="profile-info-block__title">
+                                                我的余额
+                                            </div>
+                                        </div>
+                                        <div class="profile-info-block">
+                                            <div class="profile-info-block__value">
+                                                25
+                                            </div>
+                                            <div class="profile-info-block__title">
+                                                <a href="cart.html">我的交易</a>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!--====================  End of profile header  ====================-->
+            <!--====================  profile body ====================-->
+            <div class="profile-body-area">
+                <div class="container">
+                    <div class="row">
+                        <div class="col-12">
+                            <div class="profile-body">
+                                <div class="profile-info-table space-mb--40">
+                                    <div class="profile-info-block">
+                                        <div class="profile-info-block__title">姓名</div>
+                                        <div class="profile-info-block__value">John</div>
+                                    </div>
+                                    <!-- <div class="profile-info-block">
+                                    <div class="profile-info-block__title">Phone</div>
+                                    <div class="profile-info-block__value">935-1670</div>
+                                </div> -->
+                                    <div class="profile-info-block">
+                                        <div class="profile-info-block__title">邮箱</div>
+                                        <div class="profile-info-block__value">12581@mail.com</div>
+                                    </div>
+                                    <div class="profile-info-block">
+                                        <div class="profile-info-block__title">个性签名</div>
+                                        <div class="profile-info-block__value">暂无</div>
+                                    </div>
+
+                                    <div class="profile-info-block">
+                                        <div class="profile-info-block__title">修改个人信息</div>
+                                        <div class="profile-info-block__value"><a href="edit-profile.html"><i
+                                                    class="ti ti-edit"></i></a></div>
+                                    </div>
+                                </div>
+
+                                <div class="profile-info-table">
+                                    <div class="profile-info-block">
+                                        <div class="profile-info-block__title"><a href="shop.html">我的物品</a></div>
+                                        <div class="profile-info-block__value">23</div>
+                                    </div>
+                                    <div class="profile-info-block">
+                                        <div class="profile-info-block__title"><a href="wishlist.html">我的积分</a></div>
+                                        <div class="profile-info-block__value">223</div>
+                                    </div>
+                                    <div class="profile-info-block">
+                                        <div class="profile-info-block__title"><a href="wishlist.html">我的公益</a></div>
+                                        <div class="profile-info-block__value">10</div>
+                                    </div>
+                                </div>
+
+
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!--====================  End of profile body  ====================-->
+            <!--====================  footer area ====================-->
+            <footer>
+
+                <div class="sc-bottom-bar">
+                    <a class="sc-menu-item" href="index.html"><i class="fas fa-home"></i></a>
+                    <a class="sc-menu-item " href="goods-category.html"><i class="fas  fa-list"></i></a>
+                    <a href="chat.html" class="sc-menu-item "><i class="fas fa-plus"></i></a>
+
+                    <a class="sc-menu-item" href="cart.html"><i class="fas fa-clipboard"></i></a>
+
+
+                    <a class="sc-menu-item" href="ui-me.html"><i class="fas fa-user"></i></a>
+                </div>
+
+            </footer>
+            <!--====================  End of footer area  ====================-->
+        </div>
+
+        <script src="assets/js/jquery-3.4.1.min.js"></script>
+        <!-- Bootstrap JS -->
+        <script src="assets/js/bootstrap.min.js"></script>
+        <!-- Main JS -->
+        <script src="assets/js/main.js"></script>
+        <script src="js/popbox.js"></script>
+        <script>
+            function okFunction() {
+                window.location.href = "login.html";
+            }
+            function cancelFunction() {
+                alert('Cancel!');
+            }
+        </script>
+        <script>
+            //图片上传预览    IE是用了滤镜。
+            function previewImage(file) {
+                var MAXWIDTH = 90;
+                var MAXHEIGHT = 90;
+                var div = document.getElementById('preview');
+                if (file.files && file.files[0]) {
+                    div.innerHTML = '<img id=imghead onclick=$("#previewImg").click()>';
+                    var img = document.getElementById('imghead');
+                    img.onload = function () {
+                        var rect = clacImgZoomParam(MAXWIDTH, MAXHEIGHT, img.offsetWidth, img.offsetHeight);
+                        img.width = rect.width;
+                        img.height = rect.height;
+                        //                 img.style.marginLeft = rect.left+'px';
+                        img.style.marginTop = rect.top + 'px';
+                    }
+                    var reader = new FileReader();
+                    reader.onload = function (evt) { img.src = evt.target.result; }
+                    reader.readAsDataURL(file.files[0]);
+                }
+                else //兼容IE
+                {
+                    var sFilter = 'filter:progid:DXImageTransform.Microsoft.AlphaImageLoader(sizingMethod=scale,src="';
+                    file.select();
+                    var src = document.selection.createRange().text;
+                    div.innerHTML = '<img id=imghead>';
+                    var img = document.getElementById('imghead');
+                    img.filters.item('DXImageTransform.Microsoft.AlphaImageLoader').src = src;
+                    var rect = clacImgZoomParam(MAXWIDTH, MAXHEIGHT, img.offsetWidth, img.offsetHeight);
+                    status = ('rect:' + rect.top + ',' + rect.left + ',' + rect.width + ',' + rect.height);
+                    div.innerHTML = "<div id=divhead style='width:" + rect.width + "px;height:" + rect.height + "px;margin-top:" + rect.top + "px;" + sFilter + src + "\"'></div>";
+                }
+            }
+            function clacImgZoomParam(maxWidth, maxHeight, width, height) {
+                var param = { top: 0, left: 0, width: width, height: height };
+                if (width > maxWidth || height > maxHeight) {
+                    rateWidth = width / maxWidth;
+                    rateHeight = height / maxHeight;
+
+                    if (rateWidth > rateHeight) {
+                        param.width = maxWidth;
+                        param.height = Math.round(height / rateWidth);
+                    } else {
+                        param.width = Math.round(width / rateHeight);
+                        param.height = maxHeight;
+                    }
+                }
+                param.left = Math.round((maxWidth - param.width) / 2);
+                param.top = Math.round((maxHeight - param.height) / 2);
+                return param;
+            }
+        </script>
+</body>
+
+</html>
