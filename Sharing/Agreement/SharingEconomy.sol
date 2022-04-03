@@ -2,13 +2,25 @@
 pragma solidity ^0.8.0;
 
 
-contract SharingEcomomy {
+contract SharingEconomy {
  
  //平台合约主持人EOA
  address private host;
  
+     struct Managers {
+        address people;
+        string name;
+        string password;
+        bool exist;
+        bool isLogin;
+    }
+ 
  //分类是否存在的记录
  mapping(string => bool)  goodsChk;
+ 
+ //管理员信息
+ mapping(address => Managers) managersData;
+
  
  //记录合约主持人
  constructor ()  {
@@ -37,11 +49,49 @@ contract SharingEcomomy {
   goodsChk[species] = true; 
  
  }
-  
+ //返回所有分类
+  string[] public stickData;
+  function getStick() public view  returns(string[] memory){
+
+    return stickData;
+  }
  
   //查询合约余额
   function queryBalance() public view returns (uint) {
 	return address(this).balance;
   }	
+
+    //发起人添加管理员
+  function addManager(address people,string memory name,string memory password) public onlyHost{
+      require(managersData[people].exist == false,"user is exist");
+      managersData[people].people=people;
+      managersData[people].name=name;
+      managersData[people].password=password;
+      managersData[people].exist=true;
+  }
+  
+  //管理员登录
+ function signIn(address people) public {
+     require(people ==msg.sender,"not real user");
+     require(managersData[people].people == people,"address errror");
+     require(managersData[people].exist == true,"user not exist");
+     managersData[people].isLogin =true;
+
 }
 
+//修改管理员信息
+function updateUser(address people,string memory name,string memory password) public{
+  require(people ==msg.sender,"not real user");
+  require(managersData[people].people == people,"address errror");
+     managersData[people].name=name;
+     managersData[people].password=password;
+}
+
+ //管理员注销登录
+ function logOut(address people) public{
+     require(managersData[people].people == people,"address errror");
+     require(managersData[people].isLogin == true,"people is logout");
+     managersData[people].isLogin = false;
+ }
+
+}
