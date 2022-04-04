@@ -6,16 +6,8 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <script src="share/static/js/public.js"></script>
-    <!-- Theme css -->
-    <link rel="stylesheet" id="change-link" type="text/css" href="share/css/style1.css">
-    <!-- 图标 -->
-    <link rel="stylesheet" href="share/static/css/flaticon.css">
-    <link rel="stylesheet" href="share/static/css/responsive.css">
     <!-- 底部导航 -->
    <link rel="stylesheet" href="share/css/tabbar.css">
-
-    <!-- Slick CSS -->
-    <link rel="stylesheet" href="share/assets/css/plugins/slick.min.css">
     <!-- Main Style CSS -->
     <link rel="stylesheet" href="share/assets/css/style.css">
 
@@ -23,7 +15,6 @@
     <link href="share/static/css/bootstrap.min.css" rel="stylesheet" type="text/css">
     <link href="share/static/css/icons.min.css" rel="stylesheet" type="text/css">
     <link href="share/static/css/app.min.css" rel="stylesheet" type="text/css">
-    <script src="share/static/js/public.js"></script>
     <!-- CSS -->
     <link rel="stylesheet" href="share/css/bootstrap-reboot.min.css">
     <link rel="stylesheet" href="share/css/bootstrap-grid.min.css">
@@ -39,40 +30,32 @@
 
 <body>
     <header>
-        <div class="header-wrapper border-bottom">
-            <div class="container space-y--15">
-                <div class="row align-items-center">
-                    <div class="col-auto">
-                        <!-- header logo -->
-                        <div class="header-logo">
-                            <a href="../index">
-                               <img src="share/assets/img/logo.png" class="img-fluid" alt="" style="width: 75px;">
-                            </a>
-                        </div>
-                    </div>
-                    <div class="col d-flex justify-content-center">
-                        <!-- 搜索框 -->
-                        <div class="header-search">
-                            <a href="../search-page">
-                                <div class="input-group">
-                                    <input type="text" id="chat-search" name="chat-search" class="form-control"
-                                        placeholder="搜索好物" style="    padding-left: 30px;">
-                            </a>
+		<div class="header-wrapper border-bottom">
+			<div class="container space-y--15">
+				<div class="row align-items-center">
+					<div class="col-auto">
+						<a class="back-link" onClick="javascript :history.back(-1);"> <i class="fa fa-angle-left"></i>
+							返回</a>
+					</div>
+					<div class="col d-flex justify-content-center">
+						<div class="header-search">
+							<div class="input-group">
+								<h4 style="padding-top: 25px;">公益详情</h4>
+							</div>
+						</div>
+					</div>
+					<div class="col-auto">
+						<!-- header menu trigger -->
+						<button class="header-menu-trigger" id="header-menu-trigger">
+							<i class="fas fa-align-right" style="font-size: 20px;
+                                color: grey;"></i>
+						</button>
+					</div>
+				</div>
+			</div>
+		</div>
 
-                            <span style="position: absolute;padding-top: 7px;padding-left: 10px;
-                                   "><i class="fa fa-search"></i></span>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-auto">
-                    <button class="header-menu-trigger" id="header-menu-trigger">
-                        <i class="fas fa-align-right" style="font-size: 20px;
-                            color: grey;"></i>
-                    </button>
-                </div>
-            </div>
-        </div>
-    </header>
+	</header>
     <!--====================  End of header area  ====================-->
     <!--====================  mobile menu overlay ====================-->
     {{ template "Static/menu.html" . }}

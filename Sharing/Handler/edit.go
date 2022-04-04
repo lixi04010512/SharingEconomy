@@ -195,6 +195,7 @@ func addGoods(c *gin.Context) {
 	ethPledge := c.PostForm("ethPledge")
 	ethPledgeInt, err := strconv.Atoi(ethPledge)
 	ethPledgeInt64 := int64(ethPledgeInt)
+	goodSign := c.PostForm("sign")
 
 	form, err := c.MultipartForm()
 	if err != nil {
@@ -221,7 +222,7 @@ func addGoods(c *gin.Context) {
 	}
 	//goodsImgs := c.PostForm("goodsImgs")
 	fmt.Println("pass", name)
-	data, err := config.AddGoodsMethod(client, contract, owner, name, species, big.NewInt(rentInt64), big.NewInt(ethPledgeInt64), goodsImgs)
+	data, err := config.AddGoodsMethod(client, contract, owner, name, species, big.NewInt(rentInt64), big.NewInt(ethPledgeInt64), goodsImgs,goodSign)
 	respOK(c, data)
 }
 

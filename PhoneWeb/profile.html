@@ -73,17 +73,17 @@
             </div>
             <div class="offcanvas-navigation-wrapper space-mt--40">
                 <ul class="offcanvas-navigation">
-                   <li><span class="icon"><i class="ti ti-login" style="font-size: 25px;"></i></span><a
-                        href="login.html">登录/注册</a></li>
-                <li><span class="icon"><i class="ti ti-plus" style="font-size: 25px;"></i></span><a
-                        href="lend-items.html">上传物品</a></li>
-                <li><span class="icon"><i class="ti ti-shopping-cart" style="font-size: 25px;"></i></span><a
-                        href="shop.html">我租入的物品</a></li>
-                <li><span class="icon"><i class="ti ti-box" style="font-size: 25px;"></i></span><a
-                        href="order.html">我借出的物品</a></li>
-                <li><span class="icon"><i class="ti ti-power" style="font-size: 25px;"></i></span><a
-                        onclick="Qual.confirmd('您确定要退出当前账号吗？', '点击OK按钮或者关闭', inf, 'OK', '', 'okFunction', 'cancelFunction')">退出登入</a>
-                </li>
+                    <li><span class="icon"><i class="ti ti-login" style="font-size: 25px;"></i></span><a
+                            href="login.html">登录/注册</a></li>
+                    <li><span class="icon"><i class="ti ti-plus" style="font-size: 25px;"></i></span><a
+                            href="lend-items.html">上传物品</a></li>
+                    <li><span class="icon"><i class="ti ti-shopping-cart" style="font-size: 25px;"></i></span><a
+                            href="shop.html">我租入的物品</a></li>
+                    <li><span class="icon"><i class="ti ti-box" style="font-size: 25px;"></i></span><a
+                            href="order.html">我借出的物品</a></li>
+                    <li><span class="icon"><i class="ti ti-power" style="font-size: 25px;"></i></span><a
+                            onclick="Qual.confirmd('您确定要退出当前账号吗？', '点击OK按钮或者关闭', inf, 'OK', '', 'okFunction', 'cancelFunction')">退出登入</a>
+                    </li>
                 </ul>
             </div>
         </div>
@@ -116,14 +116,18 @@
                                 </div> -->
                                 <div id="addCommodityIndex">
                                     <div class="input-group row">
-                                        
+
                                         <div class="col-sm-9 big-photo">
                                             <div id="preview">
-                                                <img id="imghead" border="0" src="images/photo_icon.png" width="90"
+                                                <img id="imghead" border="0" src="assets/img/profile.jpg" width="90"
                                                     height="90" onclick="$('#previewImg').click();">
                                             </div>
                                             <input type="file" onchange="previewImage(this)" style="display: none;"
                                                 id="previewImg">
+                                            <div style="padding-left: 12px;">
+                                                <button type="submit" class="btn btn-primary mt-4"
+                                                    id="btn-photo">确认</button>
+                                            </div>
                                         </div>
                                     </div>
                                     <!--input-group end-->
@@ -294,6 +298,20 @@
                 return param;
             }
         </script>
+
+        <script>
+            $(function () {
+                $('#btn-photo').on('click', function () {
+                    $.message({
+                        type: 'success',
+                        message: '<div style="color:#333;font-weight:bold;font-size:16px;">头像修改成功<div><span style="color:lightgrey;font-size:small;">3秒后自动关闭</span>',
+                        duration: 3000,
+                        center: true
+                    })
+                })
+            })
+        </script>
+        <script src="js/message.js"></script>
 </body>
 
 </html>

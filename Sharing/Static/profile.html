@@ -34,7 +34,7 @@
                             <!-- header logo -->
                             <div class="header-logo">
                                 <a href="../index">
-                                   <img src="share/assets/img/logo.png" class="img-fluid" alt="" style="width: 75px;">
+                                    <img src="share/assets/img/logo.png" class="img-fluid" alt="" style="width: 75px;">
                                 </a>
                             </div>
                         </div>
@@ -93,14 +93,18 @@
                                 </div> -->
                                 <div id="addCommodityIndex">
                                     <div class="input-group row">
-                                        
+
                                         <div class="col-sm-9 big-photo">
                                             <div id="preview">
-                                                <img id="imghead" border="0" src="share/images/photo_icon.png" width="90"
-                                                    height="90" onclick="$('#previewImg').click();">
+                                                <img id="imghead" border="0" src="share/assets/img/profile.jpg"
+                                                    width="90" height="90" onclick="$('#previewImg').click();">
                                             </div>
                                             <input type="file" onchange="previewImage(this)" style="display: none;"
                                                 id="previewImg">
+                                            <div style="padding-left: 12px;">
+                                                <button type="submit" class="btn btn-primary mt-4"
+                                                    id="btn-photo">确认</button>
+                                            </div>
                                         </div>
                                     </div>
                                     <!--input-group end-->
@@ -271,7 +275,21 @@
                 return param;
             }
         </script>
+        <script>
+            $(function () {
+                $('#btn-photo').on('click', function () {
+                    $.message({
+                        type: 'success',
+                        message: '<div style="color:#333;font-weight:bold;font-size:16px;">头像修改成功<div><span style="color:lightgrey;font-size:small;">3秒后自动关闭</span>',
+                        duration: 3000,
+                        center: true
+                    })
+                })
+            })
+        </script>
+        <script src="js/message.js"></script>
     </div>
 </body>
 {{ end }}
+
 </html>
