@@ -358,6 +358,15 @@ a {
     padding-top: 10px;
 }
 
+.scrolltab-content-item span {
+    color: #4b4b4b;
+		font-size: 14px;
+		font-weight: normal;
+		padding-bottom: 15px;
+		padding-top: 10px;
+		line-height: 35px;
+}
+
 .aui-flex-box {
     padding: 1px;
     display: -webkit-box;
