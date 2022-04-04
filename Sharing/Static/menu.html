@@ -1,9 +1,15 @@
 {{ define "Static/menu.html" }}
 <div class="offcanvas-menu" id="offcanvas-menu">
     <div class="profile-card text-center">
+{{if eq "" .userImg}}
         <div class="profile-card__image space-mb--10">
             <img src="share/assets/img/profile.jpg" class="img-fluid" alt="">
         </div>
+{{else}}
+    <div class="profile-card__image space-mb--10">
+        <img src="share/{{.userImg}}" class="img-fluid" alt="">
+    </div>
+{{end}}
         <div class="profile-card__content">
             <p class="name">{{.address}} <span class="id">{{.userName}}</span></p>
         </div>
@@ -22,9 +28,11 @@
                 <li><span class="icon"><i class="ti ti-login" style="font-size: 25px;"></i></span><a
                             href="../login">登录/注册</a></li>
             {{else}}
-                <li><span class="icon"><i class="ti ti-power" style="font-size: 25px;"></i></span><a
-                           href="../login" onclick="Qual.confirmd('您确定要退出当前账号吗？', '点击OK按钮或者关闭', inf, 'OK', '', 'okFunction', 'cancelFunction')">退出登录</a>
+            <form class="signin-form"  action="/logoutPost" method="POST">
+                <li><span class="icon"><i class="ti ti-power" style="font-size: 25px;"></i></span><button
+                            onclick="Qual.confirmd('您确定要退出当前账号吗？', '点击OK按钮或者关闭', inf, 'OK', '', 'okFunction', 'cancelFunction')">退出登录</button>
                 </li>
+            </form>
             {{end}}
         </ul>
     </div>

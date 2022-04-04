@@ -24,7 +24,7 @@ import (
 const (
 	//chainID = 8565 //8888
 	Prikey       = "9e64387a398fa1a813e2a8614cd2ebd04751755d1c2046cb0cecf0498a78591f"
-	ShareFishAddress = "0x687168Bf096C205323936E2a435F99D38fEb5676"
+	ShareFishAddress = "0x2c49b8475Af3CBC2b64C491AF5a0C761700aD1E7"
 	gasLimit         = 3000000
 	//fileKeystore     = "UTC--2022-03-17T08-08-40.600466800Z--59b0f8a34d8f0dd0e0eef44d02cef0c12fffb9de"
 	//Prikey           = "c5b9c7fd467335bd829b3b2a3098a72ac39b7f5efa162220b7907cfc684df9a3"
@@ -376,8 +376,12 @@ func HaveIndex1(client *ethclient.Client, id *big.Int) (common.Address, string, 
 }
 
 //图片上传
-func UploadUserImg(c *gin.Context) {
+func UploadUserImg(c *gin.Context) (string,error){
 	f, err := c.FormFile("imgname")
+	fileName := f.Filename
+	fildDir := "./Static/images"
+
+	filePath := fmt.Sprintf("%s%s", fildDir, fileName)
 	//file, handler, err := c.FormFile("imgname")
 	fmt.Println(err)
 	if err != nil {
@@ -389,20 +393,31 @@ func UploadUserImg(c *gin.Context) {
 				"code": 400,
 				"msg":  "上传失败!只允许png,jpg,jpeg文件",
 			})
-			return
+			return "",err
 		}
-		fileName := f.Filename
-		fildDir := "./Static/images"
 
-		filepath := fmt.Sprintf("%s%s", fildDir, fileName)
-		c.SaveUploadedFile(f, filepath)
+		c.SaveUploadedFile(f, filePath)
 		fmt.Println("filename", fileName)
 		c.JSON(200, gin.H{
 			"code": 200,
 			"msg":  "上传成功!",
 			"result": gin.H{
-				"path": filepath,
+				"path": filePath,
 			},
 		})
 	}
+	return filePath,err
+}
+
+//封装头像上传方法
+func AddUserImgMethod(client *ethclient.Client, contract *Agreement.User, people common.Address, headImg string) (*types.Transaction, error) {
+	opts := Getopts()
+	res, err := contract.AddUserImg(opts, people,headImg)
+	fmt.Println("addCommunity:", res)
+	opts.GasLimit = gasLimit
+	opts.GasPrice, err = GetgasPrice(client)
+	if err != nil {
+		log.Fatal(err)
+	}
+	return res, nil
 }
