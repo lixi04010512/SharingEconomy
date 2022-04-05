@@ -1,3 +1,4 @@
+{{ define "Static/ui-me.html" }}
 <!DOCTYPE html>
 <html>
 
@@ -8,16 +9,16 @@
     <meta name="format-detection" content="telephone=no, email=no" />
     <meta charset="UTF-8">
     <title>Share Fish-个人中心</title>
-    <script src="static/js/public.js"></script>
-    <link rel="stylesheet" href="themes/css/icon.css">
-    <link rel="stylesheet" href="css/tabbar.css">
-    <link rel="stylesheet" href="css/personal.css">
+    <script src="share/static/js/public.js"></script>
+    <link rel="stylesheet" href="share/themes/css/icon.css">
+    <link rel="stylesheet" href="share/css/tabbar.css">
+    <link rel="stylesheet" href="share/css/personal.css">
 
-    <link rel="stylesheet" href="assets/css/bootstrap.min.css">
-    <link rel="stylesheet" href="assets/css/style.css">
+    <link rel="stylesheet" href="share/assets/css/bootstrap.min.css">
+    <link rel="stylesheet" href="share/assets/css/style.css">
 
     <!-- App css -->
-    <link href="static/css/icons.min.css" rel="stylesheet" type="text/css">
+    <link href="share/static/css/icons.min.css" rel="stylesheet" type="text/css">
     
 </head>
 
@@ -30,8 +31,8 @@
                     <div class="col-auto">
                         <!-- header logo -->
                         <div class="header-logo">
-                            <a href="index.html">
-                                <img src="assets/img/logo.png" class="img-fluid" alt="" style="width: 75px;">
+                            <a href="../index">
+                               <img src="share/assets/img/logo.png" class="img-fluid" alt="" style="width: 75px;">
                             </a>
                         </div>
                     </div>
@@ -49,41 +50,15 @@
         </div>
     </header>
 
-    <div class="offcanvas-menu" id="offcanvas-menu">
-        <div class="profile-card text-center">
-            <div class="profile-card__image space-mb--10" style="    padding-left: 40px;">
-                <a href="profile.html">
-                <img src="assets/img/profile.jpg" class="img-fluid" alt="">
-            </a>
-            </div>
-            <div class="profile-card__content">
-                <p class="name">0x5B38Da6a701c568545dCfcB03F <span class="id">John</span></p>
-            </div>
-        </div>
-        <div class="offcanvas-navigation-wrapper space-mt--40">
-            <ul class="offcanvas-navigation">
-               <li><span class="icon"><i class="ti ti-login" style="font-size: 25px;"></i></span><a
-                        href="login.html">登录/注册</a></li>
-                <li><span class="icon"><i class="ti ti-plus" style="font-size: 25px;"></i></span><a
-                        href="lend-items.html">上传物品</a></li>
-                <li><span class="icon"><i class="ti ti-shopping-cart" style="font-size: 25px;"></i></span><a
-                        href="shop.html">我租入的物品</a></li>
-                <li><span class="icon"><i class="ti ti-box" style="font-size: 25px;"></i></span><a
-                        href="order.html">我借出的物品</a></li>
-                <li><span class="icon"><i class="ti ti-power" style="font-size: 25px;"></i></span><a
-                        onclick="Qual.confirmd('您确定要退出当前账号吗？', '点击OK按钮或者关闭', inf, 'OK', '', 'okFunction', 'cancelFunction')">退出登入</a>
-                </li>
-            </ul>
-        </div>
-    </div>
+    {{ template "Static/menu.html" . }}
 
 
-    <div class="my_kuang" style="padding-top: 70px;">
-        <div class="bj_img"><img class="beij_s" src="images/bg.png" alt="">
+    <div class="my_kuang" style="padding-top: 75px;">
+        <div class="bj_img"><img class="beij_s" src="share/images/bg.png" alt="">
             <div class="nimetou_gaib">
                 <div class="toux_hou">
-                    <a href="profile.html">
-                        <img id="Dfgrg" style="height:1.1rem;" src="assets/img/profile.jpg" alt=""><input id="tupian_Sc"
+                    <a href="../profile">
+                        <img id="Dfgrg" style="height:1.1rem;" src="share/assets/img/profile.jpg" alt=""><input id="tupian_Sc"
                             type="file">
                     </a>
                 </div>
@@ -102,12 +77,12 @@
                             <h2>0</h2>
                             <p>订单数</p>
                         </li>
-                        <li><a href="wishlist.html">
+                        <li><a href="../wishlist">
                                 <h2>9</h2>
                                 <p>积分数</p>
                             </a></li>
                         <li>
-                            <a href="wishlist.html">
+                            <a href="../wishlist">
                             <h2>17</h2>
                             <p>公益数</p>
                         </a></li>
@@ -116,7 +91,7 @@
                 <div class="my_tik_list fenh_ziyek yuanj_sd">
                     <!-- <h3>我的交易</h3> -->
                     <ul>
-                        <li><a href="apps-chat.html">
+                        <li><a href="../apps-chat">
                                 <i class="aui-icon-large aui-icon-large-sm aui-icon-invitation"></i>
                                 <p>消息通知</p>
                             </a>
@@ -145,11 +120,11 @@
                                 }
                             </style>
                         </li>
-                        <li><a href="profile.html">
+                        <li><a href="../profile">
                                 <i class="aui-icon-large aui-icon-large-sm aui-icon-signs"></i>
                                 <p>我的信息</p>
                             </a></li>
-                        <li><a href="shop.html">
+                        <li><a href="../shop">
                                 <i class="aui-icon-large aui-icon-large-sm aui-icon-coupon"></i>
                                 <p>我的物品</p>
                             </a></li>
@@ -159,7 +134,7 @@
                     <div class="fenh_ziyek">
                         <h3>我的公益 </h3>
                     </div>
-                    <div class="niming_sq"><a href="wishlist.html">查看公益</a>
+                    <div class="niming_sq"><a href="../wishlist">查看公益</a>
 
                     </div>
                 </div><!-- -->
@@ -168,7 +143,7 @@
                         <h3>更多服务 </h3>
                     </div>
                     <div class="my_dind">
-                        <div class="bt"><a href="myneed.html">
+                        <div class="bt"><a href="../myneed">
                                 <h3>我的需求</h3>
                                 <div class="right">
                                     <i class="ti ti-chevron-right"></i>
@@ -176,7 +151,7 @@
                             </a></div>
                     </div>
                     <div class="my_dind">
-                        <div class="bt"><a href="public-benefit.html">
+                        <div class="bt"><a href="../public-benefit">
                                 <h3>更多公益</h3>
                                 <div class="right">
                                     <i class="ti ti-chevron-right"></i>
@@ -200,34 +175,34 @@
     <footer>
 
         <div class="sc-bottom-bar">
-            <a class="sc-menu-item " href="index.html"><i class="fas fa-home"></i></a>
-            <a class="sc-menu-item " href="goods-category.html"><i class="fas  fa-list"></i></a>
-            <a href="chat.html" class="sc-menu-item "><i class="fas fa-plus"></i></a>
+            <a class="sc-menu-item " href="../index"><i class="fas fa-home"></i></a>
+            <a class="sc-menu-item " href="../goods-category"><i class="fas  fa-list"></i></a>
+            <a href="../chat" class="sc-menu-item "><i class="fas fa-plus"></i></a>
             <a class="sc-nav-indicator"></a>
-             <a class="sc-menu-item" href="cart.html"><i class="fas fa-clipboard"></i></a>
-            <a class="sc-menu-item sc-current" href="ui-me.html"><i class="fas fa-user"></i></a>
+             <a class="sc-menu-item" href="../cart"><i class="fas fa-clipboard"></i></a>
+            <a class="sc-menu-item sc-current" href="../ui-me"><i class="fas fa-user"></i></a>
         </div>
 
     </footer>
 
 
-    <script type="text/javascript" src="themes/js/jquery.min.js"></script>
-    <script src="js/tabbar.js"></script>
+    <script type="text/javascript" src="share/themes/js/jquery.min.js"></script>
+    <script src="share/js/tabbar.js"></script>
     <!-- Modernizer JS -->
-    <script src="assets/js/modernizr-2.8.3.min.js"></script>
+    <script src="share/assets/js/modernizr-2.8.3.min.js"></script>
     <!-- jQuery JS -->
-    <script src="assets/js/jquery-3.4.1.min.js"></script>
+    <script src="share/assets/js/jquery-3.4.1.min.js"></script>
     <!-- Bootstrap JS -->
-    <script src="assets/js/bootstrap.min.js"></script>
+    <script src="share/assets/js/bootstrap.min.js"></script>
     <!-- IonRanger JS -->
-    <script src="assets/js/plugins/ion.rangeSlider.min.js"></script>
+    <script src="share/assets/js/plugins/ion.rangeSlider.min.js"></script>
     <!-- SVG inject JS -->
-    <script src="assets/js/plugins/svg-inject.min.js"></script>
+    <script src="share/assets/js/plugins/svg-inject.min.js"></script>
     <!-- Slick slider JS -->
-    <script src="assets/js/plugins/slick.min.js"></script>
+    <script src="share/assets/js/plugins/slick.min.js"></script>
     <!-- Main JS -->
-    <script src="assets/js/main.js"></script>
-    <script src="js/popbox.js"></script>
+    <script src="share/assets/js/main.js"></script>
+    <script src="share/js/popbox.js"></script>
     <script>
         function okFunction() {
             window.location.href = "login.html";
@@ -237,5 +212,5 @@
         }
     </script>
 </body>
-
+{{ end }}
 </html>
