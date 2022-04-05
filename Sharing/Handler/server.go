@@ -20,10 +20,10 @@ func Start(addr, webDir string) (err error) {
 		// 定义增改查的接口，并注册到web服务器
 
 		todo.POST("/addStickerPost", addSticker)
-		todo.POST("/isStickExistPost", isStickExist)
+		//todo.POST("/isStickExistPost", isStickExist)
 		todo.POST("/registerPost", register)
 		todo.POST("/loginPost", login)
-		todo.POST("/logoutPost", logout)
+		//todo.POST("/logoutPost", logout)
 		todo.POST("/sendEmailPost", sendEmail)
 
 	}
@@ -50,6 +50,8 @@ func Start(addr, webDir string) (err error) {
 		share.GET("/shop-product", shopPorduct)
 		share.GET("/ui-me", UiMeStatic)
 		share.GET("/wishlist", WishlistStatic)
+		share.GET("/carts", CartGood)
+
 	}
 	// 启动web服务
 	err = r.Run(addr)
