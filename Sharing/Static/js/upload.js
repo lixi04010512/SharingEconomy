@@ -1,4 +1,35 @@
+var gbOption = null; //必须，固定变量名
+    var filesArr=[]; //固定写法 这个就是上传能拿到的 files的集合，
+    var fileClass = 'input-file'; //必须，固定变量名，值可自定义，就是input的 class自定义后 需要在这重新声明
+    var imgObj2 = []; //可自定义，图片上传功能 时必须给的东西，传递到imgsUpload
+    var upoad; //可自定义，上传功能时的  工具人，自定义然后传递到imgsUpload 就行
+    var imgMaxNum=3;  //最多上传3张
+    var ispre; ////反显  时的工具人属性，是一个对象，里面包含了 当前图片预览步骤，和图片数组。 这个最好固定，你要改就一起要改upload.js里面的
 
+    setTimeout(function () { //setTimeout变成异步加载，不然提示有些函数找不到，可自己优化
+        imgsUpload(imgObj2,upoad,imgMaxNum); //上传时调用
+
+        var imgObj = ['./t1.png', './t2.png', './t3.png'] //反显, 模拟反显的数据来源，真实是从服务器获取数据
+        gbOption=ispre = new imgPre(imgObj, true); //反显
+
+        createPreDiv(); //创建用于图片预览的DIV结构，上传和返显都要调用
+    }, 100)
+
+
+
+    function gogoole() {
+        //得到files的集合，后你想new Fromdata 然后ajax, 还是怎么给后台 就随你玩了!!!!
+        if(filesArr.length>0)alert('得到files的集合'); console.log(filesArr)
+    }
+    function ieSubmit() {
+        // 注意：IE方式上传，会动态生成 多个 input ，通过原始表单提交方式提交到服务器，记得上传前删除最后一个 input 。需要打开 测试IE上传的html代码
+        // 如果要统一上传方式，请在 在upload.js 搜索  IE方式 ，能检索到需要注意的地方
+        alert('传统表单方式上传'); $("#isIeform").submit();
+    }
+
+
+
+    
 var documentW = $(document).width() - 80; 
 var documentH = $(document).height() - 80;
 

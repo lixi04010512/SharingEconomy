@@ -1,3 +1,41 @@
+//增加函数
+function pluscount() {
+    //得到input输入框
+    var i = document.getElementById("text");
+    //将value的字符型转为数字类型
+    var value = parseInt(i.getAttribute("value"));
+    //规定value上限200，setAttribute后加属性名和属性值
+    if (value <= 200) {
+        i.setAttribute("value", ++value);
+    }
+}
+//减少函数
+function reducecount() {
+    var i = document.getElementById("text");
+    var value = parseInt(i.getAttribute("value"));
+    //在value的值大于0的情况下，value的值跟随增加按钮增加
+    if (value > 0) {
+        i.setAttribute("value", --value);
+    }
+}
+/**
+ * Javascript API调用ActionSheet
+ */
+!function ($) {
+    var $myAs = $('#J_ActionSheet');
+
+    $('#J_ShowActionSheet').on('click', function () {
+        $myAs.actionSheet('open');
+    });
+
+    $('#J_Cancel').on('click', function () {
+        $myAs.actionSheet('close');
+    });
+
+}(jQuery);
+
+
+
 /**
  * ydui main
  */

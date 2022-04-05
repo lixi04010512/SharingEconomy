@@ -1,0 +1,177 @@
+{{ define "Static/wechat.html" }}
+<!DOCTYPE html>
+<html class="no-js" lang="zxx">
+
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>Share Fish</title>
+    <meta name="description" content="">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <script src="share/static/js/public.js"></script>
+    <!-- 底部导航栏 -->
+    <link rel="stylesheet" href="share/css/tabbar.css">
+
+    <link rel="stylesheet" href="share/assets/css/bootstrap.min.css">
+    <!-- Main Style CSS -->
+    <link rel="stylesheet" href="share/assets/css/style.css">
+
+    <!-- App css -->
+    <link href="share/static/css/bootstrap.min.css" rel="stylesheet" type="text/css">
+    <link href="share/static/css/icons.min.css" rel="stylesheet" type="text/css">
+    <link href="share/static/css/app.min.css" rel="stylesheet" type="text/css">
+</head>
+
+<body>
+
+    <header>
+		<div class="header-wrapper border-bottom">
+			<div class="container space-y--15">
+				<div class="row align-items-center">
+					<div class="col-auto">
+						<a class="back-link" onClick="javascript :history.back(-1);"> <i class="fa fa-angle-left"></i>
+							返回</a>
+					</div>
+					<div class="col d-flex justify-content-center">
+						<div class="header-search">
+							<div class="input-group">
+								<h4 style="    padding-top: 18px;"></h4>
+							</div>
+						</div>
+					</div>
+					<div class="col-auto">
+						<!-- header menu trigger -->
+						<button class="header-menu-trigger" id="header-menu-trigger">
+							<i class="fas fa-align-right" style="font-size: 20px;
+                                color: grey;"></i>
+						</button>
+					</div>
+				</div>
+			</div>
+		</div>
+
+	</header>
+
+    {{ template "Static/menu.html" . }}
+
+    <!--====================  chat area ====================-->
+    <div class="chat-area" style="padding-top: 25px;">
+        <div class="container">
+            <div class="row">
+                <div class="col-12">
+                    <div class="chat-wrap">
+                        <ul class="chat-list">
+                            <li>
+                                <div class="chat">
+                                    <div class="body">
+                                        <div class="image"><img src="share/static/picture/user-1.jpg" alt=""></div>
+                                        <div class="content">
+                                            <div class="head">
+                                                <span>2022-01-01 12：00</span>
+                                            </div>
+                                            <p>我需要一个包包.</p>
+                                        </div>
+                                    </div>
+                                </div>
+                            </li>
+                            <li>
+                                <div class="chat">
+                                    <div class="body">
+                                        <div class="image"><img src="share/assets/img/profile.jpg" alt=""></div>
+                                        <div class="content">
+                                            <div class="head">
+                                                <span>2022-01-02</span>
+                                            </div>
+                                            <p>我有一个闲置的包包，马上上架.</p>
+                                        </div>
+                                    </div>
+                                </div>
+                            </li>
+                            <li>
+                                <div class="chat">
+                                    <div class="body">
+                                        <div class="image"><img src="share/static/picture/user-1.jpg" alt=""></div>
+                                        <div class="content">
+                                            <div class="head">
+                                                <span>2022-01-03</span>
+                                            </div>
+                                            <p>我想要一个3080i的显卡</p>
+                                        </div>
+                                    </div>
+                                </div>
+                            </li>
+                            <li>
+                                <div class="chat">
+                                    <div class="body">
+                                        <div class="image"><img src="share/assets/img/profile.jpg" alt=""></div>
+                                        <div class="content">
+                                            <div class="head">
+                                                <span>2022-01-04</span>
+                                            </div>
+                                            <p>我有十张闲置的3080i显卡.</p>
+                                        </div>
+                                    </div>
+                                </div>
+                            </li>
+                            <li>
+                                <div class="chat">
+                                    <div class="body">
+                                        <div class="image"><img src="share/static/picture/user-1.jpg" alt=""></div>
+                                        <div class="content">
+                                            <div class="head">
+                                                <span>2022-01-04</span>
+                                            </div>
+                                            <p>我想要一个iPhone13 pro max</p>
+                                        </div>
+                                    </div>
+                                </div>
+                            </li>
+                            <li>
+                                <div class="chat">
+                                    <div class="body">
+                                        <div class="image"><img src="share/assets/img/profile.jpg" alt=""></div>
+                                        <div class="content">
+                                            <div class="head">
+
+                                                <span>2022-01-05</span>
+                                            </div>
+                                            <p>我想要一个电竞椅.</p>
+                                        </div>
+                                    </div>
+                                </div>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!--====================  End of chat area  ====================-->
+        <!--====================  footer area ====================-->
+
+            <div class="chat-submission" style="bottom: 0;">
+                <form action="#">
+                    <input type="text" placeholder="请输入...">
+                    <div class="buttons">
+                        <label class="file-upload button button-box button-round button-primary" for="chat-file-upload">
+                            <input type="file" id="chat-file-upload" multiple>
+                            <i class="fa fa-paperclip"></i>
+                        </label>
+                        <button class="submit"><i class="fa fa-paper-plane"></i></button>
+                    </div>
+                </form>
+            </div>
+    </div>
+
+    <!--====================  End of footer area  ====================-->
+    </div>
+
+    <!-- JS-->
+    <!-- jQuery JS -->
+    <script src="share/assets/js/jquery-3.4.1.min.js"></script>
+    <!-- Bootstrap JS -->
+    <script src="share/assets/js/bootstrap.min.js"></script>
+    <script src="share/assets/js/main.js"></script>
+</body>
+{{ end }}
+</html>
