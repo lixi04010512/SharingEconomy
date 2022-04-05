@@ -7,7 +7,6 @@ import (
 	"crypto/rand"
 	"fmt"
 	"github.com/ethereum/go-ethereum/accounts/abi/bind"
-	"github.com/ethereum/go-ethereum/accounts/keystore"
 	"github.com/ethereum/go-ethereum/common"
 	"github.com/ethereum/go-ethereum/core/types"
 	"github.com/ethereum/go-ethereum/crypto"
@@ -15,24 +14,22 @@ import (
 	"github.com/gin-gonic/gin"
 	"github.com/jordan-wright/email"
 	"io"
-	"io/ioutil"
 	"log"
 	"math/big"
 	"net/smtp"
-	"os"
 	"path"
 	"strings"
 )
 
 const (
 	//chainID = 8565 //8888
-	//Prikey       = "9e64387a398fa1a813e2a8614cd2ebd04751755d1c2046cb0cecf0498a78591f"
-	//ShareFishAddress = "0x687168Bf096C205323936E2a435F99D38fEb5676"
+	Prikey       = "9e64387a398fa1a813e2a8614cd2ebd04751755d1c2046cb0cecf0498a78591f"
+	ShareFishAddress = "0x2c49b8475Af3CBC2b64C491AF5a0C761700aD1E7"
 	gasLimit         = 3000000
-	fileKeystore     = "UTC--2022-03-17T08-08-40.600466800Z--59b0f8a34d8f0dd0e0eef44d02cef0c12fffb9de"
-	Prikey           = "c5b9c7fd467335bd829b3b2a3098a72ac39b7f5efa162220b7907cfc684df9a3"
-	privateKey       = "111"
-	ShareFishAddress = "0x1415f8284C54Fbbf5b5300B6177a24A491b1bd07"
+	//fileKeystore     = "UTC--2022-03-17T08-08-40.600466800Z--59b0f8a34d8f0dd0e0eef44d02cef0c12fffb9de"
+	//Prikey           = "c5b9c7fd467335bd829b3b2a3098a72ac39b7f5efa162220b7907cfc684df9a3"
+	//privateKey       = "111"
+	//ShareFishAddress = "0x1415f8284C54Fbbf5b5300B6177a24A491b1bd07"
 )
 
 //获取client
@@ -106,26 +103,26 @@ func GetPrivateKey() *ecdsa.PrivateKey {
 }
 
 //获取账户文件和密码 opts
-func HaveGetOpts() *bind.TransactOpts {
-	//账户文件
-	b, err := ioutil.ReadFile(fileKeystore)
-	if err != nil {
-		log.Fatal("错误", err)
-	}
-	//账户密码
-	key, err := keystore.DecryptKey(b, privateKey)
-	if err != nil {
-		log.Fatal(err)
-	}
-	fmt.Println("key:", key)
-	reader, _ := os.Open(fileKeystore)
-	//opts, err := bind.NewTransactor(reader, "111")
-	opts, err := bind.NewTransactorWithChainID(reader, "111", big.NewInt(9696))
-	if err != nil {
-		log.Fatal("NewTransactor ", err)
-	}
-	return opts
-}
+//func HaveGetOpts() *bind.TransactOpts {
+//	//账户文件
+//	b, err := ioutil.ReadFile(fileKeystore)
+//	if err != nil {
+//		log.Fatal("错误", err)
+//	}
+//	//账户密码
+//	key, err := keystore.DecryptKey(b, privateKey)
+//	if err != nil {
+//		log.Fatal(err)
+//	}
+//	fmt.Println("key:", key)
+//	reader, _ := os.Open(fileKeystore)
+//	//opts, err := bind.NewTransactor(reader, "111")
+//	opts, err := bind.NewTransactorWithChainID(reader, "111", big.NewInt(9696))
+//	if err != nil {
+//		log.Fatal("NewTransactor ", err)
+//	}
+//	return opts
+//}
 
 // 获取 gasPrice
 func GetgasPrice(client *ethclient.Client) (*big.Int, error) {
@@ -289,9 +286,15 @@ func CommunityScheduleView(contract *Agreement.User, number *big.Int) (*big.Int,
 }
 
 //封装物品上架方法
+<<<<<<< HEAD
 func AddGoodsMethod(client *ethclient.Client, contract *Agreement.User, owner common.Address, name string, species string, rent *big.Int, ethPledge *big.Int, goodsImgs []string, goodsSign string) (*types.Transaction, error) {
 	opts := Getopts()
 	res, err := contract.AddGoods(opts, owner, name, species, rent, ethPledge, goodsImgs, goodsSign)
+=======
+func AddGoodsMethod(client *ethclient.Client, contract *Agreement.User, owner common.Address, name string, species string, rent *big.Int, ethPledge *big.Int, goodsImgs []string,goodSign string) (*types.Transaction, error) {
+	opts := Getopts()
+	res, err := contract.AddGoods(opts, owner, name, species, rent, ethPledge, goodsImgs,goodSign)
+>>>>>>> 8f012b073fff6d841ee0719f8f5b3dfb2e42deb9
 	fmt.Println("addCommunity:", res)
 	opts.GasLimit = gasLimit
 	opts.GasPrice, err = GetgasPrice(client)
@@ -384,8 +387,12 @@ func HaveId(client *ethclient.Client) []*big.Int {
 }
 
 //图片上传
-func UploadUserImg(c *gin.Context) {
+func UploadUserImg(c *gin.Context) (string,error){
 	f, err := c.FormFile("imgname")
+	fileName := f.Filename
+	fildDir := "./Static/images"
+
+	filePath := fmt.Sprintf("%s%s", fildDir, fileName)
 	//file, handler, err := c.FormFile("imgname")
 	fmt.Println(err)
 	if err != nil {
@@ -397,20 +404,31 @@ func UploadUserImg(c *gin.Context) {
 				"code": 400,
 				"msg":  "上传失败!只允许png,jpg,jpeg文件",
 			})
-			return
+			return "",err
 		}
-		fileName := f.Filename
-		fildDir := "./Static/images"
 
-		filepath := fmt.Sprintf("%s%s", fildDir, fileName)
-		c.SaveUploadedFile(f, filepath)
+		c.SaveUploadedFile(f, filePath)
 		fmt.Println("filename", fileName)
 		c.JSON(200, gin.H{
 			"code": 200,
 			"msg":  "上传成功!",
 			"result": gin.H{
-				"path": filepath,
+				"path": filePath,
 			},
 		})
 	}
+	return filePath,err
+}
+
+//封装头像上传方法
+func AddUserImgMethod(client *ethclient.Client, contract *Agreement.User, people common.Address, headImg string) (*types.Transaction, error) {
+	opts := Getopts()
+	res, err := contract.AddUserImg(opts, people,headImg)
+	fmt.Println("addCommunity:", res)
+	opts.GasLimit = gasLimit
+	opts.GasPrice, err = GetgasPrice(client)
+	if err != nil {
+		log.Fatal(err)
+	}
+	return res, nil
 }

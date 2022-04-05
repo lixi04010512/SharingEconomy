@@ -25,6 +25,7 @@ func Start(addr, webDir string) (err error) {
 		todo.POST("/loginPost", login)
 		//todo.POST("/logoutPost", logout)
 		todo.POST("/sendEmailPost", sendEmail)
+		todo.POST("/addUserImg",AddUserImg)
 
 	}
 	share := r.Group("")
