@@ -1,0 +1,216 @@
+{{ define "Static/ui-me.html" }}
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no, minimal-ui" />
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+    <meta name="apple-mobile-web-app-status-bar-style" content="black" />
+    <meta name="format-detection" content="telephone=no, email=no" />
+    <meta charset="UTF-8">
+    <title>Share Fish-个人中心</title>
+    <script src="share/static/js/public.js"></script>
+    <link rel="stylesheet" href="share/themes/css/icon.css">
+    <link rel="stylesheet" href="share/css/tabbar.css">
+    <link rel="stylesheet" href="share/css/personal.css">
+
+    <link rel="stylesheet" href="share/assets/css/bootstrap.min.css">
+    <link rel="stylesheet" href="share/assets/css/style.css">
+
+    <!-- App css -->
+    <link href="share/static/css/icons.min.css" rel="stylesheet" type="text/css">
+    
+</head>
+
+<body>
+
+    <header>
+        <div class="header-wrapper border-bottom">
+            <div class="container space-y--15">
+                <div class="row align-items-center">
+                    <div class="col-auto">
+                        <!-- header logo -->
+                        <div class="header-logo">
+                            <a href="../index">
+                               <img src="share/assets/img/logo.png" class="img-fluid" alt="" style="width: 75px;">
+                            </a>
+                        </div>
+                    </div>
+
+                </div>
+                <div class="col-auto" style="    top: 30px;
+                position: absolute;
+                right: 0px;">
+                    <button class="header-menu-trigger" id="header-menu-trigger">
+                        <i class="fas fa-align-right" style="font-size: 20px;
+                            color: grey;"></i>
+                    </button>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    {{ template "Static/menu.html" . }}
+
+
+    <div class="my_kuang" style="padding-top: 75px;">
+        <div class="bj_img"><img class="beij_s" src="share/images/bg.png" alt="">
+            <div class="nimetou_gaib">
+                <div class="toux_hou">
+                    <a href="../profile">
+                        <img id="Dfgrg" style="height:1.1rem;" src="share/assets/img/profile.jpg" alt=""><input id="tupian_Sc"
+                            type="file">
+                    </a>
+                </div>
+                <div class="mingz">
+                    <h2 onclick="Sign()">0x5B38Da6a701c568545dCfcB03F
+
+                    </h2>
+                </div>
+            </div>
+        </div>
+        <div class="div_bx_k">
+            <div class="neir_Ef">
+                <div class="yverjif">
+                    <ul>
+                        <li>
+                            <h2>0</h2>
+                            <p>订单数</p>
+                        </li>
+                        <li><a href="../wishlist">
+                                <h2>9</h2>
+                                <p>积分数</p>
+                            </a></li>
+                        <li>
+                            <a href="../wishlist">
+                            <h2>17</h2>
+                            <p>公益数</p>
+                        </a></li>
+                    </ul>
+                </div><!-- -->
+                <div class="my_tik_list fenh_ziyek yuanj_sd">
+                    <!-- <h3>我的交易</h3> -->
+                    <ul>
+                        <li><a href="../apps-chat">
+                                <i class="aui-icon-large aui-icon-large-sm aui-icon-invitation"></i>
+                                <p>消息通知</p>
+                            </a>
+                            <style>
+                                .fenh_ziyek ul li h2 {
+                                    width: .65rem;
+                                    position: relative;
+                                    margin: auto
+                                }
+
+                                .fenh_ziyek ul li h2 i {
+
+                                    border-radius: 50%;
+                                    display: block;
+                                    padding: 2px;
+                                    position: absolute;
+                                    color: #fff;
+                                    border: solid 1px #fff;
+                                    top: 0;
+                                    right: 0;
+                                    width: .14rem;
+                                    height: .14rem;
+                                    line-height: .14rem;
+                                    font-size: .12rem;
+                                    overflow: hidden
+                                }
+                            </style>
+                        </li>
+                        <li><a href="../profile">
+                                <i class="aui-icon-large aui-icon-large-sm aui-icon-signs"></i>
+                                <p>我的信息</p>
+                            </a></li>
+                        <li><a href="../shop">
+                                <i class="aui-icon-large aui-icon-large-sm aui-icon-coupon"></i>
+                                <p>我的物品</p>
+                            </a></li>
+                    </ul>
+                </div><!-- -->
+                <div class="list_index_my  ">
+                    <div class="fenh_ziyek">
+                        <h3>我的公益 </h3>
+                    </div>
+                    <div class="niming_sq"><a href="../wishlist">查看公益</a>
+
+                    </div>
+                </div><!-- -->
+                <div class="list_index_my">
+                    <div class="fenh_ziyek">
+                        <h3>更多服务 </h3>
+                    </div>
+                    <div class="my_dind">
+                        <div class="bt"><a href="../myneed">
+                                <h3>我的需求</h3>
+                                <div class="right">
+                                    <i class="ti ti-chevron-right"></i>
+                                </div>
+                            </a></div>
+                    </div>
+                    <div class="my_dind">
+                        <div class="bt"><a href="../public-benefit">
+                                <h3>更多公益</h3>
+                                <div class="right">
+                                    <i class="ti ti-chevron-right"></i>
+                                </div>
+                            </a></div>
+                    </div>
+                </div>
+                <div style="height: .9rem;"></div>
+            </div>
+        </div>
+    </div><!-- -->
+
+    <style>
+        body {
+            background: #f5f5f5
+        }
+    </style>
+
+
+
+    <footer>
+
+        <div class="sc-bottom-bar">
+            <a class="sc-menu-item " href="../index"><i class="fas fa-home"></i></a>
+            <a class="sc-menu-item " href="../goods-category"><i class="fas  fa-list"></i></a>
+            <a href="../chat" class="sc-menu-item "><i class="fas fa-plus"></i></a>
+            <a class="sc-nav-indicator"></a>
+             <a class="sc-menu-item" href="../cart"><i class="fas fa-clipboard"></i></a>
+            <a class="sc-menu-item sc-current" href="../ui-me"><i class="fas fa-user"></i></a>
+        </div>
+
+    </footer>
+
+
+    <script type="text/javascript" src="share/themes/js/jquery.min.js"></script>
+    <script src="share/js/tabbar.js"></script>
+    <!-- Modernizer JS -->
+    <script src="share/assets/js/modernizr-2.8.3.min.js"></script>
+    <!-- jQuery JS -->
+    <script src="share/assets/js/jquery-3.4.1.min.js"></script>
+    <!-- Bootstrap JS -->
+    <script src="share/assets/js/bootstrap.min.js"></script>
+    <!-- IonRanger JS -->
+    <script src="share/assets/js/plugins/ion.rangeSlider.min.js"></script>
+    <!-- SVG inject JS -->
+    <script src="share/assets/js/plugins/svg-inject.min.js"></script>
+    <!-- Slick slider JS -->
+    <script src="share/assets/js/plugins/slick.min.js"></script>
+    <!-- Main JS -->
+    <script src="share/assets/js/main.js"></script>
+    <script src="share/js/popbox.js"></script>
+    <script>
+        function okFunction() {
+            window.location.href = "login.html";
+        }
+        function cancelFunction() {
+            alert('Cancel!');
+        }
+    </script>
+</body>
+{{ end }}
+</html>
