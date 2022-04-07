@@ -68,6 +68,7 @@ func addIndex(c *gin.Context) {
 			//fmt.Println(goodsPort{},addr)
 		} else {
 			userName, people, _, _, _, _, _, err := config.GetUserMethod(contract, loginUser)
+			userImg,err :=contract.GetUserImg(nil,loginUser)
 			fmt.Println("res", userName)
 			if err != nil {
 				respError(c, err)
@@ -76,6 +77,7 @@ func addIndex(c *gin.Context) {
 			c.HTML(http.StatusOK, "Static/index.html", gin.H{
 				"goodsPor": arr,
 				"userName": userName,
+				"userImg":userImg,
 				"address":  people,
 			})
 		}
@@ -104,6 +106,7 @@ func shopPorduct(c *gin.Context) {
 	var names string
 	goodData, goodData1, err := config.HaveIndex(client, id[0])
 	userName, people, _, _, _, _, _, err := config.GetUserMethod(contract, loginUser)
+	userImg,err :=contract.GetUserImg(nil,loginUser)
 	fmt.Println("res", userName)
 	if err != nil {
 		respError(c, err)
@@ -119,6 +122,7 @@ func shopPorduct(c *gin.Context) {
 		},
 		"userName": userName,
 		"address":  people,
+		"userImg":userImg,
 	})
 }
 
@@ -160,6 +164,7 @@ func goodsCategory(c *gin.Context) {
 		} else {
 			userName, people, _, _, _, _, _, err := config.GetUserMethod(contract, loginUser)
 			fmt.Println("res", userName)
+			userImg,err :=contract.GetUserImg(nil,loginUser)
 			if err != nil {
 				respError(c, err)
 				return
@@ -168,6 +173,7 @@ func goodsCategory(c *gin.Context) {
 				"goodsCategory": arr,
 				"userName":      userName,
 				"address":       people,
+				"userImg":  userImg,
 			})
 		}
 	}

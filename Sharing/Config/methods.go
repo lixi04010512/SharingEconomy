@@ -19,6 +19,7 @@ import (
 	"net/smtp"
 	"path"
 	"strings"
+	"time"
 )
 
 const (
@@ -286,15 +287,9 @@ func CommunityScheduleView(contract *Agreement.User, number *big.Int) (*big.Int,
 }
 
 //封装物品上架方法
-<<<<<<< HEAD
 func AddGoodsMethod(client *ethclient.Client, contract *Agreement.User, owner common.Address, name string, species string, rent *big.Int, ethPledge *big.Int, goodsImgs []string, goodsSign string) (*types.Transaction, error) {
 	opts := Getopts()
 	res, err := contract.AddGoods(opts, owner, name, species, rent, ethPledge, goodsImgs, goodsSign)
-=======
-func AddGoodsMethod(client *ethclient.Client, contract *Agreement.User, owner common.Address, name string, species string, rent *big.Int, ethPledge *big.Int, goodsImgs []string,goodSign string) (*types.Transaction, error) {
-	opts := Getopts()
-	res, err := contract.AddGoods(opts, owner, name, species, rent, ethPledge, goodsImgs,goodSign)
->>>>>>> 8f012b073fff6d841ee0719f8f5b3dfb2e42deb9
 	fmt.Println("addCommunity:", res)
 	opts.GasLimit = gasLimit
 	opts.GasPrice, err = GetgasPrice(client)
@@ -389,7 +384,7 @@ func HaveId(client *ethclient.Client) []*big.Int {
 //图片上传
 func UploadUserImg(c *gin.Context) (string,error){
 	f, err := c.FormFile("imgname")
-	fileName := f.Filename
+	fileName := fmt.Sprintf("%s%s", f.Filename, time.Now().String())
 	fildDir := "./Static/images"
 
 	filePath := fmt.Sprintf("%s%s", fildDir, fileName)
