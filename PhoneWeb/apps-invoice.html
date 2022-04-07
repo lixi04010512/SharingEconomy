@@ -52,6 +52,32 @@
 
     </header>
 
+    <div class="offcanvas-menu" id="offcanvas-menu">
+        <div class="profile-card text-center">
+            <div class="profile-card__image space-mb--10">
+                <img src="assets/img/profile.jpg" class="img-fluid" alt="">
+            </div>
+            <div class="profile-card__content">
+                <p class="name">0x5B38Da6a701c568545dCfcB03F <span class="id">John</span></p>
+            </div>
+        </div>
+        <div class="offcanvas-navigation-wrapper space-mt--40">
+            <ul class="offcanvas-navigation">
+                <li><span class="icon"><i class="ti ti-login" style="font-size: 25px;"></i></span><a
+                        href="login.html">登录/注册</a></li>
+                <li><span class="icon"><i class="ti ti-plus" style="font-size: 25px;"></i></span><a
+                        href="lend-items.html">上传物品</a></li>
+                <li><span class="icon"><i class="ti ti-shopping-cart" style="font-size: 25px;"></i></span><a
+                        href="shop.html">我租入的物品</a></li>
+                <li><span class="icon"><i class="ti ti-box" style="font-size: 25px;"></i></span><a
+                        href="order.html">我借出的物品</a></li>
+                <li><span class="icon"><i class="ti ti-power" style="font-size: 25px;"></i></span><a
+                        onclick="Qual.confirmd('您确定要退出当前账号吗？', '点击OK按钮或者关闭', inf, 'OK', '', 'okFunction', 'cancelFunction')">退出登入</a>
+                </li>
+            </ul>
+        </div>
+    </div>
+
     <div class="page-wrapper">
 
         <!-- Page Content-->
@@ -173,11 +199,15 @@
     </div>
     <!-- end page-wrapper -->
 
-
-
     <!-- javascript  -->
     <!-- App js -->
+    <script src="assets/js/jquery-3.4.1.min.js"></script>
     <script src="static/js/app.js"></script>
+    <!-- Bootstrap JS -->
+    <script src="assets/js/bootstrap.min.js"></script>
+    <!-- Main JS -->
+    <script src="assets/js/main.js"></script>
+    
 
 </body>
 
