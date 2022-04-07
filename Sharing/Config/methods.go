@@ -236,32 +236,6 @@ func LogoutMethod(client *ethclient.Client, contract *Agreement.User, Address co
 	return res, nil
 }
 
-//封装添加公益方法
-func AddCommunityMethod(client *ethclient.Client, contract *Agreement.User, number *big.Int, beneficiaryAddr common.Address, communityName string, communityIntroduce string, communityAmounts *big.Int) (*types.Transaction, error) {
-	opts := Getopts()
-	res, err := contract.AddCommunity(opts, number, beneficiaryAddr, communityName, communityIntroduce, communityAmounts)
-	fmt.Println("addCommunity:", res)
-	opts.GasLimit = gasLimit
-	opts.GasPrice, err = GetgasPrice(client)
-	if err != nil {
-		log.Fatal(err)
-	}
-	return res, nil
-}
-
-//封装下架公益方法
-func DelCommunityMethod(client *ethclient.Client, contract *Agreement.User, number *big.Int) (*types.Transaction, error) {
-	opts := Getopts()
-	res, err := contract.DelCommunity(opts, number)
-	fmt.Println("addCommunity:", res)
-	opts.GasLimit = gasLimit
-	opts.GasPrice, err = GetgasPrice(client)
-	if err != nil {
-		log.Fatal(err)
-	}
-	return res, nil
-}
-
 //封装捐赠积分方法
 func DonateMethod(client *ethclient.Client, contract *Agreement.User, number *big.Int, donator common.Address, amount *big.Int, donatorName string) (*types.Transaction, error) {
 	opts := Getopts()
@@ -276,15 +250,7 @@ func DonateMethod(client *ethclient.Client, contract *Agreement.User, number *bi
 	return res, nil
 }
 
-//封装查看进度方法
-func CommunityScheduleView(contract *Agreement.User, number *big.Int) (*big.Int, error) {
-	res, err := contract.CommunitySchedule(nil, number)
-	fmt.Println("addCommunity:", res)
-	if err != nil {
-		log.Fatal(err)
-	}
-	return res, nil
-}
+
 
 //封装物品上架方法
 func AddGoodsMethod(client *ethclient.Client, contract *Agreement.User, owner common.Address, name string, species string, rent *big.Int, ethPledge *big.Int, goodsImgs []string, goodsSign string) (*types.Transaction, error) {
@@ -420,6 +386,116 @@ func AddUserImgMethod(client *ethclient.Client, contract *Agreement.User, people
 	opts := Getopts()
 	res, err := contract.AddUserImg(opts, people,headImg)
 	fmt.Println("addCommunity:", res)
+	opts.GasLimit = gasLimit
+	opts.GasPrice, err = GetgasPrice(client)
+	if err != nil {
+		log.Fatal(err)
+	}
+	return res, nil
+}
+
+//封装管理员登录方法
+func LoginManager(contract *Agreement.User, Address common.Address) (string, error) {
+	res, err := contract.SignIn(nil, Address)
+
+	fmt.Println("login:", res)
+	if err != nil {
+		log.Fatal(err)
+	}
+	return res, nil
+}
+
+//封装添加分类方法
+func AddStick(client *ethclient.Client, contract *Agreement.User, stick string) (*types.Transaction, error) {
+	opts := Getopts()
+	res, err := contract.AddSticker(opts, stick)
+	fmt.Println("addstick:", res)
+	opts.GasLimit = gasLimit
+	opts.GasPrice, err = GetgasPrice(client)
+	if err != nil {
+		log.Fatal(err)
+	}
+	return res, nil
+}
+
+//封装分类展示方法
+func ShowSpecies(contract *Agreement.User, id *big.Int) (string, error) {
+	res, err := contract.GetStick(nil, id)
+
+	fmt.Println("showSpecies:", res)
+	if err != nil {
+		log.Fatal(err)
+	}
+	return res, nil
+}
+
+//封装删除分类方法
+func DelSpecieMethod(client *ethclient.Client, contract *Agreement.User, number *big.Int) (*types.Transaction, error) {
+	opts := Getopts()
+	res, err := contract.DelStick(opts, number)
+	opts.GasLimit = gasLimit
+	opts.GasPrice, err = GetgasPrice(client)
+	fmt.Println("Delstick:", err)
+	if err != nil {
+		log.Fatal(err)
+	}
+	return res, nil
+}
+
+//封装修改分类方法
+func UpdateStickMethod(client *ethclient.Client, contract *Agreement.User, number *big.Int, name string) (*types.Transaction, error) {
+	opts := Getopts()
+	res, err := contract.UpdateStick(opts, number, name)
+	fmt.Println("updateStick:", res)
+	opts.GasLimit = gasLimit
+	opts.GasPrice, err = GetgasPrice(client)
+	if err != nil {
+		log.Fatal(err)
+	}
+	return res, nil
+}
+
+//封装添加公益方法
+func AddCommunityMethod(client *ethclient.Client, contract *Agreement.User, beneficiaryAddr common.Address, communityName string, communityIntroduce string, communityAmounts *big.Int) (*types.Transaction, error) {
+	opts := Getopts()
+	res, err := contract.AddCommunity(opts, beneficiaryAddr, communityName, communityIntroduce, communityAmounts)
+	fmt.Println("addCommunity:", res)
+	opts.GasLimit = gasLimit
+	opts.GasPrice, err = GetgasPrice(client)
+	if err != nil {
+		log.Fatal(err)
+	}
+	return res, nil
+}
+
+//封装下架公益方法
+func DelCommunityMethod(client *ethclient.Client,contract *Agreement.User, number *big.Int) (*types.Transaction, error) {
+	opts := Getopts()
+	res,err := contract.DelCommunity(opts, number)
+	opts.GasLimit = gasLimit
+	opts.GasPrice, err = GetgasPrice(client)
+	fmt.Println("DelCommunity:", err)
+	if err != nil {
+		log.Fatal(err)
+	}
+	return res, nil
+}
+
+//封装公益展示方法
+func ShowCommunities(contract *Agreement.User, id *big.Int) (string, common.Address, string, *big.Int,  error) {
+	community, err := contract.GetCommunity(nil, id)
+	fmt.Println("showCommunities:", community)
+	if err != nil {
+		log.Fatal(err)
+	}
+	return community.Name, community.People, community.Introduce, community.Amount, nil
+}
+
+//封装修改公益方法
+func UpdateCommunityMethod(client *ethclient.Client, contract *Agreement.User,name string,number *big.Int,addr common.Address,introduce string,amount *big.Int) (*types.Transaction, error) {
+	opts := Getopts()
+	res, err := contract.UpdateCommunity(opts, number,addr, name,introduce,amount)
+	fmt.Println("updateCommunity:", res)
 	opts.GasLimit = gasLimit
 	opts.GasPrice, err = GetgasPrice(client)
 	if err != nil {
