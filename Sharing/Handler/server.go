@@ -1,6 +1,9 @@
 package handler
 
 import (
+	"fmt"
+	"github.com/gin-contrib/sessions"
+	"github.com/gin-contrib/sessions/cookie"
 	"github.com/gin-gonic/gin"
 )
 
@@ -14,13 +17,38 @@ func Start(addr, webDir string) (err error) {
 		r.Static("/share", webDir)
 	}
 
+	// 基于cookie创建session的存储引擎，传递一个参数，用来做加密时的密钥
+	store := cookie.NewStore([]byte("secret1234"))
+	fmt.Println(store)
+	//session中间件生效，参数mysession，是浏览器端cookie的名字
+	r.Use(sessions.Sessions("mysession", store))
+
+
+	r.GET("/manager-login", login1)
+	r.POST("/set", setting,loginManager)
+	r.GET("/index1", getting, index1)
+	r.POST("/addSticks",getting,addSticks)
+	r.POST("/addCommunities",getting,addCommunities)
+	r.GET("/species",getting,showSpecies)
+	r.GET("/showCommunities",getting,showCommunities)
+	r.GET("/user",getting,user)
+	r.GET("/addSpecies",getting,addSpecies)
+	r.GET("/addCommunity",getting,addCommunity)
+	r.POST("/editSpecies",getting,editSpecies)
+	r.GET("/editCommunity",getting,editCommunity)
+	r.POST("/editCommunities",getting,editCommunities)
+	r.POST("/updateCommunity",getting,updateCommunity)
+	r.POST("/delSpecie",getting,delSpecie)
+	r.POST("/delCommunity",getting,delCommunity)
+	r.GET("/editSpeciesPage",getting,editSpeciesPage)
+	r.POST("/updateStick",getting,updateStick)
+
+
 	// api接口服务，定义了路由组 /Sharing
 	todo := r.Group("")
 	{
 		// 定义增改查的接口，并注册到web服务器
 
-		todo.POST("/addStickerPost", addSticker)
-		//todo.POST("/isStickExistPost", isStickExist)
 		todo.POST("/registerPost", register)
 		todo.POST("/loginPost", login)
 		todo.POST("/logoutPost", logout)

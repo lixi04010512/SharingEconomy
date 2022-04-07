@@ -3,28 +3,37 @@
 		"inputs": [
 			{
 				"internalType": "uint256",
-				"name": "number",
+				"name": "id",
 				"type": "uint256"
-			}
-		],
-		"name": "CommunitySchedule",
-		"outputs": [
+			},
+			{
+				"internalType": "address",
+				"name": "beneficiaryAddr",
+				"type": "address"
+			},
+			{
+				"internalType": "string",
+				"name": "communityName",
+				"type": "string"
+			},
+			{
+				"internalType": "string",
+				"name": "communityIntroduce",
+				"type": "string"
+			},
 			{
 				"internalType": "uint256",
-				"name": "",
+				"name": "communityAmounts",
 				"type": "uint256"
 			}
 		],
-		"stateMutability": "view",
+		"name": "UpdateCommunity",
+		"outputs": [],
+		"stateMutability": "nonpayable",
 		"type": "function"
 	},
 	{
 		"inputs": [
-			{
-				"internalType": "uint256",
-				"name": "number",
-				"type": "uint256"
-			},
 			{
 				"internalType": "address",
 				"name": "beneficiaryAddr",
@@ -97,34 +106,6 @@
 				"type": "uint256"
 			}
 		],
-		"stateMutability": "nonpayable",
-		"type": "function"
-	},
-	{
-		"inputs": [
-			{
-				"internalType": "uint256",
-				"name": "id",
-				"type": "uint256"
-			},
-			{
-				"internalType": "string",
-				"name": "species",
-				"type": "string"
-			},
-			{
-				"internalType": "string",
-				"name": "content",
-				"type": "string"
-			},
-			{
-				"internalType": "string",
-				"name": "issueTimes",
-				"type": "string"
-			}
-		],
-		"name": "addNeeds",
-		"outputs": [],
 		"stateMutability": "nonpayable",
 		"type": "function"
 	},
@@ -284,7 +265,7 @@
 		"inputs": [
 			{
 				"internalType": "uint256",
-				"name": "number",
+				"name": "id",
 				"type": "uint256"
 			}
 		],
@@ -302,6 +283,19 @@
 			}
 		],
 		"name": "delGoods",
+		"outputs": [],
+		"stateMutability": "nonpayable",
+		"type": "function"
+	},
+	{
+		"inputs": [
+			{
+				"internalType": "uint256",
+				"name": "id",
+				"type": "uint256"
+			}
+		],
+		"name": "delStick",
 		"outputs": [],
 		"stateMutability": "nonpayable",
 		"type": "function"
@@ -393,6 +387,40 @@
 				"type": "uint256"
 			}
 		],
+		"name": "getCommunity",
+		"outputs": [
+			{
+				"internalType": "string",
+				"name": "name",
+				"type": "string"
+			},
+			{
+				"internalType": "address",
+				"name": "people",
+				"type": "address"
+			},
+			{
+				"internalType": "string",
+				"name": "introduce",
+				"type": "string"
+			},
+			{
+				"internalType": "uint256",
+				"name": "amount",
+				"type": "uint256"
+			}
+		],
+		"stateMutability": "view",
+		"type": "function"
+	},
+	{
+		"inputs": [
+			{
+				"internalType": "uint256",
+				"name": "id",
+				"type": "uint256"
+			}
+		],
 		"name": "getGoods",
 		"outputs": [
 			{
@@ -450,35 +478,12 @@
 				"type": "uint256"
 			}
 		],
-		"name": "getNeeds",
-		"outputs": [
-			{
-				"internalType": "string",
-				"name": "issueTimes",
-				"type": "string"
-			},
-			{
-				"internalType": "string",
-				"name": "species",
-				"type": "string"
-			},
-			{
-				"internalType": "string",
-				"name": "content",
-				"type": "string"
-			}
-		],
-		"stateMutability": "view",
-		"type": "function"
-	},
-	{
-		"inputs": [],
 		"name": "getStick",
 		"outputs": [
 			{
-				"internalType": "string[]",
-				"name": "",
-				"type": "string[]"
+				"internalType": "string",
+				"name": "name",
+				"type": "string"
 			}
 		],
 		"stateMutability": "view",
@@ -739,25 +744,6 @@
 				"type": "uint256"
 			}
 		],
-		"name": "isGoodExist",
-		"outputs": [
-			{
-				"internalType": "bool",
-				"name": "",
-				"type": "bool"
-			}
-		],
-		"stateMutability": "view",
-		"type": "function"
-	},
-	{
-		"inputs": [
-			{
-				"internalType": "uint256",
-				"name": "id",
-				"type": "uint256"
-			}
-		],
 		"name": "isGoodsLend",
 		"outputs": [
 			{
@@ -861,21 +847,14 @@
 		"type": "function"
 	},
 	{
-		"inputs": [],
-		"name": "signIn",
-		"outputs": [],
-		"stateMutability": "view",
-		"type": "function"
-	},
-	{
 		"inputs": [
 			{
-				"internalType": "uint256",
-				"name": "",
-				"type": "uint256"
+				"internalType": "address",
+				"name": "people",
+				"type": "address"
 			}
 		],
-		"name": "stickData",
+		"name": "signIn",
 		"outputs": [
 			{
 				"internalType": "string",
@@ -915,6 +894,24 @@
 			}
 		],
 		"name": "updGoods",
+		"outputs": [],
+		"stateMutability": "nonpayable",
+		"type": "function"
+	},
+	{
+		"inputs": [
+			{
+				"internalType": "uint256",
+				"name": "id",
+				"type": "uint256"
+			},
+			{
+				"internalType": "string",
+				"name": "newName",
+				"type": "string"
+			}
+		],
+		"name": "updateStick",
 		"outputs": [],
 		"stateMutability": "nonpayable",
 		"type": "function"

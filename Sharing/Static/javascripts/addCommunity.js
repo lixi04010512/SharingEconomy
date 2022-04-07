@@ -1,0 +1,11 @@
+$('#addCommunity').click(function(){
+    $.ajax({
+        type:"POST",
+        url:"/addCommunities",
+        data:{"name":$("#roleName").val(),"addr":$("#roleAddr").val(),"introduce":$("#roleContent").val(),"amount":$("#roleMoney").val()},
+        success:function(){
+            alert("添加成功！");
+            window.location="/showCommunities"
+        }
+    })
+})

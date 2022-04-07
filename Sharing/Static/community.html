@@ -1,0 +1,76 @@
+{{ define "Static/community.html" }}
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta charset="UTF-8">
+		<title>公益管理</title>
+		<link rel="stylesheet" href="share/res/css/amazeui.min.css" />
+		<link rel="stylesheet" href="share/res/css/admin.css" />
+	</head>
+
+	<body>
+		<div class="admin-content-body">
+			<div class="am-cf am-padding am-padding-bottom-0">
+				<div class="am-fl am-cf"><strong class="am-text-primary am-text-lg">公益管理</strong><small></small></div>
+			</div>
+
+			<hr>
+
+			<div class="am-g">
+				<div class="am-u-sm-12 am-u-md-6">
+					<div class="am-btn-toolbar">
+						<div class="am-btn-group am-btn-group-xs">
+							<button type="button" class="am-btn am-btn-default btnAdd"><span class="am-icon-plus"></span> 新增</button>
+						</div>
+					</div>
+				</div>
+				<div class="am-u-sm-12 am-u-md-3">
+<!--					<div class="am-input-group am-input-group-sm" style="position: relative;left: -48px;">-->
+<!--						<input type="text" class="am-form-field" id="username" placeholder="请输入公益名" >-->
+<!--						<span class="am-input-group-btn">-->
+<!--            <button class="am-btn am-btn-default" type="button">搜索</button>-->
+<!--          </span>-->
+<!--					</div>-->
+				</div>
+			</div>
+			<div class="am-g">
+				<div class="am-u-sm-12">
+						<table class="am-table am-table-striped am-table-hover table-main">
+							<thead>
+								<tr>
+									<th class="table-id">公益ID</th>
+									<th class="table-id">公益名称</th>
+									<th class="table-title">公益内容</th>
+									<th class="table-id">公益金额</th>
+									<th class="table-set">操作</th>
+								</tr>
+							</thead>
+							<tbody id="community_body">
+							{{ range $key,$value := .communities_name }}
+								<tr>
+									<td>{{ $value.Id }}</td>
+									<td>{{ $value.Name }}</td>
+									<td>{{ $value.Introduce }}</td>
+									<td>{{ $value.Amount }}</td>
+									<td>
+										<div class="am-btn-toolbar">
+											<div class="am-btn-group am-btn-group-xs">
+												<button type="button" id="role_701" class="am-btn am-btn-default am-btn-xs am-text-secondary btnedit" data-id="{{ $value.Id }}"><span class="am-icon-pencil-square-o"></span> 编辑</button>
+												<button class="am-btn am-btn-default am-btn-xs am-text-danger am-hide-sm-only btndel" data-id="{{ $value.Id }}"><span class="am-icon-trash-o"></span> 删除</button>
+											</div>
+										</div>
+									</td>
+								</tr>
+							{{ end }}
+							</tbody>
+						</table>
+						<hr>
+				</div>
+			</div>
+		</div>
+		<script src="share/js/jquery-1.11.3.min.js"></script>
+		<script src="share/javascripts/community.js"></script>
+	</body>
+{{ end }}
+</html>
