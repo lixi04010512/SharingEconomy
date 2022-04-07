@@ -98,18 +98,18 @@
 		<div class="aui-real-price clearfix">
 			<span>
 				租金
-				<i>￥</i>26/天
+				<i>￥</i>{{.goodsPort.Rent}}/天
 			</span>
 		
 			
 		</div>
 		<div class="price" style="padding-left: 15px;">
 			<span class="main-price">押金</span>
-			<span class="discounted-price">￥12</span>
+			<span class="discounted-price">{{.goodsPort.EthPledge}}</span>
 		</div>
 		<div class="aui-product-title">
 			<h2>
-				苹果（Apple） Apple iPhone X 移动联通电信全网通4G手机(深空灰)
+				{{.goodsPort.Names}}
 			</h2>
 			<p>
 				原封未拆，厂商授权！【服务】顺丰配送，7天无理由退货！
@@ -137,8 +137,8 @@
 							<img src="share/themes/img/pd/pd-zf-1.jpg" alt="">
 						</div>
 						<div class="aui-spec-first-sif">
-							<h2>￥26/天 </h2>
-							<p style="line-height: 0;">商品编号：12581</p>
+							<h2>￥{{.goodsPort.Rent}}/天 </h2>
+							<p style="line-height: 0;">商品编号：{{.goodsPort.Id}}</p>
 						</div>
 					</div>
 					<div class="aui-product-text-content">

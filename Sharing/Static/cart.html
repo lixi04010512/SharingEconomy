@@ -130,6 +130,7 @@
                                                         <!--end tr-->
                                                     </thead>
                                                     <tbody>
+                                                    {{range $key,$vlaue:=.goodsCategory}}
                                                         <tr>
                                                             <td>
                                                                 <div class="media">
@@ -138,15 +139,15 @@
                                                                         alt="...">
                                                                     <div class="media-body align-self-center">
                                                                         <h6 class="m-0" name="goodsName" id="goodsName">
-                                                                            摄像头</h6>
+                                                                            {{$vlaue.Names}}}</h6>
                                                                         <a href="#" class="font-12 text-primary"
-                                                                            name="rent" id="rent">ID: A3652</a>
+                                                                            name="rent" id="rent">ID: {{$vlaue.Id}}}</a>
                                                                     </div>
                                                                     <!--end media body-->
                                                                 </div>
                                                             </td>
 
-                                                            <td><span class="badge badge-soft-warning px-2">未借</span>
+                                                            <td><span class="badge badge-soft-warning px-2">{{$vlaue.IsBorrow}}}</span>
                                                             </td>
                                                             <td>
                                                                 <div class="dropdown d-inline-block float-right">
@@ -168,6 +169,7 @@
                                                                 </div>
                                                             </td>
                                                         </tr>
+                                                    {{end}}
                                                         <!--end tr-->
                                                         <tr>
                                                             <td>

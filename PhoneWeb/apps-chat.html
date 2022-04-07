@@ -26,41 +26,32 @@
 <body id="body" class="dark-sidebar">
 
     <header>
-        <div class="header-wrapper border-bottom">
-            <div class="container space-y--15">
-                <div class="row align-items-center">
-                    <div class="col-auto">
-                        <!-- header logo -->
-                        <div class="header-logo">
-                            <a href="index.html">
-                                <img src="assets/img/logo.png" class="img-fluid" alt="" style="width: 75px;">
-                            </a>
-                        </div>
-                    </div>
-                    <div class="col d-flex justify-content-center">
-                        <!-- 搜索框 -->
-                        <div class="header-search" style="padding-top: 2px;">
-                            <a href="search-page.html">
-                                <div class="input-group">
-                                    <input type="text" id="chat-search" name="chat-search" class="form-control"
-                                        placeholder="搜索好物" style="    padding-left: 30px;">
-                            </a>
-
-                            <span style="position: absolute;padding-top: 7px;padding-left: 10px;
-                                       "><i class="fa fa-search"></i></span>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-auto">
-                    <button class="header-menu-trigger" id="header-menu-trigger">
-                        <i class="fas fa-align-right" style="font-size: 20px;padding-right: 8px;
-                            padding-top: 15px;
+		<div class="header-wrapper border-bottom">
+			<div class="container space-y--15">
+				<div class="row align-items-center">
+					<div class="col-auto">
+						<a class="back-link" onClick="javascript :history.back(-1);"> <i class="fa fa-angle-left"></i>
+							返回</a>
+					</div>
+					<div class="col d-flex justify-content-center">
+						<div class="header-search">
+							<div class="input-group">
+								<h4 style="    padding-top: 18px;">消息通知</h4>
+							</div>
+						</div>
+					</div>
+					<div class="col-auto">
+						<!-- header menu trigger -->
+						<button class="header-menu-trigger" id="header-menu-trigger">
+							<i class="fas fa-align-right" style="font-size: 20px;
                                 color: grey;"></i>
-                    </button>
-                </div>
-            </div>
-        </div>
-    </header>
+						</button>
+					</div>
+				</div>
+			</div>
+		</div>
+
+	</header>
     <!--====================  End of header area  ====================-->
     <!--====================  mobile menu overlay ====================-->
     <div class="offcanvas-menu" id="offcanvas-menu">
@@ -100,14 +91,14 @@
                 <div class="row">
                     <div class="col-12">
                         <div class="chat-box-left">
-                            <ul class="nav nav-tabs mb-3 nav-justified" id="myTab" role="tablist">
+                            <!-- <ul class="nav nav-tabs mb-3 nav-justified" id="myTab" role="tablist">
                                 <li class="nav-item" role="presentation">
                                     <a class="nav-link active" id="general_chat_tab" data-bs-toggle="tab"
                                         href="#" role="tab">消息通知</a>
                                 </li>
 
 
-                            </ul>
+                            </ul> -->
                             <div class="chat-search mb-3">
                                 <div class="form-group">
                                     <div class="input-group">
@@ -282,18 +273,6 @@
     </div>
     <!-- end page-wrapper -->
 
-    <footer>
-
-        <div class="sc-bottom-bar">
-            <a class="sc-menu-item " href="index.html"><i class="fas fa-home"></i></a>
-            <a class="sc-menu-item " href="goods-category.html"><i class="fas  fa-list"></i></a>
-            <a href="chat.html" class="sc-menu-item"><i class="fas fa-plus"></i></a>
-            <a class="sc-menu-item" href="cart.html"><i class="fas fa-clipboard"></i></a>
-
-            <a class="sc-menu-item" href="ui-me.html"><i class="fas fa-user"></i></a>
-        </div>
-
-    </footer>
 
 
 

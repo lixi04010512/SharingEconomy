@@ -286,9 +286,15 @@ func CommunityScheduleView(contract *Agreement.User, number *big.Int) (*big.Int,
 }
 
 //封装物品上架方法
+<<<<<<< HEAD
+func AddGoodsMethod(client *ethclient.Client, contract *Agreement.User, owner common.Address, name string, species string, rent *big.Int, ethPledge *big.Int, goodsImgs []string, goodsSign string) (*types.Transaction, error) {
+	opts := Getopts()
+	res, err := contract.AddGoods(opts, owner, name, species, rent, ethPledge, goodsImgs, goodsSign)
+=======
 func AddGoodsMethod(client *ethclient.Client, contract *Agreement.User, owner common.Address, name string, species string, rent *big.Int, ethPledge *big.Int, goodsImgs []string,goodSign string) (*types.Transaction, error) {
 	opts := Getopts()
 	res, err := contract.AddGoods(opts, owner, name, species, rent, ethPledge, goodsImgs,goodSign)
+>>>>>>> 8f012b073fff6d841ee0719f8f5b3dfb2e42deb9
 	fmt.Println("addCommunity:", res)
 	opts.GasLimit = gasLimit
 	opts.GasPrice, err = GetgasPrice(client)
@@ -338,17 +344,36 @@ func DoGoodsReturnMethod(client *ethclient.Client, contract *Agreement.User, id 
 }
 
 //首页-更多好物
-func HaveIndex(client *ethclient.Client, id *big.Int) (common.Address, string, string, *big.Int, *big.Int, []string, error) {
-	//opts := HaveGetOpts()
+func HaveIndex(client *ethclient.Client, id *big.Int) (
+	struct {
+		Owner     common.Address
+		Borrowers Agreement.UserBorrower
+		Id        *big.Int
+		Name      string
+		Species   string
+		Rent      *big.Int
+		EthPledge *big.Int
+		Count     *big.Int
+		Deal      *big.Int
+		Backs     *big.Int
+		Available bool
+		IsBorrow  bool
+	}, struct {
+		Owner     common.Address
+		Name      string
+		Species   string
+		Rent      *big.Int
+		EthPledge *big.Int
+		GoodImg   []string
+	}, error) {
 	ins, err := HaveUserRead(client)
-	//var id *big.Int
-	//var opts *bind.CallOpts
-	goodsD, err := ins.GetGoods(nil, id)
-	//fmt.Println("goodid",goodsD)
+	goodsD, err := ins.GoodsData(nil, id)
 	if err != nil {
-		log.Fatal("GETGOOD错误", err)
+		log.Fatal(err)
 	}
-	return goodsD.Owner, goodsD.Name, goodsD.Species, goodsD.Rent, goodsD.EthPledge, goodsD.GoodImg, err
+	goodsD1, err := ins.GetGoods(nil, id)
+	return goodsD, goodsD1, err
+
 }
 
 //获取id
@@ -359,20 +384,6 @@ func HaveId(client *ethclient.Client) []*big.Int {
 		log.Fatal("GETGOOD错误", err)
 	}
 	return id
-}
-
-//首页-口碑推荐
-func HaveIndex1(client *ethclient.Client, id *big.Int) (common.Address, string, string, *big.Int, *big.Int, error) {
-	//opts := HaveGetOpts()
-	ins, err := HaveUserRead(client)
-	//var id *big.Int
-	//var opts *bind.CallOpts
-	goodsD, err := ins.GetGoods(nil, id)
-	fmt.Println("goodid", goodsD)
-	if err != nil {
-		log.Fatal("GETGOOD错误", err)
-	}
-	return goodsD.Owner, goodsD.Name, goodsD.Species, goodsD.Rent, goodsD.EthPledge, err
 }
 
 //图片上传

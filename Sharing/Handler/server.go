@@ -23,7 +23,7 @@ func Start(addr, webDir string) (err error) {
 		//todo.POST("/isStickExistPost", isStickExist)
 		todo.POST("/registerPost", register)
 		todo.POST("/loginPost", login)
-		todo.POST("/logoutPost", logout)
+		//todo.POST("/logoutPost", logout)
 		todo.POST("/sendEmailPost", sendEmail)
 		todo.POST("/addUserImg",AddUserImg)
 
@@ -51,6 +51,8 @@ func Start(addr, webDir string) (err error) {
 		share.GET("/shop-product", shopPorduct)
 		share.GET("/ui-me", UiMeStatic)
 		share.GET("/wishlist", WishlistStatic)
+		share.GET("/carts", CartGood)
+
 	}
 	// 启动web服务
 	err = r.Run(addr)

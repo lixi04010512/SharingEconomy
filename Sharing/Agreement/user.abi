@@ -1,10 +1,5 @@
 [
 	{
-		"inputs": [],
-		"stateMutability": "nonpayable",
-		"type": "constructor"
-	},
-	{
 		"inputs": [
 			{
 				"internalType": "uint256",
@@ -108,22 +103,27 @@
 	{
 		"inputs": [
 			{
-				"internalType": "address",
-				"name": "people",
-				"type": "address"
+				"internalType": "uint256",
+				"name": "id",
+				"type": "uint256"
 			},
 			{
 				"internalType": "string",
-				"name": "name",
+				"name": "species",
 				"type": "string"
 			},
 			{
 				"internalType": "string",
-				"name": "password",
+				"name": "content",
+				"type": "string"
+			},
+			{
+				"internalType": "string",
+				"name": "issueTimes",
 				"type": "string"
 			}
 		],
-		"name": "addManager",
+		"name": "addNeeds",
 		"outputs": [],
 		"stateMutability": "nonpayable",
 		"type": "function"
@@ -443,6 +443,35 @@
 		"type": "function"
 	},
 	{
+		"inputs": [
+			{
+				"internalType": "uint256",
+				"name": "id",
+				"type": "uint256"
+			}
+		],
+		"name": "getNeeds",
+		"outputs": [
+			{
+				"internalType": "string",
+				"name": "issueTimes",
+				"type": "string"
+			},
+			{
+				"internalType": "string",
+				"name": "species",
+				"type": "string"
+			},
+			{
+				"internalType": "string",
+				"name": "content",
+				"type": "string"
+			}
+		],
+		"stateMutability": "view",
+		"type": "function"
+	},
+	{
 		"inputs": [],
 		"name": "getStick",
 		"outputs": [
@@ -706,25 +735,6 @@
 		"inputs": [
 			{
 				"internalType": "uint256",
-				"name": "number",
-				"type": "uint256"
-			}
-		],
-		"name": "isCommunityExist",
-		"outputs": [
-			{
-				"internalType": "bool",
-				"name": "",
-				"type": "bool"
-			}
-		],
-		"stateMutability": "view",
-		"type": "function"
-	},
-	{
-		"inputs": [
-			{
-				"internalType": "uint256",
 				"name": "id",
 				"type": "uint256"
 			}
@@ -757,38 +767,6 @@
 			}
 		],
 		"stateMutability": "view",
-		"type": "function"
-	},
-	{
-		"inputs": [
-			{
-				"internalType": "string",
-				"name": "species",
-				"type": "string"
-			}
-		],
-		"name": "isStickExist",
-		"outputs": [
-			{
-				"internalType": "bool",
-				"name": "",
-				"type": "bool"
-			}
-		],
-		"stateMutability": "view",
-		"type": "function"
-	},
-	{
-		"inputs": [
-			{
-				"internalType": "address",
-				"name": "people",
-				"type": "address"
-			}
-		],
-		"name": "logOut",
-		"outputs": [],
-		"stateMutability": "nonpayable",
 		"type": "function"
 	},
 	{
@@ -833,19 +811,6 @@
 		"name": "outGoods",
 		"outputs": [],
 		"stateMutability": "nonpayable",
-		"type": "function"
-	},
-	{
-		"inputs": [],
-		"name": "queryBalance",
-		"outputs": [
-			{
-				"internalType": "uint256",
-				"name": "",
-				"type": "uint256"
-			}
-		],
-		"stateMutability": "view",
 		"type": "function"
 	},
 	{
@@ -896,16 +861,10 @@
 		"type": "function"
 	},
 	{
-		"inputs": [
-			{
-				"internalType": "address",
-				"name": "people",
-				"type": "address"
-			}
-		],
+		"inputs": [],
 		"name": "signIn",
 		"outputs": [],
-		"stateMutability": "nonpayable",
+		"stateMutability": "view",
 		"type": "function"
 	},
 	{
@@ -980,29 +939,6 @@
 			{
 				"internalType": "string",
 				"name": "sign",
-				"type": "string"
-			}
-		],
-		"name": "updateUser",
-		"outputs": [],
-		"stateMutability": "nonpayable",
-		"type": "function"
-	},
-	{
-		"inputs": [
-			{
-				"internalType": "address",
-				"name": "people",
-				"type": "address"
-			},
-			{
-				"internalType": "string",
-				"name": "name",
-				"type": "string"
-			},
-			{
-				"internalType": "string",
-				"name": "password",
 				"type": "string"
 			}
 		],
