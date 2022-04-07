@@ -1,9 +1,9 @@
 var scripttag = document.createElement("link"); scripttag.rel = "stylesheet"; 
-scripttag.href = "./static/css/quantumalert.css"; 
-document.head.appendChild(scripttag); var succ = "./images/success.svg"; 
-(new Image).src = succ; var err = "images/error.svg"; (new Image).src = err; 
-var inf = "./images/info.svg";
-(new Image).src = inf; var war = "images/error.svg"; (new Image).src = war; var alertcontainer, popupdiv, popupcontent, errortext, pop_heading, no_btn_fun = "write_function_name_here", yes_btn_fun = "write_function_name_here", type_field, matches = document.getElementsByClassName("alertcontainer"); function rmx() { document.body.removeChild(matches.item(0)) } function close_qual() { setTimeout(function () { for (; 0 < matches.length;)rmx() }, 250) }
+scripttag.href = "share/static/css/quantumalert.css";
+document.head.appendChild(scripttag); var succ = "share/images/success.svg";
+(new Image).src = succ; var err = "share/images/error.svg"; (new Image).src = err;
+var inf = "share/images/info.svg";
+(new Image).src = inf; var war = "share/images/error.svg"; (new Image).src = war; var alertcontainer, popupdiv, popupcontent, errortext, pop_heading, no_btn_fun = "write_function_name_here", yes_btn_fun = "write_function_name_here", type_field, matches = document.getElementsByClassName("alertcontainer"); function rmx() { document.body.removeChild(matches.item(0)) } function close_qual() { setTimeout(function () { for (; 0 < matches.length;)rmx() }, 250) }
 function checker() { alertcontainer = document.createElement("div"); alertcontainer.className = "alertcontainer"; document.body.appendChild(alertcontainer); popupdiv = document.createElement("div"); popupdiv.id = "popupdiv"; popupdiv.innerHTML = '<span id="closepopup" onclick="close_qual();" ><svg viewbox="0 0 40 40"  id="close-x" fill="#000"><path d="M 10,10 L 30,30 M 30,10 L 10,30" /></svg></span>'; alertcontainer.appendChild(popupdiv) }
 function structure() { void 0 != alertcontainer && 0 < matches.length && rmx(); checker() } function pop_simple_content(a) { pop_simple_structure = document.createElement("p"); pop_simple_structure.id = "pop_simple_structure"; pop_simple_structure.textContent = a; popupdiv.appendChild(pop_simple_structure) } function errorcontent() { errortext = document.createElement("div"); errortext.id = "errortext"; errortext.innerHTML = ' <img id="errorimage" src="' + err + '"  /><br>'; popupdiv.appendChild(errortext) }
 function write_function_name_here() { console.log("Define function name for buttons") } function alert_btn(a, b, c, d) { if (void 0 === c || void 0 === d) c = d = "write_function_name_here"; alert_btn_struct = document.createElement("div"); alert_btn_struct.id = "alert_btn_struct"; alert_btn_struct.innerHTML = ' <span id="btn-no" onclick="' + d + '();">' + b + '  </span>&nbsp <span id="btn-yes" onclick="' + c + '();">' + a + "  </span>"; popupdiv.appendChild(alert_btn_struct) }

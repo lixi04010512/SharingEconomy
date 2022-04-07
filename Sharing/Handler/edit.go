@@ -169,8 +169,9 @@ func logout(c *gin.Context) {
 	}
 
 	data, err := contract.Logout(nil, loginUser)
+	fmt.Println("注销",data)
 	loginUser = common.Address{}
-	respOK(c, data)
+	c.Redirect(http.StatusFound, "/login")
 }
 
 //上架物品
@@ -189,7 +190,7 @@ func addGoods(c *gin.Context) {
 		return
 	}
 
-	name := c.PostForm("name")
+	name := c.PostForm("goodsName")
 	owner := loginUser
 	species := c.PostForm("species")
 	rent := c.PostForm("rent")
@@ -197,17 +198,17 @@ func addGoods(c *gin.Context) {
 	rentInt, err := strconv.Atoi(rent)
 	rentInt64 := int64(rentInt)
 
-	ethPledge := c.PostForm("ethPledge")
+	ethPledge := c.PostForm("textDeposit")
 	ethPledgeInt, err := strconv.Atoi(ethPledge)
 	ethPledgeInt64 := int64(ethPledgeInt)
-	goodSign := c.PostForm("sign")
+	goodSign := c.PostForm("addnote")
 
 	form, err := c.MultipartForm()
 	if err != nil {
 		c.String(http.StatusBadRequest, fmt.Sprintf("get err %s", err.Error()))
 	}
 	// 获取所有图片
-	files := form.File["files"]
+	files := form.File["imgFiles"]
 
 	//存储所有图片路径
 	var goodsImgs []string
@@ -217,7 +218,7 @@ func addGoods(c *gin.Context) {
 	// 遍历所有图片
 	for _, file := range files {
 		// 逐个存
-		fileName := file.Filename
+		fileName := fmt.Sprintf("%s%s", file.Filename, time.Now().String())
 		filepath := fmt.Sprintf("%s%s", fildDir, fileName)
 		goodsImgs = append(goodsImgs, filepath)
 		if err := c.SaveUploadedFile(file, file.Filename); err != nil {
@@ -228,7 +229,8 @@ func addGoods(c *gin.Context) {
 	//goodsImgs := c.PostForm("goodsImgs")
 	fmt.Println("pass", name)
 	data, err := config.AddGoodsMethod(client, contract, owner, name, species, big.NewInt(rentInt64), big.NewInt(ethPledgeInt64), goodsImgs,goodSign)
-	respOK(c, data)
+	fmt.Println("addGood",data)
+	c.Redirect(http.StatusFound, "/index")
 }
 
 //修改用户信息

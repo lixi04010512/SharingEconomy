@@ -1,9 +1,7 @@
 {{ define "Static/lend-items.html" }}
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
-
     <meta charset="utf-8">
     <title>Share Fish-上架物品</title>
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
@@ -62,9 +60,6 @@
 
     {{ template "Static/menu.html" . }}
 
-
-
-
     <div class="page-wrapper">
         <!-- Page Content-->
         <div class="page-content-tab">
@@ -102,7 +97,7 @@
                                 <div class="tab-content">
                                     <div class="tab-pane p-3 active" id="Post" role="tabpanel">
                                         <div class="row">
-                                            <form method="post" action="" id="lendForm">
+                                            <form method="post" action="/addGoodsPost" enctype="multipart/form-data">
                                                 <div class="row g-3 align-items-center">
                                                     <div class="col-md-6">
                                                         <label for="" class="form-label">物品名称</label>
@@ -116,7 +111,7 @@
                                                     </div>
                                                     <div class="col-md-6">
                                                         <label class="form-label">物品类别</label>
-                                                        <select class="form-select" aria-label="Default select example">
+                                                        <select class="form-select" aria-label="Default select example" id="species">
                                                             <option selected="">服饰</option>
                                                             <option value="1">电子产品</option>
                                                             <option value="2">书籍</option>
@@ -134,7 +129,7 @@
                                                             </label>
                                                 
                                                             <div class="type-file-div">
-                                                                <input type="file" class="input-file" name="luTest[]" style="display: none;">
+                                                                <input type="file" class="input-file" name="luTest[]" id="imgFiles" style="display: none;">
                                                             </div>
                                                         </div>
                                                       
