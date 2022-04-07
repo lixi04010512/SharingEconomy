@@ -7,7 +7,9 @@ import (
 	"github.com/ethereum/go-ethereum/common"
 	"github.com/gin-gonic/gin"
 	"io/ioutil"
+	"math/big"
 	"net/http"
+	"strconv"
 )
 
 //用户地址
@@ -145,8 +147,6 @@ func login(c *gin.Context) {
 	fmt.Println("data", data)
 }
 
-//注销
-<<<<<<< HEAD
 //func logout(c *gin.Context) {
 //	//初始化client
 //	client, err := config.GetClient()
@@ -223,7 +223,7 @@ func login(c *gin.Context) {
 //	data, err := config.AddGoodsMethod(client, contract, owner, name, species, big.NewInt(rentInt64), big.NewInt(ethPledgeInt64), goodsImgs)
 //	respOK(c, data)
 //}
-=======
+
 func logout(c *gin.Context) {
 	//初始化client
 	client, err := config.GetClient()
@@ -298,10 +298,11 @@ func addGoods(c *gin.Context) {
 	}
 	//goodsImgs := c.PostForm("goodsImgs")
 	fmt.Println("pass", name)
-	data, err := config.AddGoodsMethod(client, contract, owner, name, species, big.NewInt(rentInt64), big.NewInt(ethPledgeInt64), goodsImgs,goodSign)
+	data, err := config.AddGoodsMethod(client, contract, owner, name, species, big.NewInt(rentInt64), big.NewInt(ethPledgeInt64), goodsImgs, goodSign)
 	respOK(c, data)
 }
->>>>>>> 8f012b073fff6d841ee0719f8f5b3dfb2e42deb9
+
+//>>>>>>> 8f012b073fff6d841ee0719f8f5b3dfb2e42deb9
 
 //修改用户信息
 //func updateUser(c *gin.Context)  {
@@ -321,29 +322,29 @@ func addGoods(c *gin.Context) {
 //}
 
 //添加头像
-func AddUserImg(c *gin.Context)  {
+func AddUserImg(c *gin.Context) {
 	//初始化client
-	client,err := config.GetClient()
-	if err != nil{
-		respError(c,err)
+	client, err := config.GetClient()
+	if err != nil {
+		respError(c, err)
 		fmt.Println(err)
 		return
 	}
 	//初始化合约地址
-	contract ,err:= config.GetAddress(client)
-	if err != nil{
-		respError(c,err)
+	contract, err := config.GetAddress(client)
+	if err != nil {
+		respError(c, err)
 		return
 	}
 
-	img,err :=config.UploadUserImg(c)
-	if err != nil{
-		respError(c,err)
+	img, err := config.UploadUserImg(c)
+	if err != nil {
+		respError(c, err)
 		return
 	}
 
-	data,err :=config.AddUserImgMethod(client,contract,loginUser,img)
-	fmt.Println("userImg",data)
+	data, err := config.AddUserImgMethod(client, contract, loginUser, img)
+	fmt.Println("userImg", data)
 	c.Redirect(http.StatusFound, "/profile")
 
 }

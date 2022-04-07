@@ -173,7 +173,7 @@ func goodsCategory(c *gin.Context) {
 	}
 }
 
-//我的交易-上架
+//我的交易-上下架
 func CartGood(c *gin.Context) {
 	client, err := config.GetClient()
 	if err != nil {
@@ -200,26 +200,31 @@ func CartGood(c *gin.Context) {
 		return
 	}
 	//定义一个结构体数组
-	var arr []goodsPort
-
+	var arrUp []goodsPort
+	var arrDown []goodsPort
 	for i := 0; i < len(id)+1; i++ {
 		if i < len(id) {
-			var addr common.Address
+			//var addr common.Address
 			goodData, goodData1, err := config.HaveIndex(client, id[i])
 			if err != nil {
 				respError(c, err)
 				return
 			}
-			if people == addr && goodData.Available == true {
+
+			if people == goodData.Owner && goodData.Available == true {
 				arr1 := []goodsPort{goodsPort{Id: goodData.Id, Names: goodData.Name, Species: goodData.Species, Rent: goodData.Rent, EthPledge: goodData.EthPledge, IsBorrow: goodData.IsBorrow, GoodImg: goodData1.GoodImg}}
-				arr = append(arr, arr1...)
+				arrUp = append(arrUp, arr1...)
+			} else if people == goodData.Owner && goodData.Available == false {
+				arr2 := []goodsPort{goodsPort{Id: goodData.Id, Names: goodData.Name, Species: goodData.Species, Rent: goodData.Rent, EthPledge: goodData.EthPledge, IsBorrow: goodData.IsBorrow, GoodImg: goodData1.GoodImg}}
+				arrDown = append(arrDown, arr2...)
 			}
 		} else {
 
 			c.HTML(http.StatusOK, "Static/cart.html", gin.H{
-				"goodsCategory": arr,
-				"userName":      userName,
-				"address":       people,
+				"goodsUp":  arrUp,
+				"goodDown": arrDown,
+				"userName": userName,
+				"address":  people,
 			})
 		}
 	}

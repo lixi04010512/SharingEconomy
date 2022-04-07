@@ -23,13 +23,13 @@ import (
 
 const (
 	//chainID = 8565 //8888
-	Prikey       = "9e64387a398fa1a813e2a8614cd2ebd04751755d1c2046cb0cecf0498a78591f"
-	ShareFishAddress = "0x2c49b8475Af3CBC2b64C491AF5a0C761700aD1E7"
-	gasLimit         = 3000000
+	//Prikey       = "9e64387a398fa1a813e2a8614cd2ebd04751755d1c2046cb0cecf0498a78591f"//hch的私钥
+	//ShareFishAddress = "0x2c49b8475Af3CBC2b64C491AF5a0C761700aD1E7"   //hch的合约
+	gasLimit = 3000000
 	//fileKeystore     = "UTC--2022-03-17T08-08-40.600466800Z--59b0f8a34d8f0dd0e0eef44d02cef0c12fffb9de"
-	//Prikey           = "c5b9c7fd467335bd829b3b2a3098a72ac39b7f5efa162220b7907cfc684df9a3"
+	Prikey = "c5b9c7fd467335bd829b3b2a3098a72ac39b7f5efa162220b7907cfc684df9a3" //ys的账号
 	//privateKey       = "111"
-	//ShareFishAddress = "0x1415f8284C54Fbbf5b5300B6177a24A491b1bd07"
+	ShareFishAddress = "0x1415f8284C54Fbbf5b5300B6177a24A491b1bd07" //ys的合约
 )
 
 //获取client
@@ -286,15 +286,10 @@ func CommunityScheduleView(contract *Agreement.User, number *big.Int) (*big.Int,
 }
 
 //封装物品上架方法
-<<<<<<< HEAD
+//<<<<<<< HEAD
 func AddGoodsMethod(client *ethclient.Client, contract *Agreement.User, owner common.Address, name string, species string, rent *big.Int, ethPledge *big.Int, goodsImgs []string, goodsSign string) (*types.Transaction, error) {
 	opts := Getopts()
 	res, err := contract.AddGoods(opts, owner, name, species, rent, ethPledge, goodsImgs, goodsSign)
-=======
-func AddGoodsMethod(client *ethclient.Client, contract *Agreement.User, owner common.Address, name string, species string, rent *big.Int, ethPledge *big.Int, goodsImgs []string,goodSign string) (*types.Transaction, error) {
-	opts := Getopts()
-	res, err := contract.AddGoods(opts, owner, name, species, rent, ethPledge, goodsImgs,goodSign)
->>>>>>> 8f012b073fff6d841ee0719f8f5b3dfb2e42deb9
 	fmt.Println("addCommunity:", res)
 	opts.GasLimit = gasLimit
 	opts.GasPrice, err = GetgasPrice(client)
@@ -387,7 +382,7 @@ func HaveId(client *ethclient.Client) []*big.Int {
 }
 
 //图片上传
-func UploadUserImg(c *gin.Context) (string,error){
+func UploadUserImg(c *gin.Context) (string, error) {
 	f, err := c.FormFile("imgname")
 	fileName := f.Filename
 	fildDir := "./Static/images"
@@ -404,7 +399,7 @@ func UploadUserImg(c *gin.Context) (string,error){
 				"code": 400,
 				"msg":  "上传失败!只允许png,jpg,jpeg文件",
 			})
-			return "",err
+			return "", err
 		}
 
 		c.SaveUploadedFile(f, filePath)
@@ -417,13 +412,13 @@ func UploadUserImg(c *gin.Context) (string,error){
 			},
 		})
 	}
-	return filePath,err
+	return filePath, err
 }
 
 //封装头像上传方法
 func AddUserImgMethod(client *ethclient.Client, contract *Agreement.User, people common.Address, headImg string) (*types.Transaction, error) {
 	opts := Getopts()
-	res, err := contract.AddUserImg(opts, people,headImg)
+	res, err := contract.AddUserImg(opts, people, headImg)
 	fmt.Println("addCommunity:", res)
 	opts.GasLimit = gasLimit
 	opts.GasPrice, err = GetgasPrice(client)
