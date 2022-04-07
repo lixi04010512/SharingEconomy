@@ -1,0 +1,38 @@
+{{ define "Static/editSpecies.html" }}
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title>修改分类</title>
+		<link rel="stylesheet" href="share/res/css/amazeui.min.css">
+		<link rel="stylesheet" href="share/res/css/admin.css">
+		<style>
+			.admin-main{
+				padding-top: 0px;
+			}
+		</style>
+	</head>
+	<body>
+			<div class="am-form-group" id="edit">
+				{{ range $key,$value := .species_name }}
+				<label>
+					分类id
+				</label>
+				<div>
+					<input id="roleId" required="" placeholder="请输入分类id" value="{{ $value.Id }}" name="roleId" type="text">
+				</div>
+				<label>
+					分类名称
+				</label>
+				<div>
+					<input id="roleName" required="" placeholder="请输入分类名称" value="{{ $value.Name }}" name="roleName" type="text">
+				</div>
+				{{ end }}
+			</div>
+		<input id="editSpecies" class="am-btn am-btn-success" value="编辑分类" type="button">
+			<script src="share/js/jquery-1.11.3.min.js"></script>
+			<script src="share/javascripts/editSpecies.js"></script>
+	</body>
+
+{{ end }}
+</html>

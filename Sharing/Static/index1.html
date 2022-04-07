@@ -1,0 +1,60 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <title>ShareFish管理系统</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="keywords" content="">
+  <meta name="description" content="">
+  <link rel="stylesheet" href="share/res/layui/css/layui.css">
+  <link rel="stylesheet" href="share/res/css/global.css">
+  <script src="share/res/layui/layui.js"></script>
+</head>
+<body>
+<div class="header" >
+  <div class="main">
+    <a  href="share/index1.html"  style="margin-left: 30px;line-height: 65px; color: white;font-size: 18px;">ShareFish管理系统</a>
+    
+    <div class="nav-user">      
+      <!-- 登入后的状态 -->
+      <a class="avatar" href="share/index1.html">
+          <a href="share/manager-login.html">退出登录</a>
+      </a>
+      <div class="nav">
+        <a href="share/login.html"><i class="iconfont icon-tuichu" style="top: 0; font-size: 22px;"></i>登录</a>
+      </div>
+    </div>
+  </div>
+</div>
+	<div class="main fly-user-main layui-clear">
+		<ul class="layui-nav layui-nav-tree layui-inline" lay-filter="user">
+			<li class="layui-nav-item layui-this" ><a href="/index1">
+				 <i class="layui-icon">&#xe609;</i>首页</a></li>
+			<li class="layui-nav-item "><a href="/user">
+				<i class="layui-icon">&#xe612;</i> 用户管理</a></li>
+			<li class="layui-nav-item "><a href="/species">
+				<i class="layui-icon">&#xe611;</i> 类别管理</a></li>
+			<li class="layui-nav-item "><a href="/showCommunities">
+				<i class="layui-icon">&#xe611;</i> 公益管理</a></li>
+		</ul>
+
+		<div class="site-tree-mobile layui-hide">
+			<i class="layui-icon">&#xe602;</i>
+		</div>
+		<div class="site-mobile-shade"></div>
+
+		<div class="fly-panel fly-panel-user">
+			<div class="layui-tab layui-tab-brief" lay-filter="user">
+				
+				<div class="layui-tab-content" style="padding: 20px;padding-top: 0px;">
+					
+    					<iframe src="share/Firstpage.html" width="88%" style="border: none;" height="800" border="none" name="right"></iframe>
+					</div>					
+				</div>
+			</div>
+		</div>
+	</div>
+	<script type="text/javascript" src="share/js/jquery-1.11.3.min.js" ></script>
+	<script type="text/javascript" src="share/myplugs/js/plugs.js" ></script>
+</body>
+</html>

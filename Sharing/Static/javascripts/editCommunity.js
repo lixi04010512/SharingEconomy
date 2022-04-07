@@ -1,0 +1,12 @@
+//修改公益
+$("#editCommunity").click(function(){
+    $.ajax({
+        type:"POST",
+        url:"/updateCommunity",
+        data:{"id":$("#roleId").val(),"name":$("#roleName").val(),"addr":$("#roleAddr").val(),"introduce":$("#roleContent").val(),"amount":$("#roleMoney").val()},
+        success:function(){
+           alert("成功修改！");
+           window.location="/showCommunities";
+        }
+    })
+})
