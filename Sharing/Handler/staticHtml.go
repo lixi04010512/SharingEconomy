@@ -4,6 +4,7 @@ import (
 	config "Sharing/Config"
 	"fmt"
 	"github.com/gin-gonic/gin"
+	"math/big"
 	"net/http"
 )
 
@@ -236,7 +237,25 @@ func LendStatic(c *gin.Context) {
 		return
 	}
 	userImg,err :=contract.GetUserImg(nil,loginUser)
-	c.HTML(http.StatusOK, "Static/lend-items.html", gin.H{"userName": userName, "address": people,"userImg":userImg})
+	var SpeciesArr []string
+	for i := 0; i < 30; i++ {
+		Int64 := int64(i)
+		name, err := config.ShowSpecies(contract, big.NewInt(Int64))
+		if err != nil {
+			respError(c, err)
+			return
+		}
+		if name != ""{
+			SpeciesArr =append(SpeciesArr,name)
+		}
+
+	}
+	c.HTML(http.StatusOK, "Static/lend-items.html", gin.H{
+		"userName": userName,
+		"address": people,
+		"userImg":userImg,
+		"spArr":SpeciesArr,
+	})
 }
 
 //渲染login

@@ -189,7 +189,7 @@ func addGoods(c *gin.Context) {
 		respError(c, err)
 		return
 	}
-
+	form, err := c.MultipartForm()
 	name := c.PostForm("goodsName")
 	owner := loginUser
 	species := c.PostForm("species")
@@ -203,12 +203,12 @@ func addGoods(c *gin.Context) {
 	ethPledgeInt64 := int64(ethPledgeInt)
 	goodSign := c.PostForm("addnote")
 
-	form, err := c.MultipartForm()
+
 	if err != nil {
 		c.String(http.StatusBadRequest, fmt.Sprintf("get err %s", err.Error()))
 	}
 	// 获取所有图片
-	files := form.File["imgFiles"]
+	files := form.File["luTest[]"]
 
 	//存储所有图片路径
 	var goodsImgs []string
@@ -217,9 +217,11 @@ func addGoods(c *gin.Context) {
 
 	// 遍历所有图片
 	for _, file := range files {
+		fmt.Println("ok")
 		// 逐个存
-		fileName := fmt.Sprintf("%s%s", file.Filename, time.Now().String())
+		fileName :=file.Filename
 		filepath := fmt.Sprintf("%s%s", fildDir, fileName)
+		fmt.Println("path",filepath)
 		goodsImgs = append(goodsImgs, filepath)
 		if err := c.SaveUploadedFile(file, file.Filename); err != nil {
 			c.String(http.StatusBadRequest, fmt.Sprintf("upload err %s", err.Error()))
@@ -228,6 +230,7 @@ func addGoods(c *gin.Context) {
 	}
 	//goodsImgs := c.PostForm("goodsImgs")
 	fmt.Println("pass", name)
+
 	data, err := config.AddGoodsMethod(client, contract, owner, name, species, big.NewInt(rentInt64), big.NewInt(ethPledgeInt64), goodsImgs,goodSign)
 	fmt.Println("addGood",data)
 	c.Redirect(http.StatusFound, "/index")
@@ -277,7 +280,7 @@ func login1(ctx *gin.Context) {
 
 //首页
 func index1(ctx *gin.Context) {
-	ctx.HTML(http.StatusOK, "index.html", gin.H{})
+	ctx.HTML(http.StatusOK, "index1.html", gin.H{})
 
 }
 
@@ -441,7 +444,7 @@ func ParseToken(tokenString string) (*jwt.Token, *Claims, error) {
 	return token, Claims, err
 }
 
-//登录
+//管理员登录
 func loginManager(c *gin.Context) {
 	//初始化client
 	client, err := config.GetClient()
@@ -477,11 +480,12 @@ func loginManager(c *gin.Context) {
 	fmt.Println("unlock:", unlockedKey)
 	if errors != nil {
 		respError(c, err)
-		fmt.Println(errors)
+		fmt.Println("480:",errors)
 		return
 	}
 	comAddr := unlockedKey.Address
 	data, err := config.LoginManager(contract, comAddr)
+	fmt.Println("485err:",err)
 	addr := comAddr.Hex()
 
 	c.Redirect(http.StatusFound, "/index1")
@@ -489,7 +493,6 @@ func loginManager(c *gin.Context) {
 	fmt.Println("addr", addr)
 	fmt.Println("data", data)
 }
-
 //添加分类
 func addSticks(c *gin.Context) {
 	//初始化client
@@ -505,8 +508,8 @@ func addSticks(c *gin.Context) {
 		respError(c, err)
 		return
 	}
-	stick := c.PostForm("species_name")
-	data, err := config.AddStick(client, contract, stick)
+	species := c.PostForm("species_name")
+	data, err := config.AddStick(client, contract, species)
 
 	fmt.Println("sticks", data)
 }
@@ -530,7 +533,7 @@ func showSpecies(c *gin.Context) {
 
 	//定义一个结构体数组
 	var arr []Stick
-	for i := 1; i < 10; i++ {
+	for i := 1; i < 25; i++ {
 		//转*big.int
 		Int64 := int64(i)
 		name, err := config.ShowSpecies(contract, big.NewInt(Int64))

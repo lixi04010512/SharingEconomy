@@ -24,8 +24,8 @@ import (
 
 const (
 	//chainID = 8565 //8888
-	Prikey       = "9e64387a398fa1a813e2a8614cd2ebd04751755d1c2046cb0cecf0498a78591f"
-	ShareFishAddress = "0x2c49b8475Af3CBC2b64C491AF5a0C761700aD1E7"
+	Prikey       = "5fd7eb82fbd4c5cc87fbeb867ff4804537723d80a5289606c28ca5c8eed4aa77"
+	ShareFishAddress = "0xC6b698151b4B257dFF4883A8E43e59B8425e6d08"
 	gasLimit         = 3000000
 	//fileKeystore     = "UTC--2022-03-17T08-08-40.600466800Z--59b0f8a34d8f0dd0e0eef44d02cef0c12fffb9de"
 	//Prikey           = "c5b9c7fd467335bd829b3b2a3098a72ac39b7f5efa162220b7907cfc684df9a3"
