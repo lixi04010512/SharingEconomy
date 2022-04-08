@@ -56,17 +56,14 @@ func Start(addr, webDir string) (err error) {
 		todo.POST("/loginPost", login)
 		//todo.POST("/logoutPost", logout)
 		todo.POST("/sendEmailPost", sendEmail)
-		todo.POST("/addUserImg",AddUserImg)
-		todo.POST("/logoutPost",logout)
-		todo.POST("/addGoodsPost",addGoods)
-
+		todo.POST("/addUserImg", AddUserImg)
 
 	}
 	share := r.Group("")
 	{
 		share.GET("/profile", UserProfile)
 		share.GET("/index", addIndex)
-		share.GET("/cart", CartStatic)
+		share.GET("/cart", CartGood)
 		share.GET("/category-details", CategoryStatic)
 		share.GET("/chat", ChatStatic)
 		share.GET("/edit-need", EditNeedStatic)

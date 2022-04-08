@@ -119,10 +119,12 @@ tfoot {
 }
 
 .button {
+  background-image: linear-gradient(to right,#ff0102,#ff3162);
+  background-color: #ff0c17;
   -webkit-box-align: center;
       -ms-flex-align: center;
           align-items: center;
-  background-color: #fc8080;
+  /* background-color: #fc8080; */
   background-color: var(--color-primary);
   border-radius: 999em;
   color: #fff;
@@ -224,7 +226,7 @@ tfoot {
 .iphone {
   background-color: #f5f8fa;
 
-  border-radius: 1em;
+  border-radius: 0em;
   -webkit-box-shadow: 0 0 1em rgba(0, 0, 0, 0.0625);
           box-shadow: 0 0 1em rgba(0, 0, 0, 0.0625);
   width: 100%;
