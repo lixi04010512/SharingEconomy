@@ -108,6 +108,7 @@ func register(c *gin.Context) {
 
 //登录
 func login(c *gin.Context) {
+	fmt.Println("login")
 	//初始化client
 	client, err := config.GetClient()
 	if err != nil {
@@ -170,7 +171,7 @@ func privateLogin(c *gin.Context) {
 		return
 	}
 
-	privateKeyStr:= c.PostForm("log_privateAddr")
+	privateKeyStr:= c.PostForm("log_privateKey")
 	if err != nil {
 		fmt.Println(err)
 		respError(c, err)

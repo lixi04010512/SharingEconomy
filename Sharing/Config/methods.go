@@ -24,7 +24,7 @@ import (
 const (
 	//chainID = 8565 //8888
 	Prikey       = "5fd7eb82fbd4c5cc87fbeb867ff4804537723d80a5289606c28ca5c8eed4aa77"
-	ShareFishAddress = "0x43bD2dEE8Cb0532db5362EA4E327570Ec43FAba2"
+	ShareFishAddress = "0xC6b698151b4B257dFF4883A8E43e59B8425e6d08"
 	//Prikey       = "769f41a9de1f6f1848d7631e274f2168e3cb20d16c81f688a49d081965a53861"
 	//ShareFishAddress = "0xf36CB31535Ea5860845339414c292D46Fc8c5Af5"
 	gasLimit         = 3000000

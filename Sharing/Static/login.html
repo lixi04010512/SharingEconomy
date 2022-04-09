@@ -110,8 +110,7 @@
                 <div class="container">
                     <div class="row">
                         <div class="col-lg-6 col-md-8 offset-md-2 offset-lg-3">
-                            <form class="signin-form" action="">
-        
+                            <form class="signin-form"  action="/loginPost" method="POST" enctype="multipart/form-data">
                                 <div class="form-group">
                                     <label>账户</label>
                                     <input class="form-control" type="file" id="formFileMultiple" style="font-size: 17px;
@@ -128,6 +127,7 @@
                                 <div class="signin-btn text-center">
                                     <button type="submit">登录</button>
                                 </div>
+
                                 <hr>
                                 <div class="other-signin text-center">
                                     <span>其他登录方式</span>
@@ -137,9 +137,8 @@
                                     <i class='fas fa-envelope'></i>
                                     </a>
                                     </li>
-                                     
-                                </ul>
-                            </div>
+                                    </ul>
+                               </div>
         
                                 <div class="create-btn text-center">
                                     <p>没有账号？
@@ -158,24 +157,17 @@
                 <div class="container">
                     <div class="row">
                         <div class="col-lg-6 col-md-8 offset-md-2 offset-lg-3">
-                            <form class="signin-form" action="">
+                            <form class="signin-form" action="/priLoginPost" method="post">
         
                                 <div class="form-group">
-                                    <label>邮箱</label>
-                                    <input type="email" class="form-control" placeholder="请输入你的邮箱" required="">
+                                    <label>私钥</label>
+                                    <input type="email" class="form-control" placeholder="请输入你的私钥" required="" name="log_privateKey">
                                     </div>
-        
-                                <div class="form-group">
-                                    <label>密码</label>
-                                    <input type="password" class="form-control" placeholder="请输入你的密码" id="use_password">
-                                    <p id="p_password"></p>
-                                </div>
         
                                 <div class="signin-btn text-center">
                                     <button type="submit">登录</button>
                                 </div>
                                 <hr>
-        
                                 <div class="create-btn text-center">
                                     <p>没有账号？
                                         <a href="register.html">
