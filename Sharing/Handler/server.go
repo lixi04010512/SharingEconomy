@@ -50,14 +50,14 @@ func Start(addr, webDir string) (err error) {
 		// 定义增改查的接口，并注册到web服务器
 
 
-		todo.POST("/addStickerPost", addSticker)
+		//todo.POST("/addStickerPost", addSticker)
 		//todo.POST("/isStickExistPost", isStickExist)
 		todo.POST("/registerPost", register)
 		todo.POST("/loginPost", login)
-		//todo.POST("/logoutPost", logout)
+		todo.POST("/logoutPost", logout)
 		todo.POST("/sendEmailPost", sendEmail)
 		todo.POST("/addUserImg", AddUserImg)
-
+		todo.POST("/addGoodsPost",addGoods)
 	}
 	share := r.Group("")
 	{
