@@ -52,14 +52,16 @@
                 display: table-cell; /*主要是这个属性*/
                 vertical-align: middle;
                 text-align: center;">
+                    <a onclick="$('#previewImg').click();">
                     <img id="imghead" border="0" src="share/assets/img/profile.jpg" width="90"
                         height="90" >
+                    </a>
                 </div>
                 <input type="file" onchange="previewImage(this)" name="imgname" style="display: none;"
                     id="previewImg">
                 <div style="text-align: center;">
                     <button type="submit" class="btn btn-primary mt-4"
-                         onclick="$('#previewImg').click();">更换头像</button>
+                         >确定更换</button>
                 </div>
             </div>
             </form>
