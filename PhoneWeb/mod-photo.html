@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html>
+
 <head>
     <meta charset='utf-8'>
     <meta http-equiv='X-UA-Compatible' content='IE=edge'>
@@ -16,59 +17,58 @@
     <link href="static/css/icons.min.css" rel="stylesheet" type="text/css">
     <link href="static/css/app.min.css" rel="stylesheet" type="text/css">
 
-    
+
 </head>
+
 <body style="background-color: black;">
     <style>
-
-          img {
-            -webkit-transform:scale(3);
-          }
+        img {
+            -webkit-transform: scale(3);
+        }
     </style>
-    
-    <header>
-		<div class="header-wrapper border-bottom">
-			<div class="container space-y--15">
-				<div class="row align-items-center">
-					<div class="col-auto">
-						<a class="back-link" onClick="javascript :history.back(-1);"> <i class="fa fa-angle-left"></i>
-							返回</a>
-					</div>
-					
-					
-				</div>
-			</div>
-		</div>
 
-	</header>
+    <header>
+        <div class="header-wrapper border-bottom">
+            <div class="container space-y--15">
+                <div class="row align-items-center">
+                    <div class="col-auto">
+                        <a class="back-link" onClick="javascript :history.back(-1);"> <i class="fa fa-angle-left"></i>
+                            返回</a>
+                    </div>
+
+
+                </div>
+            </div>
+        </div>
+
+    </header>
 
     <div id="addCommodityIndex">
         <div class="input-group row">
 
             <div class="col-sm-9 big-photo">
-                <div id="preview"  style="width: 400px;
+                <div id="preview" style="width: 400px;
                 height: 600px;
-                display: table-cell; /*主要是这个属性*/
+                display: table-cell;
                 vertical-align: middle;
                 text-align: center;">
-                    <img id="imghead" border="0" src="assets/img/profile.jpg" width="90"
-                        height="90" >
+                    <a onclick="$('#previewImg').click();">
+                        <img id="imghead" border="0" src="assets/img/profile.jpg" width="90" height="90">
+                    </a>
                 </div>
-                <input type="file" onchange="previewImage(this)" style="display: none;"
-                    id="previewImg">
+                <input type="file" onchange="previewImage(this)" style="display: none;" id="previewImg">
                 <div style="text-align: center;">
-                    <button type="submit" class="btn btn-primary mt-4"
-                         onclick="$('#previewImg').click();">更换头像</button>
+                    <button type="submit" class="btn btn-primary mt-4">确定更换</button>
                 </div>
             </div>
         </div>
-        
+
 
     </div>
 
     <script src="assets/js/jquery-3.4.1.min.js"></script>
-        <!-- Bootstrap JS -->
-        <script src="assets/js/bootstrap.min.js"></script>
+    <!-- Bootstrap JS -->
+    <script src="assets/js/bootstrap.min.js"></script>
     <script>
         //图片上传预览    IE是用了滤镜。
         function previewImage(file) {
@@ -136,4 +136,5 @@
     </script>
     <script src="js/message.js"></script>
 </body>
+
 </html>
