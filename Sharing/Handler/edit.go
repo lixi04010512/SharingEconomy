@@ -728,6 +728,7 @@ func showCommunities(c *gin.Context) {
 
 //添加头像
 func AddUserImg(c *gin.Context)  {
+	fmt.Println("ok")
 	//初始化client
 	client,err := config.GetClient()
 	if err != nil{
@@ -747,7 +748,7 @@ func AddUserImg(c *gin.Context)  {
 		respError(c,err)
 		return
 	}
-
+	fmt.Println("img",img)
 	data,err :=config.AddUserImgMethod(client,contract,loginUser,img)
 	fmt.Println("userImg",data)
 	c.Redirect(http.StatusFound, "/profile")

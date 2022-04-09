@@ -19,7 +19,6 @@ import (
 	"net/smtp"
 	"path"
 	"strings"
-	"time"
 )
 
 const (
@@ -352,7 +351,7 @@ func HaveId(client *ethclient.Client) []*big.Int {
 //图片上传
 func UploadUserImg(c *gin.Context) (string,error){
 	f, err := c.FormFile("imgname")
-	fileName := fmt.Sprintf("%s%s", f.Filename, time.Now().String())
+	fileName := f.Filename
 	fildDir := "./Static/images"
 
 	filePath := fmt.Sprintf("%s%s", fildDir, fileName)

@@ -83,6 +83,7 @@ func Start(addr, webDir string) (err error) {
 		share.GET("/ui-me", UiMeStatic)
 		share.GET("/wishlist", WishlistStatic)
 		share.GET("/carts", CartGood)
+		share.GET("/mod-photo", modPhotoStatic)
 
 	}
 	// 启动web服务

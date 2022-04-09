@@ -1,3 +1,4 @@
+{{ define "Static/mod-photo.html" }}
 <!DOCTYPE html>
 <html>
 <head>
@@ -44,7 +45,7 @@
 
     <div id="addCommodityIndex">
         <div class="input-group row">
-
+            <form class="signin-form"  action="/addUserImg" method="POST" enctype="multipart/form-data">
             <div class="col-sm-9 big-photo">
                 <div id="preview"  style="width: 400px;
                 height: 600px;
@@ -54,13 +55,14 @@
                     <img id="imghead" border="0" src="share/assets/img/profile.jpg" width="90"
                         height="90" >
                 </div>
-                <input type="file" onchange="previewImage(this)" style="display: none;"
+                <input type="file" onchange="previewImage(this)" name="imgname" style="display: none;"
                     id="previewImg">
                 <div style="text-align: center;">
                     <button type="submit" class="btn btn-primary mt-4"
                          onclick="$('#previewImg').click();">更换头像</button>
                 </div>
             </div>
+            </form>
         </div>
         
 
@@ -136,4 +138,5 @@
     </script>
     <script src="share/js/message.js"></script>
 </body>
+{{end}}
 </html>
