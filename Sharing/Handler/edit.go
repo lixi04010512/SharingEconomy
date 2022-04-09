@@ -2,6 +2,7 @@ package handler
 
 import (
 	"Sharing/Config"
+	"crypto/ecdsa"
 	"fmt"
 	jwt "github.com/dgrijalva/jwt-go"
 	"github.com/ethereum/go-ethereum/accounts/keystore"
@@ -17,7 +18,7 @@ import (
 
 //用户地址
 var loginUser common.Address
-
+var privKey *ecdsa.PrivateKey
 
 func addSticker(c *gin.Context) {
 	//初始化client
@@ -140,7 +141,7 @@ func login(c *gin.Context) {
 		fmt.Println(errors)
 		return
 	}
-	privKey := unlockedKey.PrivateKey
+	privKey = unlockedKey.PrivateKey
 	comAddr := unlockedKey.Address
 	loginUser = comAddr
 	data, err := config.LoginMethod(client, contract, comAddr, privKey)
@@ -151,7 +152,8 @@ func login(c *gin.Context) {
 	fmt.Println("addr", addr)
 	fmt.Println("data", data)
 }
-
+var logoutUser common.Address
+var logoutPriKey *ecdsa.PrivateKey
 //注销
 func logout(c *gin.Context) {
 	//初始化client
@@ -168,9 +170,10 @@ func logout(c *gin.Context) {
 		return
 	}
 
-	data, err := contract.Logout(nil, loginUser)
+	data, err := config.LogoutMethod(client,contract, loginUser,privKey)
 	fmt.Println("注销",data)
-	loginUser = common.Address{}
+	loginUser = logoutUser
+	privKey =logoutPriKey
 	c.Redirect(http.StatusFound, "/login")
 }
 
@@ -209,6 +212,7 @@ func addGoods(c *gin.Context) {
 	}
 	// 获取所有图片
 	files := form.File["luTest[]"]
+	fmt.Println("files",files)
 
 	//存储所有图片路径
 	var goodsImgs []string
@@ -217,7 +221,7 @@ func addGoods(c *gin.Context) {
 
 	// 遍历所有图片
 	for _, file := range files {
-		fmt.Println("ok")
+		fmt.Println("fileok")
 		// 逐个存
 		fileName :=file.Filename
 		filepath := fmt.Sprintf("%s%s", fildDir, fileName)
@@ -230,6 +234,7 @@ func addGoods(c *gin.Context) {
 	}
 	//goodsImgs := c.PostForm("goodsImgs")
 	fmt.Println("pass", name)
+	fmt.Println("goodsImg",goodsImgs)
 
 	data, err := config.AddGoodsMethod(client, contract, owner, name, species, big.NewInt(rentInt64), big.NewInt(ethPledgeInt64), goodsImgs,goodSign)
 	fmt.Println("addGood",data)

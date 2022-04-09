@@ -57,7 +57,6 @@
         <div class="bj_img"><img class="beij_s" src="share/images/bg.png" alt="">
             <div class="nimetou_gaib">
                 <div class="toux_hou">
-
                     <a href="../profile">
                         <img id="Dfgrg" style="height:1.1rem;" src="share/assets/img/profile.jpg" alt=""><input id="tupian_Sc"
                             type="file">
@@ -92,9 +91,9 @@
                 <div class="my_tik_list fenh_ziyek yuanj_sd">
                     <!-- <h3>我的交易</h3> -->
                     <ul>
-                        <li><a href="../shop">
+                        <li><a href="../apps-chat">
                                 <i class="aui-icon-large aui-icon-large-sm aui-icon-invitation"></i>
-                                <p>我的物品</p>
+                                <p>消息通知</p>
                             </a>
                             <style>
                                 .fenh_ziyek ul li h2 {
@@ -125,9 +124,9 @@
                                 <i class="aui-icon-large aui-icon-large-sm aui-icon-signs"></i>
                                 <p>我的信息</p>
                             </a></li>
-                        <li><a href="../wishlist">
+                        <li><a href="../shop">
                                 <i class="aui-icon-large aui-icon-large-sm aui-icon-coupon"></i>
-                                <p>我的积分</p>
+                                <p>我的物品</p>
                             </a></li>
                     </ul>
                 </div><!-- -->
@@ -206,7 +205,14 @@
     <script src="share/js/popbox.js"></script>
     <script>
         function okFunction() {
-            window.location.href = "login.html";
+            $.ajax({
+                type: "POST",
+                url: "/logoutPost",
+                success: function (data) {
+                    alert("用户退出成功!");
+                    window.location = "/login";
+                }
+            })
         }
         function cancelFunction() {
             alert('Cancel!');
