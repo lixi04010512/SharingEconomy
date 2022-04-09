@@ -111,7 +111,7 @@
                                                     </div>
                                                     <div class="col-md-6">
                                                         <label class="form-label">物品类别</label>
-                                                        <select class="form-select" aria-label="Default select example" name="species" id="species">
+                                                        <select class="form-select" aria-label="Default select example" id="species">
                                                             {{ range $key ,$value:=.spArr }}
 
                                                                 <option selected="">{{$value}}</option>
@@ -137,17 +137,18 @@
                                                     </div>
                                                     <div class="col-md-6">
                                                         <label for="" class="form-label">押金</label>
-                                                        <input type="text" class="form-control" name="textDeposit"
+                                                        <input type="text" class="form-control" name="deposit"
                                                             id="textDeposit" required="">
                                                     </div>
                                                     <div class="col-md-12">
                                                         <label for="addnote" class="form-label">商品描述</label>
-                                                        <textarea class="form-control" name="addnote" id="addnote"
+                                                        <textarea class="form-control" name="desc" id="addnote"
                                                             rows="3"></textarea>
                                                     </div>
                                                 </div>
 
-                                                <button type="submit" class="btn btn-primary mt-4" id="ensure">确认上架</button>
+                                                <button type="submit" class="btn btn-primary mt-4" id="ensure"
+                                                onclick="window.location.href='cart.html'">确认上架</button>
                                             </form>
                                         </div>
                                         <!--end row-->
@@ -178,13 +179,21 @@
 
     </footer>
     <!-- Javascript  -->
-    <script src="share/js/popbox.js"></script>
+   
     <script src="share/static/js/app.js"></script>
     <script src="share/assets/js/jquery-3.4.1.min.js"></script>
     <!-- Bootstrap JS -->
     <script src="share/assets/js/bootstrap.min.js"></script>
     <script src="share/assets/js/main.js"></script>
-
+    <script src="share/js/popbox.js"></script>
+    <script>
+        function okFunction() {
+            window.location.href = "login.html";
+        }
+        function cancelFunction() {
+            alert('Cancel!');
+        }
+    </script>
 <script src="share/js/upload.js" type="text/javascript"></script>
 
 </body>
