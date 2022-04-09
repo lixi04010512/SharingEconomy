@@ -3,6 +3,8 @@ package handler
 import (
 	"Sharing/Config"
 	"crypto/ecdsa"
+	"crypto/x509"
+	"encoding/pem"
 	"fmt"
 	jwt "github.com/dgrijalva/jwt-go"
 	"github.com/ethereum/go-ethereum/accounts/keystore"
@@ -152,6 +154,43 @@ func login(c *gin.Context) {
 	fmt.Println("addr", addr)
 	fmt.Println("data", data)
 }
+//私钥登录
+func privateLogin(c *gin.Context) {
+	//初始化client
+	client, err := config.GetClient()
+	if err != nil {
+		fmt.Println(err)
+		respError(c, err)
+		return
+	}
+	//初始化合约地址
+	contract, err := config.GetAddress(client)
+	if err != nil {
+		respError(c, err)
+		return
+	}
+
+	privateKeyStr:= c.PostForm("log_privateAddr")
+	if err != nil {
+		fmt.Println(err)
+		respError(c, err)
+		return
+	}
+	block, _ := pem.Decode([]byte(privateKeyStr))
+	x509Encoded := block.Bytes
+	privKey, _ = x509.ParseECPrivateKey(x509Encoded)
+
+	comAddr := common.BytesToAddress(x509Encoded)
+	loginUser = comAddr
+	data, err := config.LoginMethod(client, contract, comAddr, privKey)
+	addr := comAddr.Hex()
+
+	c.Redirect(http.StatusFound, "/index")
+	//respOK(c,data)
+	fmt.Println("addr", addr)
+	fmt.Println("data", data)
+}
+
 var logoutUser common.Address
 var logoutPriKey *ecdsa.PrivateKey
 //注销
