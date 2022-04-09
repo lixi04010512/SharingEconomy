@@ -147,7 +147,8 @@
                                                     </div>
                                                 </div>
 
-                                                <button type="submit" class="btn btn-primary mt-4" id="ensure">确认上架</button>
+                                                <button type="submit" class="btn btn-primary mt-4" id="ensure"
+                                                onclick="window.location.href='cart.html'">确认上架</button>
                                             </form>
                                         </div>
                                         <!--end row-->
@@ -178,13 +179,28 @@
 
     </footer>
     <!-- Javascript  -->
-    <script src="share/js/popbox.js"></script>
+   
     <script src="share/static/js/app.js"></script>
     <script src="share/assets/js/jquery-3.4.1.min.js"></script>
     <!-- Bootstrap JS -->
     <script src="share/assets/js/bootstrap.min.js"></script>
     <script src="share/assets/js/main.js"></script>
-
+    <script src="share/js/popbox.js"></script>
+    <script>
+        function okFunction() {
+            $.ajax({
+                type: "POST",
+                url: "/logoutPost",
+                success: function (data) {
+                    alert("用户退出成功!");
+                    window.location = "/login";
+                }
+            })
+        }
+        function cancelFunction() {
+            alert('Cancel!');
+        }
+    </script>
 <script src="share/js/upload.js" type="text/javascript"></script>
 
 </body>
