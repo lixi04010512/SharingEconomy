@@ -3,12 +3,11 @@ package handler
 import (
 	"Sharing/Config"
 	"crypto/ecdsa"
-	"crypto/x509"
-	"encoding/pem"
 	"fmt"
 	jwt "github.com/dgrijalva/jwt-go"
 	"github.com/ethereum/go-ethereum/accounts/keystore"
 	"github.com/ethereum/go-ethereum/common"
+	"github.com/ethereum/go-ethereum/crypto"
 	"github.com/gin-contrib/sessions"
 	"github.com/gin-gonic/gin"
 	"io/ioutil"
@@ -157,6 +156,7 @@ func login(c *gin.Context) {
 }
 //私钥登录
 func privateLogin(c *gin.Context) {
+	fmt.Println("ok")
 	//初始化client
 	client, err := config.GetClient()
 	if err != nil {
@@ -172,16 +172,18 @@ func privateLogin(c *gin.Context) {
 	}
 
 	privateKeyStr:= c.PostForm("log_privateKey")
+	fmt.Println("str",privateKeyStr)
 	if err != nil {
 		fmt.Println(err)
 		respError(c, err)
 		return
 	}
-	block, _ := pem.Decode([]byte(privateKeyStr))
-	x509Encoded := block.Bytes
-	privKey, _ = x509.ParseECPrivateKey(x509Encoded)
 
-	comAddr := common.BytesToAddress(x509Encoded)
+	privKey, _ = crypto.HexToECDSA(privateKeyStr)
+	fmt.Println("prikey",privKey)
+
+	comAddr := crypto.PubkeyToAddress(privKey.PublicKey)
+	fmt.Println("comaddr",comAddr)
 	loginUser = comAddr
 	data, err := config.LoginMethod(client, contract, comAddr, privKey)
 	addr := comAddr.Hex()
