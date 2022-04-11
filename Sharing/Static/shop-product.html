@@ -65,31 +65,14 @@
 
 		</div>
 		<div class="aui-banner-wrapper">
+			{{range $k,$v:=.goodsPort.GoodImg}}
 			<div class="aui-banner-wrapper-item">
 
-				<img src="share/themes/img/pd/pd-zf-1.jpg">
-				</a>
-			</div>
-			<div class="aui-banner-wrapper-item">
-
-				<img src="share/themes/img/pd/pd-zf-2.jpg">
+				<img src={{$v}}>
 
 			</div>
-			<div class="aui-banner-wrapper-item">
+			{{end}}
 
-				<img src="share/themes/img/pd/pd-zf-3.jpg">
-
-			</div>
-			<div class="aui-banner-wrapper-item">
-
-				<img src="share/themes/img/pd/pd-zf-4.jpg">
-
-			</div>
-			<div class="aui-banner-wrapper-item">
-
-				<img src="share/themes/img/pd/pd-zf-5.jpg">
-
-			</div>
 		</div>
 		<div class="aui-banner-pagination"></div>
 
@@ -117,7 +100,7 @@
 		</div>
 		<div class="aui-product-boutique clearfix">
 			<img src="share/themes/img/icon/icon-usa.png" alt="">
-			<span class="aui-product-tag-text">美国品牌</span>
+			<span class="aui-product-tag-text">中国品牌</span>
 			<img src="share/themes/img/icon/icon-sj.png" alt="">
 			<span class="aui-product-tag-text">精选商家</span>
 		</div>
@@ -147,7 +130,7 @@
 								<span>已选</span>
 							</div>
 							<div class="aui-product-text-content-list-ft">
-								<span>黑 6GB 64GB 裸机 1件</span>
+								<span>{{.goodsPort.Names}} 1件</span>
 							</div>
 						</div>
 

@@ -7,6 +7,6 @@ require (
 	github.com/ethereum/go-ethereum v1.10.16
 	github.com/gin-contrib/sessions v0.0.4
 	github.com/gin-gonic/gin v1.7.7
-	github.com/jordan-wright/email v4.0.0+incompatible
+	github.com/jordan-wright/email v4.0.1-0.20210109023952-943e75fe5223+incompatible
 
 )

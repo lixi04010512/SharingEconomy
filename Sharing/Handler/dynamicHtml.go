@@ -9,8 +9,16 @@ import (
 	"net/http"
 )
 
+//租借者信息
+type Renter struct {
+	RenterAddr common.Address `json:renterAddr ` //租借者地址
+	Since      int            `json:since`       //租借开始时间renter
+	Over       int            `json:over`        //租借截止时间
+
+}
 type goodsPort struct {
 	Id        *big.Int       `json:"id"`
+	borrower  Renter         `json:"renter"`    //租用者
 	Addr      common.Address `json:"addr"`      //地址
 	Names     string         `json:"names"`     //名称
 	Species   string         `json:"species"`   //种类
@@ -68,7 +76,7 @@ func addIndex(c *gin.Context) {
 			//fmt.Println(goodsPort{},addr)
 		} else {
 			userName, people, _, _, _, _, _, err := config.GetUserMethod(contract, loginUser)
-			userImg,err :=contract.GetUserImg(nil,loginUser)
+			userImg, err := contract.GetUserImg(nil, loginUser)
 			fmt.Println("res", userName)
 			if err != nil {
 				respError(c, err)
@@ -77,7 +85,7 @@ func addIndex(c *gin.Context) {
 			c.HTML(http.StatusOK, "Static/index.html", gin.H{
 				"goodsPor": arr,
 				"userName": userName,
-				"userImg":userImg,
+				"userImg":  userImg,
 				"address":  people,
 			})
 		}
@@ -106,7 +114,7 @@ func shopPorduct(c *gin.Context) {
 	var names string
 	goodData, goodData1, err := config.HaveIndex(client, id[0])
 	userName, people, _, _, _, _, _, err := config.GetUserMethod(contract, loginUser)
-	userImg,err :=contract.GetUserImg(nil,loginUser)
+	userImg, err := contract.GetUserImg(nil, loginUser)
 	fmt.Println("res", userName)
 	if err != nil {
 		respError(c, err)
@@ -122,7 +130,7 @@ func shopPorduct(c *gin.Context) {
 		},
 		"userName": userName,
 		"address":  people,
-		"userImg":userImg,
+		"userImg":  userImg,
 	})
 }
 
@@ -164,7 +172,7 @@ func goodsCategory(c *gin.Context) {
 		} else {
 			userName, people, _, _, _, _, _, err := config.GetUserMethod(contract, loginUser)
 			fmt.Println("res", userName)
-			userImg,err :=contract.GetUserImg(nil,loginUser)
+			userImg, err := contract.GetUserImg(nil, loginUser)
 			if err != nil {
 				respError(c, err)
 				return
@@ -173,7 +181,7 @@ func goodsCategory(c *gin.Context) {
 				"goodsCategory": arr,
 				"userName":      userName,
 				"address":       people,
-				"userImg":  userImg,
+				"userImg":       userImg,
 			})
 		}
 	}
@@ -198,7 +206,6 @@ func CartGood(c *gin.Context) {
 		respError(c, err)
 		return
 	}
-	userImg,err :=contract.GetUserImg(nil,loginUser)
 	//获取id
 	id := config.HaveId(client)
 	if err != nil {
@@ -232,7 +239,6 @@ func CartGood(c *gin.Context) {
 				"goodDown": arrDown,
 				"userName": userName,
 				"address":  people,
-				"userImg": userImg,
 			})
 		}
 	}
