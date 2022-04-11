@@ -198,6 +198,7 @@ func CartGood(c *gin.Context) {
 		respError(c, err)
 		return
 	}
+	userImg,err :=contract.GetUserImg(nil,loginUser)
 	//获取id
 	id := config.HaveId(client)
 	if err != nil {
@@ -231,6 +232,7 @@ func CartGood(c *gin.Context) {
 				"goodDown": arrDown,
 				"userName": userName,
 				"address":  people,
+				"userImg": userImg,
 			})
 		}
 	}

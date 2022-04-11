@@ -541,6 +541,7 @@ func UiMeStatic(c *gin.Context) {
 		return
 	}
 	userImg, err := contract.GetUserImg(nil, loginUser)
+
 	c.HTML(http.StatusOK, "Static/ui-me.html", gin.H{"userName": userName, "address": people, "userImg": userImg})
 }
 

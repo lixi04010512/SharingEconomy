@@ -89,15 +89,15 @@
                             <div class="profile-header">
                                 <div class="profile-header__image">
                                     <a href="../mod-photo">
-                                        <img id="box-container" src="share/assets/img/profile.jpg" class="img-fluid" alt=""></a>
+                                        <img id="box-container" src="share/{{.userImg}}" class="img-fluid" alt=""></a>
                                 </div>
                 
                                 <div class="profile-header__content " style=" padding-left: 12px;">
-                                    <h3 class="name space-mb--15">0x5B38Da6a701c568545dCfcB03F</h3>
+                                    <h3 class="name space-mb--15">{{.address}}</h3>
                                     <div class="profile-info space-mb--10">
                                         <div class="profile-info-block">
                                             <div class="profile-info-block__value">
-                                                ETH 500
+                                                ETH {{.balance}}
                                             </div>
                                             <div class="profile-info-block__title">
                                                 我的余额
@@ -105,7 +105,7 @@
                                         </div>
                                         <div class="profile-info-block">
                                             <div class="profile-info-block__value">
-                                                25
+                                                {{.goodsNum}}
                                             </div>
                                             <div class="profile-info-block__title">
                                                 <a href="../cart">我的交易</a>
@@ -129,7 +129,7 @@
                                 <div class="profile-info-table space-mb--40">
                                     <div class="profile-info-block">
                                         <div class="profile-info-block__title">姓名</div>
-                                        <div class="profile-info-block__value">John</div>
+                                        <div class="profile-info-block__value">{{.userName}}</div>
                                     </div>
                                     <!-- <div class="profile-info-block">
                                     <div class="profile-info-block__title">Phone</div>
@@ -137,11 +137,11 @@
                                 </div> -->
                                     <div class="profile-info-block">
                                         <div class="profile-info-block__title">邮箱</div>
-                                        <div class="profile-info-block__value">12581@mail.com</div>
+                                        <div class="profile-info-block__value">{{.email}}</div>
                                     </div>
                                     <div class="profile-info-block">
                                         <div class="profile-info-block__title">个性签名</div>
-                                        <div class="profile-info-block__value">暂无</div>
+                                        <div class="profile-info-block__value">{{.sign}}</div>
                                     </div>
 
                                     <div class="profile-info-block">
@@ -154,11 +154,11 @@
                                 <div class="profile-info-table">
                                     <div class="profile-info-block">
                                         <div class="profile-info-block__title"><a href="../shop">我的物品</a></div>
-                                        <div class="profile-info-block__value">23</div>
+                                        <div class="profile-info-block__value">{{.goodsNum}}</div>
                                     </div>
                                     <div class="profile-info-block">
                                         <div class="profile-info-block__title"><a href="../wishlist">我的积分</a></div>
-                                        <div class="profile-info-block__value">223</div>
+                                        <div class="profile-info-block__value">{{.integral}}</div>
                                     </div>
                                     <div class="profile-info-block">
                                         <div class="profile-info-block__title"><a href="../wishlist">我的公益</a></div>

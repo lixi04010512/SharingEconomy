@@ -352,9 +352,10 @@ func HaveId(client *ethclient.Client) []*big.Int {
 func UploadUserImg(c *gin.Context) (string,error){
 	f, err := c.FormFile("imgname")
 	fileName := f.Filename
-	fildDir := "./Static/images"
+	fildDir := "./Static/images/"
 
 	filePath := fmt.Sprintf("%s%s", fildDir, fileName)
+	fileH :=fmt.Sprintf("images/%s",fileName)
 	//file, handler, err := c.FormFile("imgname")
 	fmt.Println(err)
 	if err != nil {
@@ -371,22 +372,16 @@ func UploadUserImg(c *gin.Context) (string,error){
 
 		c.SaveUploadedFile(f, filePath)
 		fmt.Println("filename", fileName)
-		c.JSON(200, gin.H{
-			"code": 200,
-			"msg":  "上传成功!",
-			"result": gin.H{
-				"path": filePath,
-			},
-		})
+
 	}
-	return filePath,err
+	return fileH,err
 }
 
 //封装头像上传方法
-func AddUserImgMethod(client *ethclient.Client, contract *Agreement.User, people common.Address, headImg string) (*types.Transaction, error) {
-	opts := Getopts()
+func AddUserImgMethod(client *ethclient.Client, contract *Agreement.User, people common.Address, headImg string,privateKey *ecdsa.PrivateKey) (*types.Transaction, error) {
+	opts := GetMsgOpts(privateKey)
 	res, err := contract.AddUserImg(opts, people,headImg)
-	fmt.Println("addCommunity:", res)
+	fmt.Println("addUserImg:", res)
 	opts.GasLimit = gasLimit
 	opts.GasPrice, err = GetgasPrice(client)
 	if err != nil {
