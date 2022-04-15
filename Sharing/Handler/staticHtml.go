@@ -57,34 +57,9 @@ func modPhotoStatic(c *gin.Context)  {
 		respError(c, err)
 		return
 	}
-	c.HTML(http.StatusOK, "Static/mod-photo.html", gin.H{"userName": userName,"address": people})
+	userImg, err := contract.GetUserImg(nil, loginUser)
+	c.HTML(http.StatusOK, "Static/mod-photo.html", gin.H{"userName": userName,"address": people,"userImg":userImg})
 }
-
-////渲染cart
-//func CartStatic(c *gin.Context) {
-//	//初始化client
-//	client, err := config.GetClient()
-//	if err != nil {
-//		fmt.Println(err)
-//		respError(c, err)
-//		return
-//	}
-//	//初始化合约地址
-//	contract, err := config.GetAddress(client)
-//	if err != nil {
-//		respError(c, err)
-//		return
-//	}
-//
-//	userName, people, _, _, _, _, _, err := config.GetUserMethod(contract, loginUser)
-//	fmt.Println("res", userName)
-//	if err != nil {
-//		respError(c, err)
-//		return
-//	}
-//	userImg,err :=contract.GetUserImg(nil,loginUser)
-//	c.HTML(http.StatusOK, "Static/cart.html", gin.H{"userName": userName, "address": people,"userImg":userImg})
-//}
 
 //渲染category-details
 func CategoryStatic(c *gin.Context) {
@@ -190,30 +165,6 @@ func EditProfileStatic(c *gin.Context) {
 	c.HTML(http.StatusOK, "Static/edit-profile.html", gin.H{"userName": userName, "address": people, "userImg": userImg})
 }
 
-////渲染goods-category
-//func GoodsStatic(c *gin.Context)  {
-//	//初始化client
-//	client,err := config.GetClient()
-//	if err != nil{
-//		fmt.Println(err)
-//		respError(c,err)
-//		return
-//	}
-//	//初始化合约地址
-//	contract ,err:= config.GetAddress(client)
-//	if err != nil{
-//		respError(c,err)
-//		return
-//	}
-//
-//	userName,people,_,_,_,_,_,err:=config.GetUserMethod(contract,loginUser)
-//	fmt.Println("res",userName)
-//	if err != nil {
-//		respError(c, err)
-//		return
-//	}
-//	c.HTML(http.StatusOK, "Static/goods-category.html", gin.H{"userName": userName,"address": people})
-//}
 
 //渲染lend-items
 func LendStatic(c *gin.Context) {
@@ -493,30 +444,6 @@ func ShopStatic(c *gin.Context) {
 	c.HTML(http.StatusOK, "Static/shop.html", gin.H{"userName": userName, "address": people, "userImg": userImg})
 }
 
-////渲染shop-profile
-//func ShopProfilerStatic(c *gin.Context)  {
-//	//初始化client
-//	client,err := config.GetClient()
-//	if err != nil{
-//		fmt.Println(err)
-//		respError(c,err)
-//		return
-//	}
-//	//初始化合约地址
-//	contract ,err:= config.GetAddress(client)
-//	if err != nil{
-//		respError(c,err)
-//		return
-//	}
-//
-//	userName,people,_,_,_,_,_,err:=config.GetUserMethod(contract,loginUser)
-//	fmt.Println("res",userName)
-//	if err != nil {
-//		respError(c, err)
-//		return
-//	}
-//	c.HTML(http.StatusOK, "Static/shop-product.html", gin.H{"userName": userName,"address": people})
-//}
 
 //渲染ui-me
 func UiMeStatic(c *gin.Context) {

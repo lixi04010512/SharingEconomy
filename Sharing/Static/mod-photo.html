@@ -53,11 +53,11 @@
                 vertical-align: middle;
                 text-align: center;">
                     <a onclick="$('#previewImg').click();">
-                    <img id="imghead" border="0" src="share/assets/img/profile.jpg" width="90"
+                    <img id="imghead" border="0" src="share/{{.userImg}}" width="90"
                         height="90" >
                     </a>
                 </div>
-                <input type="file" onchange="previewImage(this)" name="imgname" style="display: none;"
+                <input type="file" name="imgname" onchange="previewImage(this)"  style="display: none;"
                     id="previewImg">
                 <div style="text-align: center;">
                     <button type="submit" class="btn btn-primary mt-4"

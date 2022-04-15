@@ -1,0 +1,76 @@
+package config
+
+import (
+	"Sharing/Agreement"
+	"fmt"
+	"crypto/rand"
+	"github.com/ethereum/go-ethereum/common"
+	"github.com/ethereum/go-ethereum/core/types"
+	"github.com/ethereum/go-ethereum/ethclient"
+	"github.com/jordan-wright/email"
+	"io"
+	"log"
+	"math/big"
+	"net/smtp"
+)
+
+const (
+	Prikey       = "5fd7eb82fbd4c5cc87fbeb867ff4804537723d80a5289606c28ca5c8eed4aa77"
+	ShareFishAddress = "0xC6b698151b4B257dFF4883A8E43e59B8425e6d08"
+)
+
+//封装注册方法
+func RegisterMethod(client *ethclient.Client, contract *Agreement.User, Address common.Address, name string, email string, password string) (*types.Transaction, error) {
+	opts := Getopts()
+	opts.Value = big.NewInt(1000000000000000000)
+	res, err := contract.Register(opts, name, Address, email, password)
+	fmt.Println("register:", res)
+	opts.GasLimit = 3000000
+	opts.GasPrice, err = GetgasPrice(client)
+	if err != nil {
+		log.Fatal(err)
+	}
+	return res, nil
+}
+
+//发送邮箱验证码方法
+func EmailSend(userEmail string) string {
+	// 简单设置 log 参数
+	log.SetFlags(log.Lshortfile | log.LstdFlags)
+
+	em := email.NewEmail()
+	// 设置 sender 发送方 的邮箱 ， 此处可以填写自己的邮箱
+	em.From = "1784420499@qq.com"
+
+	// 设置 receiver 接收方 的邮箱  此处也可以填写自己的邮箱， 就是自己发邮件给自己
+	em.To = []string{userEmail}
+
+	// 设置主题
+	em.Subject = "ShareFish注册账户"
+
+	code := EncodeToString(6)
+	// 简单设置文件发送的内容，暂时设置成纯文本
+	em.Text = []byte("[ShareFish],您正在验证邮箱，您的验证码是：" + code + ",请尽快验证。请勿泄露您的验证码。如非本人操作请忽略。")
+
+	//设置服务器相关的配置
+	err := em.Send("smtp.qq.com:25", smtp.PlainAuth("", "1784420499@qq.com", "qydemwctecedfceb", "smtp.qq.com"))
+	if err != nil {
+		log.Fatal(err)
+	}
+	log.Println("发送成功 ")
+	return code
+}
+
+var table = [...]byte{'1', '2', '3', '4', '5', '6', '7', '8', '9', '0'}
+
+func EncodeToString(max int) string {
+	b := make([]byte, max)
+	n, err := io.ReadAtLeast(rand.Reader, b, max)
+	if n != max {
+		panic(err)
+	}
+	for i := 0; i < len(b); i++ {
+		b[i] = table[int(b[i])%len(table)]
+	}
+	return string(b)
+}
