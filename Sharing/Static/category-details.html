@@ -106,9 +106,12 @@
     <div class="shop-home section">
         <div class="container">
             <div class="row">
+            {{range $key,$vlaue:=.categoryDetail}}
                 <div class="col s6">
-                    <div class="shop"><a href="../shop-product"><img src="share/images/1.jpg" alt="">
-                            <h6>佳能相机</h6><span>$13/天</span>
+                    {{range $k,$v:=$vlaue.GoodImg}}
+                    <div class="shop"><a href="../shop-product"><img src={{$v}} alt="">
+                            {{end}}
+                            <h6>{{$vlaue.Names}}</h6><span>${{$vlaue.Rent}}/天</span>
                         </a>
                         <div style="text-align:center;padding: 12px;">
                             <button class="button-default"
@@ -116,61 +119,9 @@
                         </div>
                     </div>
                 </div>
-                <div class="col s6">
-                    <div class="shop"><a href="../shop-product"><img src="share/images/2.jpg" alt="">
-                            <h6>Switch</h6><span>$13/天</span>
-                        </a>
-                        <div style="text-align:center;padding: 12px;">
-                            <button class="button-default"
-                                onclick="window.location.href = 'shop-product.html'">去租用</button>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <div class="row">
-                <div class="col s6">
-                    <div class="shop"><a href="../shop-product"><img src="share/images/3.jpg" alt="">
-                            <h6>蓝牙耳机</h6><span>$13/天</span>
-                        </a>
-                        <div style="text-align:center;padding: 12px;">
-                            <button class="button-default"
-                                onclick="window.location.href = 'shop-product.html'">去租用</button>
-                        </div>
-                    </div>
-                </div>
-                <div class="col s6">
-                    <div class="shop"><a href="../shop-product"><img src="share/images/4.jpg" alt="">
-                            <h6>苹果电脑
-                            </h6><span>$13/天</span>
-                        </a>
-                        <div style="text-align:center;padding: 12px;">
-                            <button class="button-default"
-                                onclick="window.location.href = 'shop-product.html'">去租用</button>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <div class="row">
-                <div class="col s6">
-                    <div class="shop"><a href="../shop-product"><img src="share/images/5.jpg" alt="">
-                            <h6>iPad Pro</h6><span>$13/天</span>
-                        </a>
-                        <div style="text-align:center;padding: 12px;">
-                            <button class="button-default"
-                                onclick="window.location.href = 'shop-product.html'">去租用</button>
-                        </div>
-                    </div>
-                </div>
-                <div class="col s6">
-                    <div class="shop"><a href="../shop-product"><img src="share/images/6.jpg" alt="">
-                            <h6>VR眼镜</h6><span>$13/天</span>
-                        </a>
-                        <div style="text-align:center;padding: 12px;">
-                            <button class="button-default"
-                                onclick="window.location.href = 'shop-product.html'">去租用</button>
-                        </div>
-                    </div>
-                </div>
+
+                {{end}}
+
             </div>
             <div class="row m-bottom">
                 <div class="col s12">

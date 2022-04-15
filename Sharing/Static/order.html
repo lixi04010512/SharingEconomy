@@ -92,17 +92,19 @@
         <!--====================  End of breadcrumb area  ====================-->
         <!--====================  order product area ====================-->
         <div class="order-product-area">
-
+{{range $key,$vlaue:=.orderGoods}}
             <a href="../apps-invoice">
                 <div class="cart-product border-bottom--medium">
+                    {{range $k,$v:=$vlaue.GoodImg}}
                     <div class="cart-product__image">
-                        <img src="share/images/7.jpg" class="img-fluid" alt="">
+                        <img src={{$v}} class="img-fluid" alt="">
                     </div>
+                    {{end}}
                     <div class="cart-product__content">
-                        <h3 class="title">电子体温计</h3>
-                        <span class="category">医疗健康</span>
+                        <h3 class="title">{{$vlaue.Names}}</h3>
+                        <span class="category">{{$vlaue.Species}}</span>
                         <div class="price">
-                            <span class="discounted-price">￥2/天</span>
+                            <span class="discounted-price">￥{{$vlaue.Rent}}/天</span>
                         </div>
                     </div>
                     <div class="cart-product__status">
@@ -110,43 +112,7 @@
                     </div>
                 </div>
             </a>
-
-            <a href="../apps-invoice">
-                <div class="cart-product border-bottom--medium">
-                    <div class="cart-product__image">
-                        <img src="share/images/6.jpg" class="img-fluid" alt="">
-                    </div>
-                    <div class="cart-product__content">
-                        <h3 class="title">VR眼镜</h3>
-                        <span class="category">游戏设备</span>
-                        <div class="price">
-                            <span class="discounted-price">￥3/天</span>
-                        </div>
-                    </div>
-                    <div class="cart-product__status">
-                        <p><span><i class="fa fa-refresh"></i></span> 交易进行中</p>
-                    </div>
-                </div>
-            </a>
-            
-       
-            <a href="../apps-invoice">
-                <div class="cart-product border-bottom--medium">
-                    <div class="cart-product__image">
-                        <img src="share/images/5.jpg" class="img-fluid" alt="">
-                    </div>
-                    <div class="cart-product__content">
-                        <h3 class="title">iPad pro</h3>
-                        <span class="category">平板iPad</span>
-                        <div class="price">
-                            <span class="discounted-price">￥12/天</span>
-                        </div>
-                    </div>
-                    <div class="cart-product__status">
-                        <p><span><i class="ti ti-circle-x"></i></span> 交易取消</p>
-                    </div>
-                </div>
-            </a>
+{{end}}
 
         </div>
         <!--====================  End of order product area  ====================-->

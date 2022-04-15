@@ -32,37 +32,11 @@ func UserProfile(c *gin.Context) {
 		respError(c, err)
 		return
 	}
-	c.HTML(http.StatusOK, "Static/profile.html", gin.H{"userName": userName, "address": people, "integral": integral, "email": email, "sign": sign, "goodsNum": goodsNum, "balance": balance,"userImg":userImg})
+	c.HTML(http.StatusOK, "Static/profile.html", gin.H{"userName": userName, "address": people, "integral": integral, "email": email, "sign": sign, "goodsNum": goodsNum, "balance": balance, "userImg": userImg})
 }
 
 //渲染mod-photo
-func modPhotoStatic(c *gin.Context)  {
-	//初始化client
-	client,err := config.GetClient()
-	if err != nil{
-		fmt.Println(err)
-		respError(c,err)
-		return
-	}
-	//初始化合约地址
-	contract ,err:= config.GetAddress(client)
-	if err != nil{
-		respError(c,err)
-		return
-	}
-
-	userName,people,_,_,_,_,_,err:=config.GetUserMethod(contract,loginUser)
-	fmt.Println("res",userName)
-	if err != nil {
-		respError(c, err)
-		return
-	}
-	userImg, err := contract.GetUserImg(nil, loginUser)
-	c.HTML(http.StatusOK, "Static/mod-photo.html", gin.H{"userName": userName,"address": people,"userImg":userImg})
-}
-
-//渲染category-details
-func CategoryStatic(c *gin.Context) {
+func modPhotoStatic(c *gin.Context) {
 	//初始化client
 	client, err := config.GetClient()
 	if err != nil {
@@ -84,8 +58,34 @@ func CategoryStatic(c *gin.Context) {
 		return
 	}
 	userImg, err := contract.GetUserImg(nil, loginUser)
-	c.HTML(http.StatusOK, "Static/category-details.html", gin.H{"userName": userName, "address": people, "userImg": userImg})
+	c.HTML(http.StatusOK, "Static/mod-photo.html", gin.H{"userName": userName,"address": people,"userImg":userImg})
 }
+
+//渲染category-details
+//func CategoryStatic(c *gin.Context) {
+//	//初始化client
+//	client, err := config.GetClient()
+//	if err != nil {
+//		fmt.Println(err)
+//		respError(c, err)
+//		return
+//	}
+//	//初始化合约地址
+//	contract, err := config.GetAddress(client)
+//	if err != nil {
+//		respError(c, err)
+//		return
+//	}
+//
+//	userName, people, _, _, _, _, _, err := config.GetUserMethod(contract, loginUser)
+//	fmt.Println("res", userName)
+//	if err != nil {
+//		respError(c, err)
+//		return
+//	}
+//	userImg, err := contract.GetUserImg(nil, loginUser)
+//	c.HTML(http.StatusOK, "Static/category-details.html", gin.H{"userName": userName, "address": people, "userImg": userImg})
+//}
 
 //渲染chat
 func ChatStatic(c *gin.Context) {
@@ -188,7 +188,7 @@ func LendStatic(c *gin.Context) {
 		respError(c, err)
 		return
 	}
-	userImg,err :=contract.GetUserImg(nil,loginUser)
+	userImg, err := contract.GetUserImg(nil, loginUser)
 	var SpeciesArr []string
 	for i := 0; i < 30; i++ {
 		Int64 := int64(i)
@@ -197,16 +197,16 @@ func LendStatic(c *gin.Context) {
 			respError(c, err)
 			return
 		}
-		if name != ""{
-			SpeciesArr =append(SpeciesArr,name)
+		if name != "" {
+			SpeciesArr = append(SpeciesArr, name)
 		}
 
 	}
 	c.HTML(http.StatusOK, "Static/lend-items.html", gin.H{
 		"userName": userName,
-		"address": people,
-		"userImg":userImg,
-		"spArr":SpeciesArr,
+		"address":  people,
+		"userImg":  userImg,
+		"spArr":    SpeciesArr,
 	})
 }
 
@@ -263,30 +263,30 @@ func MyNeedStatic(c *gin.Context) {
 }
 
 //渲染order
-func OrderStatic(c *gin.Context) {
-	//初始化client
-	client, err := config.GetClient()
-	if err != nil {
-		fmt.Println(err)
-		respError(c, err)
-		return
-	}
-	//初始化合约地址
-	contract, err := config.GetAddress(client)
-	if err != nil {
-		respError(c, err)
-		return
-	}
-
-	userName, people, _, _, _, _, _, err := config.GetUserMethod(contract, loginUser)
-	fmt.Println("res", userName)
-	if err != nil {
-		respError(c, err)
-		return
-	}
-	userImg, err := contract.GetUserImg(nil, loginUser)
-	c.HTML(http.StatusOK, "Static/order.html", gin.H{"userName": userName, "address": people, "userImg": userImg})
-}
+//func OrderStatic(c *gin.Context) {
+//	//初始化client
+//	client, err := config.GetClient()
+//	if err != nil {
+//		fmt.Println(err)
+//		respError(c, err)
+//		return
+//	}
+//	//初始化合约地址
+//	contract, err := config.GetAddress(client)
+//	if err != nil {
+//		respError(c, err)
+//		return
+//	}
+//
+//	userName, people, _, _, _, _, _, err := config.GetUserMethod(contract, loginUser)
+//	fmt.Println("res", userName)
+//	if err != nil {
+//		respError(c, err)
+//		return
+//	}
+//	userImg, err := contract.GetUserImg(nil, loginUser)
+//	c.HTML(http.StatusOK, "Static/order.html", gin.H{"userName": userName, "address": people, "userImg": userImg})
+//}
 
 //渲染post-need
 func PostNeedStatic(c *gin.Context) {
@@ -419,30 +419,30 @@ func SearchPageStatic(c *gin.Context) {
 }
 
 //渲染shop
-func ShopStatic(c *gin.Context) {
-	//初始化client
-	client, err := config.GetClient()
-	if err != nil {
-		fmt.Println(err)
-		respError(c, err)
-		return
-	}
-	//初始化合约地址
-	contract, err := config.GetAddress(client)
-	if err != nil {
-		respError(c, err)
-		return
-	}
-
-	userName, people, _, _, _, _, _, err := config.GetUserMethod(contract, loginUser)
-	fmt.Println("res", userName)
-	if err != nil {
-		respError(c, err)
-		return
-	}
-	userImg, err := contract.GetUserImg(nil, loginUser)
-	c.HTML(http.StatusOK, "Static/shop.html", gin.H{"userName": userName, "address": people, "userImg": userImg})
-}
+//func ShopStatic(c *gin.Context) {
+//	//初始化client
+//	client, err := config.GetClient()
+//	if err != nil {
+//		fmt.Println(err)
+//		respError(c, err)
+//		return
+//	}
+//	//初始化合约地址
+//	contract, err := config.GetAddress(client)
+//	if err != nil {
+//		respError(c, err)
+//		return
+//	}
+//
+//	userName, people, _, _, _, _, _, err := config.GetUserMethod(contract, loginUser)
+//	fmt.Println("res", userName)
+//	if err != nil {
+//		respError(c, err)
+//		return
+//	}
+//	userImg, err := contract.GetUserImg(nil, loginUser)
+//	c.HTML(http.StatusOK, "Static/shop.html", gin.H{"userName": userName, "address": people, "userImg": userImg})
+//}
 
 
 //渲染ui-me

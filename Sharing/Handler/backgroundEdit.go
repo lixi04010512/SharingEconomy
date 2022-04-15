@@ -15,6 +15,7 @@ import (
 	"time"
 )
 
+
 var jwtkey = []byte("www.topgoer.com")
 var str string
 
@@ -128,7 +129,7 @@ func editCommunities(c *gin.Context) {
 	fmt.Println(id)
 	id_community, err := strconv.Atoi(id)
 	i := int64(id_community)
-	name, addr, introduce, amount,  err := config.ShowCommunities(contract, big.NewInt(i))
+	name, addr, introduce, amount, err := config.ShowCommunities(contract, big.NewInt(i))
 	fmt.Println("137:", err)
 	arr2 := []Community{{Id: id_community, Name: name, People: addr, Introduce: introduce, Amount: amount}}
 	fmt.Println("arr2", arr2)
@@ -241,12 +242,12 @@ func loginManager(c *gin.Context) {
 	fmt.Println("unlock:", unlockedKey)
 	if errors != nil {
 		respError(c, err)
-		fmt.Println("480:",errors)
+		fmt.Println("480:", errors)
 		return
 	}
 	comAddr := unlockedKey.Address
 	data, err := config.LoginManager(contract, comAddr)
-	fmt.Println("485err:",err)
+	fmt.Println("485err:", err)
 	addr := comAddr.Hex()
 
 	c.Redirect(http.StatusFound, "/index1")
@@ -254,6 +255,7 @@ func loginManager(c *gin.Context) {
 	fmt.Println("addr", addr)
 	fmt.Println("data", data)
 }
+
 //添加分类
 func addSticks(c *gin.Context) {
 	//初始化client
@@ -364,7 +366,7 @@ func updateStick(c *gin.Context) {
 }
 
 //修改公益
-func updateCommunity(c *gin.Context)  {
+func updateCommunity(c *gin.Context) {
 	//初始化client
 	client, err := config.GetClient()
 	if err != nil {
@@ -383,14 +385,14 @@ func updateCommunity(c *gin.Context)  {
 	id1, err := strconv.Atoi(id)
 	id2 := int64(id1)
 	name := c.PostForm("name")
-	addr :=c.PostForm("addr")
+	addr := c.PostForm("addr")
 	var data1 = []byte(addr)
 	address := common.BytesToAddress(data1)
-	introduce :=c.PostForm("introduce")
-	amount :=c.PostForm("amount")
+	introduce := c.PostForm("introduce")
+	amount := c.PostForm("amount")
 	money, err := strconv.Atoi(amount)
 	Money := int64(money)
-	data, err := config.UpdateCommunityMethod(client, contract, name, big.NewInt(id2),address,introduce,big.NewInt(Money))
+	data, err := config.UpdateCommunityMethod(client, contract, name, big.NewInt(id2), address, introduce, big.NewInt(Money))
 	fmt.Println(data)
 }
 
@@ -418,7 +420,7 @@ func addCommunities(c *gin.Context) {
 	money := c.PostForm("amount")
 	money1, err := strconv.Atoi(money)
 	Money := int64(money1)
-	fmt.Println(address,name,introduce,Money)
+	fmt.Println(address, name, introduce, Money)
 	data, err := config.AddCommunityMethod(client, contract, address, name, introduce, big.NewInt(Money))
 	fmt.Println("community,", data)
 }
@@ -443,7 +445,7 @@ func delCommunity(c *gin.Context) {
 	fmt.Println(id)
 	id_community, err := strconv.Atoi(id)
 	i := int64(id_community)
-	data, err := config.DelCommunityMethod(client,contract, big.NewInt(i))
+	data, err := config.DelCommunityMethod(client, contract, big.NewInt(i))
 	fmt.Println("629data:", data)
 }
 

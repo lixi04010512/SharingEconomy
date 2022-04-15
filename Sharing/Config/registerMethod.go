@@ -14,10 +14,6 @@ import (
 	"net/smtp"
 )
 
-const (
-	Prikey       = "5fd7eb82fbd4c5cc87fbeb867ff4804537723d80a5289606c28ca5c8eed4aa77"
-	ShareFishAddress = "0xC6b698151b4B257dFF4883A8E43e59B8425e6d08"
-)
 
 //封装注册方法
 func RegisterMethod(client *ethclient.Client, contract *Agreement.User, Address common.Address, name string, email string, password string) (*types.Transaction, error) {
