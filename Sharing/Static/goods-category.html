@@ -117,37 +117,37 @@
 									<img src="share/images/6.jpg" alt="">
 								</a>
 							</div>
-							<a class="aui-flex-box" href="javascript:;">
-								<!-- <div class="aui-flex-box-bd">排行榜</div> -->
-								<!-- <div class="aui-flex-box-fr">热销榜</div> -->
-							</a>
-							<div class="aui-flex-links">
-								<a href="../shop-product" class="aui-flex-links-item">
-									<div class="aui-flex-links-img">
-										<img src="share/images/1.jpg" alt="">
-									</div>
-									<div class="aui-flex-links-text">佳能相机</div>
-								</a>
-								<a href="../shop-product" class="aui-flex-links-item">
-									<div class="aui-flex-links-img">
-										<img src="share/images/2.jpg" alt="">
-									</div>
-									<div class="aui-flex-links-text">Switch</div>
-								</a>
-								<a href="../shop-product" class="aui-flex-links-item">
-									<div class="aui-flex-links-img">
-										<img src="share/images/3.jpg" alt="">
-									</div>
-									<div class="aui-flex-links-text">蓝牙耳机</div>
-								</a>
+<!--							<a class="aui-flex-box" href="javascript:;">-->
+<!--								&lt;!&ndash; <div class="aui-flex-box-bd">排行榜</div> &ndash;&gt;-->
+<!--								&lt;!&ndash; <div class="aui-flex-box-fr">热销榜</div> &ndash;&gt;-->
+<!--							</a>-->
+<!--							<div class="aui-flex-links">-->
+<!--								<a href="../shop-product" class="aui-flex-links-item">-->
+<!--									<div class="aui-flex-links-img">-->
+<!--										<img src="share/images/1.jpg" alt="">-->
+<!--									</div>-->
+<!--									<div class="aui-flex-links-text">佳能相机</div>-->
+<!--								</a>-->
+<!--								<a href="../shop-product" class="aui-flex-links-item">-->
+<!--									<div class="aui-flex-links-img">-->
+<!--										<img src="share/images/2.jpg" alt="">-->
+<!--									</div>-->
+<!--									<div class="aui-flex-links-text">Switch</div>-->
+<!--								</a>-->
+<!--								<a href="../shop-product" class="aui-flex-links-item">-->
+<!--									<div class="aui-flex-links-img">-->
+<!--										<img src="share/images/3.jpg" alt="">-->
+<!--									</div>-->
+<!--									<div class="aui-flex-links-text">蓝牙耳机</div>-->
+<!--								</a>-->
 
-							</div>
-						</div>
-					</div>
+<!--							</div>-->
+<!--						</div>-->
+<!--					</div>-->
 					{{ range $key ,$value:=.goodsCategory }}
 					<div class="scrolltab-content-item">
 						<span>{{$value.Species}}</span>
-						<a href="../category-details" style="float: right;padding-top: 8px;">
+						<a href="../category-details/{{$value.Species}}" style="float: right;padding-top: 8px;">
 							更多<i class="ti ti-chevron-right"></i>
 						</a>
 
@@ -159,7 +159,7 @@
 							</div>
 							<div class="aui-flex-links">
 								{{ range $k ,$v:=$value.GoodImg}}
-									<a href="../category-details" class="aui-flex-links-item">
+									<a href="../shop-product/{{$value.Id}}" class="aui-flex-links-item">
 										<div class="aui-flex-links-img">
 											<img src={{$v}} alt="">
 										</div>

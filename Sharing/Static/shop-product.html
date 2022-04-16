@@ -9,20 +9,20 @@
 	<meta name="format-detection" content="telephone=no, email=no" />
 	<meta charset="UTF-8">
 	<title>Share Fish-商品详情</title>
-	<script src="share/static/js/public.js"></script>
-	<link rel="stylesheet" href="share/themes/css/product-details.css">
-	<link rel="stylesheet" href="share/themes/css/core.css">
-	<link rel="stylesheet" href="share/themes/css/home.css">
+	<script src="../share/static/js/public.js"></script>
+	<link rel="stylesheet" href="../share/themes/css/product-details.css">
+	<link rel="stylesheet" href="../share/themes/css/core.css">
+	<link rel="stylesheet" href="../share/themes/css/home.css">
 
 	<!-- Bootstrap CSS -->
-	<link rel="stylesheet" href="share/assets/css/bootstrap.min.css">
+	<link rel="stylesheet" href="../share/assets/css/bootstrap.min.css">
 	<!-- Main Style CSS -->
-	<link rel="stylesheet" href="share/assets/css/style.css">
+	<link rel="stylesheet" href="../share/assets/css/style.css">
 
 	<!-- App css搜索框 -->
-	<link href="share/static/css/bootstrap.min.css" rel="stylesheet" type="text/css">
-	<link href="share/static/css/icons.min.css" rel="stylesheet" type="text/css">
-	<link href="share/static/css/app.min.css" rel="stylesheet" type="text/css">
+	<link href="../share/static/css/bootstrap.min.css" rel="stylesheet" type="text/css">
+	<link href="../share/static/css/icons.min.css" rel="stylesheet" type="text/css">
+	<link href="../share/static/css/app.min.css" rel="stylesheet" type="text/css">
 </head>
 
 <body>
@@ -68,7 +68,7 @@
 			{{range $k,$v:=.goodsPort.GoodImg}}
 			<div class="aui-banner-wrapper-item">
 
-				<img src={{$v}}>
+				<img src="../{{$v}}">
 
 			</div>
 			{{end}}
@@ -99,9 +99,9 @@
 			</p>
 		</div>
 		<div class="aui-product-boutique clearfix">
-			<img src="share/themes/img/icon/icon-usa.png" alt="">
+			<img src="../share/themes/img/icon/icon-usa.png" alt="">
 			<span class="aui-product-tag-text">中国品牌</span>
-			<img src="share/themes/img/icon/icon-sj.png" alt="">
+			<img src="../share/themes/img/icon/icon-sj.png" alt="">
 			<span class="aui-product-tag-text">精选商家</span>
 		</div>
 
@@ -117,7 +117,7 @@
 				<div style="position:relative">
 					<div class="aui-spec-menu-top">
 						<div class="aui-spec-first-pic">
-							<img src="share/themes/img/pd/pd-zf-1.jpg" alt="">
+							<img src="../share/themes/img/pd/pd-zf-1.jpg" alt="">
 						</div>
 						<div class="aui-spec-first-sif">
 							<h2>￥{{.goodsPort.Rent}}/天 </h2>
@@ -174,13 +174,13 @@
 	</div>
 	<footer class="aui-footer-button aui-footer-flex aui-footer-fixed" style="width: 100%; position: fixed;">
 		<div class="aui-footer-wrap">
-			<a href="index.html">
+			<a href="../index">
 				<i class="fas fa-home"></i>
 				<span>首页</span></a>
 		</div>
 
 		<div class="aui-footer-wrap">
-			<a href="shop.html">
+			<a href="../shop">
 				<i class="fas fas fa-shopping-cart"></i>
 				<span>租入车</span></a>
 		</div>
@@ -196,15 +196,15 @@
 		</div>
 	</footer>
 
-	<script src="share/js/tabbar.js"></script>
+	<script src="../share/js/tabbar.js"></script>
 	<!-- jQuery JS -->
-	<script src="share/assets/js/jquery-3.4.1.min.js"></script>
+	<script src="../share/assets/js/jquery-3.4.1.min.js"></script>
 	<!-- Bootstrap JS -->
-	<script src="share/assets/js/bootstrap.min.js"></script>
+	<script src="../share/assets/js/bootstrap.min.js"></script>
 	<!-- Main JS -->
-	<script src="share/assets/js/main.js"></script>
+	<script src="../share/assets/js/main.js"></script>
 	<!-- script js -->
-	<script src="share/js/popbox.js"></script>
+	<script src="../share/js/popbox.js"></script>
 	<script>
 		function okFunction() {
 			$.ajax({
