@@ -26,7 +26,7 @@ func AddStick(client *ethclient.Client, contract *Agreement.User, stick string) 
 func ShowSpecies(contract *Agreement.User, id *big.Int) (string, error) {
 	res, err := contract.GetStick(nil, id)
 
-	fmt.Println("showSpecies:", res)
+	//fmt.Println("showSpecies:", res)
 	if err != nil {
 		log.Fatal(err)
 	}

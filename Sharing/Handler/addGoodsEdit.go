@@ -49,7 +49,7 @@ func addGoods(c *gin.Context) {
 	//存储所有图片路径
 	var goodsImgs []string
 
-	fildDir := "./Static/images"
+	fildDir := "./Static/images/"
 
 	// 遍历所有图片
 	for _, file := range files {
@@ -70,6 +70,6 @@ func addGoods(c *gin.Context) {
 
 	data, err := config.AddGoodsMethod(client, contract, owner, name, species, big.NewInt(rentInt64), big.NewInt(ethPledgeInt64), goodsImgs,goodSign)
 	fmt.Println("addGood",data)
-	c.Redirect(http.StatusFound, "/index")
+	c.Redirect(http.StatusFound, "/cart")
 }
 
