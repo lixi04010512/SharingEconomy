@@ -7,6 +7,7 @@ import (
 	"github.com/gin-gonic/gin"
 	"math/big"
 	"net/http"
+	"strconv"
 )
 
 //租借者信息
@@ -71,7 +72,7 @@ func addIndex(c *gin.Context) {
 				respError(c, err)
 				return
 			}
-			arr1 := []goodsPort{goodsPort{Names: goodData.Name, Species: goodData.Species, Rent: goodData.Rent, EthPledge: goodData.EthPledge, GoodImg: goodData1.GoodImg}}
+			arr1 := []goodsPort{goodsPort{Id: goodData.Id, Names: goodData.Name, Species: goodData.Species, Rent: goodData.Rent, EthPledge: goodData.EthPledge, GoodImg: goodData1.GoodImg}}
 			arr = append(arr, arr1...)
 
 			//goodsPort1 := goodsPort{ Names: names, Species: species, Rent: rent, EthPledge: ethPledge}
@@ -96,6 +97,9 @@ func addIndex(c *gin.Context) {
 
 //商品详情页展示
 func shopPorduct(c *gin.Context) {
+	a := c.Params.ByName("id")
+	x, err := strconv.ParseInt(a, 10, 64)
+	id := big.NewInt(x)
 	client, err := config.GetClient()
 	if err != nil {
 		respError(c, err)
@@ -107,14 +111,14 @@ func shopPorduct(c *gin.Context) {
 		return
 	}
 
-	id := config.HaveId(client)
-	if err != nil {
-		fmt.Println(err)
-		respError(c, err)
-		return
-	}
+	//id := config.HaveId(client)
+	//if err != nil {
+	//	fmt.Println(err)
+	//	respError(c, err)
+	//	return
+	//}
 	var names string
-	goodData, goodData1, err := config.HaveIndex(client, id[0])
+	goodData, goodData1, err := config.HaveIndex(client, id)
 	userName, people, _, _, _, _, _, err := config.GetUserMethod(contract, loginUser)
 	userImg, err := contract.GetUserImg(nil, loginUser)
 	fmt.Println("res", userName)
@@ -152,11 +156,7 @@ func goodsCategory(c *gin.Context) {
 
 	//获取id
 	id := config.HaveId(client)
-	if err != nil {
-		fmt.Println(err)
-		respError(c, err)
-		return
-	}
+
 	//定义一个结构体数组
 	var arr []goodsPort
 
@@ -167,7 +167,7 @@ func goodsCategory(c *gin.Context) {
 				respError(c, err)
 				return
 			}
-			arr1 := []goodsPort{goodsPort{Names: goodData.Name, Species: goodData.Species, Rent: goodData.Rent, EthPledge: goodData.EthPledge, GoodImg: goodData1.GoodImg}}
+			arr1 := []goodsPort{goodsPort{Id: goodData.Id, Names: goodData.Name, Species: goodData.Species, Rent: goodData.Rent, EthPledge: goodData.EthPledge, GoodImg: goodData1.GoodImg}}
 			arr = append(arr, arr1...)
 			//goodsPort1 := goodsPort{ Names: names, Species: species, Rent: rent, EthPledge: ethPledge}
 			//fmt.Println(goodsPort{},addr)
@@ -309,6 +309,8 @@ func MyOrder(c *gin.Context) {
 
 //分类详情页面
 func CategoryDetails(c *gin.Context) {
+	Spe := c.Params
+	Speci := Spe.ByName("Species")
 	client, err := config.GetClient()
 	if err != nil {
 		fmt.Println(err)
@@ -343,8 +345,8 @@ func CategoryDetails(c *gin.Context) {
 				respError(c, err)
 				return
 			}
-			if goodData.Species == "" {
 
+			if goodData.Species == Speci {
 				arr1 := []goodsPort{goodsPort{Id: goodData.Id, Names: goodData.Name, Rent: goodData.Rent, GoodImg: goodData1.GoodImg}}
 				arrDetails = append(arrDetails, arr1...)
 			}

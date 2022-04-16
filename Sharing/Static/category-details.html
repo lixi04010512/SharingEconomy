@@ -10,22 +10,22 @@
     <meta name="apple-mobile-web-app-capable" content="yes">
     <meta name="apple-touch-fullscreen" content="yes">
     <meta name="HandheldFriendly" content="True">
-    <script src="share/static/js/public.js"></script>
-    <link rel="stylesheet" href="share/css/materialize.css">
-   <link rel="stylesheet" href="share/css/sliderbg.css">
+    <script src="../share/static/js/public.js"></script>
+    <link rel="stylesheet" href="../share/css/materialize.css">
+   <link rel="stylesheet" href="../share/css/sliderbg.css">
 
     <!-- 图标 -->
-    <link rel="stylesheet" href="share/static/css/flaticon.css">
-    <link rel="stylesheet" href="share/static/css/responsive.css">
+    <link rel="stylesheet" href="../share/static/css/flaticon.css">
+    <link rel="stylesheet" href="../share/static/css/responsive.css">
     <!-- 底部导航 -->
-   <link rel="stylesheet" href="share/css/tabbar.css">
+   <link rel="stylesheet" href="../share/css/tabbar.css">
     <!-- Main Style CSS -->
-    <link rel="stylesheet" href="share/assets/css/style.css">
+    <link rel="stylesheet" href="../share/assets/css/style.css">
 
     <!-- App css搜索框 -->
-    <link href="share/static/css/bootstrap.min.css" rel="stylesheet" type="text/css">
-    <link href="share/static/css/icons.min.css" rel="stylesheet" type="text/css">
-    <link href="share/static/css/app.min.css" rel="stylesheet" type="text/css">
+    <link href="../share/static/css/bootstrap.min.css" rel="stylesheet" type="text/css">
+    <link href="../share/static/css/icons.min.css" rel="stylesheet" type="text/css">
+    <link href="../share/static/css/app.min.css" rel="stylesheet" type="text/css">
 </head>
 
 <body>
@@ -38,7 +38,7 @@
                         <!-- header logo -->
                         <div class="header-logo">
                             <a href="../index">
-                                <img src="share/assets/img/logo.png" class="img-fluid" alt="" style="width: 75px;">
+                                <img src="../share/assets/img/logo.png" class="img-fluid" alt="" style="width: 75px;">
                             </a>
                         </div>
                     </div>
@@ -74,7 +74,7 @@
     <!-- slider -->
     <div class="slider">
         <ul class="slides">
-            <li><img src="share/images/1.jpg" alt="">
+            <li><img src="../share/images/1.jpg" alt="">
                 <div class="caption slider-content center-align ">
                     <div class="container">
                         <h2>小米新品首发</h2>
@@ -82,7 +82,7 @@
                     </div>
                 </div>
             </li>
-            <li><img src="share/images/2.jpg" alt="">
+            <li><img src="../share/images/2.jpg" alt="">
                 <div class="caption slider-content center-align">
                     <div class="container">
                         <h2>更多好物</h2>
@@ -90,7 +90,7 @@
                     </div>
                 </div>
             </li>
-            <li><img src="share/images/3.jpg" alt="">
+            <li><img src="../share/images/3.jpg" alt="">
                 <div class="caption slider-content center-align">
                     <div class="container">
                         <h2>全部分类 </h2>
@@ -109,7 +109,7 @@
             {{range $key,$vlaue:=.categoryDetail}}
                 <div class="col s6">
                     {{range $k,$v:=$vlaue.GoodImg}}
-                    <div class="shop"><a href="../shop-product"><img src={{$v}} alt="">
+                    <div class="shop"><a href="../shop-product"><img src="../{{$v}}" alt="">
                             {{end}}
                             <h6>{{$vlaue.Names}}</h6><span>${{$vlaue.Rent}}/天</span>
                         </a>
@@ -152,20 +152,20 @@
 
     </footer>
     <!-- scripts -->
-    <script src="share/js/jquery.min.js"></script>
-    <script src="share/js/materialize.min.js"></script>
-    <script src="share/js/sliderbg.js"></script>
+    <script src="../share/js/jquery.min.js"></script>
+    <script src="../share/js/materialize.min.js"></script>
+    <script src="../share/js/sliderbg.js"></script>
 
     <!-- Modernizer JS -->
-    <script src="share/js/tabbar.js"></script>
+    <script src="../share/js/tabbar.js"></script>
 
     <!-- Bootstrap JS -->
-    <script src="share/assets/js/bootstrap.min.js"></script>
+    <script src="../share/assets/js/bootstrap.min.js"></script>
 
-    <script src="share/assets/js/main.js"></script>
+    <script src="../share/assets/js/main.js"></script>
 
     <!-- script js -->
-    <script src="share/js/popbox.js"></script>
+    <script src="../share/js/popbox.js"></script>
     <script>
         function okFunction() {
             $.ajax({

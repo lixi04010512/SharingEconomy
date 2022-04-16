@@ -155,7 +155,7 @@
             <div class="swiper-wrapper">
                 <div class="swiper-slide">
                     <div class="css-palace css-palace-one">
-                        <a href="../category-details" class="css-palace-grid">
+                        <a href="../category-details/严选手机" class="css-palace-grid">
                             <div class="css-palace-grid-icon">
                             <div class="avatar avatar-50 border-0 bg-danger-light rounded-circle text-danger">
                                 <i class="fab fa-apple" style="font-size: 20px;"></i>
@@ -165,7 +165,7 @@
                                 <h2>严选手机</h2>
                             </div>
                         </a>
-                       <a href="../category-details" class="css-palace-grid">
+                       <a href="../category-details/电脑设备" class="css-palace-grid">
                             <div class="css-palace-grid-icon">
                                 <div class="avatar avatar-50 border-0 bg-danger-light rounded-circle text-danger">
                                     <i class="fas fa-desktop" style="font-size: 20px;"></i>
@@ -175,7 +175,7 @@
                                 <h2>电脑设备</h2>
                             </div>
                         </a>
-                       <a href="../category-details" class="css-palace-grid">
+                       <a href="../category-details/游戏设备" class="css-palace-grid">
                             <div class="css-palace-grid-icon">
                                 <div class="avatar avatar-50 border-0 bg-danger-light rounded-circle text-danger">
                                     <i class="fas fa-binoculars" style="font-size: 20px;"></i>
@@ -187,7 +187,7 @@
                         </a>
                         
                         
-                       <a href="../category-details" class="css-palace-grid">
+                       <a href="../category-details/平板iPad" class="css-palace-grid">
                             <div class="css-palace-grid-icon">
                                 <div class="avatar avatar-50 border-0 bg-danger-light rounded-circle text-danger">
                                     <i class="fas fa-chalkboard" style="font-size: 20px;"></i>
@@ -197,7 +197,7 @@
                                 <h2>平板iPad</h2>
                             </div>
                         </a>
-                       <a href="../category-details" class="css-palace-grid">
+                       <a href="../category-details/运动健身" class="css-palace-grid">
                             <div class="css-palace-grid-icon"><div class="avatar avatar-50 border-0 bg-danger-light rounded-circle text-danger">
                                 <i class="fas fa-bowling-ball" style="font-size: 20px;"></i>
                             </div>
@@ -206,7 +206,7 @@
                                 <h2>运动健身</h2>
                             </div>
                         </a>
-                       <a href="../category-details" class="css-palace-grid">
+                       <a href="../category-details/相机数码" class="css-palace-grid">
                             <div class="css-palace-grid-icon">
                                 <div class="avatar avatar-50 border-0 bg-danger-light rounded-circle text-danger">
                                     <i class="fas fa-camera-retro" style="font-size: 20px;"></i>
@@ -217,7 +217,7 @@
                             </div>
                         </a>
                         
-                       <a href="../category-details" class="css-palace-grid">
+                       <a href="../category-details/医疗健康" class="css-palace-grid">
                             <div class="css-palace-grid-icon">
                                 <div class="avatar avatar-50 border-0 bg-danger-light rounded-circle text-danger">
                                     <i class="fas fa-bicycle" style="font-size: 20px;"></i>
@@ -227,7 +227,7 @@
                                 <h2>医疗健康</h2>
                             </div>
                         </a>
-                       <a href="../category-details" class="css-palace-grid">
+                       <a href="../category-details/学习办公" class="css-palace-grid">
                             <div class="css-palace-grid-icon">
                                 <div class="avatar avatar-50 border-0 bg-danger-light rounded-circle text-danger">
                                     <i class="fas fa-eraser" style="font-size: 20px;"></i>
@@ -237,7 +237,7 @@
                                 <h2>学习办公</h2>
                             </div>
                         </a>
-                       <a href="../category-details" class="css-palace-grid">
+                       <a href="../category-details/网上书店" class="css-palace-grid">
                             <div class="css-palace-grid-icon">
                                 <div class="avatar avatar-50 border-0 bg-danger-light rounded-circle text-danger">
                                     <i class="fas fa-book-open" style="font-size: 20px;"></i>
@@ -247,7 +247,7 @@
                                 <h2>网上书店</h2>
                             </div>
                         </a>
-                        <a href="goods-category.html" class="css-palace-grid">
+                        <a href="goods-category" class="css-palace-grid">
                             <div class="css-palace-grid-icon">
                                 <div class="avatar avatar-50 border-0 bg-danger-light rounded-circle text-danger">
                                     <i class='flaticon-auction' style="font-size: 20px;"></i>
@@ -285,7 +285,7 @@
                                         <div class="col-4">
                                             <div class="featured-product space-mb--15">
                                                 <div class="featured-product__image">
-                                                    <a href="../shop-product">
+                                                    <a href="shop-product/{{$value.Id}}">
                                                         {{ range $k ,$v:=$value.GoodImg}}
                                                             <img src={{$v}} class="img-fluid" alt="">
                                                         {{end}}
@@ -325,14 +325,14 @@
                                     <div class="col-6">
                                         <div class="grid-product space-mb--20">
                                             <div class="grid-product__image">
-                                                <a href="shop-product.html">
+                                                <a href="shop-product/{{$value.Id}}">
                                                     {{ range $k ,$v:=$value.GoodImg}}
                                                         <img src={{$v}} class="img-fluid" alt="">
                                                     {{end}}
                                                 </a>
                                             </div>
                                             <div class="grid-product__content">
-                                                <h3 class="title"><a href="static/shop-product.html">{{ $value.Names }}</a></h3>
+                                                <h3 class="title"><a href="shop-product">{{ $value.Names }}</a></h3>
 
                                                 <span class="category">{{ $value.Species }}</span>
                                                 <div class="price">
@@ -355,7 +355,7 @@
         <footer>
 
             <div class="sc-bottom-bar">
-                <a class="sc-menu-item sc-current" href="index.html"><i class="fas fa-home"></i></a>
+                <a class="sc-menu-item sc-current" href="#"><i class="fas fa-home"></i></a>
                 <a class="sc-menu-item " href="../goods-category"><i class="fas  fa-list"></i></a>
                 <a href="../chat" class="sc-menu-item "><i class="fas fa-plus"></i></a>
                 <a class="sc-nav-indicator"></a>
