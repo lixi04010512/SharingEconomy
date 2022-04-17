@@ -8,9 +8,8 @@
     <meta name="description" content="">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <script src="static/js/public.js"></script>
-    <!-- Bootstrap CSS -->
+    <!-- CSS -->
     <link rel="stylesheet" href="css/tabbar.css">
-    <link rel="stylesheet" href="assets/css/bootstrap.min.css">
     <link rel="stylesheet" href="assets/css/style.css">
 
     <!-- App css -->
@@ -22,7 +21,7 @@
     <link rel="stylesheet" href="css/cropper.min.css">
 </head>
 
-<body>
+<body id="body" class="dark-sidebar">
     <!--====================  preloader area ====================-->
     <div class="preloader-activate preloader-active">
         <div class="preloader-area-wrap">
@@ -32,99 +31,101 @@
         </div>
     </div>
     <!--====================  End of preloader area  ====================-->
-    <div class="body-wrapper bg-color--gradient space-pt--70 space-pb--120">
-        <!--====================  header area ====================-->
-        <header>
-            <div class="header-wrapper border-bottom">
-                <div class="container space-y--15">
-                    <div class="row align-items-center">
-                        <div class="col-auto">
-                            <!-- header logo -->
-                            <div class="header-logo">
-                                <a href="index.html">
-                                    <img src="assets/img/logo.png" class="img-fluid" alt="" style="width: 75px;">
-                                </a>
-                            </div>
-                        </div>
-                        <div class="col d-flex justify-content-center">
-                            <!-- 搜索框 -->
-                            <div class="header-search">
-                                <a href="search-page.html">
-                                    <div class="input-group">
-                                        <input type="text" id="chat-search" name="chat-search" class="form-control"
-                                            placeholder="搜索好物" style="    padding-left: 30px;">
-                                </a>
-
-                                <span style="position: absolute;padding-top: 7px;padding-left: 10px;
-                                       "><i class="fa fa-search"></i></span>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-auto">
-                        <button class="header-menu-trigger" id="header-menu-trigger">
-                            <i class="fas fa-align-right" style="font-size: 20px;
-                                color: grey;"></i>
-                        </button>
-                    </div>
-                </div>
-            </div>
-        </header>
-        <!--====================  End of header area  ====================-->
-        <!--====================  mobile menu overlay ====================-->
-        <div class="offcanvas-menu" id="offcanvas-menu">
-            <div class="profile-card text-center">
-                <div class="profile-card__image space-mb--10">
-                    <img src="assets/img/profile.jpg" class="img-fluid" alt="">
-                </div>
-                <div class="profile-card__content">
-                    <p class="name">0x5B38Da6a701c568545dCfcB03F <span class="id">John</span></p>
-                </div>
-            </div>
-            <div class="offcanvas-navigation-wrapper space-mt--40">
-                <ul class="offcanvas-navigation">
-                    <li><span class="icon"><i class="ti ti-login" style="font-size: 25px;"></i></span><a
-                            href="login.html">登录/注册</a></li>
-                    <li><span class="icon"><i class="ti ti-plus" style="font-size: 25px;"></i></span><a
-                            href="lend-items.html">上传物品</a></li>
-                    <li><span class="icon"><i class="ti ti-shopping-cart" style="font-size: 25px;"></i></span><a
-                            href="shop.html">我租入的物品</a></li>
-                    <li><span class="icon"><i class="ti ti-box" style="font-size: 25px;"></i></span><a
-                            href="order.html">我借出的物品</a></li>
-                    <li><span class="icon"><i class="ti ti-power" style="font-size: 25px;"></i></span><a
-                            onclick="Qual.confirmd('您确定要退出当前账号吗？', '点击OK按钮或者关闭', inf, 'OK', '', 'okFunction', 'cancelFunction')">退出登入</a>
-                    </li>
-                </ul>
-            </div>
-        </div>
-        <!--====================  End of mobile menu overlay  ====================-->
-        <!--====================  breadcrumb area ====================-->
-        <div class="breadcrumb-area bg-color--grey space-y--15">
-            <div class="container">
+    <!-- <div class="body-wrapper bg-color--gradient space-pt--70 space-pb--120"> -->
+    <!--====================  header area ====================-->
+    <header>
+        <div class="header-wrapper border-bottom">
+            <div class="container space-y--15">
                 <div class="row align-items-center">
-                    <div class="col-3">
-                        <a class="back-link" onClick="javascript :history.back(-1);"> <i class="fa fa-angle-left"></i>
-                            返回</a>
+                    <div class="col-auto">
+                        <!-- header logo -->
+                        <div class="header-logo">
+                            <a href="index.html">
+                                <img src="assets/img/logo.png" class="img-fluid" alt="" style="width: 75px;">
+                            </a>
+                        </div>
                     </div>
-                    <div class="col-6">
-                        <h4 class="page-title text-center">我的交易</h4>
+                    <div class="col d-flex justify-content-center">
+                        <!-- 搜索框 -->
+                        <div class="header-search">
+                            <a href="search-page.html">
+                                <div class="input-group">
+                                    <input type="text" id="chat-search" name="chat-search" class="form-control"
+                                        placeholder="搜索好物" style="    padding-left: 30px;">
+                            </a>
+
+                            <span style="position: absolute;padding-top: 7px;padding-left: 10px;
+                                       "><i class="fa fa-search"></i></span>
+                        </div>
                     </div>
+                </div>
+                <div class="col-auto">
+                    <button class="header-menu-trigger" id="header-menu-trigger">
+                        <i class="fas fa-align-right" style="font-size: 20px;
+                                color: grey;"></i>
+                    </button>
                 </div>
             </div>
         </div>
-        <!--====================  End of breadcrumb area  ====================-->
-        <!--====================  cart product area ====================-->
-        <div class="row" style="margin-right: 0px;">
-            <div class="col-12">
-                <div class="card">
+    </header>
+    <!--====================  End of header area  ====================-->
+    <!--====================  mobile menu overlay ====================-->
+    <div class="offcanvas-menu" id="offcanvas-menu">
+        <div class="profile-card text-center">
+            <div class="profile-card__image space-mb--10">
+                <img src="assets/img/profile.jpg" class="img-fluid" alt="">
+            </div>
+            <div class="profile-card__content">
+                <p class="name">0x5B38Da6a701c568545dCfcB03F <span class="id">John</span></p>
+            </div>
+        </div>
+        <div class="offcanvas-navigation-wrapper space-mt--40">
+            <ul class="offcanvas-navigation">
+                <li><span class="icon"><i class="ti ti-login" style="font-size: 25px;"></i></span><a
+                        href="login.html">登录/注册</a></li>
+                <li><span class="icon"><i class="ti ti-plus" style="font-size: 25px;"></i></span><a
+                        href="lend-items.html">上传物品</a></li>
+                <li><span class="icon"><i class="ti ti-shopping-cart" style="font-size: 25px;"></i></span><a
+                        href="shop.html">我租入的物品</a></li>
+                <li><span class="icon"><i class="ti ti-box" style="font-size: 25px;"></i></span><a
+                        href="order.html">我借出的物品</a></li>
+                <li><span class="icon"><i class="ti ti-power" style="font-size: 25px;"></i></span><a
+                        onclick="Qual.confirmd('您确定要退出当前账号吗？', '点击OK按钮或者关闭', inf, 'OK', '', 'okFunction', 'cancelFunction')">退出登入</a>
+                </li>
+            </ul>
+        </div>
+    </div>
+    <!--====================  End of mobile menu overlay  ====================-->
+    <!--====================  breadcrumb area ====================-->
 
-                    <div class="card-body p-0">
-                        <!-- Nav tabs -->
-                        <ul class="nav nav-tabs" role="tablist">
-                            <li class="nav-item">
-                                <a class="nav-link active" data-bs-toggle="tab" href="#Post" role="tab"
-                                    aria-selected="true">在架</a>
-                            </li>
-                        </ul>
+    <!--====================  End of breadcrumb area  ====================-->
+    <!--====================  cart product area ====================-->
+
+    <div class="page-wrapper">
+        <!-- Page Content-->
+        <div class="page-content-tab">
+
+            <div class="container-fluid">
+                <div class="row">
+                    <div class="container space-y--15">
+                        <div class="row align-items-center">
+                            <div class="col-3">
+                                <a class="back-link" onClick="javascript :history.back(-1);"> <i
+                                        class="fa fa-angle-left"></i>
+                                    返回</a>
+                            </div>
+                            <div class="col-6">
+                                <h4 class="category-title text-center">我的交易</h4>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="col-12">
+                    <div class="card">
+
 
                         <!-- Tab panes -->
                         <div class="tab-content">
@@ -139,7 +140,7 @@
                                                         <tr>
                                                             <th class="border-top-0">商品</th>
                                                             <th class="border-top-0">状态</th>
-                                                            <th class="border-top-0">操作</th>
+                                                            <th class="border-top-0" style="padding-left: 16px;">操作</th>
                                                         </tr>
                                                         <!--end tr-->
                                                     </thead>
@@ -262,7 +263,8 @@
                                                                                         <select class="form-select"
                                                                                             aria-label="Default select example">
                                                                                             <option selected="">--
-                                                                                                Cateogory --</option>
+                                                                                                Cateogory --
+                                                                                            </option>
                                                                                             <option value="BTC">服饰
                                                                                             </option>
                                                                                             <option value="ETH">其他
@@ -271,47 +273,65 @@
                                                                                     </div>
 
                                                                                     <div class="col-md-6">
-                                                                                        <label for="formFileMultiple" class="form-label"> 图片上传 </label>
-                                
-                                                                                        <form class="pure-form" action="" method="post">
+                                                                                        <label for="formFileMultiple"
+                                                                                            class="form-label"> 图片上传
+                                                                                        </label>
+
+                                                                                        <form class="pure-form"
+                                                                                            action="" method="post">
                                                                                             <!-- 上传图片的预览区域 -->
-                                                                                            <section class="upload-box" id="J_upload_box">
-                                                                                                <div class="upload" id="J_file_wrap">
-                                                                                                    <input type="file" accept="image/*" name="pic"
+                                                                                            <section class="upload-box"
+                                                                                                id="J_upload_box">
+                                                                                                <div class="upload"
+                                                                                                    id="J_file_wrap">
+                                                                                                    <input type="file"
+                                                                                                        accept="image/*"
+                                                                                                        name="pic"
                                                                                                         id="J_file">
                                                                                                 </div>
                                                                                             </section>
-                                
+
                                                                                         </form>
-                                
+
                                                                                         <!-- 图片裁剪工作区域 -->
                                                                                         <div id="J_file_box">
-                                                                                            <img src="#" id="J_file_box_img" alt="">
+                                                                                            <img src="#"
+                                                                                                id="J_file_box_img"
+                                                                                                alt="">
                                                                                         </div>
-                                
+
                                                                                         <!-- 选择裁剪比例 -->
-                                                                                        <div class="crop-group" id="J_crop_group">
+                                                                                        <div class="crop-group"
+                                                                                            id="J_crop_group">
                                                                                             <label>
-                                                                                                <input type="radio" name="scale" value="1/1">
+                                                                                                <input type="radio"
+                                                                                                    name="scale"
+                                                                                                    value="1/1">
                                                                                                 <span>1 : 1</span>
                                                                                             </label>
                                                                                             <label>
-                                                                                                <input type="radio" name="scale" value="4/3"
+                                                                                                <input type="radio"
+                                                                                                    name="scale"
+                                                                                                    value="4/3"
                                                                                                     checked="checked">
                                                                                                 <span>4 : 3</span>
                                                                                             </label>
                                                                                             <label>
-                                                                                                <input type="radio" name="scale" value="9/16">
+                                                                                                <input type="radio"
+                                                                                                    name="scale"
+                                                                                                    value="9/16">
                                                                                                 <span>9 : 16</span>
                                                                                             </label>
                                                                                         </div>
-                                
+
                                                                                         <!-- 裁剪或取消 -->
-                                                                                        <div class="btn-group" id="J_btn_group">
-                                                                                            <span id="J_cancel">取消</span>
+                                                                                        <div class="btn-group"
+                                                                                            id="J_btn_group">
+                                                                                            <span
+                                                                                                id="J_cancel">取消</span>
                                                                                             <span id="J_crop">裁剪</span>
                                                                                         </div>
-                                
+
                                                                                     </div>
                                                                                     <div class=" mb-2">
                                                                                         <label
@@ -350,7 +370,7 @@
                                                                     <!--end modal-->
                                                                 </div>
                                                             </td>
-
+                                                        </tr>
                                                     </tbody>
                                                 </table>
                                                 <!--end table-->
@@ -364,7 +384,7 @@
                                 <!--end col-->
 
                             </div>
-                        
+
                         </div>
                     </div>
                     <!--end card-body-->
@@ -373,21 +393,22 @@
             </div>
             <!--end col-->
         </div>
-        <!--end row-->
+    </div>
 
 
-        <!--====================  footer area ====================-->
-        <footer>
-            <div class="sc-bottom-bar">
-                <a class="sc-menu-item " href="index.html"><i class="fas fa-home"></i></a>
-                <a class="sc-menu-item " href="goods-category.html"><i class="fas  fa-list"></i></a>
-                <a href="chat.html" class="sc-menu-item "><i class="fas fa-plus"></i></a>
-                <a class="sc-menu-item sc-current" href="cart.html"><i class="fas fa-clipboard"></i></a>
-                <a class="sc-nav-indicator"></a>
-                <a class="sc-menu-item" href="ui-me.html"><i class="fas fa-user"></i></a>
-            </div>
-        </footer>
-        <!--====================  End of footer area  ====================-->
+
+    <!--====================  footer area ====================-->
+    <footer style="padding-bottom: 100px;">
+        <div class="sc-bottom-bar">
+            <a class="sc-menu-item " href="index.html"><i class="fas fa-home"></i></a>
+            <a class="sc-menu-item " href="goods-category.html"><i class="fas  fa-list"></i></a>
+            <a href="chat.html" class="sc-menu-item "><i class="fas fa-plus"></i></a>
+            <a class="sc-menu-item sc-current" href="cart.html"><i class="fas fa-clipboard"></i></a>
+            <a class="sc-nav-indicator"></a>
+            <a class="sc-menu-item" href="ui-me.html"><i class="fas fa-user"></i></a>
+        </div>
+    </footer>
+    <!--====================  End of footer area  ====================-->
     </div>
 
     <!-- App js -->
