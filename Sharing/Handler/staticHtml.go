@@ -155,14 +155,14 @@ func EditProfileStatic(c *gin.Context) {
 		return
 	}
 
-	userName, people, _, _, _, _, _, err := config.GetUserMethod(contract, loginUser)
+	userName, people, _,email, sign, _, _, err := config.GetUserMethod(contract, loginUser)
 	fmt.Println("res", userName)
 	if err != nil {
 		respError(c, err)
 		return
 	}
 	userImg, err := contract.GetUserImg(nil, loginUser)
-	c.HTML(http.StatusOK, "Static/edit-profile.html", gin.H{"userName": userName, "address": people, "userImg": userImg})
+	c.HTML(http.StatusOK, "Static/edit-profile.html", gin.H{"userName": userName, "address": people, "userImg": userImg,"userEmail":email,"userSign":sign})
 }
 
 

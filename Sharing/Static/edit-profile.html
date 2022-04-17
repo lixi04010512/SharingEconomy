@@ -93,10 +93,10 @@
                     <div class="col-12">
                         <!-- edit profile form -->
                         <div class="edit-profile-form">
-                            <form>
+                            <form method="post" action="/updateUserPost">
                                 <div class="edit-profile-form__single-field space-mb--30">
                                     <label for="userName">姓名</label>
-                                    <input type="text" name="userName" id="userName" placeholder="请输入用户名">
+                                    <input type="text" name="up_name" id="up_name" placeholder="请输入用户名" value="{{.userName}}">
                                 </div>
                                 <!-- <div class="edit-profile-form__single-field space-mb--30">
                                     <label for="phoneNo">Phone</label>
@@ -104,14 +104,14 @@
                                 </div> -->
                                 <div class="edit-profile-form__single-field space-mb--30">
                                     <label for="emailAddress">邮箱</label>
-                                    <input type="text" name="emailAddress" id="emailAddress" placeholder="请输入邮箱">
+                                    <input type="text" name="up_email" id="up_email" placeholder="请输入邮箱" value="{{.userEmail}}">
                                 </div>
                                 <div class="edit-profile-form__single-field space-mb--30">
                                     <label for="shippingAddress">个性签名</label>
-                                    <textarea name="shippingAddress" id="shippingAddress" cols="30" rows="5"
-                                        placeholder="请输入..."></textarea>
+                                    <input type="text" name="up_sign" id="up_sign" placeholder="请输入..." value="{{.userSign}}">
+
                                 </div>
-                                <button class="edit-profile-form__button">确认修改</button>
+                                <button type="submit" class="edit-profile-form__button">确认修改</button>
                             </form>
                         </div>
                     </div>
