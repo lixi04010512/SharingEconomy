@@ -1,6 +1,7 @@
 {{ define "Static/goods-category.html" }}
 <!DOCTYPE html>
 <html>
+
 <head>
 	<meta charset="UTF-8">
 	<title>Share Fish-商品分类</title>
@@ -94,9 +95,9 @@
 						<div class="scrolltab-title">热门推荐</div>
 					</a>
 					{{ range $key ,$value:=.goodsCategory }}
-						<a href="javascript:;" class="scrolltab-item">
-							<div class="scrolltab-title">{{$value.Species}}</div>
-						</a>
+					<a href="javascript:;" class="scrolltab-item">
+						<div class="scrolltab-title">{{$value.Species}}</div>
+					</a>
 					{{end}}
 				</div>
 				<div class="scrolltab-content">
@@ -106,44 +107,50 @@
 							更多<i class="ti ti-chevron-right"></i>
 						</a>
 						<div>
-							<div class="aui-ad-head clearfix">
-								<a href="../shop-product">
-									<img src="share/images/6.jpg" alt="">
+							<div class="aui-flex-links">
+								<a href="shop-product.html" class="aui-flex-links-item">
+									<div class="aui-flex-links-img">
+										<img src="images/1.jpg" alt="">
+									</div>
+									<div class="aui-flex-links-text">佳能相机</div>
 								</a>
-								<a href="../shop-product">
-									<img src="share/images/6.jpg" alt="">
+								<a href="shop-product.html" class="aui-flex-links-item">
+									<div class="aui-flex-links-img">
+										<img src="images/1.jpg" alt="">
+									</div>
+									<div class="aui-flex-links-text">佳能相机</div>
 								</a>
-								<a href="../shop-product" style="margin-right:0">
-									<img src="share/images/6.jpg" alt="">
+								<a href="shop-product.html" class="aui-flex-links-item">
+									<div class="aui-flex-links-img">
+										<img src="images/1.jpg" alt="">
+									</div>
+									<div class="aui-flex-links-text">佳能相机</div>
 								</a>
 							</div>
-<!--							<a class="aui-flex-box" href="javascript:;">-->
-<!--								&lt;!&ndash; <div class="aui-flex-box-bd">排行榜</div> &ndash;&gt;-->
-<!--								&lt;!&ndash; <div class="aui-flex-box-fr">热销榜</div> &ndash;&gt;-->
-<!--							</a>-->
-<!--							<div class="aui-flex-links">-->
-<!--								<a href="../shop-product" class="aui-flex-links-item">-->
-<!--									<div class="aui-flex-links-img">-->
-<!--										<img src="share/images/1.jpg" alt="">-->
-<!--									</div>-->
-<!--									<div class="aui-flex-links-text">佳能相机</div>-->
-<!--								</a>-->
-<!--								<a href="../shop-product" class="aui-flex-links-item">-->
-<!--									<div class="aui-flex-links-img">-->
-<!--										<img src="share/images/2.jpg" alt="">-->
-<!--									</div>-->
-<!--									<div class="aui-flex-links-text">Switch</div>-->
-<!--								</a>-->
-<!--								<a href="../shop-product" class="aui-flex-links-item">-->
-<!--									<div class="aui-flex-links-img">-->
-<!--										<img src="share/images/3.jpg" alt="">-->
-<!--									</div>-->
-<!--									<div class="aui-flex-links-text">蓝牙耳机</div>-->
-<!--								</a>-->
 
-<!--							</div>-->
-<!--						</div>-->
-<!--					</div>-->
+							<div class="aui-flex-links">
+								<a href="shop-product.html" class="aui-flex-links-item">
+									<div class="aui-flex-links-img">
+										<img src="images/1.jpg" alt="">
+									</div>
+									<div class="aui-flex-links-text">佳能相机</div>
+								</a>
+								<a href="shop-product.html" class="aui-flex-links-item">
+									<div class="aui-flex-links-img">
+										<img src="images/2.jpg" alt="">
+									</div>
+									<div class="aui-flex-links-text">Switch</div>
+								</a>
+								<a href="shop-product.html" class="aui-flex-links-item">
+									<div class="aui-flex-links-img">
+										<img src="images/3.jpg" alt="">
+									</div>
+									<div class="aui-flex-links-text">蓝牙耳机</div>
+								</a>
+
+							</div>
+						</div>
+					</div>
 					{{ range $key ,$value:=.goodsCategory }}
 					<div class="scrolltab-content-item">
 						<span>{{$value.Species}}</span>
@@ -159,24 +166,24 @@
 							</div>
 							<div class="aui-flex-links">
 								{{ range $k ,$v:=$value.GoodImg}}
-									<a href="../shop-product/{{$value.Id}}" class="aui-flex-links-item">
-										<div class="aui-flex-links-img">
-											<img src={{$v}} alt="">
-										</div>
-										<div class="aui-flex-links-text">{{$value.Names}}</div>
-									</a>
+								<a href="../shop-product/{{$value.Id}}" class="aui-flex-links-item">
+									<div class="aui-flex-links-img">
+										<img src={{$v}} alt="">
+									</div>
+									<div class="aui-flex-links-text">{{$value.Names}}</div>
+								</a>
 								{{end}}
 							</div>
 						</div>
 					</div>
-{{end}}
+					{{end}}
 
 				</div>
 			</div>
 		</section>
 	</section>
 
-	<footer style="padding-bottom: 100px;">
+	<footer>
 
 		<div class="sc-bottom-bar">
 			<a class="sc-menu-item " href="../index"><i class="fas fa-home"></i></a>
@@ -225,4 +232,5 @@
 	</script>
 </body>
 {{ end }}
+
 </html>
