@@ -415,7 +415,7 @@ func SearchPageStatic(c *gin.Context) {
 		return
 	}
 	userImg, err := contract.GetUserImg(nil, loginUser)
-	c.HTML(http.StatusOK, "Static/.html", gin.H{"userName": userName, "address": people, "userImg": userImg})
+	c.HTML(http.StatusOK, "Static/search-page.html", gin.H{"userName": userName, "address": people, "userImg": userImg})
 }
 
 //渲染shop

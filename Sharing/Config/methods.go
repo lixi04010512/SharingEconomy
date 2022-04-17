@@ -20,7 +20,7 @@ const (
 	//ShareFishAddress = "0x097Dbbe9AC7dDd12919A1C6C1D364852F5bcefdE"
 	//hch
 	Prikey       = "5fd7eb82fbd4c5cc87fbeb867ff4804537723d80a5289606c28ca5c8eed4aa77"
-	ShareFishAddress = "0xC6b698151b4B257dFF4883A8E43e59B8425e6d08"
+	ShareFishAddress = "0x86880FD1Be1E8aD1CD7c4Fb9760650689378b981"
 
 	gasLimit = 3000000
 	//fileKeystore     = "UTC--2022-03-17T08-08-40.600466800Z--59b0f8a34d8f0dd0e0eef44d02cef0c12fffb9de"
