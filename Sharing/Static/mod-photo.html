@@ -52,10 +52,18 @@
                 display: table-cell; /*主要是这个属性*/
                 vertical-align: middle;
                 text-align: center;">
-                    <a onclick="$('#previewImg').click();">
-                    <img id="imghead" border="0" src="share/{{.userImg}}" width="90"
-                        height="90" >
-                    </a>
+                    {{if eq "" .userImg}}
+                        <a onclick="$('#previewImg').click();">
+                            <img id="imghead" border="0" src="share/assets/img/profile.jpg" width="90"
+                                 height="90" >
+                        </a>
+                    {{else}}
+                        <a onclick="$('#previewImg').click();">
+                            <img id="imghead" border="0" src="share/{{.userImg}}" width="90"
+                                 height="90" >
+                        </a>
+                    {{end}}
+
                 </div>
                 <input type="file" name="imgname" onchange="previewImage(this)"  style="display: none;"
                     id="previewImg">

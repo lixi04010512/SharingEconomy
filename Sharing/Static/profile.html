@@ -88,8 +88,14 @@
                         <div class="col-12">
                             <div class="profile-header">
                                 <div class="profile-header__image">
-                                    <a href="../mod-photo">
-                                        <img id="box-container" src="share/{{.userImg}}" class="img-fluid" alt="" style="width: 90px;height: 90px;"></a>
+                                    {{if eq "" .userImg}}
+                                        <a href="../mod-photo">
+                                            <img id="box-container" src="share/assets/img/profile.jpg" class="img-fluid" alt="" style="width: 90px;height: 90px;"></a>
+                                    {{else}}
+                                        <a href="../mod-photo">
+                                            <img id="box-container" src="share/{{.userImg}}" class="img-fluid" alt="" style="width: 90px;height: 90px;"></a>
+                                    {{end}}
+
                                 </div>
                 
                                 <div class="profile-header__content " >

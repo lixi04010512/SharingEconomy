@@ -57,10 +57,16 @@
         <div class="bj_img"><img class="beij_s" src="share/images/bg.png" alt="">
             <div class="nimetou_gaib">
                 <div class="toux_hou">
-                    <a href="../profile">
-                        <img id="Dfgrg" style="height:1.1rem;" src="share/{{.userImg}}" alt=""><input id="tupian_Sc"
-                            type="file">
-                    </a>
+                    {{if eq "" .userImg}}
+                        <a href="../profile">
+                            <img src="share/assets/img/profile.jpg" id="Dfgrg" style="height:1.1rem;" alt="">
+                        </a>
+                    {{else}}
+                        <a href="../profile">
+                            <img id="Dfgrg" style="height:1.1rem;" src="share/{{.userImg}}" alt="">
+                        </a>
+                    {{end}}
+
                 </div>
                 <div class="mingz">
                     <h2 onclick="Sign()" style="font-size: 15px">{{.address}}
