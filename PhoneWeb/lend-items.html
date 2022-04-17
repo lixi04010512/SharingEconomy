@@ -26,42 +26,34 @@
 </head>
 
 <body id="body" class="dark-sidebar">
-    <!-- leftbar-menu -->
+   
     <header>
-        <div class="header-wrapper border-bottom">
-            <div class="container space-y--15">
-                <div class="row align-items-center">
-                    <div class="col-auto">
-                        <!-- header logo -->
-                        <div class="header-logo">
-                            <a href="index.html">
-                                <img src="assets/img/logo.png" class="img-fluid" alt="" style="width: 75px;">
-                            </a>
-                        </div>
-                    </div>
-                    <div class="col d-flex justify-content-center">
-                        <!-- 搜索框 -->
-                        <div class="header-search">
-                            <a href="search-page.html">
-                                <div class="input-group">
-                                    <input type="text" id="chat-search" name="chat-search" class="form-control"
-                                        placeholder="搜索好物" style="    padding-left: 30px;">
-                            </a>
+		<div class="header-wrapper border-bottom">
+			<div class="container space-y--15">
+				<div class="row align-items-center">
+					<div class="col-auto">
+						<a class="back-link" onClick="javascript :history.back(-1);"> <i class="fa fa-angle-left"></i>
+							返回</a>
+					</div>
+					<div class="col d-flex justify-content-center">
+						<div class="header-search">
+							<div class="input-group">
+								<h4 style="    padding-top: 18px;">上架物品</h4>
+							</div>
+						</div>
+					</div>
+					<div class="col-auto">
+						<!-- header menu trigger -->
+						<button class="header-menu-trigger" id="header-menu-trigger">
+							<i class="fas fa-align-right" style="font-size: 20px;
+                                color: grey;"></i>
+						</button>
+					</div>
+				</div>
+			</div>
+		</div>
 
-                            <span style="position: absolute;padding-top: 7px;padding-left: 10px;
-                                   "><i class="fa fa-search"></i></span>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-auto">
-                    <button class="header-menu-trigger" id="header-menu-trigger">
-                        <i class="fas fa-align-right" style="font-size: 20px;
-                            color: grey;"></i>
-                    </button>
-                </div>
-            </div>
-        </div>
-    </header>
+	</header>
 
     <div class="offcanvas-menu" id="offcanvas-menu">
         <div class="profile-card text-center">
@@ -98,32 +90,19 @@
 
             <div class="container-fluid">
                 <!-- Page-Title -->
-                <div class="row">
-                    <div class="container space-y--15">
-                        <div class="row align-items-center">
-                            <div class="col-3">
-                                <a class="back-link" onClick="javascript :history.back(-1);"> <i
-                                        class="fa fa-angle-left"></i>
-                                    返回</a>
-                            </div>
-                            <div class="col-6">
-                                <h4 class="category-title text-center">上架物品</h4>
-                            </div>
-                        </div>
-                    </div>
-                </div>
+                
                 <!-- end page title end breadcrumb -->
                 <div class="row">
                     <div class="col-12">
                         <div class="card">
                             <div class="card-body p-0">
                                 <!-- Nav tabs -->
-                                <ul class="nav nav-tabs" role="tablist">
+                                <!-- <ul class="nav nav-tabs" role="tablist">
                                     <li class="nav-item">
                                         <a class="nav-link active" data-bs-toggle="tab" href="#Post" role="tab"
                                             aria-selected="true">上架物品</a>
                                     </li>
-                                </ul>
+                                </ul> -->
 
                                 <!-- Tab panes -->
                                 <div class="tab-content">
