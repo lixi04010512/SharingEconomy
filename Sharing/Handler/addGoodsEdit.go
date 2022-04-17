@@ -49,18 +49,18 @@ func addGoods(c *gin.Context) {
 	//存储所有图片路径
 	var goodsImgs []string
 
-	//fildDir := "./Static/images/"
+	fildDir := "./Static/images/"
 
 	// 遍历所有图片
 	for _, file := range files {
 		fmt.Println("fileok")
 		// 逐个存
 		fileName :=file.Filename
-		//filepath := fmt.Sprintf("%s%s", fildDir, fileName)
+		filepath := fmt.Sprintf("%s%s", fildDir, fileName)
 		fileH :=fmt.Sprintf("share/images/%s",fileName)
 		//fmt.Println("path",filepath)
 		goodsImgs = append(goodsImgs, fileH)
-		if err := c.SaveUploadedFile(file, file.Filename); err != nil {
+		if err := c.SaveUploadedFile(file, filepath); err != nil {
 			c.String(http.StatusBadRequest, fmt.Sprintf("upload err %s", err.Error()))
 			return
 		}
