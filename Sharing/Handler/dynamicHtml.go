@@ -17,7 +17,7 @@ type Renter struct {
 	Over       int            `json:over`        //租借截止时间
 
 }
-type goodsPort struct {
+type GoodsPort struct {
 	Id        *big.Int       `json:"id"`
 	borrower  Renter         `json:"renter"`    //租用者
 	Addr      common.Address `json:"addr"`      //地址
@@ -35,6 +35,7 @@ type goodsPort struct {
 }
 type StickAll struct {
 	Sticks string  `json:"sticks"`
+	GoodsPortStick GoodsPort
 }
 type GoodsAllInter interface {
 	goodsAll()
@@ -63,7 +64,7 @@ func addIndex(c *gin.Context) {
 	}
 
 	//定义一个结构体数组
-	var arr []goodsPort
+	var arr []GoodsPort
 	for i := 0; i < len(id)+1; i++ {
 		if i < len(id) {
 			//var Owner common.Address
@@ -75,7 +76,7 @@ func addIndex(c *gin.Context) {
 				respError(c, err)
 				return
 			}
-			arr1 := []goodsPort{goodsPort{Id: goodData.Id, Names: goodData.Name, Species: goodData.Species, Rent: goodData.Rent, EthPledge: goodData.EthPledge, GoodImg: goodData1.GoodImg}}
+			arr1 := []GoodsPort{GoodsPort{Id: goodData.Id, Names: goodData.Name, Species: goodData.Species, Rent: goodData.Rent, EthPledge: goodData.EthPledge, GoodImg: goodData1.GoodImg}}
 			arr = append(arr, arr1...)
 
 			//goodsPort1 := goodsPort{ Names: names, Species: species, Rent: rent, EthPledge: ethPledge}
@@ -130,7 +131,7 @@ func shopPorduct(c *gin.Context) {
 		return
 	}
 	c.HTML(http.StatusOK, "Static/shop-product.html", gin.H{
-		"goodsPort": goodsPort{
+		"goodsPort": GoodsPort{
 			Id:        goodData.Id,
 			Names:     names,
 			Rent:      goodData.Rent,
@@ -161,18 +162,19 @@ func goodsCategory(c *gin.Context) {
 	id := config.HaveId(client)
 
 	//定义一个结构体数组
-	var arr []goodsPort
-	var stickArr []StickAll
+	var arr []StickAll
+	//var stickArr []StickAll
 	for i := 1; i < 20 ;i++ {
-		stick,err :=config.ShowSpecies(contract,big.NewInt(int64(i)))
+	stick,err :=config.ShowSpecies(contract,big.NewInt(int64(i)))
+
 		if err != nil {
 			respError(c, err)
 			return
 		}
-		stickArr1:=[]StickAll{StickAll{Sticks: stick}}
-		stickArr=append(stickArr,stickArr1...)
+		arr1:=[]StickAll{StickAll{Sticks: stick}}
+		arr=append(arr,arr1...)
 	}
-	for i := 0; i < len(id)+1; i++ {
+	for i := 0; i <len(id)+1; i++ {
 		if i < len(id) {
 			goodData, goodData1, err := config.HaveIndex(client, id[i])
 
@@ -180,21 +182,25 @@ func goodsCategory(c *gin.Context) {
 				respError(c, err)
 				return
 			}
-			arr1 := []goodsPort{goodsPort{Id: goodData.Id, Names: goodData.Name, Species: goodData.Species, Rent: goodData.Rent, EthPledge: goodData.EthPledge, GoodImg: goodData1.GoodImg}}
+			fmt.Println("goodData.Name",goodData.Name)
+
+			arr1:=[]StickAll{StickAll{GoodsPortStick: GoodsPort{Id: goodData.Id, Names: goodData.Name, Species: goodData.Species, Rent: goodData.Rent, EthPledge: goodData.EthPledge, GoodImg: goodData1.GoodImg}}}
+			//arr1 := []GoodsPort{GoodsPort{Id: goodData.Id, Names: goodData.Name, Species: goodData.Species, Rent: goodData.Rent, EthPledge: goodData.EthPledge, GoodImg: goodData1.GoodImg}}
 			arr = append(arr, arr1...)
+     fmt.Println(arr)
 			//goodsPort1 := goodsPort{ Names: names, Species: species, Rent: rent, EthPledge: ethPledge}
 			//fmt.Println(goodsPort{},addr)
 		} else {
 			userName, people, _, _, _, _, _, err := config.GetUserMethod(contract, loginUser)
 			fmt.Println("res", userName)
 			userImg, err := contract.GetUserImg(nil, loginUser)
+
 			if err != nil {
 				respError(c, err)
 				return
 			}
 			c.HTML(http.StatusOK, "Static/goods-category.html", gin.H{
 				"goodsCategory": arr,
-				"stickAll":stickArr,
 				"userName":      userName,
 				"address":       people,
 				"userImg":       userImg,
@@ -231,8 +237,8 @@ func CartGood(c *gin.Context) {
 		return
 	}
 	//定义一个结构体数组
-	var arrUp []goodsPort
-	var arrDown []goodsPort
+	var arrUp []GoodsPort
+	var arrDown []GoodsPort
 	for i := 0; i < len(id)+1; i++ {
 		if i < len(id) {
 			//var addr common.Address
@@ -244,10 +250,10 @@ func CartGood(c *gin.Context) {
 			}
 
 			if people == goodData.Owner && goodData.Available == true {
-				arr1 := []goodsPort{goodsPort{Id: goodData.Id, Names: goodData.Name, Species: goodData.Species, Rent: goodData.Rent, EthPledge: goodData.EthPledge, IsBorrow: goodData.IsBorrow, GoodImg: goodData1.GoodImg}}
+				arr1 := []GoodsPort{GoodsPort{Id: goodData.Id, Names: goodData.Name, Species: goodData.Species, Rent: goodData.Rent, EthPledge: goodData.EthPledge, IsBorrow: goodData.IsBorrow, GoodImg: goodData1.GoodImg}}
 				arrUp = append(arrUp, arr1...)
 			} else if people == goodData.Owner && goodData.Available == false {
-				arr2 := []goodsPort{goodsPort{Id: goodData.Id, Names: goodData.Name, Species: goodData.Species, Rent: goodData.Rent, EthPledge: goodData.EthPledge, IsBorrow: goodData.IsBorrow, GoodImg: goodData1.GoodImg}}
+				arr2 := []GoodsPort{GoodsPort{Id: goodData.Id, Names: goodData.Name, Species: goodData.Species, Rent: goodData.Rent, EthPledge: goodData.EthPledge, IsBorrow: goodData.IsBorrow, GoodImg: goodData1.GoodImg}}
 				arrDown = append(arrDown, arr2...)
 			}
 		} else {
@@ -291,8 +297,8 @@ func MyOrder(c *gin.Context) {
 		return
 	}
 	//定义一个结构体数组
-	var arrUp []goodsPort
-	var arrDown []goodsPort
+	var arrUp []GoodsPort
+	var arrDown []GoodsPort
 	for i := 0; i < len(id)+1; i++ {
 		if i < len(id) {
 			//var addr common.Address
@@ -303,10 +309,10 @@ func MyOrder(c *gin.Context) {
 			}
 
 			if people == goodData.Owner && goodData.IsBorrow == true {
-				arr1 := []goodsPort{goodsPort{Id: goodData.Id, Names: goodData.Name, Species: goodData.Species, Rent: goodData.Rent, EthPledge: goodData.EthPledge, IsBorrow: goodData.IsBorrow, GoodImg: goodData1.GoodImg}}
+				arr1 := []GoodsPort{GoodsPort{Id: goodData.Id, Names: goodData.Name, Species: goodData.Species, Rent: goodData.Rent, EthPledge: goodData.EthPledge, IsBorrow: goodData.IsBorrow, GoodImg: goodData1.GoodImg}}
 				arrUp = append(arrUp, arr1...)
 			} else if people == goodData.Owner && goodData.IsBorrow == false {
-				arr2 := []goodsPort{goodsPort{Id: goodData.Id, Names: goodData.Name, Species: goodData.Species, Rent: goodData.Rent, EthPledge: goodData.EthPledge, IsBorrow: goodData.IsBorrow, GoodImg: goodData1.GoodImg}}
+				arr2 := []GoodsPort{GoodsPort{Id: goodData.Id, Names: goodData.Name, Species: goodData.Species, Rent: goodData.Rent, EthPledge: goodData.EthPledge, IsBorrow: goodData.IsBorrow, GoodImg: goodData1.GoodImg}}
 				arrDown = append(arrDown, arr2...)
 			}
 		} else {
@@ -351,7 +357,7 @@ func CategoryDetails(c *gin.Context) {
 		respError(c, err)
 		return
 	}
-	var arrDetails []goodsPort
+	var arrDetails []GoodsPort
 	for i := 0; i < len(id)+1; i++ {
 		if i < len(id) {
 			//var addr common.Address
@@ -362,7 +368,7 @@ func CategoryDetails(c *gin.Context) {
 			}
 
 			if goodData.Species == Speci {
-				arr1 := []goodsPort{goodsPort{Id: goodData.Id, Names: goodData.Name, Rent: goodData.Rent, GoodImg: goodData1.GoodImg}}
+				arr1 := []GoodsPort{GoodsPort{Id: goodData.Id, Names: goodData.Name, Rent: goodData.Rent, GoodImg: goodData1.GoodImg}}
 				arrDetails = append(arrDetails, arr1...)
 			}
 			print(arrDetails)
@@ -405,7 +411,7 @@ func Myshop(c *gin.Context) {
 		respError(c, err)
 		return
 	}
-	var myshoparr []goodsPort
+	var myshoparr []GoodsPort
 	for i := 0; i < len(id)+1; i++ {
 		if i < len(id) {
 			//var addr common.Address
@@ -415,7 +421,7 @@ func Myshop(c *gin.Context) {
 				return
 			}
 			if goodData.Borrowers.Borrower == people && goodData.IsBorrow == true {
-				arr1 := []goodsPort{goodsPort{Id: goodData.Id, Names: goodData.Name, Rent: goodData.Rent, GoodImg: goodData1.GoodImg, Species: goodData.Species}}
+				arr1 := []GoodsPort{GoodsPort{Id: goodData.Id, Names: goodData.Name, Rent: goodData.Rent, GoodImg: goodData1.GoodImg, Species: goodData.Species}}
 				myshoparr = append(myshoparr, arr1...)
 			}
 

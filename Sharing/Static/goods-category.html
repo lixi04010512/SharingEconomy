@@ -96,7 +96,7 @@
 					</a>
 					{{ range $key ,$value:=.goodsCategory }}
 					<a href="javascript:;" class="scrolltab-item">
-						<div class="scrolltab-title">{{$value.Species}}</div>
+						<div class="scrolltab-title">{{$value.Sticks}}</div>
 					</a>
 					{{end}}
 				</div>
@@ -151,31 +151,33 @@
 							</div>
 						</div>
 					</div>
-					{{ range $key ,$value:=.goodsCategory }}
+					{{ range $key ,$value:=.GoodsCategory }}
 					<div class="scrolltab-content-item">
-						<span>{{$value.Species}}</span>
-						<a href="../category-details/{{$value.Species}}" style="float: right;padding-top: 8px;">
+						<span>{{$value.Sticks}}</span>
+						<a href="../category-details/{{$value.Sticks}}" style="float: right;padding-top: 8px;">
 							更多<i class="ti ti-chevron-right"></i>
 						</a>
 
 						<div>
+{{/*							{{if eq $value.Sticks $value.GoodsPortStick.Species}}*/}}
 							<div class="aui-class-ad-img">
 								<a href="../category-details">
 									<img src="share/images/ad1.jpg" alt="">
 								</a>
 							</div>
 							<div class="aui-flex-links">
-								{{ range $k ,$v:=$value.GoodImg}}
-								<a href="../shop-product/{{$value.Id}}" class="aui-flex-links-item">
+								{{ range $k ,$v:=$value.GoodsPortStick.GoodImg}}
+								<a href="../shop-product/{{$value.GoodsPortStick.Id}}" class="aui-flex-links-item">
 									<div class="aui-flex-links-img">
 										<img src={{$v}} alt="">
 									</div>
-									<div class="aui-flex-links-text">{{$value.Names}}</div>
+									<div class="aui-flex-links-text">{{$value.GoodsPortStick.Names}}</div>
 								</a>
 								{{end}}
 							</div>
 						</div>
 					</div>
+{{/*					{{end}}*/}}
 					{{end}}
 
 				</div>
