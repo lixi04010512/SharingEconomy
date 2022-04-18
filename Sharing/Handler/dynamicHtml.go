@@ -33,6 +33,9 @@ type goodsPort struct {
 	IsBorrow  bool           `json:"isBorrow"`  //是否借出
 
 }
+type StickAll struct {
+	Sticks string  `json:"sticks"`
+}
 type GoodsAllInter interface {
 	goodsAll()
 }
@@ -159,10 +162,20 @@ func goodsCategory(c *gin.Context) {
 
 	//定义一个结构体数组
 	var arr []goodsPort
-
+	var stickArr []StickAll
+	for i := 1; i < 20 ;i++ {
+		stick,err :=config.ShowSpecies(contract,big.NewInt(int64(i)))
+		if err != nil {
+			respError(c, err)
+			return
+		}
+		stickArr1:=[]StickAll{StickAll{Sticks: stick}}
+		stickArr=append(stickArr,stickArr1...)
+	}
 	for i := 0; i < len(id)+1; i++ {
 		if i < len(id) {
 			goodData, goodData1, err := config.HaveIndex(client, id[i])
+
 			if err != nil {
 				respError(c, err)
 				return
@@ -181,6 +194,7 @@ func goodsCategory(c *gin.Context) {
 			}
 			c.HTML(http.StatusOK, "Static/goods-category.html", gin.H{
 				"goodsCategory": arr,
+				"stickAll":stickArr,
 				"userName":      userName,
 				"address":       people,
 				"userImg":       userImg,
@@ -223,6 +237,7 @@ func CartGood(c *gin.Context) {
 		if i < len(id) {
 			//var addr common.Address
 			goodData, goodData1, err := config.HaveIndex(client, id[i])
+
 			if err != nil {
 				respError(c, err)
 				return
