@@ -24,6 +24,7 @@ func AddStick(client *ethclient.Client, contract *Agreement.User, stick string) 
 
 //封装分类展示方法
 func ShowSpecies(contract *Agreement.User, id *big.Int) (string, error) {
+
 	res, err := contract.GetStick(nil, id)
 
 	//fmt.Println("showSpecies:", res)
@@ -31,6 +32,18 @@ func ShowSpecies(contract *Agreement.User, id *big.Int) (string, error) {
 		log.Fatal(err)
 	}
 	return res, nil
+}
+
+//封装分类展示方法
+func ShowStick(client *ethclient.Client, id *big.Int) (string, error) {
+	ins, err := HaveUserRead(client)
+	res, err := ins.GetStick(nil, id)
+
+	//fmt.Println("showSpecies:", res)
+	if err != nil {
+		log.Fatal(err)
+	}
+	return res, err
 }
 
 //封装删除分类方法

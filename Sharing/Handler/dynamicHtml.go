@@ -34,7 +34,7 @@ type GoodsPort struct {
 
 }
 type StickAll struct {
-	Sticks string  `json:"sticks"`
+	Sticks         string `json:"sticks"`
 	GoodsPortStick GoodsPort
 }
 type GoodsAllInter interface {
@@ -147,64 +147,49 @@ func shopPorduct(c *gin.Context) {
 //商品分类展示
 func goodsCategory(c *gin.Context) {
 	client, err := config.GetClient()
-	if err != nil {
-		fmt.Println(err)
-		respError(c, err)
-		return
-	}
 	contract, err := config.GetAddress(client)
-	if err != nil {
-		respError(c, err)
-		return
-	}
-
 	//获取id
 	id := config.HaveId(client)
-
-	//定义一个结构体数组
-	var arr []StickAll
-	//var stickArr []StickAll
-	for i := 1; i < 20 ;i++ {
-	stick,err :=config.ShowSpecies(contract,big.NewInt(int64(i)))
-
-		if err != nil {
-			respError(c, err)
-			return
-		}
-		arr1:=[]StickAll{StickAll{Sticks: stick}}
-		arr=append(arr,arr1...)
+	userName, people, _, _, _, _, _, err := config.GetUserMethod(contract, loginUser)
+	userImg, err := contract.GetUserImg(nil, loginUser)
+	if err != nil {
+		respError(c, err)
+		return
 	}
-	for i := 0; i <len(id)+1; i++ {
-		if i < len(id) {
-			goodData, goodData1, err := config.HaveIndex(client, id[i])
-
+	//定义一个结构体数组
+	var stickArr []StickAll
+	var arr []StickAll
+	for j := 1; j < 9; j++ {
+		if j < 8 {
+			StickData, err := config.ShowStick(client, big.NewInt(int64(j)))
 			if err != nil {
 				respError(c, err)
 				return
 			}
-			fmt.Println("goodData.Name",goodData.Name)
-
-			arr1:=[]StickAll{StickAll{GoodsPortStick: GoodsPort{Id: goodData.Id, Names: goodData.Name, Species: goodData.Species, Rent: goodData.Rent, EthPledge: goodData.EthPledge, GoodImg: goodData1.GoodImg}}}
-			//arr1 := []GoodsPort{GoodsPort{Id: goodData.Id, Names: goodData.Name, Species: goodData.Species, Rent: goodData.Rent, EthPledge: goodData.EthPledge, GoodImg: goodData1.GoodImg}}
-			arr = append(arr, arr1...)
-     fmt.Println(arr)
-			//goodsPort1 := goodsPort{ Names: names, Species: species, Rent: rent, EthPledge: ethPledge}
-			//fmt.Println(goodsPort{},addr)
+			stickArr1 := []StickAll{StickAll{Sticks: StickData}}
+			stickArr = append(stickArr, stickArr1...)
+			for i := 0; i < len(id); i++ {
+				goodData, goodData1, _ := config.HaveIndex(client, id[i])
+				if goodData.Species == StickData {
+					//arr1 := []GoodsPort{GoodsPort{Id: goodData.Id, Names: goodData.Name, Species: goodData.Species, Rent: goodData.Rent, EthPledge: goodData.EthPledge, GoodImg: goodData1.GoodImg}}
+					//arr = append(arr, arr1...)
+					arr1 := []StickAll{StickAll{GoodsPortStick: GoodsPort{Id: goodData.Id, Names: goodData.Name, Species: goodData.Species, Rent: goodData.Rent, EthPledge: goodData.EthPledge, GoodImg: goodData1.GoodImg}}}
+					stickArr = append(stickArr, arr1...)
+					//fmt.Println("stickA融入33",stickArr)
+					//goodsPort1 := goodsPort{ Names: names, Species: species, Rent: rent, EthPledge: ethPledge}
+					//fmt.Println(goodsPort{},addr)
+				}
+			}
 		} else {
-			userName, people, _, _, _, _, _, err := config.GetUserMethod(contract, loginUser)
-			fmt.Println("res", userName)
-			userImg, err := contract.GetUserImg(nil, loginUser)
-
-			if err != nil {
-				respError(c, err)
-				return
-			}
+			fmt.Println("stickArr===", stickArr)
+			stickArr = append(stickArr, arr...)
 			c.HTML(http.StatusOK, "Static/goods-category.html", gin.H{
-				"goodsCategory": arr,
+				"goodsCategory": stickArr,
 				"userName":      userName,
 				"address":       people,
 				"userImg":       userImg,
 			})
+
 		}
 	}
 }

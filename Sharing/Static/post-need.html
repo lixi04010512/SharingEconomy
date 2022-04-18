@@ -80,14 +80,14 @@
                                 <div class="tab-content">
                                     <div class="tab-pane p-3 active" id="Post" role="tabpanel">
                                         <div class="row">
-                                            <form method="post" action="" id="needForm">
+{{/*                                            <form method="post" action="" id="needForm">*/}}
                                                 <div class="col-md-6">
                                                     <label class="form-label">物品类别</label>
                                                     <select class="form-select" aria-label="Default select example">
                                                         <option selected="">服饰</option>
-                                                        <option value="1">电子产品</option>
-                                                        <option value="2">书籍</option>
-                                                        <option value="3">其他</option>
+                                                        <option >电子产品</option>
+                                                        <option >书籍</option>
+                                                        <option >其他</option>
                                                     </select>
                                                 </div>
                                                 <div class="row g-3 align-items-center">
@@ -98,9 +98,8 @@
                                                             name="addnote" style="    height: 460px;"></textarea>
                                                     </div>
                                                 </div>
-                                                <button class="btn btn-primary mt-4" id="needBtn"
-                                                    onclick="addNeed()">确认发布</button>
-                                            </form>
+                                                <button class="btn btn-primary mt-4" id="needBtn">确认发布</button>
+{{/*                                            </form>*/}}
                                         </div>
                                         <!--end row-->
                                     </div>
@@ -144,6 +143,7 @@
     <!-- Main JS -->
     <script src="share/assets/js/main.js"></script>
     <script src="share/js/popbox.js"></script>
+    <script src="share/post--need.js"></script>
     <script>
         function okFunction() {
             $.ajax({
@@ -212,26 +212,26 @@
         })
     </script>
 
-    <script>
-        function addNeed() {
-            $.ajax({
-                url: "/chat",		  //请求的路径，获取数据源
-                type: "post",			  //请求的方式
-                dataType: "json",		  //请求返回的数据类型
-                data: {
-                    addnote: $("#addnote").val(),
+{{/*    <script>*/}}
+{{/*        function addNeed() {*/}}
+{{/*            $.ajax({*/}}
+{{/*                url: "/chat",		  //请求的路径，获取数据源*/}}
+{{/*                type: "post",			  //请求的方式*/}}
+{{/*                dataType: "json",		  //请求返回的数据类型*/}}
+{{/*                data: {*/}}
+{{/*                    addnote: $("#addnote").val(),*/}}
 
-                },
-                success: function (data) {
-                    alert("添加成功");
-                    InitPapers();
+{{/*                },*/}}
+{{/*                success: function (data) {*/}}
+{{/*                    alert("添加成功");*/}}
+{{/*                    InitPapers();*/}}
 
-                }
+{{/*                }*/}}
 
-            }
-            )
-        }
-    </script>
+{{/*            }*/}}
+{{/*            )*/}}
+{{/*        }*/}}
+{{/*    </script>*/}}
 </body>
 {{ end }}
 </html>

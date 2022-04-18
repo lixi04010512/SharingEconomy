@@ -95,9 +95,11 @@
 						<div class="scrolltab-title">热门推荐</div>
 					</a>
 					{{ range $key ,$value:=.goodsCategory }}
+						{{if ne $value.Sticks ""}}
 					<a href="javascript:;" class="scrolltab-item">
 						<div class="scrolltab-title">{{$value.Sticks}}</div>
 					</a>
+						{{end}}
 					{{end}}
 				</div>
 				<div class="scrolltab-content">
@@ -151,34 +153,41 @@
 							</div>
 						</div>
 					</div>
-					{{ range $key ,$value:=.GoodsCategory }}
-					<div class="scrolltab-content-item">
-						<span>{{$value.Sticks}}</span>
-						<a href="../category-details/{{$value.Sticks}}" style="float: right;padding-top: 8px;">
-							更多<i class="ti ti-chevron-right"></i>
-						</a>
-
-						<div>
-{{/*							{{if eq $value.Sticks $value.GoodsPortStick.Species}}*/}}
-							<div class="aui-class-ad-img">
-								<a href="../category-details">
-									<img src="share/images/ad1.jpg" alt="">
-								</a>
-							</div>
-							<div class="aui-flex-links">
+					{{ range $key ,$value:=.goodsCategory }}
+						{{if eq $value.Sticks ""}}
+							<a href="../shop-product/{{$value.GoodsPortStick.Id}}" class="aui-flex-links-item">
 								{{ range $k ,$v:=$value.GoodsPortStick.GoodImg}}
-								<a href="../shop-product/{{$value.GoodsPortStick.Id}}" class="aui-flex-links-item">
 									<div class="aui-flex-links-img">
 										<img src={{$v}} alt="">
 									</div>
-									<div class="aui-flex-links-text">{{$value.GoodsPortStick.Names}}</div>
-								</a>
 								{{end}}
+							<div class="aui-flex-links-text">{{$value.GoodsPortStick.Names}}</div>
+							</a>
+								{{else}}
+							<div class="scrolltab-content-item">
+								<span>{{$value.Sticks}}</span>
+								<a href="../category-details/{{$value.Sticks}}" style="float: right;padding-top: 8px;">
+									更多<i class="ti ti-chevron-right"></i>
+								</a>
+
+								<div>
+									{{/*							{{if eq $value.Sticks $value.GoodsPortStick.Species}}*/}}
+									<div class="aui-class-ad-img">
+										<a href="../category-details/{{$value.Sticks}}">
+											<img src="share/images/ad1.jpg" alt="">
+										</a>
+									</div>
+									<div class="aui-flex-links">
+
+									</div>
+								</div>
 							</div>
-						</div>
-					</div>
-{{/*					{{end}}*/}}
+
+
+						{{end}}
+
 					{{end}}
+{{/*					{{end}}*/}}
 
 				</div>
 			</div>
