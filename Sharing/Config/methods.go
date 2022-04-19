@@ -20,13 +20,15 @@ const (
 	//ShareFishAddress = "0x097Dbbe9AC7dDd12919A1C6C1D364852F5bcefdE"
 	//hch
 	//Prikey       = "5fd7eb82fbd4c5cc87fbeb867ff4804537723d80a5289606c28ca5c8eed4aa77"
-	//ShareFishAddress = "0xC6b698151b4B257dFF4883A8E43e59B8425e6d08"
+	//ShareFishAddress = "0x86880FD1Be1E8aD1CD7c4Fb9760650689378b981"
+	Prikey       = "769f41a9de1f6f1848d7631e274f2168e3cb20d16c81f688a49d081965a53861"
+	ShareFishAddress = "0x92523ECFef0F4169b20b4AF035c15128eccfEEEd"
 
 	gasLimit = 3000000
 	//fileKeystore     = "UTC--2022-03-17T08-08-40.600466800Z--59b0f8a34d8f0dd0e0eef44d02cef0c12fffb9de"
-	Prikey = "c5b9c7fd467335bd829b3b2a3098a72ac39b7f5efa162220b7907cfc684df9a3"
+	//Prikey = "c5b9c7fd467335bd829b3b2a3098a72ac39b7f5efa162220b7907cfc684df9a3"
 	//privateKey       = "111"
-	ShareFishAddress = "0xf615856b38c0A1bD0925b610FaaE7ac6EB446432"
+	//ShareFishAddress = "0x1415f8284C54Fbbf5b5300B6177a24A491b1bd07"
 )
 
 //获取client

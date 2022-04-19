@@ -69,7 +69,7 @@ func addGoods(c *gin.Context) {
 	fmt.Println("pass", name)
 	fmt.Println("goodsImg",goodsImgs)
 
-	data, err := config.AddGoodsMethod(client, contract, owner, name, species, big.NewInt(rentInt64), big.NewInt(ethPledgeInt64), goodsImgs,goodSign)
+	data, err := config.AddGoodsMethod(client, contract, owner, name, species, big.NewInt(rentInt64), big.NewInt(ethPledgeInt64), goodsImgs,goodSign,privKey)
 	fmt.Println("addGood",data)
 	c.Redirect(http.StatusFound, "/cart")
 }
