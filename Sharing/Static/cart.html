@@ -5,7 +5,7 @@
 <head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <title>Share Fish-我的交易</title>
+    <title>Share Fish-我的物品</title>
     <meta name="description" content="">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <script src="share/static/js/public.js"></script>
@@ -23,112 +23,105 @@
 </head>
 
 <body id="body" class="dark-sidebar">
-    <!--====================  preloader area ====================-->
-    <div class="preloader-activate preloader-active">
-        <div class="preloader-area-wrap">
-            <div class="spinner d-flex justify-content-center align-items-center h-100">
-                <div class="img-loader"></div>
+<!--====================  preloader area ====================-->
+<div class="preloader-activate preloader-active">
+    <div class="preloader-area-wrap">
+        <div class="spinner d-flex justify-content-center align-items-center h-100">
+            <div class="img-loader"></div>
+        </div>
+    </div>
+</div>
+<!--====================  End of preloader area  ====================-->
+
+<!--====================  header area ====================-->
+<header>
+    <div class="header-wrapper border-bottom">
+        <div class="container space-y--15">
+            <div class="row align-items-center">
+                <div class="col-auto">
+                    <!-- header logo -->
+                    <div class="header-logo">
+                        <a href="../index">
+                            <img src="share/assets/img/logo.png" class="img-fluid" alt="" style="width: 75px;">
+                        </a>
+                    </div>
+                </div>
+                <div class="col d-flex justify-content-center">
+                    <!-- 搜索框 -->
+                    <div class="header-search">
+                        <a href="../search-page">
+                            <div class="input-group">
+                                <input type="text" id="chat-search" name="chat-search" class="form-control"
+                                       placeholder="搜索好物" style="    padding-left: 30px;">
+                        </a>
+
+                        <span style="position: absolute;padding-top: 7px;padding-left: 10px;
+                                       "><i class="fa fa-search"></i></span>
+                    </div>
+                </div>
+            </div>
+            <div class="col-auto">
+                <button class="header-menu-trigger" id="header-menu-trigger">
+                    <i class="fas fa-align-right" style="font-size: 20px;
+                                color: grey;"></i>
+                </button>
             </div>
         </div>
     </div>
-    <!--====================  End of preloader area  ====================-->
+</header>
+<!--====================  End of header area  ====================-->
+<!--====================  mobile menu overlay ====================-->
+{{ template "Static/menu.html" . }}
 
-    <!--====================  header area ====================-->
-    <header>
-        <div class="header-wrapper border-bottom">
-            <div class="container space-y--15">
-                <div class="row align-items-center">
-                    <div class="col-auto">
-                        <!-- header logo -->
-                        <div class="header-logo">
-                            <a href="../index">
-                                <img src="share/assets/img/logo.png" class="img-fluid" alt="" style="width: 75px;">
-                            </a>
+<div class="page-wrapper">
+    <!-- Page Content-->
+    <div class="page-content-tab">
+
+        <div class="container-fluid">
+            <div class="row">
+                <div class="container space-y--15">
+                    <div class="row align-items-center">
+                        <div class="col-3">
+                            <a class="back-link" onClick="javascript :history.back(-1);"> <i
+                                        class="fa fa-angle-left"></i>
+                                返回</a>
+                        </div>
+                        <div class="col-6">
+                            <h4 class="category-title text-center">我的物品</h4>
                         </div>
                     </div>
-                    <div class="col d-flex justify-content-center">
-                        <!-- 搜索框 -->
-                        <div class="header-search">
-                            <a href="../search-page">
-                                <div class="input-group">
-                                    <input type="text" id="chat-search" name="chat-search" class="form-control"
-                                        placeholder="搜索好物" style="    padding-left: 30px;">
-                            </a>
-
-                            <span style="position: absolute;padding-top: 7px;padding-left: 10px;
-                                       "><i class="fa fa-search"></i></span>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-auto">
-                    <button class="header-menu-trigger" id="header-menu-trigger">
-                        <i class="fas fa-align-right" style="font-size: 20px;
-                                color: grey;"></i>
-                    </button>
                 </div>
             </div>
         </div>
-    </header>
-    <!--====================  End of header area  ====================-->
-    <!--====================  mobile menu overlay ====================-->
-    {{ template "Static/menu.html" . }}
 
-    <div class="page-wrapper">
-        <!-- Page Content-->
-        <div class="page-content-tab">
+        <div class="row">
+            <div class="col-12">
+                <div class="card">
 
-            <div class="container-fluid">
-                <div class="row">
-                    <div class="container space-y--15">
-                        <div class="row align-items-center">
-                            <div class="col-3">
-                                <a class="back-link" onClick="javascript :history.back(-1);"> <i
-                                        class="fa fa-angle-left"></i>
-                                    返回</a>
-                            </div>
-                            <div class="col-6">
-                                <h4 class="category-title text-center">我的物品</h4>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
+                    <!-- Tab panes -->
+                    <div class="tab-content">
+                        <div class="tab-pane p-3 active" id="Post" role="tabpanel">
 
-            <div class="row">
-                <div class="col-12">
-                    <div class="card">
-
-                        <!-- Tab panes -->
-                        <div class="tab-content">
-                            <div class="tab-pane p-3 active" id="Post" role="tabpanel">
-
-                                <div class="row">
-                                    <div class="card">
-                                        <!-- <div class="card-header">
-                                            <div class="row align-items-center">
-                                                <div class="col">                      
-                                                    <h4 class="card-title">On items</h4>                      
-                                                </div>                                      
-                                            </div>                                
-                                        </div> -->
-                                        <div class="card-body">
-                                            <div class="table-responsive">
-                                                <table class="table mb-0">
-                                                    <thead class="thead-light">
-                                                        <tr>
-                                                            <th class="border-top-0">商品</th>
-                                                            <th class="border-top-0">状态</th>
-                                                            <th class="border-top-0" style="padding-left: 16px;">操作
-                                                            </th>
-                                                        </tr>
-                                                        <!--end tr-->
-                                                    </thead>
-                                                    <tbody>
-                                                        {{range $key,$vlaue := .goodsUp}}
-                                                        <tr>
-                                                            <td>
-                                                                <div class="media">
-                                                                    {{range $k,$v:= $vlaue.GoodImg}}
+                            <div class="row">
+                                <div class="card">
+                                    <div class="card-body">
+                                        <div class="table-responsive">
+                                            <table class="table mb-0">
+                                                <thead class="thead-light">
+                                                <tr>
+                                                    <th class="border-top-0">商品</th>
+                                                    <th class="border-top-0">状态</th>
+                                                    <th class="border-top-0" style="padding-left: 16px;">操作
+                                                    </th>
+                                                </tr>
+                                                <!--end tr-->
+                                                </thead>
+                                                <tbody>
+                                                {{range $key,$vlaue := .goodsUp}}
+                                                    <tr>
+                                                        <td>
+                                                            <div class="media">
+                                                                {{range $k,$v:= $vlaue.GoodImg}}
                                                                     <img src={{$v}} height="30"
                                                                         class="me-3 align-self-center rounded"
                                                                         alt="...">
@@ -142,18 +135,20 @@
                                                                     </div>
                                                                     <!--end media body-->
                                                                 </div>
-                                                            </td>
+                                                                <!--end media body-->
+                                                            </div>
+                                                        </td>
 
-                                                            <td><span
+                                                        <td><span
                                                                     class="badge badge-soft-warning px-2">{{$vlaue.IsBorrow}}</span>
-                                                            </td>
-                                                            <td>
-                                                                <div class="dropdown d-inline-block float-right">
-                                                                    <a class="nav-link dropdown-toggle arrow-none"
-                                                                        id="dLabel8" data-bs-toggle="dropdown" href="#"
-                                                                        role="button" aria-haspopup="false"
-                                                                        aria-expanded="false">
-                                                                        <i
+                                                        </td>
+                                                        <td>
+                                                            <div class="dropdown d-inline-block float-right">
+                                                                <a class="nav-link dropdown-toggle arrow-none"
+                                                                   id="dLabel8" data-bs-toggle="dropdown" href="#"
+                                                                   role="button" aria-haspopup="false"
+                                                                   aria-expanded="false">
+                                                                    <i
                                                                             class="fas fa-ellipsis-v font-20 text-muted"></i>
                                                                     </a>
                                                                     <div class="dropdown-menu dropdown-menu-right"
@@ -165,180 +160,172 @@
 
                                                                     </div>
                                                                 </div>
-                                                            </td>
-                                                        </tr>
-                                                        {{end}}
-
-                                                        <!-- Modal -->
-                                                        <div class="modal fade" id="exampleModalSend" tabindex="-1"
-                                                            aria-labelledby="exampleModalSendLabel" aria-hidden="true">
-                                                            <div class="modal-dialog">
-                                                                <div class="modal-content">
-                                                                    <div class="modal-header">
-                                                                        <h6 class="modal-title m-0"
-                                                                            id="exampleModalDefaultSend">
-                                                                            编辑物品信息</h6>
-                                                                        <button type="button" class="btn-close"
-                                                                            data-bs-dismiss="modal"
-                                                                            aria-label="Close"></button>
-                                                                    </div>
-                                                                    <div class="modal-body">
-                                                                        <div class=" mb-2">
-                                                                            <label for="toaddress">物品名称</label>
-                                                                            <div class="input-group">
-                                                                                <input type="text" class="form-control"
-                                                                                    placeholder=""
-                                                                                    aria-label="Scancode">
-                                                                            </div>
-                                                                        </div>
-                                                                        <div class=" mb-2">
-                                                                            <label for="toaddress">租金</label>
-                                                                            <div class="input-group">
-                                                                                <input type="text" class="form-control"
-                                                                                    placeholder=""
-                                                                                    aria-label="Scancode">
-                                                                            </div>
-                                                                        </div>
-
-                                                                        <div class="mb-2">
-                                                                            <label for="cryptocurrency">物品类别</label>
-                                                                            <select class="form-select"
-                                                                                aria-label="Default select example">
-                                                                                <option selected="">--
-                                                                                    Cateogory --</option>
-                                                                                <option value="BTC">服饰
-                                                                                </option>
-                                                                                <option value="ETH">其他
-                                                                                </option>
-                                                                            </select>
-                                                                        </div>
-
-                                                                        <div class="col-md-6">
-                                                                            <label for="formFileMultiple"
-                                                                                class="form-label"> 图片上传
-                                                                            </label>
-
-                                                                            <form class="pure-form" action=""
-                                                                                method="post">
-                                                                                <!-- 上传图片的预览区域 -->
-                                                                                <section class="upload-box"
-                                                                                    id="J_upload_box">
-                                                                                    <div class="upload"
-                                                                                        id="J_file_wrap">
-                                                                                        <input type="file"
-                                                                                            accept="image/*" name="pic"
-                                                                                            id="J_file">
-                                                                                    </div>
-                                                                                </section>
-
-                                                                            </form>
-
-                                                                            <!-- 图片裁剪工作区域 -->
-                                                                            <div id="J_file_box">
-                                                                                <img src="#" id="J_file_box_img" alt="">
-                                                                            </div>
-
-                                                                            <!-- 选择裁剪比例 -->
-                                                                            <div class="crop-group" id="J_crop_group">
-                                                                                <label>
-                                                                                    <input type="radio" name="scale"
-                                                                                        value="1/1">
-                                                                                    <span>1 : 1</span>
-                                                                                </label>
-                                                                                <label>
-                                                                                    <input type="radio" name="scale"
-                                                                                        value="4/3" checked="checked">
-                                                                                    <span>4 : 3</span>
-                                                                                </label>
-                                                                                <label>
-                                                                                    <input type="radio" name="scale"
-                                                                                        value="9/16">
-                                                                                    <span>9 : 16</span>
-                                                                                </label>
-                                                                            </div>
-
-                                                                            <!-- 裁剪或取消 -->
-                                                                            <div class="btn-group" id="J_btn_group">
-                                                                                <span id="J_cancel">取消</span>
-                                                                                <span id="J_crop">裁剪</span>
-                                                                            </div>
-
-                                                                        </div>
-
-                                                                        <div class=" mb-2">
-                                                                            <label for="toaddress">押金</label>
-                                                                            <div class="input-group">
-                                                                                <input type="text" class="form-control"
-                                                                                    placeholder=""
-                                                                                    aria-label="Scancode">
-                                                                            </div>
-                                                                        </div>
-                                                                        <div class="mb-2">
-                                                                            <label for="Description">商品描述</label>
-                                                                            <textarea class="form-control" rows="3"
-                                                                                aria-label="With textarea"></textarea>
-                                                                        </div>
-
-                                                                    </div>
-                                                                    <!--end modal-body-->
-                                                                    <div class="modal-footer">
-                                                                        <button type="button"
-                                                                            class="btn btn-de-danger btn-sm"
-                                                                            data-bs-dismiss="modal">关闭</button>
-                                                                        <button class="btn btn-de-primary btn-sm"
-                                                                            type="button">确定</button>
-                                                                    </div>
-                                                                    <!--end modal-footer-->
-                                                                </div>
-                                                                <!--end modal-content-->
                                                             </div>
-                                                            <!--end modal-dialog-->
+                                                        </td>
+                                                    </tr>
+                                                {{end}}
+
+
+
+
+
+                                                </tbody>
+                                            </table>
+                                            <!--end table-->
+
+                                            <!-- Modal -->
+                                            <div class="modal fade" id="exampleModalSend" tabindex="-1"
+                                                 aria-labelledby="exampleModalSendLabel" aria-hidden="true">
+                                                <div class="modal-dialog">
+                                                    <div class="modal-content">
+                                                        <div class="modal-header">
+                                                            <h6 class="modal-title m-0"
+                                                                id="exampleModalDefaultSend">
+                                                                编辑物品信息</h6>
+                                                            <button type="button" class="btn-close"
+                                                                    data-bs-dismiss="modal" aria-label="Close"></button>
                                                         </div>
-                                                        <!--end modal-->
-                                                    </tbody>
-                                                    </td>
+                                                        <div class="modal-body">
+                                                            <div class=" mb-2">
+                                                                <label for="toaddress">物品名称</label>
+                                                                <div class="input-group">
+                                                                    <input type="text" class="form-control"
+                                                                           placeholder="" aria-label="Scancode">
+                                                                </div>
+                                                            </div>
+                                                            <div class=" mb-2">
+                                                                <label for="toaddress">租金</label>
+                                                                <div class="input-group">
+                                                                    <input type="text" class="form-control"
+                                                                           placeholder="" aria-label="Scancode">
+                                                                </div>
+                                                            </div>
 
-                                                    </tbody>
-                                                </table>
-                                                <!--end table-->
+                                                            <div class="mb-2">
+                                                                <label for="cryptocurrency">物品类别</label>
+                                                                <select class="form-select"
+                                                                        aria-label="Default select example">
+                                                                    <option selected="">--
+                                                                        Cateogory --</option>
+                                                                    <option value="BTC">服饰
+                                                                    </option>
+                                                                    <option value="ETH">其他
+                                                                    </option>
+                                                                </select>
+                                                            </div>
+
+                                                            <div class="col-md-6">
+                                                                <label for="formFileMultiple" class="form-label">
+                                                                    图片上传
+                                                                </label>
+
+                                                                <form class="pure-form" action="" method="post">
+                                                                    <!-- 上传图片的预览区域 -->
+                                                                    <section class="upload-box" id="J_upload_box">
+                                                                        <div class="upload" id="J_file_wrap">
+                                                                            <input type="file" accept="image/*"
+                                                                                   name="pic" id="J_file">
+                                                                        </div>
+                                                                    </section>
+
+                                                                </form>
+
+                                                                <!-- 图片裁剪工作区域 -->
+                                                                <div id="J_file_box">
+                                                                    <img src="#" id="J_file_box_img" alt="">
+                                                                </div>
+
+                                                                <!-- 选择裁剪比例 -->
+                                                                <div class="crop-group" id="J_crop_group">
+                                                                    <label>
+                                                                        <input type="radio" name="scale"
+                                                                               value="1/1">
+                                                                        <span>1 : 1</span>
+                                                                    </label>
+                                                                    <label>
+                                                                        <input type="radio" name="scale" value="4/3"
+                                                                               checked="checked">
+                                                                        <span>4 : 3</span>
+                                                                    </label>
+                                                                    <label>
+                                                                        <input type="radio" name="scale"
+                                                                               value="9/16">
+                                                                        <span>9 : 16</span>
+                                                                    </label>
+                                                                </div>
+
+                                                                <!-- 裁剪或取消 -->
+                                                                <div class="btn-group" id="J_btn_group">
+                                                                    <span id="J_cancel">取消</span>
+                                                                    <span id="J_crop">裁剪</span>
+                                                                </div>
+
+                                                            </div>
+
+                                                            <div class=" mb-2">
+                                                                <label for="toaddress">押金</label>
+                                                                <div class="input-group">
+                                                                    <input type="text" class="form-control"
+                                                                           placeholder="" aria-label="Scancode">
+                                                                </div>
+                                                            </div>
+                                                            <div class="mb-2">
+                                                                <label for="Description">商品描述</label>
+                                                                <textarea class="form-control" rows="3"
+                                                                          aria-label="With textarea"></textarea>
+                                                            </div>
+
+                                                        </div>
+                                                        <!--end modal-body-->
+                                                        <div class="modal-footer">
+                                                            <button type="button" class="btn btn-de-danger btn-sm"
+                                                                    data-bs-dismiss="modal">关闭</button>
+                                                            <button class="btn btn-de-primary btn-sm"
+                                                                    type="button">确定</button>
+                                                        </div>
+                                                        <!--end modal-footer-->
+                                                    </div>
+                                                    <!--end modal-content-->
+                                                </div>
+                                                <!--end modal-dialog-->
                                             </div>
-                                            <!--end /div-->
+                                            <!--end modal-->
                                         </div>
-                                        <!--end card-body-->
+                                        <!--end /div-->
                                     </div>
-                                    <!--end card-->
+                                    <!--end card-body-->
                                 </div>
-                                <!--end col-->
-
+                                <!--end card-->
                             </div>
-
+                            <!--end col-->
 
                         </div>
+
                     </div>
-                    <!--end card-body-->
                 </div>
-                <!--end card-->
+                <!--end card-body-->
             </div>
-            <!--end col-->
+            <!--end card-->
         </div>
-        <!--end row-->
-
+        <!--end col-->
     </div>
+</div>
 
-    <!--====================  footer area ====================-->
-    <footer style="padding-bottom: 100px;">
-        <div class="sc-bottom-bar">
-            <a class="sc-menu-item " href="../index"><i class="fas fa-home"></i></a>
-            <a class="sc-menu-item " href="../goods-category"><i class="fas  fa-list"></i></a>
-            <a href="../chat" class="sc-menu-item "><i class="fas fa-plus"></i></a>
-            <a class="sc-menu-item sc-current" href="../cart"><i class="fas fa-clipboard"></i></a>
-            <a class="sc-nav-indicator"></a>
-            <a class="sc-menu-item" href="../ui-me"><i class="fas fa-user"></i></a>
-        </div>
-    </footer>
-    <!--====================  End of footer area  ====================-->
+<!--====================  footer area ====================-->
+<footer style="padding-bottom: 100px;">
+    <div class="sc-bottom-bar">
+        <a class="sc-menu-item " href="../index"><i class="fas fa-home"></i></a>
+        <a class="sc-menu-item " href="../goods-category"><i class="fas  fa-list"></i></a>
+        <a href="../chat" class="sc-menu-item "><i class="fas fa-plus"></i></a>
+        <a class="sc-menu-item sc-current" href="../cart"><i class="fas fa-clipboard"></i></a>
+        <a class="sc-nav-indicator"></a>
+        <a class="sc-menu-item" href="../ui-me"><i class="fas fa-user"></i></a>
     </div>
+</footer>
+<!--====================  End of footer area  ====================-->
 
+
+<<<<<<< HEAD
     <!-- App js -->
     <script src="share/static/js/app.js"></script>
     <script src="share/js/tabbar.js"></script>
@@ -368,6 +355,36 @@
     <script src="https://www.jq22.com/jquery/jquery-1.10.2.js"></script>
     <script src="share/js/upload.js"></script>
     <script src="share/js/demo.js"></script>
+=======
+<!-- App js -->
+<script src="share/static/js/app.js"></script>
+<script src="share/js/tabbar.js"></script>
+<!-- jQuery JS -->
+<script src="share/assets/js/jquery-3.4.1.min.js"></script>
+<!-- Bootstrap JS -->
+<script src="share/assets/js/bootstrap.min.js"></script>
+<!-- Main JS -->
+<script src="share/assets/js/main.js"></script>
+<script src="share/js/popbox.js"></script>
+<script>
+    function okFunction() {
+        $.ajax({
+            type: "POST",
+            url: "/logoutPost",
+            success: function (data) {
+                alert("用户退出成功!");
+                window.location = "/login";
+            }
+        })
+    }
+    function cancelFunction() {
+        alert('Cancel!');
+    }
+</script>
+<script src="share/js/jquery-1.10.2.js"></script>
+<script src="share/js/upload.js"></script>
+<script src="share/js/demo.js"></script>
+>>>>>>> 4893066f70bf10d6c9dbdc24ba83d7eaab173082
 </body>
 {{ end }}
 
