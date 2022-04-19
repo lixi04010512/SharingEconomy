@@ -136,8 +136,8 @@
                                                                     <div class="media-body align-self-center">
                                                                         <h6 class="m-0" name="goodsName" id="goodsName">
                                                                             {{$vlaue.Names}}</h6>
-                                                                        <a href="#" class="font-12 text-primary"
-                                                                            name="rent" id="rent">ID:
+                                                                        <a href="#" class="font-12 text-primary delId"
+                                                                            name="rent" >ID:
                                                                             {{$vlaue.Id}}</a>
                                                                     </div>
                                                                     <!--end media body-->
@@ -161,7 +161,7 @@
                                                                         <a class="dropdown-item" data-bs-toggle="modal"
                                                                             data-bs-target="#exampleModalSend"
                                                                             href="#">编辑</a>
-                                                                        <a class="dropdown-item" href="#">下架</a>
+                                                                        <a class="dropdown-item delMyDoods">下架</a>
 
                                                                     </div>
                                                                 </div>
@@ -349,6 +349,7 @@
     <!-- Main JS -->
     <script src="share/assets/js/main.js"></script>
     <script src="share/js/popbox.js"></script>
+    <script src="share/static/js/delGoods.js"></script>
     <script>
         function okFunction() {
             $.ajax({

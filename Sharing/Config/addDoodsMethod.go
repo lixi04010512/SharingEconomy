@@ -2,6 +2,7 @@ package config
 
 import (
 	"Sharing/Agreement"
+	"crypto/ecdsa"
 	"fmt"
 	"github.com/ethereum/go-ethereum/common"
 	"github.com/ethereum/go-ethereum/core/types"
@@ -11,10 +12,10 @@ import (
 )
 
 //封装物品上架方法
-func AddGoodsMethod(client *ethclient.Client, contract *Agreement.User, owner common.Address, name string, species string, rent *big.Int, ethPledge *big.Int, goodsImgs []string, goodsSign string) (*types.Transaction, error) {
-	opts := Getopts()
+func AddGoodsMethod(client *ethclient.Client, contract *Agreement.User, owner common.Address, name string, species string, rent *big.Int, ethPledge *big.Int, goodsImgs []string, goodsSign string,privateKey *ecdsa.PrivateKey) (*types.Transaction, error) {
+	opts := GetMsgOpts(privateKey)
 	res, err := contract.AddGoods(opts, owner, name, species, rent, ethPledge, goodsImgs, goodsSign)
-	fmt.Println("addCommunity:", res)
+	fmt.Println("add:", res)
 	opts.GasLimit = gasLimit
 	opts.GasPrice, err = GetgasPrice(client)
 	if err != nil {
@@ -22,3 +23,4 @@ func AddGoodsMethod(client *ethclient.Client, contract *Agreement.User, owner co
 	}
 	return res, nil
 }
+
