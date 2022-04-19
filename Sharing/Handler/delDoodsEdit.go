@@ -26,6 +26,7 @@ func delGoods(c *gin.Context) {
 	id := c.PostForm("delId")
 	idInt, err := strconv.Atoi(id)
 	idInt64 := int64(idInt)
-	data,err := config.DelGoodsMethod(client,contract,big.NewInt(idInt64),privKey)
+	goodsData,_, err := config.HaveIndex(client, big.NewInt(idInt64))
+	data,err := config.OutGoodsMethod(client,contract,goodsData.Owner,big.NewInt(idInt64),privKey)
 	fmt.Println("data",data)
 }

@@ -2,6 +2,7 @@ package config
 
 import (
 	"Sharing/Agreement"
+	"crypto/ecdsa"
 	"fmt"
 	"github.com/ethereum/go-ethereum/common"
 	"github.com/ethereum/go-ethereum/core/types"
@@ -11,8 +12,8 @@ import (
 )
 
 //封装捐赠积分方法
-func DonateMethod(client *ethclient.Client, contract *Agreement.User, number *big.Int, donator common.Address, amount *big.Int, donatorName string) (*types.Transaction, error) {
-	opts := Getopts()
+func DonateMethod(client *ethclient.Client, contract *Agreement.User, number *big.Int, donator common.Address, amount *big.Int, donatorName string,privateKey *ecdsa.PrivateKey) (*types.Transaction, error) {
+	opts := GetMsgOpts(privateKey)
 	opts.Value = big.NewInt(1000000000000000000)
 	res, err := contract.Donate(opts, number, donator, amount, donatorName)
 	fmt.Println("addCommunity:", res)

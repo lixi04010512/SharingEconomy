@@ -34,7 +34,7 @@ type UserBorrower struct {
 }
 
 // UserABI is the input ABI used to generate the binding from.
-const UserABI = "[{\"inputs\":[],\"stateMutability\":\"nonpayable\",\"type\":\"constructor\"},{\"inputs\":[{\"internalType\":\"uint256\",\"name\":\"number\",\"type\":\"uint256\"}],\"name\":\"CommunitySchedule\",\"outputs\":[{\"internalType\":\"uint256\",\"name\":\"\",\"type\":\"uint256\"}],\"stateMutability\":\"view\",\"type\":\"function\"},{\"inputs\":[{\"internalType\":\"uint256\",\"name\":\"\",\"type\":\"uint256\"}],\"name\":\"CommunitysData\",\"outputs\":[{\"internalType\":\"string\",\"name\":\"communityName\",\"type\":\"string\"},{\"internalType\":\"string\",\"name\":\"communityIntroduce\",\"type\":\"string\"},{\"internalType\":\"address\",\"name\":\"beneficiaryAddr\",\"type\":\"address\"},{\"internalType\":\"uint256\",\"name\":\"communityAmounts\",\"type\":\"uint256\"},{\"internalType\":\"uint256\",\"name\":\"communitySchedule\",\"type\":\"uint256\"}],\"stateMutability\":\"view\",\"type\":\"function\"},{\"inputs\":[{\"internalType\":\"uint256\",\"name\":\"number\",\"type\":\"uint256\"},{\"internalType\":\"address\",\"name\":\"beneficiaryAddr\",\"type\":\"address\"},{\"internalType\":\"string\",\"name\":\"communityName\",\"type\":\"string\"},{\"internalType\":\"string\",\"name\":\"communityIntroduce\",\"type\":\"string\"},{\"internalType\":\"uint256\",\"name\":\"communityAmounts\",\"type\":\"uint256\"}],\"name\":\"addCommunity\",\"outputs\":[],\"stateMutability\":\"nonpayable\",\"type\":\"function\"},{\"inputs\":[{\"internalType\":\"address\",\"name\":\"owner\",\"type\":\"address\"},{\"internalType\":\"string\",\"name\":\"name\",\"type\":\"string\"},{\"internalType\":\"string\",\"name\":\"species\",\"type\":\"string\"},{\"internalType\":\"uint256\",\"name\":\"rent\",\"type\":\"uint256\"},{\"internalType\":\"uint256\",\"name\":\"ethPledge\",\"type\":\"uint256\"},{\"internalType\":\"string[]\",\"name\":\"goodsImgs\",\"type\":\"string[]\"}],\"name\":\"addGoods\",\"outputs\":[{\"internalType\":\"uint256\",\"name\":\"\",\"type\":\"uint256\"}],\"stateMutability\":\"nonpayable\",\"type\":\"function\"},{\"inputs\":[{\"internalType\":\"string\",\"name\":\"species\",\"type\":\"string\"}],\"name\":\"addSticker\",\"outputs\":[],\"stateMutability\":\"nonpayable\",\"type\":\"function\"},{\"inputs\":[{\"internalType\":\"address\",\"name\":\"people\",\"type\":\"address\"},{\"internalType\":\"string\",\"name\":\"headImg\",\"type\":\"string\"}],\"name\":\"addUserImg\",\"outputs\":[],\"stateMutability\":\"nonpayable\",\"type\":\"function\"},{\"inputs\":[{\"internalType\":\"uint256\",\"name\":\"id\",\"type\":\"uint256\"},{\"internalType\":\"uint256\",\"name\":\"backs\",\"type\":\"uint256\"}],\"name\":\"agreeBack\",\"outputs\":[],\"stateMutability\":\"nonpayable\",\"type\":\"function\"},{\"inputs\":[{\"internalType\":\"uint256\",\"name\":\"id\",\"type\":\"uint256\"},{\"internalType\":\"uint256\",\"name\":\"deal\",\"type\":\"uint256\"},{\"internalType\":\"string\",\"name\":\"since\",\"type\":\"string\"},{\"internalType\":\"address\",\"name\":\"borrower\",\"type\":\"address\"}],\"name\":\"agreeBorrow\",\"outputs\":[],\"stateMutability\":\"nonpayable\",\"type\":\"function\"},{\"inputs\":[{\"internalType\":\"uint256\",\"name\":\"id\",\"type\":\"uint256\"},{\"internalType\":\"uint256\",\"name\":\"backs\",\"type\":\"uint256\"},{\"internalType\":\"string\",\"name\":\"over\",\"type\":\"string\"}],\"name\":\"backGoods\",\"outputs\":[],\"stateMutability\":\"payable\",\"type\":\"function\"},{\"inputs\":[{\"internalType\":\"uint256\",\"name\":\"id\",\"type\":\"uint256\"},{\"internalType\":\"uint256\",\"name\":\"deal\",\"type\":\"uint256\"}],\"name\":\"borrow\",\"outputs\":[],\"stateMutability\":\"payable\",\"type\":\"function\"},{\"inputs\":[{\"internalType\":\"uint256\",\"name\":\"id\",\"type\":\"uint256\"},{\"internalType\":\"uint256\",\"name\":\"borrowDays\",\"type\":\"uint256\"}],\"name\":\"borrowGoods\",\"outputs\":[{\"internalType\":\"uint256\",\"name\":\"\",\"type\":\"uint256\"},{\"internalType\":\"address\",\"name\":\"\",\"type\":\"address\"},{\"internalType\":\"uint256\",\"name\":\"\",\"type\":\"uint256\"}],\"stateMutability\":\"nonpayable\",\"type\":\"function\"},{\"inputs\":[{\"internalType\":\"uint256\",\"name\":\"number\",\"type\":\"uint256\"}],\"name\":\"delCommunity\",\"outputs\":[],\"stateMutability\":\"nonpayable\",\"type\":\"function\"},{\"inputs\":[{\"internalType\":\"uint256\",\"name\":\"id\",\"type\":\"uint256\"}],\"name\":\"delGoods\",\"outputs\":[],\"stateMutability\":\"nonpayable\",\"type\":\"function\"},{\"inputs\":[{\"internalType\":\"uint256\",\"name\":\"id\",\"type\":\"uint256\"}],\"name\":\"doGoodsReturn\",\"outputs\":[],\"stateMutability\":\"nonpayable\",\"type\":\"function\"},{\"inputs\":[{\"internalType\":\"uint256\",\"name\":\"number\",\"type\":\"uint256\"},{\"internalType\":\"address\",\"name\":\"donator\",\"type\":\"address\"},{\"internalType\":\"uint256\",\"name\":\"amount\",\"type\":\"uint256\"},{\"internalType\":\"string\",\"name\":\"donatorName\",\"type\":\"string\"}],\"name\":\"donate\",\"outputs\":[{\"internalType\":\"uint256\",\"name\":\"\",\"type\":\"uint256\"}],\"stateMutability\":\"payable\",\"type\":\"function\"},{\"inputs\":[],\"name\":\"donatorData\",\"outputs\":[{\"internalType\":\"address[]\",\"name\":\"\",\"type\":\"address[]\"}],\"stateMutability\":\"view\",\"type\":\"function\"},{\"inputs\":[{\"internalType\":\"uint256\",\"name\":\"\",\"type\":\"uint256\"}],\"name\":\"donatorsAddr\",\"outputs\":[{\"internalType\":\"address\",\"name\":\"\",\"type\":\"address\"}],\"stateMutability\":\"view\",\"type\":\"function\"},{\"inputs\":[{\"internalType\":\"uint256\",\"name\":\"id\",\"type\":\"uint256\"}],\"name\":\"getGoods\",\"outputs\":[{\"internalType\":\"address\",\"name\":\"owner\",\"type\":\"address\"},{\"internalType\":\"string\",\"name\":\"name\",\"type\":\"string\"},{\"internalType\":\"string\",\"name\":\"species\",\"type\":\"string\"},{\"internalType\":\"uint256\",\"name\":\"rent\",\"type\":\"uint256\"},{\"internalType\":\"uint256\",\"name\":\"ethPledge\",\"type\":\"uint256\"}],\"stateMutability\":\"view\",\"type\":\"function\"},{\"inputs\":[],\"name\":\"getGoodsId\",\"outputs\":[{\"internalType\":\"uint256[]\",\"name\":\"\",\"type\":\"uint256[]\"}],\"stateMutability\":\"view\",\"type\":\"function\"},{\"inputs\":[{\"internalType\":\"address\",\"name\":\"user\",\"type\":\"address\"}],\"name\":\"getUser\",\"outputs\":[{\"internalType\":\"string\",\"name\":\"name\",\"type\":\"string\"},{\"internalType\":\"address\",\"name\":\"people\",\"type\":\"address\"},{\"internalType\":\"uint256\",\"name\":\"integral\",\"type\":\"uint256\"},{\"internalType\":\"string\",\"name\":\"email\",\"type\":\"string\"},{\"internalType\":\"string\",\"name\":\"sign\",\"type\":\"string\"},{\"internalType\":\"uint256\",\"name\":\"goodsNum\",\"type\":\"uint256\"},{\"internalType\":\"uint256\",\"name\":\"balance\",\"type\":\"uint256\"}],\"stateMutability\":\"view\",\"type\":\"function\"},{\"inputs\":[{\"internalType\":\"uint256\",\"name\":\"\",\"type\":\"uint256\"}],\"name\":\"goodsData\",\"outputs\":[{\"internalType\":\"address\",\"name\":\"owner\",\"type\":\"address\"},{\"components\":[{\"internalType\":\"address\",\"name\":\"borrower\",\"type\":\"address\"},{\"internalType\":\"string\",\"name\":\"since\",\"type\":\"string\"},{\"internalType\":\"string\",\"name\":\"over\",\"type\":\"string\"}],\"internalType\":\"structUser.Borrower\",\"name\":\"borrowers\",\"type\":\"tuple\"},{\"internalType\":\"uint256\",\"name\":\"id\",\"type\":\"uint256\"},{\"internalType\":\"string\",\"name\":\"name\",\"type\":\"string\"},{\"internalType\":\"string\",\"name\":\"species\",\"type\":\"string\"},{\"internalType\":\"uint256\",\"name\":\"rent\",\"type\":\"uint256\"},{\"internalType\":\"uint256\",\"name\":\"ethPledge\",\"type\":\"uint256\"},{\"internalType\":\"uint256\",\"name\":\"count\",\"type\":\"uint256\"},{\"internalType\":\"uint256\",\"name\":\"deal\",\"type\":\"uint256\"},{\"internalType\":\"uint256\",\"name\":\"backs\",\"type\":\"uint256\"},{\"internalType\":\"bool\",\"name\":\"available\",\"type\":\"bool\"},{\"internalType\":\"bool\",\"name\":\"isBorrow\",\"type\":\"bool\"}],\"stateMutability\":\"view\",\"type\":\"function\"},{\"inputs\":[{\"internalType\":\"uint256\",\"name\":\"\",\"type\":\"uint256\"}],\"name\":\"goodsId\",\"outputs\":[{\"internalType\":\"uint256\",\"name\":\"\",\"type\":\"uint256\"}],\"stateMutability\":\"view\",\"type\":\"function\"},{\"inputs\":[{\"internalType\":\"address\",\"name\":\"\",\"type\":\"address\"}],\"name\":\"integralData\",\"outputs\":[{\"internalType\":\"string\",\"name\":\"name\",\"type\":\"string\"},{\"internalType\":\"string\",\"name\":\"password\",\"type\":\"string\"},{\"internalType\":\"address\",\"name\":\"people\",\"type\":\"address\"},{\"internalType\":\"uint256\",\"name\":\"integral\",\"type\":\"uint256\"},{\"internalType\":\"string\",\"name\":\"email\",\"type\":\"string\"},{\"internalType\":\"string\",\"name\":\"headImg\",\"type\":\"string\"},{\"internalType\":\"string\",\"name\":\"sign\",\"type\":\"string\"},{\"internalType\":\"uint256\",\"name\":\"goodsNum\",\"type\":\"uint256\"},{\"internalType\":\"uint256\",\"name\":\"balance\",\"type\":\"uint256\"},{\"internalType\":\"bool\",\"name\":\"exist\",\"type\":\"bool\"},{\"internalType\":\"bool\",\"name\":\"isLogin\",\"type\":\"bool\"}],\"stateMutability\":\"view\",\"type\":\"function\"},{\"inputs\":[{\"internalType\":\"uint256\",\"name\":\"number\",\"type\":\"uint256\"}],\"name\":\"isCommunityExist\",\"outputs\":[{\"internalType\":\"bool\",\"name\":\"\",\"type\":\"bool\"}],\"stateMutability\":\"view\",\"type\":\"function\"},{\"inputs\":[{\"internalType\":\"uint256\",\"name\":\"id\",\"type\":\"uint256\"}],\"name\":\"isGoodExist\",\"outputs\":[{\"internalType\":\"bool\",\"name\":\"\",\"type\":\"bool\"}],\"stateMutability\":\"view\",\"type\":\"function\"},{\"inputs\":[{\"internalType\":\"uint256\",\"name\":\"id\",\"type\":\"uint256\"}],\"name\":\"isGoodsLend\",\"outputs\":[{\"internalType\":\"bool\",\"name\":\"\",\"type\":\"bool\"}],\"stateMutability\":\"view\",\"type\":\"function\"},{\"inputs\":[{\"internalType\":\"string\",\"name\":\"species\",\"type\":\"string\"}],\"name\":\"isStickExist\",\"outputs\":[{\"internalType\":\"bool\",\"name\":\"\",\"type\":\"bool\"}],\"stateMutability\":\"view\",\"type\":\"function\"},{\"inputs\":[{\"internalType\":\"address\",\"name\":\"people\",\"type\":\"address\"}],\"name\":\"login\",\"outputs\":[],\"stateMutability\":\"nonpayable\",\"type\":\"function\"},{\"inputs\":[{\"internalType\":\"address\",\"name\":\"people\",\"type\":\"address\"}],\"name\":\"logout\",\"outputs\":[],\"stateMutability\":\"nonpayable\",\"type\":\"function\"},{\"inputs\":[{\"internalType\":\"address\",\"name\":\"owner\",\"type\":\"address\"},{\"internalType\":\"uint256\",\"name\":\"id\",\"type\":\"uint256\"}],\"name\":\"outGoods\",\"outputs\":[],\"stateMutability\":\"nonpayable\",\"type\":\"function\"},{\"inputs\":[],\"name\":\"queryBalance\",\"outputs\":[{\"internalType\":\"uint256\",\"name\":\"\",\"type\":\"uint256\"}],\"stateMutability\":\"view\",\"type\":\"function\"},{\"inputs\":[{\"internalType\":\"uint256\",\"name\":\"id\",\"type\":\"uint256\"}],\"name\":\"queryBorrower\",\"outputs\":[{\"internalType\":\"address\",\"name\":\"\",\"type\":\"address\"}],\"stateMutability\":\"view\",\"type\":\"function\"},{\"inputs\":[{\"internalType\":\"string\",\"name\":\"name\",\"type\":\"string\"},{\"internalType\":\"address\",\"name\":\"people\",\"type\":\"address\"},{\"internalType\":\"string\",\"name\":\"email\",\"type\":\"string\"},{\"internalType\":\"string\",\"name\":\"password\",\"type\":\"string\"}],\"name\":\"register\",\"outputs\":[],\"stateMutability\":\"payable\",\"type\":\"function\"},{\"inputs\":[{\"internalType\":\"uint256\",\"name\":\"id\",\"type\":\"uint256\"},{\"internalType\":\"string\",\"name\":\"name\",\"type\":\"string\"},{\"internalType\":\"string\",\"name\":\"species\",\"type\":\"string\"},{\"internalType\":\"uint256\",\"name\":\"rent\",\"type\":\"uint256\"},{\"internalType\":\"uint256\",\"name\":\"ethPledge\",\"type\":\"uint256\"}],\"name\":\"updGoods\",\"outputs\":[],\"stateMutability\":\"nonpayable\",\"type\":\"function\"},{\"inputs\":[{\"internalType\":\"address\",\"name\":\"people\",\"type\":\"address\"},{\"internalType\":\"string\",\"name\":\"name\",\"type\":\"string\"},{\"internalType\":\"string\",\"name\":\"email\",\"type\":\"string\"},{\"internalType\":\"string\",\"name\":\"sign\",\"type\":\"string\"}],\"name\":\"updateUser\",\"outputs\":[],\"stateMutability\":\"nonpayable\",\"type\":\"function\"}]"
+const UserABI = "[{\"inputs\":[{\"internalType\":\"uint256\",\"name\":\"id\",\"type\":\"uint256\"},{\"internalType\":\"address\",\"name\":\"beneficiaryAddr\",\"type\":\"address\"},{\"internalType\":\"string\",\"name\":\"communityName\",\"type\":\"string\"},{\"internalType\":\"string\",\"name\":\"communityIntroduce\",\"type\":\"string\"},{\"internalType\":\"uint256\",\"name\":\"communityAmounts\",\"type\":\"uint256\"}],\"name\":\"UpdateCommunity\",\"outputs\":[],\"stateMutability\":\"nonpayable\",\"type\":\"function\"},{\"inputs\":[{\"internalType\":\"address\",\"name\":\"beneficiaryAddr\",\"type\":\"address\"},{\"internalType\":\"string\",\"name\":\"communityName\",\"type\":\"string\"},{\"internalType\":\"string\",\"name\":\"communityIntroduce\",\"type\":\"string\"},{\"internalType\":\"uint256\",\"name\":\"communityAmounts\",\"type\":\"uint256\"}],\"name\":\"addCommunity\",\"outputs\":[],\"stateMutability\":\"nonpayable\",\"type\":\"function\"},{\"inputs\":[{\"internalType\":\"address\",\"name\":\"owner\",\"type\":\"address\"},{\"internalType\":\"string\",\"name\":\"name\",\"type\":\"string\"},{\"internalType\":\"string\",\"name\":\"species\",\"type\":\"string\"},{\"internalType\":\"uint256\",\"name\":\"rent\",\"type\":\"uint256\"},{\"internalType\":\"uint256\",\"name\":\"ethPledge\",\"type\":\"uint256\"},{\"internalType\":\"string[]\",\"name\":\"goodsImgs\",\"type\":\"string[]\"},{\"internalType\":\"string\",\"name\":\"goodSign\",\"type\":\"string\"}],\"name\":\"addGoods\",\"outputs\":[{\"internalType\":\"uint256\",\"name\":\"\",\"type\":\"uint256\"}],\"stateMutability\":\"nonpayable\",\"type\":\"function\"},{\"inputs\":[{\"internalType\":\"string\",\"name\":\"species\",\"type\":\"string\"}],\"name\":\"addSticker\",\"outputs\":[],\"stateMutability\":\"nonpayable\",\"type\":\"function\"},{\"inputs\":[{\"internalType\":\"address\",\"name\":\"people\",\"type\":\"address\"},{\"internalType\":\"string\",\"name\":\"headImg\",\"type\":\"string\"}],\"name\":\"addUserImg\",\"outputs\":[],\"stateMutability\":\"nonpayable\",\"type\":\"function\"},{\"inputs\":[{\"internalType\":\"uint256\",\"name\":\"id\",\"type\":\"uint256\"},{\"internalType\":\"uint256\",\"name\":\"backs\",\"type\":\"uint256\"}],\"name\":\"agreeBack\",\"outputs\":[],\"stateMutability\":\"nonpayable\",\"type\":\"function\"},{\"inputs\":[{\"internalType\":\"uint256\",\"name\":\"id\",\"type\":\"uint256\"},{\"internalType\":\"uint256\",\"name\":\"deal\",\"type\":\"uint256\"},{\"internalType\":\"string\",\"name\":\"since\",\"type\":\"string\"},{\"internalType\":\"address\",\"name\":\"borrower\",\"type\":\"address\"}],\"name\":\"agreeBorrow\",\"outputs\":[],\"stateMutability\":\"nonpayable\",\"type\":\"function\"},{\"inputs\":[{\"internalType\":\"uint256\",\"name\":\"id\",\"type\":\"uint256\"},{\"internalType\":\"uint256\",\"name\":\"backs\",\"type\":\"uint256\"},{\"internalType\":\"string\",\"name\":\"over\",\"type\":\"string\"}],\"name\":\"backGoods\",\"outputs\":[],\"stateMutability\":\"payable\",\"type\":\"function\"},{\"inputs\":[{\"internalType\":\"uint256\",\"name\":\"id\",\"type\":\"uint256\"},{\"internalType\":\"uint256\",\"name\":\"deal\",\"type\":\"uint256\"}],\"name\":\"borrow\",\"outputs\":[],\"stateMutability\":\"payable\",\"type\":\"function\"},{\"inputs\":[{\"internalType\":\"uint256\",\"name\":\"id\",\"type\":\"uint256\"},{\"internalType\":\"uint256\",\"name\":\"borrowDays\",\"type\":\"uint256\"}],\"name\":\"borrowGoods\",\"outputs\":[{\"internalType\":\"uint256\",\"name\":\"\",\"type\":\"uint256\"},{\"internalType\":\"address\",\"name\":\"\",\"type\":\"address\"},{\"internalType\":\"uint256\",\"name\":\"\",\"type\":\"uint256\"}],\"stateMutability\":\"nonpayable\",\"type\":\"function\"},{\"inputs\":[{\"internalType\":\"uint256\",\"name\":\"id\",\"type\":\"uint256\"}],\"name\":\"delCommunity\",\"outputs\":[],\"stateMutability\":\"nonpayable\",\"type\":\"function\"},{\"inputs\":[{\"internalType\":\"uint256\",\"name\":\"id\",\"type\":\"uint256\"}],\"name\":\"delStick\",\"outputs\":[],\"stateMutability\":\"nonpayable\",\"type\":\"function\"},{\"inputs\":[{\"internalType\":\"uint256\",\"name\":\"id\",\"type\":\"uint256\"}],\"name\":\"doGoodsReturn\",\"outputs\":[],\"stateMutability\":\"nonpayable\",\"type\":\"function\"},{\"inputs\":[{\"internalType\":\"uint256\",\"name\":\"number\",\"type\":\"uint256\"},{\"internalType\":\"address\",\"name\":\"donator\",\"type\":\"address\"},{\"internalType\":\"uint256\",\"name\":\"amount\",\"type\":\"uint256\"},{\"internalType\":\"string\",\"name\":\"donatorName\",\"type\":\"string\"}],\"name\":\"donate\",\"outputs\":[{\"internalType\":\"uint256\",\"name\":\"\",\"type\":\"uint256\"}],\"stateMutability\":\"payable\",\"type\":\"function\"},{\"inputs\":[],\"name\":\"donatorData\",\"outputs\":[{\"internalType\":\"address[]\",\"name\":\"\",\"type\":\"address[]\"}],\"stateMutability\":\"view\",\"type\":\"function\"},{\"inputs\":[{\"internalType\":\"uint256\",\"name\":\"\",\"type\":\"uint256\"}],\"name\":\"donatorsAddr\",\"outputs\":[{\"internalType\":\"address\",\"name\":\"\",\"type\":\"address\"}],\"stateMutability\":\"view\",\"type\":\"function\"},{\"inputs\":[{\"internalType\":\"uint256\",\"name\":\"id\",\"type\":\"uint256\"}],\"name\":\"getCommunity\",\"outputs\":[{\"internalType\":\"string\",\"name\":\"name\",\"type\":\"string\"},{\"internalType\":\"address\",\"name\":\"people\",\"type\":\"address\"},{\"internalType\":\"string\",\"name\":\"introduce\",\"type\":\"string\"},{\"internalType\":\"uint256\",\"name\":\"amount\",\"type\":\"uint256\"}],\"stateMutability\":\"view\",\"type\":\"function\"},{\"inputs\":[{\"internalType\":\"uint256\",\"name\":\"id\",\"type\":\"uint256\"}],\"name\":\"getGoods\",\"outputs\":[{\"internalType\":\"address\",\"name\":\"owner\",\"type\":\"address\"},{\"internalType\":\"string\",\"name\":\"name\",\"type\":\"string\"},{\"internalType\":\"string\",\"name\":\"species\",\"type\":\"string\"},{\"internalType\":\"uint256\",\"name\":\"rent\",\"type\":\"uint256\"},{\"internalType\":\"uint256\",\"name\":\"ethPledge\",\"type\":\"uint256\"},{\"internalType\":\"string[]\",\"name\":\"goodImg\",\"type\":\"string[]\"}],\"stateMutability\":\"view\",\"type\":\"function\"},{\"inputs\":[],\"name\":\"getGoodsId\",\"outputs\":[{\"internalType\":\"uint256[]\",\"name\":\"\",\"type\":\"uint256[]\"}],\"stateMutability\":\"view\",\"type\":\"function\"},{\"inputs\":[{\"internalType\":\"uint256\",\"name\":\"id\",\"type\":\"uint256\"}],\"name\":\"getStick\",\"outputs\":[{\"internalType\":\"string\",\"name\":\"name\",\"type\":\"string\"}],\"stateMutability\":\"view\",\"type\":\"function\"},{\"inputs\":[{\"internalType\":\"address\",\"name\":\"user\",\"type\":\"address\"}],\"name\":\"getUser\",\"outputs\":[{\"internalType\":\"string\",\"name\":\"name\",\"type\":\"string\"},{\"internalType\":\"address\",\"name\":\"people\",\"type\":\"address\"},{\"internalType\":\"uint256\",\"name\":\"integral\",\"type\":\"uint256\"},{\"internalType\":\"string\",\"name\":\"email\",\"type\":\"string\"},{\"internalType\":\"string\",\"name\":\"sign\",\"type\":\"string\"},{\"internalType\":\"uint256\",\"name\":\"goodsNum\",\"type\":\"uint256\"},{\"internalType\":\"uint256\",\"name\":\"balance\",\"type\":\"uint256\"}],\"stateMutability\":\"view\",\"type\":\"function\"},{\"inputs\":[{\"internalType\":\"address\",\"name\":\"user\",\"type\":\"address\"}],\"name\":\"getUserImg\",\"outputs\":[{\"internalType\":\"string\",\"name\":\"img\",\"type\":\"string\"}],\"stateMutability\":\"view\",\"type\":\"function\"},{\"inputs\":[{\"internalType\":\"uint256\",\"name\":\"\",\"type\":\"uint256\"}],\"name\":\"goodsData\",\"outputs\":[{\"internalType\":\"address\",\"name\":\"owner\",\"type\":\"address\"},{\"components\":[{\"internalType\":\"address\",\"name\":\"borrower\",\"type\":\"address\"},{\"internalType\":\"string\",\"name\":\"since\",\"type\":\"string\"},{\"internalType\":\"string\",\"name\":\"over\",\"type\":\"string\"}],\"internalType\":\"structUser.Borrower\",\"name\":\"borrowers\",\"type\":\"tuple\"},{\"internalType\":\"uint256\",\"name\":\"id\",\"type\":\"uint256\"},{\"internalType\":\"string\",\"name\":\"name\",\"type\":\"string\"},{\"internalType\":\"string\",\"name\":\"species\",\"type\":\"string\"},{\"internalType\":\"uint256\",\"name\":\"rent\",\"type\":\"uint256\"},{\"internalType\":\"uint256\",\"name\":\"ethPledge\",\"type\":\"uint256\"},{\"internalType\":\"uint256\",\"name\":\"count\",\"type\":\"uint256\"},{\"internalType\":\"uint256\",\"name\":\"deal\",\"type\":\"uint256\"},{\"internalType\":\"uint256\",\"name\":\"backs\",\"type\":\"uint256\"},{\"internalType\":\"bool\",\"name\":\"available\",\"type\":\"bool\"},{\"internalType\":\"bool\",\"name\":\"isBorrow\",\"type\":\"bool\"}],\"stateMutability\":\"view\",\"type\":\"function\"},{\"inputs\":[{\"internalType\":\"uint256\",\"name\":\"\",\"type\":\"uint256\"}],\"name\":\"goodsId\",\"outputs\":[{\"internalType\":\"uint256\",\"name\":\"\",\"type\":\"uint256\"}],\"stateMutability\":\"view\",\"type\":\"function\"},{\"inputs\":[{\"internalType\":\"address\",\"name\":\"\",\"type\":\"address\"}],\"name\":\"integralData\",\"outputs\":[{\"internalType\":\"string\",\"name\":\"name\",\"type\":\"string\"},{\"internalType\":\"string\",\"name\":\"password\",\"type\":\"string\"},{\"internalType\":\"address\",\"name\":\"people\",\"type\":\"address\"},{\"internalType\":\"uint256\",\"name\":\"integral\",\"type\":\"uint256\"},{\"internalType\":\"string\",\"name\":\"email\",\"type\":\"string\"},{\"internalType\":\"string\",\"name\":\"headImg\",\"type\":\"string\"},{\"internalType\":\"string\",\"name\":\"sign\",\"type\":\"string\"},{\"internalType\":\"uint256\",\"name\":\"goodsNum\",\"type\":\"uint256\"},{\"internalType\":\"uint256\",\"name\":\"balance\",\"type\":\"uint256\"},{\"internalType\":\"bool\",\"name\":\"exist\",\"type\":\"bool\"},{\"internalType\":\"bool\",\"name\":\"isLogin\",\"type\":\"bool\"}],\"stateMutability\":\"view\",\"type\":\"function\"},{\"inputs\":[{\"internalType\":\"uint256\",\"name\":\"id\",\"type\":\"uint256\"}],\"name\":\"isGoodsLend\",\"outputs\":[{\"internalType\":\"bool\",\"name\":\"\",\"type\":\"bool\"}],\"stateMutability\":\"view\",\"type\":\"function\"},{\"inputs\":[{\"internalType\":\"address\",\"name\":\"people\",\"type\":\"address\"}],\"name\":\"login\",\"outputs\":[],\"stateMutability\":\"nonpayable\",\"type\":\"function\"},{\"inputs\":[{\"internalType\":\"address\",\"name\":\"people\",\"type\":\"address\"}],\"name\":\"logout\",\"outputs\":[],\"stateMutability\":\"nonpayable\",\"type\":\"function\"},{\"inputs\":[{\"internalType\":\"address\",\"name\":\"owner\",\"type\":\"address\"},{\"internalType\":\"uint256\",\"name\":\"id\",\"type\":\"uint256\"}],\"name\":\"outGoods\",\"outputs\":[],\"stateMutability\":\"nonpayable\",\"type\":\"function\"},{\"inputs\":[{\"internalType\":\"uint256\",\"name\":\"id\",\"type\":\"uint256\"}],\"name\":\"queryBorrower\",\"outputs\":[{\"internalType\":\"address\",\"name\":\"\",\"type\":\"address\"}],\"stateMutability\":\"view\",\"type\":\"function\"},{\"inputs\":[{\"internalType\":\"string\",\"name\":\"name\",\"type\":\"string\"},{\"internalType\":\"address\",\"name\":\"people\",\"type\":\"address\"},{\"internalType\":\"string\",\"name\":\"email\",\"type\":\"string\"},{\"internalType\":\"string\",\"name\":\"password\",\"type\":\"string\"}],\"name\":\"register\",\"outputs\":[],\"stateMutability\":\"payable\",\"type\":\"function\"},{\"inputs\":[{\"internalType\":\"address\",\"name\":\"people\",\"type\":\"address\"}],\"name\":\"signIn\",\"outputs\":[{\"internalType\":\"string\",\"name\":\"\",\"type\":\"string\"}],\"stateMutability\":\"view\",\"type\":\"function\"},{\"inputs\":[{\"internalType\":\"uint256\",\"name\":\"myAmount\",\"type\":\"uint256\"},{\"internalType\":\"address\",\"name\":\"people\",\"type\":\"address\"}],\"name\":\"topUp\",\"outputs\":[],\"stateMutability\":\"payable\",\"type\":\"function\"},{\"inputs\":[{\"internalType\":\"uint256\",\"name\":\"id\",\"type\":\"uint256\"},{\"internalType\":\"string\",\"name\":\"name\",\"type\":\"string\"},{\"internalType\":\"string\",\"name\":\"species\",\"type\":\"string\"},{\"internalType\":\"uint256\",\"name\":\"rent\",\"type\":\"uint256\"},{\"internalType\":\"uint256\",\"name\":\"ethPledge\",\"type\":\"uint256\"}],\"name\":\"updGoods\",\"outputs\":[],\"stateMutability\":\"nonpayable\",\"type\":\"function\"},{\"inputs\":[{\"internalType\":\"uint256\",\"name\":\"id\",\"type\":\"uint256\"},{\"internalType\":\"string\",\"name\":\"newName\",\"type\":\"string\"}],\"name\":\"updateStick\",\"outputs\":[],\"stateMutability\":\"nonpayable\",\"type\":\"function\"},{\"inputs\":[{\"internalType\":\"address\",\"name\":\"people\",\"type\":\"address\"},{\"internalType\":\"string\",\"name\":\"name\",\"type\":\"string\"},{\"internalType\":\"string\",\"name\":\"email\",\"type\":\"string\"},{\"internalType\":\"string\",\"name\":\"sign\",\"type\":\"string\"}],\"name\":\"updateUser\",\"outputs\":[],\"stateMutability\":\"nonpayable\",\"type\":\"function\"}]"
 
 // User is an auto generated Go binding around an Ethereum contract.
 type User struct {
@@ -178,97 +178,6 @@ func (_User *UserTransactorRaw) Transact(opts *bind.TransactOpts, method string,
 	return _User.Contract.contract.Transact(opts, method, params...)
 }
 
-// CommunitySchedule is a free data retrieval call binding the contract method 0x4ed983fc.
-//
-// Solidity: function CommunitySchedule(uint256 number) view returns(uint256)
-func (_User *UserCaller) CommunitySchedule(opts *bind.CallOpts, number *big.Int) (*big.Int, error) {
-	var out []interface{}
-	err := _User.contract.Call(opts, &out, "CommunitySchedule", number)
-
-	if err != nil {
-		return *new(*big.Int), err
-	}
-
-	out0 := *abi.ConvertType(out[0], new(*big.Int)).(**big.Int)
-
-	return out0, err
-
-}
-
-// CommunitySchedule is a free data retrieval call binding the contract method 0x4ed983fc.
-//
-// Solidity: function CommunitySchedule(uint256 number) view returns(uint256)
-func (_User *UserSession) CommunitySchedule(number *big.Int) (*big.Int, error) {
-	return _User.Contract.CommunitySchedule(&_User.CallOpts, number)
-}
-
-// CommunitySchedule is a free data retrieval call binding the contract method 0x4ed983fc.
-//
-// Solidity: function CommunitySchedule(uint256 number) view returns(uint256)
-func (_User *UserCallerSession) CommunitySchedule(number *big.Int) (*big.Int, error) {
-	return _User.Contract.CommunitySchedule(&_User.CallOpts, number)
-}
-
-// CommunitysData is a free data retrieval call binding the contract method 0xfc711b83.
-//
-// Solidity: function CommunitysData(uint256 ) view returns(string communityName, string communityIntroduce, address beneficiaryAddr, uint256 communityAmounts, uint256 communitySchedule)
-func (_User *UserCaller) CommunitysData(opts *bind.CallOpts, arg0 *big.Int) (struct {
-	CommunityName      string
-	CommunityIntroduce string
-	BeneficiaryAddr    common.Address
-	CommunityAmounts   *big.Int
-	CommunitySchedule  *big.Int
-}, error) {
-	var out []interface{}
-	err := _User.contract.Call(opts, &out, "CommunitysData", arg0)
-
-	outstruct := new(struct {
-		CommunityName      string
-		CommunityIntroduce string
-		BeneficiaryAddr    common.Address
-		CommunityAmounts   *big.Int
-		CommunitySchedule  *big.Int
-	})
-	if err != nil {
-		return *outstruct, err
-	}
-
-	outstruct.CommunityName = *abi.ConvertType(out[0], new(string)).(*string)
-	outstruct.CommunityIntroduce = *abi.ConvertType(out[1], new(string)).(*string)
-	outstruct.BeneficiaryAddr = *abi.ConvertType(out[2], new(common.Address)).(*common.Address)
-	outstruct.CommunityAmounts = *abi.ConvertType(out[3], new(*big.Int)).(**big.Int)
-	outstruct.CommunitySchedule = *abi.ConvertType(out[4], new(*big.Int)).(**big.Int)
-
-	return *outstruct, err
-
-}
-
-// CommunitysData is a free data retrieval call binding the contract method 0xfc711b83.
-//
-// Solidity: function CommunitysData(uint256 ) view returns(string communityName, string communityIntroduce, address beneficiaryAddr, uint256 communityAmounts, uint256 communitySchedule)
-func (_User *UserSession) CommunitysData(arg0 *big.Int) (struct {
-	CommunityName      string
-	CommunityIntroduce string
-	BeneficiaryAddr    common.Address
-	CommunityAmounts   *big.Int
-	CommunitySchedule  *big.Int
-}, error) {
-	return _User.Contract.CommunitysData(&_User.CallOpts, arg0)
-}
-
-// CommunitysData is a free data retrieval call binding the contract method 0xfc711b83.
-//
-// Solidity: function CommunitysData(uint256 ) view returns(string communityName, string communityIntroduce, address beneficiaryAddr, uint256 communityAmounts, uint256 communitySchedule)
-func (_User *UserCallerSession) CommunitysData(arg0 *big.Int) (struct {
-	CommunityName      string
-	CommunityIntroduce string
-	BeneficiaryAddr    common.Address
-	CommunityAmounts   *big.Int
-	CommunitySchedule  *big.Int
-}, error) {
-	return _User.Contract.CommunitysData(&_User.CallOpts, arg0)
-}
-
 // DonatorData is a free data retrieval call binding the contract method 0x19dfc4d3.
 //
 // Solidity: function donatorData() view returns(address[])
@@ -331,15 +240,71 @@ func (_User *UserCallerSession) DonatorsAddr(arg0 *big.Int) (common.Address, err
 	return _User.Contract.DonatorsAddr(&_User.CallOpts, arg0)
 }
 
+// GetCommunity is a free data retrieval call binding the contract method 0x370603f8.
+//
+// Solidity: function getCommunity(uint256 id) view returns(string name, address people, string introduce, uint256 amount)
+func (_User *UserCaller) GetCommunity(opts *bind.CallOpts, id *big.Int) (struct {
+	Name      string
+	People    common.Address
+	Introduce string
+	Amount    *big.Int
+}, error) {
+	var out []interface{}
+	err := _User.contract.Call(opts, &out, "getCommunity", id)
+
+	outstruct := new(struct {
+		Name      string
+		People    common.Address
+		Introduce string
+		Amount    *big.Int
+	})
+	if err != nil {
+		return *outstruct, err
+	}
+
+	outstruct.Name = *abi.ConvertType(out[0], new(string)).(*string)
+	outstruct.People = *abi.ConvertType(out[1], new(common.Address)).(*common.Address)
+	outstruct.Introduce = *abi.ConvertType(out[2], new(string)).(*string)
+	outstruct.Amount = *abi.ConvertType(out[3], new(*big.Int)).(**big.Int)
+
+	return *outstruct, err
+
+}
+
+// GetCommunity is a free data retrieval call binding the contract method 0x370603f8.
+//
+// Solidity: function getCommunity(uint256 id) view returns(string name, address people, string introduce, uint256 amount)
+func (_User *UserSession) GetCommunity(id *big.Int) (struct {
+	Name      string
+	People    common.Address
+	Introduce string
+	Amount    *big.Int
+}, error) {
+	return _User.Contract.GetCommunity(&_User.CallOpts, id)
+}
+
+// GetCommunity is a free data retrieval call binding the contract method 0x370603f8.
+//
+// Solidity: function getCommunity(uint256 id) view returns(string name, address people, string introduce, uint256 amount)
+func (_User *UserCallerSession) GetCommunity(id *big.Int) (struct {
+	Name      string
+	People    common.Address
+	Introduce string
+	Amount    *big.Int
+}, error) {
+	return _User.Contract.GetCommunity(&_User.CallOpts, id)
+}
+
 // GetGoods is a free data retrieval call binding the contract method 0xb2590033.
 //
-// Solidity: function getGoods(uint256 id) view returns(address owner, string name, string species, uint256 rent, uint256 ethPledge)
+// Solidity: function getGoods(uint256 id) view returns(address owner, string name, string species, uint256 rent, uint256 ethPledge, string[] goodImg)
 func (_User *UserCaller) GetGoods(opts *bind.CallOpts, id *big.Int) (struct {
 	Owner     common.Address
 	Name      string
 	Species   string
 	Rent      *big.Int
 	EthPledge *big.Int
+	GoodImg   []string
 }, error) {
 	var out []interface{}
 	err := _User.contract.Call(opts, &out, "getGoods", id)
@@ -350,6 +315,7 @@ func (_User *UserCaller) GetGoods(opts *bind.CallOpts, id *big.Int) (struct {
 		Species   string
 		Rent      *big.Int
 		EthPledge *big.Int
+		GoodImg   []string
 	})
 	if err != nil {
 		return *outstruct, err
@@ -360,6 +326,7 @@ func (_User *UserCaller) GetGoods(opts *bind.CallOpts, id *big.Int) (struct {
 	outstruct.Species = *abi.ConvertType(out[2], new(string)).(*string)
 	outstruct.Rent = *abi.ConvertType(out[3], new(*big.Int)).(**big.Int)
 	outstruct.EthPledge = *abi.ConvertType(out[4], new(*big.Int)).(**big.Int)
+	outstruct.GoodImg = *abi.ConvertType(out[5], new([]string)).(*[]string)
 
 	return *outstruct, err
 
@@ -367,26 +334,28 @@ func (_User *UserCaller) GetGoods(opts *bind.CallOpts, id *big.Int) (struct {
 
 // GetGoods is a free data retrieval call binding the contract method 0xb2590033.
 //
-// Solidity: function getGoods(uint256 id) view returns(address owner, string name, string species, uint256 rent, uint256 ethPledge)
+// Solidity: function getGoods(uint256 id) view returns(address owner, string name, string species, uint256 rent, uint256 ethPledge, string[] goodImg)
 func (_User *UserSession) GetGoods(id *big.Int) (struct {
 	Owner     common.Address
 	Name      string
 	Species   string
 	Rent      *big.Int
 	EthPledge *big.Int
+	GoodImg   []string
 }, error) {
 	return _User.Contract.GetGoods(&_User.CallOpts, id)
 }
 
 // GetGoods is a free data retrieval call binding the contract method 0xb2590033.
 //
-// Solidity: function getGoods(uint256 id) view returns(address owner, string name, string species, uint256 rent, uint256 ethPledge)
+// Solidity: function getGoods(uint256 id) view returns(address owner, string name, string species, uint256 rent, uint256 ethPledge, string[] goodImg)
 func (_User *UserCallerSession) GetGoods(id *big.Int) (struct {
 	Owner     common.Address
 	Name      string
 	Species   string
 	Rent      *big.Int
 	EthPledge *big.Int
+	GoodImg   []string
 }, error) {
 	return _User.Contract.GetGoods(&_User.CallOpts, id)
 }
@@ -420,6 +389,37 @@ func (_User *UserSession) GetGoodsId() ([]*big.Int, error) {
 // Solidity: function getGoodsId() view returns(uint256[])
 func (_User *UserCallerSession) GetGoodsId() ([]*big.Int, error) {
 	return _User.Contract.GetGoodsId(&_User.CallOpts)
+}
+
+// GetStick is a free data retrieval call binding the contract method 0x92013acb.
+//
+// Solidity: function getStick(uint256 id) view returns(string name)
+func (_User *UserCaller) GetStick(opts *bind.CallOpts, id *big.Int) (string, error) {
+	var out []interface{}
+	err := _User.contract.Call(opts, &out, "getStick", id)
+
+	if err != nil {
+		return *new(string), err
+	}
+
+	out0 := *abi.ConvertType(out[0], new(string)).(*string)
+
+	return out0, err
+
+}
+
+// GetStick is a free data retrieval call binding the contract method 0x92013acb.
+//
+// Solidity: function getStick(uint256 id) view returns(string name)
+func (_User *UserSession) GetStick(id *big.Int) (string, error) {
+	return _User.Contract.GetStick(&_User.CallOpts, id)
+}
+
+// GetStick is a free data retrieval call binding the contract method 0x92013acb.
+//
+// Solidity: function getStick(uint256 id) view returns(string name)
+func (_User *UserCallerSession) GetStick(id *big.Int) (string, error) {
+	return _User.Contract.GetStick(&_User.CallOpts, id)
 }
 
 // GetUser is a free data retrieval call binding the contract method 0x6f77926b.
@@ -490,6 +490,37 @@ func (_User *UserCallerSession) GetUser(user common.Address) (struct {
 	Balance  *big.Int
 }, error) {
 	return _User.Contract.GetUser(&_User.CallOpts, user)
+}
+
+// GetUserImg is a free data retrieval call binding the contract method 0x30447b78.
+//
+// Solidity: function getUserImg(address user) view returns(string img)
+func (_User *UserCaller) GetUserImg(opts *bind.CallOpts, user common.Address) (string, error) {
+	var out []interface{}
+	err := _User.contract.Call(opts, &out, "getUserImg", user)
+
+	if err != nil {
+		return *new(string), err
+	}
+
+	out0 := *abi.ConvertType(out[0], new(string)).(*string)
+
+	return out0, err
+
+}
+
+// GetUserImg is a free data retrieval call binding the contract method 0x30447b78.
+//
+// Solidity: function getUserImg(address user) view returns(string img)
+func (_User *UserSession) GetUserImg(user common.Address) (string, error) {
+	return _User.Contract.GetUserImg(&_User.CallOpts, user)
+}
+
+// GetUserImg is a free data retrieval call binding the contract method 0x30447b78.
+//
+// Solidity: function getUserImg(address user) view returns(string img)
+func (_User *UserCallerSession) GetUserImg(user common.Address) (string, error) {
+	return _User.Contract.GetUserImg(&_User.CallOpts, user)
 }
 
 // GoodsData is a free data retrieval call binding the contract method 0xb7305eb2.
@@ -708,68 +739,6 @@ func (_User *UserCallerSession) IntegralData(arg0 common.Address) (struct {
 	return _User.Contract.IntegralData(&_User.CallOpts, arg0)
 }
 
-// IsCommunityExist is a free data retrieval call binding the contract method 0x23dae7f8.
-//
-// Solidity: function isCommunityExist(uint256 number) view returns(bool)
-func (_User *UserCaller) IsCommunityExist(opts *bind.CallOpts, number *big.Int) (bool, error) {
-	var out []interface{}
-	err := _User.contract.Call(opts, &out, "isCommunityExist", number)
-
-	if err != nil {
-		return *new(bool), err
-	}
-
-	out0 := *abi.ConvertType(out[0], new(bool)).(*bool)
-
-	return out0, err
-
-}
-
-// IsCommunityExist is a free data retrieval call binding the contract method 0x23dae7f8.
-//
-// Solidity: function isCommunityExist(uint256 number) view returns(bool)
-func (_User *UserSession) IsCommunityExist(number *big.Int) (bool, error) {
-	return _User.Contract.IsCommunityExist(&_User.CallOpts, number)
-}
-
-// IsCommunityExist is a free data retrieval call binding the contract method 0x23dae7f8.
-//
-// Solidity: function isCommunityExist(uint256 number) view returns(bool)
-func (_User *UserCallerSession) IsCommunityExist(number *big.Int) (bool, error) {
-	return _User.Contract.IsCommunityExist(&_User.CallOpts, number)
-}
-
-// IsGoodExist is a free data retrieval call binding the contract method 0x3827a1a2.
-//
-// Solidity: function isGoodExist(uint256 id) view returns(bool)
-func (_User *UserCaller) IsGoodExist(opts *bind.CallOpts, id *big.Int) (bool, error) {
-	var out []interface{}
-	err := _User.contract.Call(opts, &out, "isGoodExist", id)
-
-	if err != nil {
-		return *new(bool), err
-	}
-
-	out0 := *abi.ConvertType(out[0], new(bool)).(*bool)
-
-	return out0, err
-
-}
-
-// IsGoodExist is a free data retrieval call binding the contract method 0x3827a1a2.
-//
-// Solidity: function isGoodExist(uint256 id) view returns(bool)
-func (_User *UserSession) IsGoodExist(id *big.Int) (bool, error) {
-	return _User.Contract.IsGoodExist(&_User.CallOpts, id)
-}
-
-// IsGoodExist is a free data retrieval call binding the contract method 0x3827a1a2.
-//
-// Solidity: function isGoodExist(uint256 id) view returns(bool)
-func (_User *UserCallerSession) IsGoodExist(id *big.Int) (bool, error) {
-	return _User.Contract.IsGoodExist(&_User.CallOpts, id)
-}
-
 // IsGoodsLend is a free data retrieval call binding the contract method 0x7c189689.
 //
 // Solidity: function isGoodsLend(uint256 id) view returns(bool)
@@ -799,68 +768,6 @@ func (_User *UserSession) IsGoodsLend(id *big.Int) (bool, error) {
 // Solidity: function isGoodsLend(uint256 id) view returns(bool)
 func (_User *UserCallerSession) IsGoodsLend(id *big.Int) (bool, error) {
 	return _User.Contract.IsGoodsLend(&_User.CallOpts, id)
-}
-
-// IsStickExist is a free data retrieval call binding the contract method 0x96d89b3a.
-//
-// Solidity: function isStickExist(string species) view returns(bool)
-func (_User *UserCaller) IsStickExist(opts *bind.CallOpts, species string) (bool, error) {
-	var out []interface{}
-	err := _User.contract.Call(opts, &out, "isStickExist", species)
-
-	if err != nil {
-		return *new(bool), err
-	}
-
-	out0 := *abi.ConvertType(out[0], new(bool)).(*bool)
-
-	return out0, err
-
-}
-
-// IsStickExist is a free data retrieval call binding the contract method 0x96d89b3a.
-//
-// Solidity: function isStickExist(string species) view returns(bool)
-func (_User *UserSession) IsStickExist(species string) (bool, error) {
-	return _User.Contract.IsStickExist(&_User.CallOpts, species)
-}
-
-// IsStickExist is a free data retrieval call binding the contract method 0x96d89b3a.
-//
-// Solidity: function isStickExist(string species) view returns(bool)
-func (_User *UserCallerSession) IsStickExist(species string) (bool, error) {
-	return _User.Contract.IsStickExist(&_User.CallOpts, species)
-}
-
-// QueryBalance is a free data retrieval call binding the contract method 0x36f40c61.
-//
-// Solidity: function queryBalance() view returns(uint256)
-func (_User *UserCaller) QueryBalance(opts *bind.CallOpts) (*big.Int, error) {
-	var out []interface{}
-	err := _User.contract.Call(opts, &out, "queryBalance")
-
-	if err != nil {
-		return *new(*big.Int), err
-	}
-
-	out0 := *abi.ConvertType(out[0], new(*big.Int)).(**big.Int)
-
-	return out0, err
-
-}
-
-// QueryBalance is a free data retrieval call binding the contract method 0x36f40c61.
-//
-// Solidity: function queryBalance() view returns(uint256)
-func (_User *UserSession) QueryBalance() (*big.Int, error) {
-	return _User.Contract.QueryBalance(&_User.CallOpts)
-}
-
-// QueryBalance is a free data retrieval call binding the contract method 0x36f40c61.
-//
-// Solidity: function queryBalance() view returns(uint256)
-func (_User *UserCallerSession) QueryBalance() (*big.Int, error) {
-	return _User.Contract.QueryBalance(&_User.CallOpts)
 }
 
 // QueryBorrower is a free data retrieval call binding the contract method 0xaf3be6e6.
@@ -894,46 +801,98 @@ func (_User *UserCallerSession) QueryBorrower(id *big.Int) (common.Address, erro
 	return _User.Contract.QueryBorrower(&_User.CallOpts, id)
 }
 
-// AddCommunity is a paid mutator transaction binding the contract method 0x3f104068.
+// SignIn is a free data retrieval call binding the contract method 0x8fa9e55c.
 //
-// Solidity: function addCommunity(uint256 number, address beneficiaryAddr, string communityName, string communityIntroduce, uint256 communityAmounts) returns()
-func (_User *UserTransactor) AddCommunity(opts *bind.TransactOpts, number *big.Int, beneficiaryAddr common.Address, communityName string, communityIntroduce string, communityAmounts *big.Int) (*types.Transaction, error) {
-	return _User.contract.Transact(opts, "addCommunity", number, beneficiaryAddr, communityName, communityIntroduce, communityAmounts)
+// Solidity: function signIn(address people) view returns(string)
+func (_User *UserCaller) SignIn(opts *bind.CallOpts, people common.Address) (string, error) {
+	var out []interface{}
+	err := _User.contract.Call(opts, &out, "signIn", people)
+
+	if err != nil {
+		return *new(string), err
+	}
+
+	out0 := *abi.ConvertType(out[0], new(string)).(*string)
+
+	return out0, err
+
 }
 
-// AddCommunity is a paid mutator transaction binding the contract method 0x3f104068.
+// SignIn is a free data retrieval call binding the contract method 0x8fa9e55c.
 //
-// Solidity: function addCommunity(uint256 number, address beneficiaryAddr, string communityName, string communityIntroduce, uint256 communityAmounts) returns()
-func (_User *UserSession) AddCommunity(number *big.Int, beneficiaryAddr common.Address, communityName string, communityIntroduce string, communityAmounts *big.Int) (*types.Transaction, error) {
-	return _User.Contract.AddCommunity(&_User.TransactOpts, number, beneficiaryAddr, communityName, communityIntroduce, communityAmounts)
+// Solidity: function signIn(address people) view returns(string)
+func (_User *UserSession) SignIn(people common.Address) (string, error) {
+	return _User.Contract.SignIn(&_User.CallOpts, people)
 }
 
-// AddCommunity is a paid mutator transaction binding the contract method 0x3f104068.
+// SignIn is a free data retrieval call binding the contract method 0x8fa9e55c.
 //
-// Solidity: function addCommunity(uint256 number, address beneficiaryAddr, string communityName, string communityIntroduce, uint256 communityAmounts) returns()
-func (_User *UserTransactorSession) AddCommunity(number *big.Int, beneficiaryAddr common.Address, communityName string, communityIntroduce string, communityAmounts *big.Int) (*types.Transaction, error) {
-	return _User.Contract.AddCommunity(&_User.TransactOpts, number, beneficiaryAddr, communityName, communityIntroduce, communityAmounts)
+// Solidity: function signIn(address people) view returns(string)
+func (_User *UserCallerSession) SignIn(people common.Address) (string, error) {
+	return _User.Contract.SignIn(&_User.CallOpts, people)
 }
 
-// AddGoods is a paid mutator transaction binding the contract method 0x5f4cf227.
+// UpdateCommunity is a paid mutator transaction binding the contract method 0xcaee4504.
 //
-// Solidity: function addGoods(address owner, string name, string species, uint256 rent, uint256 ethPledge, string[] goodsImgs) returns(uint256)
-func (_User *UserTransactor) AddGoods(opts *bind.TransactOpts, owner common.Address, name string, species string, rent *big.Int, ethPledge *big.Int, goodsImgs []string) (*types.Transaction, error) {
-	return _User.contract.Transact(opts, "addGoods", owner, name, species, rent, ethPledge, goodsImgs)
+// Solidity: function UpdateCommunity(uint256 id, address beneficiaryAddr, string communityName, string communityIntroduce, uint256 communityAmounts) returns()
+func (_User *UserTransactor) UpdateCommunity(opts *bind.TransactOpts, id *big.Int, beneficiaryAddr common.Address, communityName string, communityIntroduce string, communityAmounts *big.Int) (*types.Transaction, error) {
+	return _User.contract.Transact(opts, "UpdateCommunity", id, beneficiaryAddr, communityName, communityIntroduce, communityAmounts)
 }
 
-// AddGoods is a paid mutator transaction binding the contract method 0x5f4cf227.
+// UpdateCommunity is a paid mutator transaction binding the contract method 0xcaee4504.
 //
-// Solidity: function addGoods(address owner, string name, string species, uint256 rent, uint256 ethPledge, string[] goodsImgs) returns(uint256)
-func (_User *UserSession) AddGoods(owner common.Address, name string, species string, rent *big.Int, ethPledge *big.Int, goodsImgs []string) (*types.Transaction, error) {
-	return _User.Contract.AddGoods(&_User.TransactOpts, owner, name, species, rent, ethPledge, goodsImgs)
+// Solidity: function UpdateCommunity(uint256 id, address beneficiaryAddr, string communityName, string communityIntroduce, uint256 communityAmounts) returns()
+func (_User *UserSession) UpdateCommunity(id *big.Int, beneficiaryAddr common.Address, communityName string, communityIntroduce string, communityAmounts *big.Int) (*types.Transaction, error) {
+	return _User.Contract.UpdateCommunity(&_User.TransactOpts, id, beneficiaryAddr, communityName, communityIntroduce, communityAmounts)
 }
 
-// AddGoods is a paid mutator transaction binding the contract method 0x5f4cf227.
+// UpdateCommunity is a paid mutator transaction binding the contract method 0xcaee4504.
 //
-// Solidity: function addGoods(address owner, string name, string species, uint256 rent, uint256 ethPledge, string[] goodsImgs) returns(uint256)
-func (_User *UserTransactorSession) AddGoods(owner common.Address, name string, species string, rent *big.Int, ethPledge *big.Int, goodsImgs []string) (*types.Transaction, error) {
-	return _User.Contract.AddGoods(&_User.TransactOpts, owner, name, species, rent, ethPledge, goodsImgs)
+// Solidity: function UpdateCommunity(uint256 id, address beneficiaryAddr, string communityName, string communityIntroduce, uint256 communityAmounts) returns()
+func (_User *UserTransactorSession) UpdateCommunity(id *big.Int, beneficiaryAddr common.Address, communityName string, communityIntroduce string, communityAmounts *big.Int) (*types.Transaction, error) {
+	return _User.Contract.UpdateCommunity(&_User.TransactOpts, id, beneficiaryAddr, communityName, communityIntroduce, communityAmounts)
+}
+
+// AddCommunity is a paid mutator transaction binding the contract method 0x008c0c0e.
+//
+// Solidity: function addCommunity(address beneficiaryAddr, string communityName, string communityIntroduce, uint256 communityAmounts) returns()
+func (_User *UserTransactor) AddCommunity(opts *bind.TransactOpts, beneficiaryAddr common.Address, communityName string, communityIntroduce string, communityAmounts *big.Int) (*types.Transaction, error) {
+	return _User.contract.Transact(opts, "addCommunity", beneficiaryAddr, communityName, communityIntroduce, communityAmounts)
+}
+
+// AddCommunity is a paid mutator transaction binding the contract method 0x008c0c0e.
+//
+// Solidity: function addCommunity(address beneficiaryAddr, string communityName, string communityIntroduce, uint256 communityAmounts) returns()
+func (_User *UserSession) AddCommunity(beneficiaryAddr common.Address, communityName string, communityIntroduce string, communityAmounts *big.Int) (*types.Transaction, error) {
+	return _User.Contract.AddCommunity(&_User.TransactOpts, beneficiaryAddr, communityName, communityIntroduce, communityAmounts)
+}
+
+// AddCommunity is a paid mutator transaction binding the contract method 0x008c0c0e.
+//
+// Solidity: function addCommunity(address beneficiaryAddr, string communityName, string communityIntroduce, uint256 communityAmounts) returns()
+func (_User *UserTransactorSession) AddCommunity(beneficiaryAddr common.Address, communityName string, communityIntroduce string, communityAmounts *big.Int) (*types.Transaction, error) {
+	return _User.Contract.AddCommunity(&_User.TransactOpts, beneficiaryAddr, communityName, communityIntroduce, communityAmounts)
+}
+
+// AddGoods is a paid mutator transaction binding the contract method 0xb199cd04.
+//
+// Solidity: function addGoods(address owner, string name, string species, uint256 rent, uint256 ethPledge, string[] goodsImgs, string goodSign) returns(uint256)
+func (_User *UserTransactor) AddGoods(opts *bind.TransactOpts, owner common.Address, name string, species string, rent *big.Int, ethPledge *big.Int, goodsImgs []string, goodSign string) (*types.Transaction, error) {
+	return _User.contract.Transact(opts, "addGoods", owner, name, species, rent, ethPledge, goodsImgs, goodSign)
+}
+
+// AddGoods is a paid mutator transaction binding the contract method 0xb199cd04.
+//
+// Solidity: function addGoods(address owner, string name, string species, uint256 rent, uint256 ethPledge, string[] goodsImgs, string goodSign) returns(uint256)
+func (_User *UserSession) AddGoods(owner common.Address, name string, species string, rent *big.Int, ethPledge *big.Int, goodsImgs []string, goodSign string) (*types.Transaction, error) {
+	return _User.Contract.AddGoods(&_User.TransactOpts, owner, name, species, rent, ethPledge, goodsImgs, goodSign)
+}
+
+// AddGoods is a paid mutator transaction binding the contract method 0xb199cd04.
+//
+// Solidity: function addGoods(address owner, string name, string species, uint256 rent, uint256 ethPledge, string[] goodsImgs, string goodSign) returns(uint256)
+func (_User *UserTransactorSession) AddGoods(owner common.Address, name string, species string, rent *big.Int, ethPledge *big.Int, goodsImgs []string, goodSign string) (*types.Transaction, error) {
+	return _User.Contract.AddGoods(&_User.TransactOpts, owner, name, species, rent, ethPledge, goodsImgs, goodSign)
 }
 
 // AddSticker is a paid mutator transaction binding the contract method 0xd360ba7a.
@@ -1085,44 +1044,44 @@ func (_User *UserTransactorSession) BorrowGoods(id *big.Int, borrowDays *big.Int
 
 // DelCommunity is a paid mutator transaction binding the contract method 0xc39a2be8.
 //
-// Solidity: function delCommunity(uint256 number) returns()
-func (_User *UserTransactor) DelCommunity(opts *bind.TransactOpts, number *big.Int) (*types.Transaction, error) {
-	return _User.contract.Transact(opts, "delCommunity", number)
+// Solidity: function delCommunity(uint256 id) returns()
+func (_User *UserTransactor) DelCommunity(opts *bind.TransactOpts, id *big.Int) (*types.Transaction, error) {
+	return _User.contract.Transact(opts, "delCommunity", id)
 }
 
 // DelCommunity is a paid mutator transaction binding the contract method 0xc39a2be8.
 //
-// Solidity: function delCommunity(uint256 number) returns()
-func (_User *UserSession) DelCommunity(number *big.Int) (*types.Transaction, error) {
-	return _User.Contract.DelCommunity(&_User.TransactOpts, number)
+// Solidity: function delCommunity(uint256 id) returns()
+func (_User *UserSession) DelCommunity(id *big.Int) (*types.Transaction, error) {
+	return _User.Contract.DelCommunity(&_User.TransactOpts, id)
 }
 
 // DelCommunity is a paid mutator transaction binding the contract method 0xc39a2be8.
 //
-// Solidity: function delCommunity(uint256 number) returns()
-func (_User *UserTransactorSession) DelCommunity(number *big.Int) (*types.Transaction, error) {
-	return _User.Contract.DelCommunity(&_User.TransactOpts, number)
+// Solidity: function delCommunity(uint256 id) returns()
+func (_User *UserTransactorSession) DelCommunity(id *big.Int) (*types.Transaction, error) {
+	return _User.Contract.DelCommunity(&_User.TransactOpts, id)
 }
 
-// DelGoods is a paid mutator transaction binding the contract method 0xeb8d6a96.
+// DelStick is a paid mutator transaction binding the contract method 0x690ae647.
 //
-// Solidity: function delGoods(uint256 id) returns()
-func (_User *UserTransactor) DelGoods(opts *bind.TransactOpts, id *big.Int) (*types.Transaction, error) {
-	return _User.contract.Transact(opts, "delGoods", id)
+// Solidity: function delStick(uint256 id) returns()
+func (_User *UserTransactor) DelStick(opts *bind.TransactOpts, id *big.Int) (*types.Transaction, error) {
+	return _User.contract.Transact(opts, "delStick", id)
 }
 
-// DelGoods is a paid mutator transaction binding the contract method 0xeb8d6a96.
+// DelStick is a paid mutator transaction binding the contract method 0x690ae647.
 //
-// Solidity: function delGoods(uint256 id) returns()
-func (_User *UserSession) DelGoods(id *big.Int) (*types.Transaction, error) {
-	return _User.Contract.DelGoods(&_User.TransactOpts, id)
+// Solidity: function delStick(uint256 id) returns()
+func (_User *UserSession) DelStick(id *big.Int) (*types.Transaction, error) {
+	return _User.Contract.DelStick(&_User.TransactOpts, id)
 }
 
-// DelGoods is a paid mutator transaction binding the contract method 0xeb8d6a96.
+// DelStick is a paid mutator transaction binding the contract method 0x690ae647.
 //
-// Solidity: function delGoods(uint256 id) returns()
-func (_User *UserTransactorSession) DelGoods(id *big.Int) (*types.Transaction, error) {
-	return _User.Contract.DelGoods(&_User.TransactOpts, id)
+// Solidity: function delStick(uint256 id) returns()
+func (_User *UserTransactorSession) DelStick(id *big.Int) (*types.Transaction, error) {
+	return _User.Contract.DelStick(&_User.TransactOpts, id)
 }
 
 // DoGoodsReturn is a paid mutator transaction binding the contract method 0xbf90d352.
@@ -1251,6 +1210,27 @@ func (_User *UserTransactorSession) Register(name string, people common.Address,
 	return _User.Contract.Register(&_User.TransactOpts, name, people, email, password)
 }
 
+// TopUp is a paid mutator transaction binding the contract method 0xab839ad2.
+//
+// Solidity: function topUp(uint256 myAmount, address people) payable returns()
+func (_User *UserTransactor) TopUp(opts *bind.TransactOpts, myAmount *big.Int, people common.Address) (*types.Transaction, error) {
+	return _User.contract.Transact(opts, "topUp", myAmount, people)
+}
+
+// TopUp is a paid mutator transaction binding the contract method 0xab839ad2.
+//
+// Solidity: function topUp(uint256 myAmount, address people) payable returns()
+func (_User *UserSession) TopUp(myAmount *big.Int, people common.Address) (*types.Transaction, error) {
+	return _User.Contract.TopUp(&_User.TransactOpts, myAmount, people)
+}
+
+// TopUp is a paid mutator transaction binding the contract method 0xab839ad2.
+//
+// Solidity: function topUp(uint256 myAmount, address people) payable returns()
+func (_User *UserTransactorSession) TopUp(myAmount *big.Int, people common.Address) (*types.Transaction, error) {
+	return _User.Contract.TopUp(&_User.TransactOpts, myAmount, people)
+}
+
 // UpdGoods is a paid mutator transaction binding the contract method 0xf139ddd2.
 //
 // Solidity: function updGoods(uint256 id, string name, string species, uint256 rent, uint256 ethPledge) returns()
@@ -1270,6 +1250,27 @@ func (_User *UserSession) UpdGoods(id *big.Int, name string, species string, ren
 // Solidity: function updGoods(uint256 id, string name, string species, uint256 rent, uint256 ethPledge) returns()
 func (_User *UserTransactorSession) UpdGoods(id *big.Int, name string, species string, rent *big.Int, ethPledge *big.Int) (*types.Transaction, error) {
 	return _User.Contract.UpdGoods(&_User.TransactOpts, id, name, species, rent, ethPledge)
+}
+
+// UpdateStick is a paid mutator transaction binding the contract method 0x7e75620d.
+//
+// Solidity: function updateStick(uint256 id, string newName) returns()
+func (_User *UserTransactor) UpdateStick(opts *bind.TransactOpts, id *big.Int, newName string) (*types.Transaction, error) {
+	return _User.contract.Transact(opts, "updateStick", id, newName)
+}
+
+// UpdateStick is a paid mutator transaction binding the contract method 0x7e75620d.
+//
+// Solidity: function updateStick(uint256 id, string newName) returns()
+func (_User *UserSession) UpdateStick(id *big.Int, newName string) (*types.Transaction, error) {
+	return _User.Contract.UpdateStick(&_User.TransactOpts, id, newName)
+}
+
+// UpdateStick is a paid mutator transaction binding the contract method 0x7e75620d.
+//
+// Solidity: function updateStick(uint256 id, string newName) returns()
+func (_User *UserTransactorSession) UpdateStick(id *big.Int, newName string) (*types.Transaction, error) {
+	return _User.Contract.UpdateStick(&_User.TransactOpts, id, newName)
 }
 
 // UpdateUser is a paid mutator transaction binding the contract method 0x0da4578b.

@@ -4,6 +4,7 @@ import (
 	"Sharing/Agreement"
 	"crypto/ecdsa"
 	"fmt"
+	"github.com/ethereum/go-ethereum/common"
 	"github.com/ethereum/go-ethereum/core/types"
 	"github.com/ethereum/go-ethereum/ethclient"
 	"log"
@@ -11,9 +12,9 @@ import (
 )
 
 //封装物品下架方法
-func DelGoodsMethod(client *ethclient.Client, contract *Agreement.User,id *big.Int,privateKey *ecdsa.PrivateKey) (*types.Transaction, error)  {
+func OutGoodsMethod(client *ethclient.Client, contract *Agreement.User, owner common.Address,id *big.Int,privateKey *ecdsa.PrivateKey) (*types.Transaction, error)  {
 	opts := GetMsgOpts(privateKey)
-	res, err := contract.DelGoods(opts,id)
+	res, err := contract.OutGoods(opts,owner,id)
 
 	fmt.Println("del:", res)
 	opts.GasLimit = gasLimit

@@ -30,7 +30,7 @@ func AgreeMethod(client *ethclient.Client, contract *Agreement.User,id *big.Int,
 	opts := GetMsgOpts(privateKey)
 	res, err := contract.AgreeBorrow(opts,id,deal,since,borrower)
 
-	fmt.Println("del:", res)
+	fmt.Println("agree:", res)
 	opts.GasLimit = gasLimit
 	opts.GasPrice, err = GetgasPrice(client)
 	if err != nil {
