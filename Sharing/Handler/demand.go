@@ -28,11 +28,11 @@ func demandAdd(c *gin.Context) {
 		respError(c, err)
 		return
 	}
-	needs := x.Demand{}
+	needs := x.DemandDB{}
 	demandKinds := c.PostForm("demandKind")
 	demandNames := c.PostForm("demandName")
 	fmt.Println(demandKinds, "====", demandNames)
-	needs.DemandKind = demandKinds
+	needs.DemandKinds = demandKinds
 	demandAddr := people.Hex()
 	err = x.InsertDemand(demandKinds, demandAddr, demandNames)
 }

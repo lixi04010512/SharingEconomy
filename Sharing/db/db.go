@@ -3,6 +3,7 @@ package db
 import (
 	"database/sql"
 	"fmt"
+	"github.com/ethereum/go-ethereum/common"
 	_ "github.com/go-sql-driver/mysql"
 	"time"
 )
@@ -12,7 +13,7 @@ var db *sql.DB
 func Init() (err error) {
 	// 打开mysql数据库
 	fmt.Println()
-	db, err = sql.Open("mysql", "root:ys3285739@tcp(127.0.0.1:3306)/shareFish?charset=utf8&parseTime=true")
+	db, err = sql.Open("mysql", "root:ys3285739@tcp(127.0.0.1:3306)/sharefish?charset=utf8&parseTime=true")
 	if err != nil {
 		panic(err)
 	}
@@ -42,7 +43,7 @@ SET FOREIGN_KEY_CHECKS = 1;
 }
 
 //查看需求
-func ListNeeds() (DemandList []Demand, err error) {
+func ListNeeds() (DemandList []DemandDB, err error) {
 	// 查询数据\
 	var sqlStr = `SELECT * FROM demand `
 	rows, err := db.Query(sqlStr)
@@ -50,8 +51,8 @@ func ListNeeds() (DemandList []Demand, err error) {
 		return nil, err
 	}
 	for rows.Next() {
-		DemandStr := Demand{}
-		err = rows.Scan(&DemandStr.DemandID, &DemandStr.DemandKind, &DemandStr.DemandAddr, &DemandStr.DemandName, &DemandStr.DemandTime)
+		DemandStr := DemandDB{}
+		err = rows.Scan(&DemandStr.DemandID, &DemandStr.DemandKinds, &DemandStr.DemandAddr, &DemandStr.DemandName, &DemandStr.DemandTime)
 		if err != nil {
 			return nil, err
 		}
@@ -61,22 +62,34 @@ func ListNeeds() (DemandList []Demand, err error) {
 }
 
 //查看我的需求
-func MyLinstNeeds(demandAddr string) (DemandList []Demand, err error) {
-	// 查询数据\
-	var sqlStr = `SELECT * FROM demand where demandAddr =` + demandAddr
-	rows, err := db.Query(sqlStr)
+func MyListNeeds(demandAddr common.Address) (DemandList []DemandDB, err error) {
+	// 查询数据
+	demandAddrStr := demandAddr.Hex()
+
+	var sqlStr = `select * from demand where demandAddr =?`
+	rows, err := db.Query(sqlStr, demandAddrStr)
 	if err != nil {
 		return nil, err
 	}
+
 	for rows.Next() {
-		DemandStr := Demand{}
-		err = rows.Scan(&DemandStr.DemandID, &DemandStr.DemandKind, &DemandStr.DemandAddr, &DemandStr.DemandName, &DemandStr.DemandTime)
+		DemandStr := DemandDB{}
+		err = rows.Scan(&DemandStr.DemandID, &DemandStr.DemandKinds, &DemandStr.DemandName, &DemandStr.DemandTime, &DemandStr.DemandAddr)
+		fmt.Println(&DemandStr.DemandID)
 		if err != nil {
 			return nil, err
 		}
 		DemandList = append(DemandList, DemandStr)
 	}
+
 	return
+}
+
+//编辑需求数据
+func editDemand(DemandID int, DemandKind string, DemandName string) (err error) {
+	var sqlStr = `updata demand set demandKinds = ` + DemandKind + `,demandName =` + DemandName + ` where demandID = ?`
+	_, err = db.Query(sqlStr, DemandID)
+	return err
 }
 
 //插入需求数据
