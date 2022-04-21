@@ -1,111 +1,47 @@
-screenFuc();
-function screenFuc() {
-    var topHeight = $(".chatBox-head").innerHeight();//聊天头部高度
-    //屏幕小于768px时候,布局change
-    var winWidth = $(window).innerWidth();
-    if (winWidth <= 768) {
-        var totalHeight = $(window).height(); //页面整体高度
-        $(".chatBox-info").css("height", totalHeight - topHeight);
-        var infoHeight = $(".chatBox-info").innerHeight();//聊天头部以下高度
-        //中间内容高度
-        $(".chatBox-content").css("height", infoHeight - 46);
-        $(".chatBox-content-demo").css("height", infoHeight - 46);
-
-        $(".chatBox-list").css("height", totalHeight - topHeight);
-        $(".chatBox-kuang").css("height", totalHeight - topHeight);
-        $(".div-textarea").css("width", winWidth - 106);
-    } else {
-        $(".chatBox-info").css("height", 495);
-        $(".chatBox-content").css("height", 448);
-        $(".chatBox-content-demo").css("height", 448);
-        $(".chatBox-list").css("height", 495);
-        $(".chatBox-kuang").css("height", 495);
-        $(".div-textarea").css("width", 260);
-    }
-}
-(window.onresize = function () {
-    screenFuc();
-})();
-//未读信息数量为空时
-var totalNum = $(".chat-message-num").html();
-if (totalNum == "") {
-    $(".chat-message-num").css("padding", 0);
-}
-$(".message-num").each(function () {
-    var wdNum = $(this).html();
-    if (wdNum == "") {
-        $(this).css("padding", 0);
-    }
-});
-
-
-
-
-//进聊天页面
-$(".chat-list-people").each(function () {
-    $(this).click(function () {
-        var n = $(this).index();
-        $(".chatBox-head-one").toggle();
-        $(".chatBox-head-two").toggle();
-        $(".chatBox-list").fadeToggle();
-        $(".chatBox-kuang").fadeToggle();
-
-        //传名字
-        $(".ChatInfoName").text($(this).children(".chat-name").children("p").eq(0).html());
-
-        //传头像
-        $(".ChatInfoHead>img").attr("src", $(this).children().eq(0).children("img").attr("src"));
-
-        //聊天框默认最底部
-        $(document).ready(function () {
-            $("#chatBox-content-demo").scrollTop($("#chatBox-content-demo")[0].scrollHeight);
-        });
+let canSend = false;
+$(function() {
+    $('#footer').on('keyup', 'input', function() {
+        if ($(this).val().length > 0) {
+            $(this).next().css('background', '#114F8E').prop('disabled', true);
+            canSend = true;
+        } else {
+            $(this).next().css('background', '#ddd').prop('disabled', false);
+            canSend = false;
+        }
     })
-});
+    $('#footer .send').click(send)
+    $("#footer .my-input").keydown(function(e){
+        if(e.keyCode == 13){
+            return send();
+        }
+    });
+})
 
-//返回列表
-$(".chat-return").click(function () {
-    $(".chatBox-head-one").toggle(1);
-    $(".chatBox-head-two").toggle(1);
-    $(".chatBox-list").fadeToggle(1);
-    $(".chatBox-kuang").fadeToggle(1);
-});
 
-//      发送信息
-$("#chat-fasong").click(function () {
-    var textContent = $(".div-textarea").html().replace(/[\n\r]/g, '<br>')
-    if (textContent != "") {
-        $(".chatBox-content-demo").append("<div class=\"clearfloat\">" +
-            "<div class=\"author-name\"><small class=\"chat-date\">2017-12-02 14:26:58</small> </div> " +
-            "<div class=\"right\"> <div class=\"chat-message\"> " + textContent + " </div> " +
-            "<div class=\"chat-avatars\"><img src=\"share/assets/img/profile.jpg\" alt=\"头像\" /></div> </div> </div>");
-        //发送后清空输入框
-        $(".div-textarea").html("");
-        //聊天框默认最底部
-        $(document).ready(function () {
-            $("#chatBox-content-demo").scrollTop($("#chatBox-content-demo")[0].scrollHeight);
-        });
+
+function reply(headSrc, str) {
+    var html = "<div class='reply'><div class='dropdown d-inline-block'><a class=' dropdown-toggle arrow-none' id='dLabel8' data-bs-toggle='dropdown' href='#' role='button' aria-haspopup='false' aria-expanded='false'><div class='reply'><div class='msg'><img src=" + headSrc + " /><p><i class='msg_input'></i>" + str + "</p></div></div></a><div class='dropdown-menu dropdown-menu-right' aria-labelledby='dLabel8'><a class='dropdown-item' href='#'>删除</a></div></div></div>";
+    return upView(html);
+}
+function ask(headSrc, str) {
+    var html = "<div class='reply' ><div class='dropdown d-inline-block'><a class=' dropdown-toggle arrow-none' id='dLabel8' data-bs-toggle='dropdown' href='#' role='button' aria-haspopup='false' aria-expanded='false'><div class='ask'><div class='msg'><img src=" + headSrc + " />" + "<p><i class='msg_input'></i>" + str + "</p></div></div></a><div class='dropdown-menu dropdown-menu-right' aria-labelledby='dLabel8'><a class='dropdown-item' href='#'>删除</a></div></div></div>";
+    return upView(html);
+}
+function upView(html) {
+    let message = $('#message');
+    message.append(html);
+    return $('html,body').animate({
+        scrollTop: message.outerHeight() - window.innerHeight
+    }, 200);
+}
+function send(msg){
+    if(canSend){
+        let input = $("#footer .my-input");
+        ask("share/assets/img/profile.jpg", input.val());
+        input.val('');
+        test();
     }
-});
-
-
-//      发送图片
-function selectImg(pic) {
-    if (!pic.files || !pic.files[0]) {
-        return;
-    }
-    var reader = new FileReader();
-    reader.onload = function (evt) {
-        var images = evt.target.result;
-        $(".chatBox-content-demo").append("<div class=\"clearfloat\">" +
-            "<div class=\"author-name\"><small class=\"chat-date\">2017-12-02 14:26:58</small> </div> " +
-            "<div class=\"right\"> <div class=\"chat-message\"><img src=" + images + "></div> " +
-            "<div class=\"chat-avatars\"><img src=\"img/icon01.png\" alt=\"头像\" /></div> </div> </div>");
-        //聊天框默认最底部
-        $(document).ready(function () {
-            $("#chatBox-content-demo").scrollTop($("#chatBox-content-demo")[0].scrollHeight);
-        });
-    };
-    reader.readAsDataURL(pic.files[0]);
-
+}
+function sj() {
+    return parseInt(Math.random() * 10)
 }
