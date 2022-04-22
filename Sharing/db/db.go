@@ -43,9 +43,9 @@ SET FOREIGN_KEY_CHECKS = 1;
 }
 
 //查看需求
-func ListNeeds() (DemandList []DemandDB, err error) {
+func ListNeedAll() (DemandList []DemandDB, err error) {
 	// 查询数据
-	var sqlStr = `SELECT * FROM demand `
+	var sqlStr = `select * from demand `
 	rows, err := db.Query(sqlStr)
 	if err != nil {
 		return nil, err
