@@ -30,226 +30,129 @@
 <body class="pe-0">
 
 
-    <div class="internet-connection-status" id="internetStatus"></div>
-    <!-- Header Area -->
-    <div class="header-area" id="headerArea">
-        <div class="container">
-            <!-- Header Content -->
-            <div
+<div class="internet-connection-status" id="internetStatus"></div>
+<!-- Header Area -->
+<div class="header-area" id="headerArea">
+    <div class="container">
+        <!-- Header Content -->
+        <div
                 class="header-content header-style-five position-relative d-flex align-items-center justify-content-between">
-                <!-- Back Button -->
-                <div class="back-button">
-                    <a href="../ui-me">
-                        <svg class="bi bi-arrow-left-short" width="32" height="32" viewBox="0 0 16 16"
-                            fill="currentColor" xmlns="http://www.w3.org/2000/svg">
-                            <path fill-rule="evenodd"
-                                d="M12 8a.5.5 0 0 1-.5.5H5.707l2.147 2.146a.5.5 0 0 1-.708.708l-3-3a.5.5 0 0 1 0-.708l3-3a.5.5 0 1 1 .708.708L5.707 7.5H11.5a.5.5 0 0 1 .5.5z">
-                            </path>
-                        </svg></a>
-                </div>
-                <!-- Page Title -->
-                <div class="page-heading">
-                    <h6 class="mb-0">消息列表</h6>
-                </div>
-                <!-- Navbar Toggler -->
-                <div class="navbar--toggler" id="header-menu-trigger" data-bs-toggle="offcanvas"
-                    data-bs-target="#affanOffcanvas" aria-controls="affanOffcanvas"><span class="d-block"></span><span
-                        class="d-block"></span><span class="d-block"></span></div>
+            <!-- Back Button -->
+            <div class="back-button">
+                <a  class="back-link" onClick="javascript :history.back(-1);">
+                    <svg class="bi bi-arrow-left-short" width="32" height="32" viewBox="0 0 16 16"
+                         fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+                        <path fill-rule="evenodd"
+                              d="M12 8a.5.5 0 0 1-.5.5H5.707l2.147 2.146a.5.5 0 0 1-.708.708l-3-3a.5.5 0 0 1 0-.708l3-3a.5.5 0 1 1 .708.708L5.707 7.5H11.5a.5.5 0 0 1 .5.5z">
+                        </path>
+                    </svg>
+                </a>
             </div>
+            <!-- Page Title -->
+            <div class="page-heading">
+                <h6 class="mb-0">消息列表</h6>
+            </div>
+            <!-- Navbar Toggler -->
+            <div class="navbar--toggler" id="header-menu-trigger" data-bs-toggle="offcanvas"
+                 data-bs-target="#affanOffcanvas" aria-controls="affanOffcanvas"><span class="d-block"></span><span
+                    class="d-block"></span><span class="d-block"></span></div>
         </div>
     </div>
+</div>
+<div class="page-content-wrapper py-3">
+    <div class="container">
+        <!-- User Status Slide -->
+        <ul class="ps-0 chat-user-list" id="ul_li">
+            <!-- Single Chat User -->
 
-    {{ template "Static/menu.html" . }}
-
-
-    <div class="page-content-wrapper py-3">
-        <div class="container">
-            <div class="card mb-2">
-                <div class="card-body p-2">
-                    <div class="chat-search-box">
-                        <form action="#">
-                            <div class="input-group"><span class="input-group-text" id="searchbox"><i
-                                        class="ti ti-search"></i></span><input class="form-control" type="search"
-                                    placeholder="搜索..." aria-describedby="searchbox"></div>
-                        </form>
+            {{ $owner1 := .owners }}
+            {{ range $key,$value := .chat_list }}
+            {{ if eq $value.Owner $owner1 }}
+            <li class="p-3 chat-unread">
+                <a class="d-flex">
+                <!-- Thumbnail -->
+                <div class="chat-user-thumbnail me-3 shadow"><img class="img-circle"
+                                                                  src="{{ $value.Img  }}"><span
+                        class=" active-status"></span></div><!-- Info -->
+                <div class="chat-user-info" data-addrto="{{ $value.Addr }}" data-nameto="{{ $value.Name }}">
+                    <h6 class="text-truncate mb-0">{{ $value.Name }}</h6>
+                    <div class="last-chat">
+                        <p class="mb-0 text-truncate">{{ $value.Time }}<span
+                                class="badge rounded-pill bg-primary ms-2">2</span></p>
                     </div>
                 </div>
-            </div>
-
-            <!-- User Status Slide -->
-            <ul class="ps-0 chat-user-list">
-                <!-- Single Chat User -->
-                <li class="p-3 chat-unread"><a class="d-flex" href="../wechat">
-                        <!-- Thumbnail -->
-                        <div class="chat-user-thumbnail me-3 shadow"><img class="img-circle"
-                                src="share/static/picture/user-1.jpg"><span class=" active-status"></span></div><!-- Info -->
-                        <div class="chat-user-info">
-                            <h6 class="text-truncate mb-0">莱昂纳多</h6>
-                            <div class="last-chat">
-                                <p class="mb-0 text-truncate">3080的<span
-                                        class="badge rounded-pill bg-primary ms-2">2</span></p>
-                            </div>
-                        </div>
-                    </a>
-                    <!-- Options -->
-                    <div class="dropstart chat-options-btn"><button class="btn dropdown-toggle" type="button"
+            </a>
+                <!-- Options -->
+                <div class="dropstart chat-options-btn">
+                    <button class="btn dropdown-toggle" type="button"
                             data-bs-toggle="dropdown" aria-expanded="false"><i class="ti ti-dots-vertical"></i></button>
-                        <ul class="dropdown-menu">
+                    <ul class="dropdown-menu">
 
-                            <li><a href="#"><i class="ti ti-trash"></i>删除</a></li>
-                        </ul>
-                    </div>
-                </li>
+                        <li class="del" data-id="{{ $value.Id }}"><a><i class="ti ti-trash" ></i>删除</a></li>
+                    </ul>
+                </div>
+            </li>
+            {{ end }}
+            {{ end }}
+        </ul>
+    </div>
+</div>
 
-                <!-- Single Chat User -->
-                <li class="p-3">
-                    <a class="d-flex" href="../wechat">
-                        <div class="chat-user-thumbnail me-3 shadow">
-                            <img class="img-circle" src="share/static/picture/user-2.jpg" alt=""><span
-                                class=" active-status"></span>
-                        </div>
-                        <!-- Info -->
-                        <div class="chat-user-info">
-                            <h6 class="text-truncate mb-0">1号</h6>
-                            <div class="last-chat">
-                                <p class="text-truncate mb-0">有什么可以帮您？</p>
-                            </div>
-                        </div>
-                    </a>
-                    <!-- Options -->
-                    <div class="dropstart chat-options-btn"><button class="btn dropdown-toggle" type="button"
-                            data-bs-toggle="dropdown" aria-expanded="false"><i class="ti ti-dots-vertical"></i></button>
-                        <ul class="dropdown-menu">
-                            <li><a href="#"><i class="ti ti-trash"></i>删除</a></li>
-                        </ul>
-                    </div>
-                </li>
+<footer>
 
-                <!-- Single Chat User -->
-                <li class="p-3 offline"><a class="d-flex" href="../wechat">
-                        <!-- Thumbnail -->
-                        <div class="chat-user-thumbnail me-3 shadow"><img class="img-circle"
-                                src="share/static/picture/user-3.jpg" alt=""><span class="active-status"></span></div>
-                        <!-- Info -->
-                        <div class="chat-user-info">
-                            <h6 class="text-truncate mb-0">2号</h6>
-                            <div class="last-chat">
-                                <p class="text-truncate mb-0">请问有七成新的手机吗？</p>
-                            </div>
-                        </div>
-                    </a>
-                    <!-- Options -->
-                    <div class="dropstart chat-options-btn"><button class="btn dropdown-toggle" type="button"
-                            data-bs-toggle="dropdown" aria-expanded="false"><i class="ti ti-dots-vertical"></i></button>
-                        <ul class="dropdown-menu">
-                            <li><a href="#"><i class="ti ti-trash"></i>删除</a></li>
-                        </ul>
-                    </div>
-                </li>
-
-                <!-- Single Chat User -->
-                <li class="p-3"><a class="d-flex" href="../wechat">
-                        <!-- Thumbnail -->
-                        <div class="chat-user-thumbnail me-3 shadow"><img class="img-circle"
-                                src="share/static/picture/user-4.jpg" alt=""><span class="active-status"></span></div>
-                        <!-- Info -->
-                        <div class="chat-user-info">
-                            <h6 class="text-truncate mb-0">3号</h6>
-                            <div class="last-chat">
-                                <p class="text-truncate mb-0">我需要一个ipad</p>
-                            </div>
-                        </div>
-                    </a>
-                    <!-- Options -->
-                    <div class="dropstart chat-options-btn"><button class="btn dropdown-toggle" type="button"
-                            data-bs-toggle="dropdown" aria-expanded="false"><i class="ti ti-dots-vertical"></i></button>
-                        <ul class="dropdown-menu">
-                            <li><a href="#"><i class="ti ti-trash"></i>删除</a></li>
-                        </ul>
-                    </div>
-                </li>
-
-                <!-- Single Chat User -->
-                <li class="p-3"><a class="d-flex" href="../wechat">
-                        <!-- Thumbnail -->
-                        <div class="chat-user-thumbnail me-3 shadow"><img class="img-circle"
-                                src="share/static/picture/user-5.jpg" alt=""><span class="active-status"></span></div>
-                        <!-- Info -->
-                        <div class="chat-user-info">
-                            <h6 class="text-truncate mb-0">4号</h6>
-                            <div class="last-chat">
-                                <p class="text-truncate mb-0">好的谢谢</p>
-                            </div>
-                        </div>
-                    </a>
-                    <!-- Options -->
-                    <div class="dropstart chat-options-btn"><button class="btn dropdown-toggle" type="button"
-                            data-bs-toggle="dropdown" aria-expanded="false"><i class="ti ti-dots-vertical"></i></button>
-                        <ul class="dropdown-menu">
-                            <li><a href="#"><i class="ti ti-trash"></i>删除</a></li>
-                        </ul>
-                    </div>
-                </li>
-
-                <!-- Single Chat User -->
-                <li class="p-3 offline"><a class="d-flex" href="../wechat">
-                        <!-- Thumbnail -->
-                        <div class="chat-user-thumbnail me-3 shadow"><img class="img-circle"
-                                src="share/static/picture/user-6.jpg" alt=""><span class="active-status"></span></div>
-                        <!-- Info -->
-                        <div class="chat-user-info">
-                            <h6 class="text-truncate mb-0">5号</h6>
-                            <div class="last-chat">
-                                <p class="text-truncate mb-0">请问需要什么？</p>
-                            </div>
-                        </div>
-                    </a>
-                    <!-- Options -->
-                    <div class="dropstart chat-options-btn"><button class="btn dropdown-toggle" type="button"
-                            data-bs-toggle="dropdown" aria-expanded="false"><i class="ti ti-dots-vertical"></i></button>
-                        <ul class="dropdown-menu">
-                            <li><a href="#"><i class="ti ti-trash"></i>删除</a></li>
-                        </ul>
-                    </div>
-                </li>
-            </ul>
-        </div>
+    <div class="sc-bottom-bar">
+        <a class="sc-menu-item " href="../index"><i class="fas fa-home"></i></a>
+        <a class="sc-menu-item " href="../goods-category"><i class="fas  fa-list"></i></a>
+        <a href="../chat" class="sc-menu-item "><i class="fas fa-plus"></i></a>
+        <a class="sc-menu-item" href="../cart"><i class="fas fa-clipboard"></i></a>
+        <a class="sc-menu-item" href="../ui-me"><i class="fas fa-user"></i></a>
     </div>
 
+</footer>
 
 
-    <footer>
+<!-- jQuery JS -->
+<script src="share/assets/js/jquery-3.4.1.min.js"></script>
+<script>
+    $(".d-flex").click(function () {
+        $.ajax({
+            type: "POST",
+            url: "/list_content",
+            data: {"addr": $(".chat-user-info").data("addrto"),"name": $(".chat-user-info").data("nameto")},
+            success: function () {
+                window.location = "/select_chat_content";
+            }
+        })
+    })
 
-        <div class="sc-bottom-bar">
-            <a class="sc-menu-item " href="../index"><i class="fas fa-home"></i></a>
-            <a class="sc-menu-item " href="../goods-category"><i class="fas  fa-list"></i></a>
-            <a href="../chat" class="sc-menu-item "><i class="fas fa-plus"></i></a>
-            <a class="sc-menu-item sc-current" href="../apps-chat"><i class="fas fa-comments"></i></a>
-            <a class="sc-nav-indicator"></a>
-            <a class="sc-menu-item" href="../ui-me"><i class="fas fa-user"></i></a>
-        </div>
+    $(".dropdown-menu").delegate(".del","click",function () {
+        $.ajax({
+            type: "POST",
+            url: "/delete_chat_list",
+            data: {"id": $(".del").data("id")},
+            success: function () {
+                location.reload();
+            }
+        })
+    })
+</script>
+<script src="share/assets/js/main.js"></script>
 
-    </footer>
+<script src="share/js/bootstrap.bundle.min.js"></script>
+<script src="share/js/tabbar.js"></script>
 
+<!-- script js -->
+<script src="share/js/popbox.js"></script>
+<script src="share/static/js/app.js"></script>
+<script>
+    function okFunction() {
+        window.location.href = "login.html";
+    }
 
-
-    <!-- jQuery JS -->
-    <script src="share/assets/js/jquery-3.4.1.min.js"></script>
-    <script src="share/assets/js/main.js"></script>
-
-    <script src="share/js/bootstrap.bundle.min.js"></script>
-    <script src="share/js/tabbar.js"></script>
-
-    <!-- script js -->
-    <script src="share/js/popbox.js"></script>
-    <script>
-        function okFunction() {
-            window.location.href = "login.html";
-        }
-        function cancelFunction() {
-            alert('Cancel!');
-        }
-    </script>
+    function cancelFunction() {
+        alert('Cancel!');
+    }
+</script>
 
 </body>
 {{ end }}

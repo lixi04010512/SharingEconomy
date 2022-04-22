@@ -27,9 +27,9 @@ func logout(c *gin.Context) {
 		return
 	}
 
-	data, err := config.LogoutMethod(client,contract, loginUser,privKey)
+	data, err := config.LogoutMethod(client,contract, LoginUser,privKey)
 	fmt.Println("注销",data)
-	loginUser = logoutUser
+	LoginUser = logoutUser
 	privKey =logoutPriKey
 	c.Redirect(http.StatusFound, "/login")
 }

@@ -13,7 +13,7 @@ var db *sql.DB
 func Init() (err error) {
 	// 打开mysql数据库
 	fmt.Println()
-	db, err = sql.Open("mysql", "root:ys3285739@tcp(127.0.0.1:3306)/sharefish?charset=utf8&parseTime=true")
+	db, err = sql.Open("mysql", "root:root@tcp(127.0.0.1:3306)/sharefish")
 	if err != nil {
 		panic(err)
 	}
@@ -44,7 +44,7 @@ SET FOREIGN_KEY_CHECKS = 1;
 
 //查看需求
 func ListNeeds() (DemandList []DemandDB, err error) {
-	// 查询数据\
+	// 查询数据
 	var sqlStr = `SELECT * FROM demand `
 	rows, err := db.Query(sqlStr)
 	if err != nil {
@@ -112,3 +112,4 @@ func deleteNeeds(id int) (err error) {
 	_, err = db.Exec(sqlStr, id)
 	return err
 }
+

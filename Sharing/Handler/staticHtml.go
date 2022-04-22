@@ -24,10 +24,10 @@ func UserProfile(c *gin.Context) {
 		return
 	}
 
-	userName, people, integral, email, sign, goodsNum, balance, err := config.GetUserMethod(contract, loginUser)
+	userName, people, integral, email, sign, goodsNum, balance, err := config.GetUserMethod(contract, LoginUser)
 	fmt.Println("res", userName)
 	fmt.Println("peo", people, integral)
-	userImg, err := contract.GetUserImg(nil, loginUser)
+	userImg, err := contract.GetUserImg(nil, LoginUser)
 	if err != nil {
 		respError(c, err)
 		return
@@ -51,13 +51,13 @@ func modPhotoStatic(c *gin.Context) {
 		return
 	}
 
-	userName, people, _, _, _, _, _, err := config.GetUserMethod(contract, loginUser)
+	userName, people, _, _, _, _, _, err := config.GetUserMethod(contract, LoginUser)
 	fmt.Println("res", userName)
 	if err != nil {
 		respError(c, err)
 		return
 	}
-	userImg, err := contract.GetUserImg(nil, loginUser)
+	userImg, err := contract.GetUserImg(nil, LoginUser)
 	c.HTML(http.StatusOK, "Static/mod-photo.html", gin.H{"userName": userName, "address": people, "userImg": userImg})
 }
 
@@ -129,13 +129,13 @@ func EditNeedStatic(c *gin.Context) {
 		return
 	}
 
-	userName, people, _, _, _, _, _, err := config.GetUserMethod(contract, loginUser)
+	userName, people, _, _, _, _, _, err := config.GetUserMethod(contract, LoginUser)
 	fmt.Println("res", userName)
 	if err != nil {
 		respError(c, err)
 		return
 	}
-	userImg, err := contract.GetUserImg(nil, loginUser)
+	userImg, err := contract.GetUserImg(nil, LoginUser)
 	c.HTML(http.StatusOK, "Static/edit-need.html", gin.H{"userName": userName, "address": people, "userImg": userImg})
 }
 
@@ -155,13 +155,13 @@ func EditProfileStatic(c *gin.Context) {
 		return
 	}
 
-	userName, people, _, email, sign, _, _, err := config.GetUserMethod(contract, loginUser)
+	userName, people, _, email, sign, _, _, err := config.GetUserMethod(contract, LoginUser)
 	fmt.Println("res", userName)
 	if err != nil {
 		respError(c, err)
 		return
 	}
-	userImg, err := contract.GetUserImg(nil, loginUser)
+	userImg, err := contract.GetUserImg(nil, LoginUser)
 	c.HTML(http.StatusOK, "Static/edit-profile.html", gin.H{"userName": userName, "address": people, "userImg": userImg, "userEmail": email, "userSign": sign})
 }
 
@@ -181,13 +181,13 @@ func LendStatic(c *gin.Context) {
 		return
 	}
 
-	userName, people, _, _, _, _, _, err := config.GetUserMethod(contract, loginUser)
+	userName, people, _, _, _, _, _, err := config.GetUserMethod(contract, LoginUser)
 	fmt.Println("res", userName)
 	if err != nil {
 		respError(c, err)
 		return
 	}
-	userImg, err := contract.GetUserImg(nil, loginUser)
+	userImg, err := contract.GetUserImg(nil, LoginUser)
 	var SpeciesArr []string
 	for i := 0; i < 30; i++ {
 		Int64 := int64(i)
@@ -225,13 +225,13 @@ func LoginStatic(c *gin.Context) {
 		return
 	}
 
-	userName, people, _, _, _, _, _, err := config.GetUserMethod(contract, loginUser)
+	userName, people, _, _, _, _, _, err := config.GetUserMethod(contract, LoginUser)
 	fmt.Println("res", userName)
 	if err != nil {
 		respError(c, err)
 		return
 	}
-	userImg, err := contract.GetUserImg(nil, loginUser)
+	userImg, err := contract.GetUserImg(nil, LoginUser)
 	c.HTML(http.StatusOK, "Static/login.html", gin.H{"userName": userName, "address": people, "userImg": userImg})
 }
 
@@ -251,13 +251,13 @@ func MyNeedStatic(c *gin.Context) {
 		return
 	}
 
-	userName, people, _, _, _, _, _, err := config.GetUserMethod(contract, loginUser)
+	userName, people, _, _, _, _, _, err := config.GetUserMethod(contract, LoginUser)
 	fmt.Println("res", userName)
 	if err != nil {
 		respError(c, err)
 		return
 	}
-	userImg, err := contract.GetUserImg(nil, loginUser)
+	userImg, err := contract.GetUserImg(nil, LoginUser)
 	c.HTML(http.StatusOK, "Static/myneed.html", gin.H{"userName": userName, "address": people, "userImg": userImg})
 }
 
@@ -303,13 +303,13 @@ func PostNeedStatic(c *gin.Context) {
 		return
 	}
 
-	userName, people, _, _, _, _, _, err := config.GetUserMethod(contract, loginUser)
+	userName, people, _, _, _, _, _, err := config.GetUserMethod(contract, LoginUser)
 	fmt.Println("res", userName)
 	if err != nil {
 		respError(c, err)
 		return
 	}
-	userImg, err := contract.GetUserImg(nil, loginUser)
+	userImg, err := contract.GetUserImg(nil, LoginUser)
 	c.HTML(http.StatusOK, "Static/post-need.html", gin.H{"userName": userName, "address": people, "userImg": userImg})
 }
 
@@ -329,13 +329,13 @@ func PubBenefitStatic(c *gin.Context) {
 		return
 	}
 
-	userName, people, _, _, _, _, _, err := config.GetUserMethod(contract, loginUser)
+	userName, people, _, _, _, _, _, err := config.GetUserMethod(contract, LoginUser)
 	fmt.Println("res", userName)
 	if err != nil {
 		respError(c, err)
 		return
 	}
-	userImg, err := contract.GetUserImg(nil, loginUser)
+	userImg, err := contract.GetUserImg(nil, LoginUser)
 	c.HTML(http.StatusOK, "Static/public-benefit.html", gin.H{"userName": userName, "address": people, "userImg": userImg})
 }
 
@@ -355,13 +355,13 @@ func PubDetailsStatic(c *gin.Context) {
 		return
 	}
 
-	userName, people, _, _, _, _, _, err := config.GetUserMethod(contract, loginUser)
+	userName, people, _, _, _, _, _, err := config.GetUserMethod(contract, LoginUser)
 	fmt.Println("res", userName)
 	if err != nil {
 		respError(c, err)
 		return
 	}
-	userImg, err := contract.GetUserImg(nil, loginUser)
+	userImg, err := contract.GetUserImg(nil, LoginUser)
 	c.HTML(http.StatusOK, "Static/public-details.html", gin.H{"userName": userName, "address": people, "userImg": userImg})
 }
 
@@ -381,13 +381,13 @@ func RegisterStatic(c *gin.Context) {
 		return
 	}
 
-	userName, people, _, _, _, _, _, err := config.GetUserMethod(contract, loginUser)
+	userName, people, _, _, _, _, _, err := config.GetUserMethod(contract, LoginUser)
 	fmt.Println("res", userName)
 	if err != nil {
 		respError(c, err)
 		return
 	}
-	userImg, err := contract.GetUserImg(nil, loginUser)
+	userImg, err := contract.GetUserImg(nil, LoginUser)
 	c.HTML(http.StatusOK, "Static/register.html", gin.H{"userName": userName, "address": people, "userImg": userImg})
 }
 
@@ -407,13 +407,13 @@ func SearchPageStatic(c *gin.Context) {
 		return
 	}
 
-	userName, people, _, _, _, _, _, err := config.GetUserMethod(contract, loginUser)
+	userName, people, _, _, _, _, _, err := config.GetUserMethod(contract, LoginUser)
 	fmt.Println("res", userName)
 	if err != nil {
 		respError(c, err)
 		return
 	}
-	userImg, err := contract.GetUserImg(nil, loginUser)
+	userImg, err := contract.GetUserImg(nil, LoginUser)
 	c.HTML(http.StatusOK, "Static/search-page.html", gin.H{"userName": userName, "address": people, "userImg": userImg})
 }
 
@@ -459,13 +459,13 @@ func UiMeStatic(c *gin.Context) {
 		return
 	}
 
-	userName, people, _, _, _, _, _, err := config.GetUserMethod(contract, loginUser)
+	userName, people, _, _, _, _, _, err := config.GetUserMethod(contract, LoginUser)
 	fmt.Println("res", userName)
 	if err != nil {
 		respError(c, err)
 		return
 	}
-	userImg, err := contract.GetUserImg(nil, loginUser)
+	userImg, err := contract.GetUserImg(nil, LoginUser)
 
 	c.HTML(http.StatusOK, "Static/ui-me.html", gin.H{"userName": userName, "address": people, "userImg": userImg})
 }
@@ -486,12 +486,12 @@ func WishlistStatic(c *gin.Context) {
 		return
 	}
 
-	userName, people, _, _, _, _, _, err := config.GetUserMethod(contract, loginUser)
+	userName, people, _, _, _, _, _, err := config.GetUserMethod(contract, LoginUser)
 	fmt.Println("res", userName)
 	if err != nil {
 		respError(c, err)
 		return
 	}
-	userImg, err := contract.GetUserImg(nil, loginUser)
+	userImg, err := contract.GetUserImg(nil, LoginUser)
 	c.HTML(http.StatusOK, "Static/wishlist.html", gin.H{"userName": userName, "address": people, "userImg": userImg})
 }

@@ -9,8 +9,6 @@
     <meta name="description" content="">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <script src="share/static/js/public.js"></script>
-
-    <link rel="stylesheet" href="share/assets/css/bootstrap.min.css">
     <!-- Main Style CSS -->
     <link rel="stylesheet" href="share/assets/css/style.css">
 
@@ -25,214 +23,158 @@
 </head>
 
 <body>
-    <div class="header-area" id="headerArea">
-        <div class="container">
-            <!-- Header Content -->
-            <div class="header-content position-relative d-flex align-items-center justify-content-between">
-                <!-- Chat User Info -->
-                <div class="chat-user--info d-flex align-items-center">
-                    <!-- Back Button -->
-                    <div class="back-button">
-                        <a href="../apps-chat">
-                            <svg class="bi bi-arrow-left-short" width="32" height="32" viewBox="0 0 16 16"
-                                fill="currentColor" xmlns="http://www.w3.org/2000/svg">
-                                <path fill-rule="evenodd"
-                                    d="M12 8a.5.5 0 0 1-.5.5H5.707l2.147 2.146a.5.5 0 0 1-.708.708l-3-3a.5.5 0 0 1 0-.708l3-3a.5.5 0 1 1 .708.708L5.707 7.5H11.5a.5.5 0 0 1 .5.5z">
-                                </path>
-                            </svg></a>
-                    </div>
-                    <div class="user-thumbnail-name"><img src="share/static/picture/user-1.jpg" alt="">
-                        <div class="info ms-1">
-                            <p>莱昂纳多</p>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-
-
-
-    <div class="page-content-wrapper py-3" id="chat-wrapper">
-        <div class="container">
-            <div class="chat-content-wrap">
-
-                <!-- Single Chat Item -->
-                <div class="single-chat-item">
-                    <!-- User Avatar -->
-                    <div class="user-avatar mt-1">
-                        <img src="share/static/picture/user-1.jpg" alt="">
-                    </div>
-                    <!-- User Message -->
-                    <div class="user-message">
-                        <div class="message-content">
-                            <div class="single-message">
-                                <p>Hello, 在吗</p>
-                            </div>
-                            <!-- Options -->
-                            <div class="dropstart">
-                                <button class="btn btn-options dropdown-toggle" type="button" data-bs-toggle="dropdown"
-                                    aria-expanded="false"><i class="ti ti-dots-vertical"></i></button>
-                                <ul class="dropdown-menu">
-                                    <li><a href="#"><i class="ti ti-trash"></i>删除</a></li>
-                                </ul>
-                            </div>
-                        </div>
-                        <!-- Time and Status -->
-                        <div class="message-time-status">
-                            <div class="sent-time">11:36 AM</div>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- Single Chat Item -->
-                <div class="single-chat-item outgoing">
-                    <div class="user-avatar mt-1">
-                        <img src="share/assets/img/profile.jpg" alt="">
-                    </div>
-                    <div class="user-message">
-                        <div class="message-content">
-                            <div class="single-message">
-                                <p>在的亲</p>
-                            </div>
-                            <div class="dropstart"><button class="btn btn-options dropdown-toggle" type="button"
-                                    data-bs-toggle="dropdown" aria-expanded="false"><i
-                                        class="ti ti-dots-vertical"></i></button>
-                                <ul class="dropdown-menu">
-                                    <li><a href="#"><i class="ti ti-trash"></i>删除</a></li>
-                                </ul>
-                            </div>
-                        </div>
-                        <div class="message-time-status">
-                            <div class="sent-time">11:37 AM</div>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="single-chat-item">
-                    <!-- User Avatar -->
-                    <div class="user-avatar mt-1">
-                        <img src="share/static/picture/user-1.jpg" alt="">
-                    </div>
-                    <!-- User Message -->
-                    <div class="user-message">
-                        <div class="message-content">
-                            <div class="single-message">
-                                <p>我想要一个显卡</p>
-                            </div>
-                            <!-- Options -->
-                            <div class="dropstart">
-                                <button class="btn btn-options dropdown-toggle" type="button" data-bs-toggle="dropdown"
-                                    aria-expanded="false"><i class="ti ti-dots-vertical"></i></button>
-                                <ul class="dropdown-menu">
-                                    <li><a href="#"><i class="ti ti-trash"></i>删除</a></li>
-                                </ul>
-                            </div>
-                        </div>
-                        <!-- Time and Status -->
-                        <div class="message-time-status">
-                            <div class="sent-time">11:39 AM</div>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- Single Chat Item -->
-                <div class="single-chat-item">
-                    <div class="user-avatar mt-1">
-                        <img src="share/static/picture/user-1.jpg" alt="">
-                    </div>
-                    <div class="user-message">
-                        <div class="message-content">
-                            <div class="single-message">
-                                <p>3080的</p>
-                            </div>
-                            <div class="dropstart"><button class="btn btn-options dropdown-toggle" type="button"
-                                    data-bs-toggle="dropdown" aria-expanded="false"><i
-                                        class="ti ti-dots-vertical"></i></button>
-                                <ul class="dropdown-menu">
-                                    <li><a href="#"><i class="ti ti-trash"></i>删除</a></li>
-                                </ul>
-                            </div>
-                        </div>
-                        <div class="message-time-status">
-                            <div class="sent-time">11:39 AM</div>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- Single Chat Item -->
-                <div class="single-chat-item outgoing">
-                    <!-- User Avatar -->
-                    <div class="user-avatar mt-1">
-                        <img src="share/assets/img/profile.jpg" alt="">
-                    </div>
-                    <!-- User Message -->
-                    <div class="user-message">
-                        <div class="message-content">
-                            <div class="single-message">
-                                <p>好的，我马上上架</p>
-                            </div>
-                            <!-- Options -->
-                            <div class="dropstart">
-                                <button class="btn btn-options dropdown-toggle" type="button" data-bs-toggle="dropdown"
-                                    aria-expanded="false"><i class="ti ti-dots-vertical"></i></button>
-                                <ul class="dropdown-menu">
-                                    <li><a href="#"><i class="ti ti-trash"></i>删除</a></li>
-                                </ul>
-                            </div>
-                        </div>
-                        <!-- Time and Status -->
-                        <div class="message-time-status">
-                            <div class="sent-time">11:46 AM</div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-
-
-
-    <div class="chat-footer">
-        <div class="container h-100">
-            <div class="chat-footer-content h-100 d-flex align-items-center">
-                <form action="#">
-                    <!-- Message -->
-                    <input class="form-control" type="text" placeholder="Type here...">
-
-                    <!-- Add File -->
-                    <div class="dropup me-2"><button class="btn btn-add-file dropdown-toggle" type="button"
-                            data-bs-toggle="dropdown" aria-expanded="false"><svg class="bi bi-plus-circle"
-                                xmlns="http://www.w3.org/2000/svg" width="18" height="18" fill="currentColor"
-                                viewBox="0 0 16 16">
-                                <path d="M8 15A7 7 0 1 1 8 1a7 7 0 0 1 0 14zm0 1A8 8 0 1 0 8 0a8 8 0 0 0 0 16z"></path>
-                                <path
-                                    d="M8 4a.5.5 0 0 1 .5.5v3h3a.5.5 0 0 1 0 1h-3v3a.5.5 0 0 1-1 0v-3h-3a.5.5 0 0 1 0-1h3v-3A.5.5 0 0 1 8 4z">
-                                </path>
-                            </svg></button>
-                        <ul class="dropdown-menu">
-                            <li><a href="#"><i class="ti ti-photo"></i>图片</a></li>
-                            <li><a href="#"><i class="ti ti-files"></i>文件</a></li>
-                        </ul>
-                    </div>
-                    <!-- Send -->
-                    <button class="btn btn-submit" type="submit">
-                        <svg class="bi bi-cursor" xmlns="http://www.w3.org/2000/svg" width="18" height="18"
-                            fill="currentColor" viewBox="0 0 16 16">
-                            <path
-                                d="M14.082 2.182a.5.5 0 0 1 .103.557L8.528 15.467a.5.5 0 0 1-.917-.007L5.57 10.694.803 8.652a.5.5 0 0 1-.006-.916l12.728-5.657a.5.5 0 0 1 .556.103zM2.25 8.184l3.897 1.67a.5.5 0 0 1 .262.263l1.67 3.897L12.743 3.52 2.25 8.184z">
+<div class="header-area" id="headerArea">
+    <div class="container">
+        <!-- Header Content -->
+        <div class="header-content position-relative d-flex align-items-center justify-content-between">
+            <!-- Chat User Info -->
+            <div class="chat-user--info d-flex align-items-center">
+                <!-- Back Button -->
+                <div class="back-button">
+                    <a  class="back-link" onClick="javascript :history.back(-1);">
+                        <svg class="bi bi-arrow-left-short" width="32" height="32" viewBox="0 0 16 16"
+                             fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+                            <path fill-rule="evenodd"
+                                  d="M12 8a.5.5 0 0 1-.5.5H5.707l2.147 2.146a.5.5 0 0 1-.708.708l-3-3a.5.5 0 0 1 0-.708l3-3a.5.5 0 1 1 .708.708L5.707 7.5H11.5a.5.5 0 0 1 .5.5z">
                             </path>
                         </svg>
-                    </button>
-                </form>
+                    </a>
+                </div>
+                <div class="user-thumbnail-name">
+                    <div class="info ms-1">
+                        <p>{{ .names }}</p>
+                    </div>
+                </div>
             </div>
         </div>
     </div>
+</div>
+
+<div class="page-content-wrapper py-3" id="chat-wrapper">
+    <div class="container">
+        <div class="chat-content-wrap">
+            {{ $addr1 := .addrs }}
+            {{ $owner1 := .owners }}
+            {{ range $key,$value := .chat }}
+            {{ if and (eq $value.Addr_from $addr1) (eq $value.Addr_to $owner1) }}
+            <!-- Single Chat Item -->
+            <div class="single-chat-item" data-id="{{ $value.Id }}" data-owner="{{ $value.Addr_from }}"
+                 data-addr="{{ $value.Addr_to }}" data-img="{{ $value.Img_from }}" data-img1="{{ $value.Img_to }}">
+                <!-- User Avatar -->
+                <div class="user-avatar mt-1">
+                    <img src="{{ $value.Img_from }}" alt="">
+                </div>
+                <!-- User Message -->
+                <div class="user-message">
+                    <div class="message-content">
+                        <div class="single-message">
+                            <p>{{ $value.Content }}</p>
+                        </div>
+                        <!-- Options -->
+                        <div class="dropstart">
+                            <button class="btn btn-options dropdown-toggle" type="button" data-bs-toggle="dropdown"
+                                    aria-expanded="false"><i class="ti ti-dots-vertical"></i></button>
+                            <ul class="dropdown-menu">
+                                <li class="del"><a><i class="ti ti-trash"></i>删除</a></li>
+                            </ul>
+                        </div>
+                    </div>
+                    <!-- Time and Status -->
+                    <div class="message-time-status">
+                        <div class="sent-time">{{ $value.Time }}</div>
+                    </div>
+                </div>
+            </div>
+            {{ else if and (eq $value.Addr_from $owner1) (eq $value.Addr_to $addr1) }}
+            <!-- Single Chat Item -->
+            <div class="single-chat-item outgoing" data-id="{{ $value.Id }}" data-owner="{{ $value.Addr_from }}"
+                 data-addr="{{ $value.Addr_to }}" data-img="{{ $value.Img_from }}" data-img1="{{ $value.Img_to }}">
+                <!-- User Avatar -->
+                <div class="user-avatar mt-1">
+                    <img src="{{ $value.Img_from }}" alt="">
+                </div>
+                <!-- User Message -->
+                <div class="user-message">
+                    <div class="message-content">
+                        <div class="single-message">
+                            <p>{{ $value.Content }}</p>
+                        </div>
+                        <!-- Options -->
+                        <div class="dropstart">
+                            <button class="btn btn-options dropdown-toggle" type="button" data-bs-toggle="dropdown"
+                                    aria-expanded="false"><i class="ti ti-dots-vertical"></i></button>
+                            <ul class="dropdown-menu">
+                                <li class="del"><a><i class="ti ti-trash"></i>删除</a></li>
+                            </ul>
+                        </div>
+                    </div>
+                    <!-- Time and Status -->
+                    <div class="message-time-status">
+                        <div class="sent-time">{{ $value.Time }}</div>
+                    </div>
+                </div>
+            </div>
+            {{ end }}
+            {{ end }}
+        </div>
+    </div>
+</div>
 
 
-    <!-- All JavaScript Files -->
-    <script src="share/js/bootstrap.bundle.min.js"></script>
+<div class="chat-footer">
+    <div class="container h-100">
+        <div class="chat-footer-content h-100 d-flex align-items-center">
 
+            <!-- Message -->
+            <input class="form-control" type="text" placeholder="Type here...">
+
+            <!-- Send -->
+            <button class="btn btn-submit btn_send" type="button">
+                <svg class="bi bi-cursor" xmlns="http://www.w3.org/2000/svg" width="18" height="18"
+                     fill="currentColor" viewBox="0 0 16 16">
+                    <path
+                            d="M14.082 2.182a.5.5 0 0 1 .103.557L8.528 15.467a.5.5 0 0 1-.917-.007L5.57 10.694.803 8.652a.5.5 0 0 1-.006-.916l12.728-5.657a.5.5 0 0 1 .556.103zM2.25 8.184l3.897 1.67a.5.5 0 0 1 .262.263l1.67 3.897L12.743 3.52 2.25 8.184z">
+                    </path>
+                </svg>
+            </button>
+
+        </div>
+    </div>
+</div>
+<script src="share/assets/js/jquery-3.4.1.min.js"></script>
+<script>
+    $(".dropdown-menu").delegate(".del", "click", function () {
+        $.ajax({
+            type: "POST",
+            url: "/delete_chat_content",
+            data: {"id": $(".single-chat-item").data("id")},
+            success: function () {
+                location.reload();
+            }
+        })
+    })
+    $(".btn_send").click(function () {
+        $.ajax({
+            type: "POST",
+            url: "/insert_chat_content",
+            data: {
+                "addr_from": $(".single-chat-item").data("owner"),
+                "addr_to": $(".single-chat-item").data("addr"),
+                "content": $(".form-control").val(),
+                "img_from": $(".single-chat-item").data("img"),
+                "img_to": $(".single-chat-item").data("img1")
+            },
+            success: function () {
+                location.reload();
+            }
+        })
+    })
+
+</script>
+<!-- All JavaScript Files -->
+<script src="share/js/bootstrap.bundle.min.js"></script>
+<script src="share/static/js/app.js"></script>
+<script src="share/assets/js/main.js"></script>
 </body>
 {{ end }}
 </html>

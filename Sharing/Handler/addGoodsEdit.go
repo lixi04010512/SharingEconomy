@@ -26,7 +26,7 @@ func addGoods(c *gin.Context) {
 	}
 	form, err := c.MultipartForm()
 	name := c.PostForm("goodsName")
-	owner := loginUser
+	owner := LoginUser
 	species := c.PostForm("species")
 	rent := c.PostForm("rent")
 	//string转*big.int

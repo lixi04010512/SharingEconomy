@@ -14,7 +14,7 @@ import (
 
 
 //用户地址
-var loginUser common.Address
+var LoginUser common.Address
 var privKey *ecdsa.PrivateKey
 
 //登录
@@ -57,7 +57,7 @@ func login(c *gin.Context) {
 	}
 	privKey = unlockedKey.PrivateKey
 	comAddr := unlockedKey.Address
-	loginUser = comAddr
+	LoginUser = comAddr
 	data, err := config.LoginMethod(client, contract, comAddr, privKey)
 	addr := comAddr.Hex()
 
@@ -96,7 +96,7 @@ func privateLogin(c *gin.Context) {
 
 	comAddr := crypto.PubkeyToAddress(privKey.PublicKey)
 	fmt.Println("comaddr",comAddr)
-	loginUser = comAddr
+	LoginUser = comAddr
 	data, err := config.LoginMethod(client, contract, comAddr, privKey)
 	addr := comAddr.Hex()
 

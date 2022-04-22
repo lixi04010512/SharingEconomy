@@ -42,6 +42,15 @@ func Start(addr, webDir string) (err error) {
 	r.GET("/editSpeciesPage", getting, editSpeciesPage)
 	r.POST("/updateStick", getting, updateStick)
 
+	r.GET("/select_chat_list", select_chat_list,apps_chat)
+	r.POST("/list_content", list_content)
+	r.GET("/select_chat_content", select_chat_content, wechat)
+	r.POST("/insert_chat_list", insert_chat_list)
+	r.POST("/insert_chat_content", insert_chat_content)
+	r.POST("/delete_chat_list", delete_chat_list)
+	r.POST("/delete_chat_content", delete_chat_content)
+
+
 	// api接口服务，定义了路由组 /Sharing
 	todo := r.Group("")
 	{

@@ -21,8 +21,8 @@ const (
 	//hch
 	//Prikey       = "5fd7eb82fbd4c5cc87fbeb867ff4804537723d80a5289606c28ca5c8eed4aa77"
 	//ShareFishAddress = "0x86880FD1Be1E8aD1CD7c4Fb9760650689378b981"
-	Prikey       = "769f41a9de1f6f1848d7631e274f2168e3cb20d16c81f688a49d081965a53861"
-	ShareFishAddress = "0xb0b38d0859Ed9BEAc71277aCdD9e35f3a07f9FCd"
+	Prikey       = "45ee84c9fbfee72f88392d5e99fd071bfb1a89c2c1482456547e049d437c1380"
+	ShareFishAddress = "0x33e834Fef88aA459098dd7C48447026c40F74042"
 
 	gasLimit = 3000000
 	//fileKeystore     = "UTC--2022-03-17T08-08-40.600466800Z--59b0f8a34d8f0dd0e0eef44d02cef0c12fffb9de"
