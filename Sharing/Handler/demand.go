@@ -29,18 +29,19 @@ func demandAdd(c *gin.Context) {
 		return
 	}
 	needs := x.DemandDB{}
-	demandKinds := c.PostForm("demandKind")
+	demandKinds := c.PostForm("demandKinds")
 	demandNames := c.PostForm("demandName")
 	fmt.Println(demandKinds, "====", demandNames)
 	needs.DemandKinds = demandKinds
 	demandAddr := people.Hex()
 	err = x.InsertDemand(demandKinds, demandAddr, demandNames)
+	respOK(c, "ok")
 }
 
 //查
 func ChatStatic(c *gin.Context) {
-	listNeeds, err := x.ListNeeds()
-	fmt.Println(listNeeds)
+	//listNeeds, err := x.ListNeedAll()
+	//fmt.Println(listNeeds)
 	//初始化client
 	client, err := config.GetClient()
 	if err != nil {
@@ -62,8 +63,8 @@ func ChatStatic(c *gin.Context) {
 	}
 	userImg, err := contract.GetUserImg(nil, loginUser)
 	c.HTML(http.StatusOK, "Static/chat.html", gin.H{
-		"userName":  userName,
-		"address":   people,
-		"userImg":   userImg,
-		"listNeeds": listNeeds})
+		"userName": userName,
+		"address":  people,
+		"userImg":  userImg,
+	})
 }

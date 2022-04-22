@@ -115,91 +115,12 @@
     ">需求详情</label>
     </div>
 
-    <div class="col-lg-6">
-        <div class="card">
-            <div class="card-body">
-                <div class="task-box">
-                    <div class="task-priority-icon"><i class="fas fa-circle text-info"></i></div>
-                    <p class="text-muted float-right">
-                     <a href="../order-receiving">   <span class="badge bg-warning me-2" style="  margin-top: 14px;">去接单</span></a>
-                        <span class="text-muted">01:33</span> /
-                        <span class="text-muted">9:30</span>
-                        <span class="mx-1">·</span>
-                        <span><i class="far fa-fw fa-clock"></i> June 18</span>
-                    </p>
-                    <h5 class="mt-0 mb-1">ipad</h5>
-                    <p class="text-muted mb-1">需要一个ipad pro急用！！！
-                    </p>
-                </div>
-                <!--end task-box-->
-            </div>
-            <!--end card-body-->
-        </div>
+    <div class="col-lg-6" id="ListNeeds">
+
         <!--end card-->
     </div>
     <!--end col-->
-    <div class="col-lg-6">
 
-        <div class="card">
-            <div class="card-body">
-                <div class="task-box">
-                    <div class="task-priority-icon"><i class="fas fa-circle text-info"></i></div>
-                    <p class="text-muted float-right">
-                        <a href="../order-receiving">   <span class="badge bg-warning me-2" style="  margin-top: 14px;">去接单</span></a>
-                        <span class="text-muted">01:33</span> /
-                        <span class="text-muted">9:30</span>
-                        <span class="mx-1">·</span>
-                        <span><i class="far fa-fw fa-clock"></i> June 18</span>
-                    </p>
-                    <h5 class="mt-0 mb-1">相机</h5>
-                    <p class="text-muted mb-1">需要一个数码相机急用！！！
-                    </p>
-                </div>
-                <!--end task-box-->
-            </div>
-            <!--end card-body-->
-        </div>
-        <!--end card-->
-        <div class="card">
-            <div class="card-body">
-                <div class="task-box">
-                    <div class="task-priority-icon"><i class="fas fa-circle text-info"></i></div>
-                    <p class="text-muted float-right">
-                        <a href="../order-receiving">   <span class="badge bg-warning me-2" style="  margin-top: 14px;">去接单</span></a>
-                        <span class="text-muted">01:33</span> /
-                        <span class="text-muted">9:30</span>
-                        <span class="mx-1">·</span>
-                        <span><i class="far fa-fw fa-clock"></i> June 18</span>
-                    </p>
-                    <h5 class="mt-0 mb-1">笔记本</h5>
-                    <p class="text-muted mb-1">需要一台笔记本急用！！！
-                    </p>
-                </div>
-                <!--end task-box-->
-            </div>
-            <!--end card-body-->
-        </div>
-        <div class="card">
-            <div class="card-body">
-                <div class="task-box">
-                    <div class="task-priority-icon"><i class="fas fa-circle text-info"></i></div>
-                    <p class="text-muted float-right">
-                        <a href="../order-receiving">   <span class="badge bg-warning me-2" style="  margin-top: 14px;">去接单</span></a>
-                        <span class="text-muted">01:33</span> /
-                        <span class="text-muted">9:30</span>
-                        <span class="mx-1">·</span>
-                        <span><i class="far fa-fw fa-clock"></i> June 18</span>
-                    </p>
-                    <h5 class="mt-0 mb-1">笔记本</h5>
-                    <p class="text-muted mb-1">需要一台笔记本急用！！！
-                    </p>
-                </div>
-                <!--end task-box-->
-            </div>
-            <!--end card-body-->
-        </div>
-        <!--end card-->
-    </div>
     <!--end col-->
     </div> <!-- end row -->
     </div>
@@ -253,6 +174,35 @@
         function cancelFunction() {
             alert('Cancel!');
         }
+    </script>
+    <script>
+        $.ajax({
+            url: "/ListNeeds",
+            type: "POST",
+            success:function (data){
+                console.log("hhh",data)
+                for (const key in data.data){
+                    $('#ListNeeds').append(`
+                      <div class="card">
+            <div class="card-body">
+                <div class="task-box">
+                    <div class="task-priority-icon"><i class="fas fa-circle text-info"></i></div>
+                    <p class="text-muted float-right">
+                        <a href="../order-receiving/${data.data[key].demandID}">   <span class="badge bg-warning me-2" style="  margin-top: 14px;">去接单</span></a>
+
+                        <span><i class="far fa-fw fa-clock"></i> ${data.data[key].demandTime}</span>
+                    </p>
+                    <h5 class="mt-0 mb-1">${data.data[key].demandKinds}</h5>
+                    <p class="text-muted mb-1">${data.data[key].demandName}
+                    </p>
+                </div>
+
+                    </div>
+
+                    </div>`)
+                }
+            }
+        })
     </script>
 </body>
 {{ end }}

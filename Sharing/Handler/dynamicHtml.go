@@ -144,6 +144,18 @@ func shopPorduct(c *gin.Context) {
 	})
 }
 
+//限制展示个数
+var additionGoods int
+
+func addGoodsCategory(int) int {
+	additionGoods++
+	if additionGoods >= 3 {
+		additionGoods = 0
+	}
+	//fmt.Println("additionGoods",additionGoods)
+	return additionGoods
+}
+
 //商品分类展示
 func goodsCategory(c *gin.Context) {
 	client, err := config.GetClient()
@@ -181,13 +193,15 @@ func goodsCategory(c *gin.Context) {
 				}
 			}
 		} else {
-			fmt.Println("stickArr===", stickArr)
+			//fmt.Println("stickArr===", stickArr)
+			fmt.Println("ashvdlasjvhlja", additionGoods)
 			stickArr = append(stickArr, arr...)
 			c.HTML(http.StatusOK, "Static/goods-category.html", gin.H{
 				"goodsCategory": stickArr,
 				"userName":      userName,
 				"address":       people,
 				"userImg":       userImg,
+				"LimitAdd":      additionGoods,
 			})
 
 		}

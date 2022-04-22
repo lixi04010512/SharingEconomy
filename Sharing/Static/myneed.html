@@ -127,10 +127,10 @@
         $.ajax({
             url:"/MyListNeeds",
             type:"POST",
-
             success:function (data){
                 console.log(data)
                 for(const key in data.data){
+                    console.log(data.data[key].demandID)
                     $("#myListNeed").append(`
 
   <div class="col-lg-4">
@@ -143,8 +143,8 @@
                                 <i class="las la-ellipsis-v font-24 text-muted"></i>
                             </a>
                             <div class="dropdown-menu dropdown-menu-end" aria-labelledby="dLabel1">
-                                <a class="dropdown-item" href="../edit-need">编辑</a>
-                                <a class="dropdown-item" href="#">删除</a>
+
+                                <a class="dropdown-item" href="/delNeeds/${data.data[key].demandID}" id="delNeeds">删除</a>
                             </div>
                         </div>
                     </div>
@@ -161,7 +161,7 @@
                         </div>
                     </div>
                     <h4 class="m-0 mt-3 font-13 mb-0 fw-bold">${data.data[key].demandName}</h4>
-                    <!-- <p class="text-muted mb-0 fw-semibold">需要一台笔记本急用！！！</p> -->
+
 
                     <hr class="hr-dashed my-3">
 
@@ -182,6 +182,8 @@
             }
 
         })
+
+
     </script>
 
 
