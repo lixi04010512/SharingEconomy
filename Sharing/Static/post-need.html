@@ -158,6 +158,28 @@
         function cancelFunction() {
             alert('Cancel!');
         }
+
+        $("#needBtn").click(function (){
+            demandKinds=$(".form-select").val()
+            demandName=$("#addnote").val()
+            console.log(demandKinds,"-----",demandName)
+            $.ajax({
+                url:"/addDemandPost",
+                type:"post",
+                async:false,
+                dataType:"json" ,
+                data: {'demandKinds': demandKinds,'demandName':demandName},
+                success:function (data){
+                    console.log("ok")
+                    window.location="/chat"
+
+
+                },
+
+
+            })
+        })
+
     </script>
     <script type="text/javascript">
 

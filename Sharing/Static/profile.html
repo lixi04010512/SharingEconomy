@@ -88,7 +88,7 @@
                         <div class="col-12">
                             <div class="profile-header">
                                 <div class="profile-header__image">
-                                    {{if eq "" .userImg}}https://github.com/lixi04010512/SharingEconomy
+                                    {{if eq "" .userImg}}
                                         <a href="../mod-photo">
                                             <img id="box-container" src="share/assets/img/profile.jpg" class="img-fluid" alt="" style="width: 90px;height: 90px;"></a>
                                     {{else}}
@@ -165,10 +165,6 @@
                                     <div class="profile-info-block">
                                         <div class="profile-info-block__title"><a href="../wishlist">我的积分</a></div>
                                         <div class="profile-info-block__value">{{.integral}}</div>
-                                    </div>
-                                    <div class="profile-info-block">
-                                        <div class="profile-info-block__title"><a href="../wishlist">我的公益</a></div>
-                                        <div class="profile-info-block__value">10</div>
                                     </div>
                                 </div>
 

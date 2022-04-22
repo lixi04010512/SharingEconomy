@@ -25,7 +25,7 @@ func Init() (err error) {
 	fmt.Println("已经连接MYSQL")
 	var sqlStr = `DROP TABLE IF EXISTS demand;
 CREATE TABLE demand  (
-  demandID int(0) NOT NULL AUTO_INCREMENT,
+  demandID int(64) NOT NULL AUTO_INCREMENT,
   demandKinds varchar(25) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT NULL,
   demandName longtext CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL,
   demandTime timestamp(0) NULL DEFAULT NULL,
@@ -50,14 +50,36 @@ func ListNeeds() (DemandList []DemandDB, err error) {
 	if err != nil {
 		return nil, err
 	}
+
 	for rows.Next() {
 		DemandStr := DemandDB{}
-		err = rows.Scan(&DemandStr.DemandID, &DemandStr.DemandKinds, &DemandStr.DemandAddr, &DemandStr.DemandName, &DemandStr.DemandTime)
+		err = rows.Scan(&DemandStr.DemandID, &DemandStr.DemandKinds, &DemandStr.DemandName, &DemandStr.DemandTime, &DemandStr.DemandAddr)
+
 		if err != nil {
 			return nil, err
 		}
 		DemandList = append(DemandList, DemandStr)
 	}
+	return
+}
+
+//通过id查看需求
+func IdListNeeds(id int64) (DemandList []DemandDB, err error) {
+	var sqlStr = `select * from demand where demandID =?`
+	rows, err := db.Query(sqlStr, id)
+	if err != nil {
+		return nil, err
+	}
+	for rows.Next() {
+		DemandStr := DemandDB{}
+		err = rows.Scan(&DemandStr.DemandID, &DemandStr.DemandKinds, &DemandStr.DemandName, &DemandStr.DemandTime, &DemandStr.DemandAddr)
+
+		if err != nil {
+			return nil, err
+		}
+		DemandList = append(DemandList, DemandStr)
+	}
+
 	return
 }
 
@@ -71,11 +93,10 @@ func MyListNeeds(demandAddr common.Address) (DemandList []DemandDB, err error) {
 	if err != nil {
 		return nil, err
 	}
-
 	for rows.Next() {
 		DemandStr := DemandDB{}
 		err = rows.Scan(&DemandStr.DemandID, &DemandStr.DemandKinds, &DemandStr.DemandName, &DemandStr.DemandTime, &DemandStr.DemandAddr)
-		fmt.Println(&DemandStr.DemandID)
+
 		if err != nil {
 			return nil, err
 		}
@@ -83,13 +104,6 @@ func MyListNeeds(demandAddr common.Address) (DemandList []DemandDB, err error) {
 	}
 
 	return
-}
-
-//编辑需求数据
-func editDemand(DemandID int, DemandKind string, DemandName string) (err error) {
-	var sqlStr = `updata demand set demandKinds = ` + DemandKind + `,demandName =` + DemandName + ` where demandID = ?`
-	_, err = db.Query(sqlStr, DemandID)
-	return err
 }
 
 //插入需求数据
@@ -107,9 +121,9 @@ func InsertDemand(DemandKind string, DemandAddr string, DemandName string) (err 
 }
 
 //删除需求数据
-func deleteNeeds(id int) (err error) {
+func DeleteNeeds(id int64) (DemandList []DemandDB, err error) {
 	var sqlStr = `delete from demand where demandID= ?`
 	_, err = db.Exec(sqlStr, id)
-	return err
+	return
 }
 
