@@ -15,49 +15,54 @@
     <!-- Main Style CSS -->
     <link rel="stylesheet" href="assets/css/style.css">
 
-
     <!-- App css -->
     <link href="static/css/bootstrap.min.css" rel="stylesheet" type="text/css">
     <link href="static/css/icons.min.css" rel="stylesheet" type="text/css">
     <link href="static/css/app.min.css" rel="stylesheet" type="text/css">
 
+    <link rel="stylesheet" href="css/wechat.css">
+
 </head>
 
-<body id="body" class="dark-sidebar">
 
-    <header>
-		<div class="header-wrapper border-bottom">
-			<div class="container space-y--15">
-				<div class="row align-items-center">
-					<div class="col-auto">
-						<a class="back-link" onClick="javascript :history.back(-1);"> <i class="fa fa-angle-left"></i>
-							返回</a>
-					</div>
-					<div class="col d-flex justify-content-center">
-						<div class="header-search">
-							<div class="input-group">
-								<h4 style="    padding-top: 18px;">消息通知</h4>
-							</div>
-						</div>
-					</div>
-					<div class="col-auto">
-						<!-- header menu trigger -->
-						<button class="header-menu-trigger" id="header-menu-trigger">
-							<i class="fas fa-align-right" style="font-size: 20px;
-                                color: grey;"></i>
-						</button>
-					</div>
-				</div>
-			</div>
-		</div>
+<body class="pe-0">
 
-	</header>
-    <!--====================  End of header area  ====================-->
-    <!--====================  mobile menu overlay ====================-->
+
+    <div class="internet-connection-status" id="internetStatus"></div>
+    <!-- Header Area -->
+    <div class="header-area" id="headerArea">
+        <div class="container">
+            <!-- Header Content -->
+            <div
+                class="header-content header-style-five position-relative d-flex align-items-center justify-content-between">
+                <!-- Back Button -->
+                <div class="back-button">
+                    <a href="ui-me.html">
+                        <svg class="bi bi-arrow-left-short" width="32" height="32" viewBox="0 0 16 16"
+                            fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+                            <path fill-rule="evenodd"
+                                d="M12 8a.5.5 0 0 1-.5.5H5.707l2.147 2.146a.5.5 0 0 1-.708.708l-3-3a.5.5 0 0 1 0-.708l3-3a.5.5 0 1 1 .708.708L5.707 7.5H11.5a.5.5 0 0 1 .5.5z">
+                            </path>
+                        </svg></a>
+                </div>
+                <!-- Page Title -->
+                <div class="page-heading">
+                    <h6 class="mb-0">消息列表</h6>
+                </div>
+                <!-- Navbar Toggler -->
+                <div class="navbar--toggler" id="header-menu-trigger" data-bs-toggle="offcanvas"
+                    data-bs-target="#affanOffcanvas" aria-controls="affanOffcanvas"><span class="d-block"></span><span
+                        class="d-block"></span><span class="d-block"></span></div>
+            </div>
+        </div>
+    </div>
+
     <div class="offcanvas-menu" id="offcanvas-menu">
         <div class="profile-card text-center">
-            <div class="profile-card__image space-mb--10">
-                <img src="assets/img/profile.jpg" class="img-fluid" alt="">
+            <div class="profile-card__image space-mb--10" style="    padding-left: 40px;">
+                <a href="profile.html">
+                    <img src="assets/img/profile.jpg" class="img-fluid" alt="">
+                </a>
             </div>
             <div class="profile-card__content">
                 <p class="name">0x5B38Da6a701c568545dCfcB03F <span class="id">John</span></p>
@@ -80,213 +85,184 @@
         </div>
     </div>
 
-    <div class="page-wrapper" style="padding-top: 20px;">
 
-        <!-- Page Content-->
-        <div class="page-content-tab">
+    <div class="page-content-wrapper py-3">
+        <div class="container">
+            <div class="card mb-2">
+                <div class="card-body p-2">
+                    <div class="chat-search-box">
+                        <form action="#">
+                            <div class="input-group"><span class="input-group-text" id="searchbox"><i
+                                        class="ti ti-search"></i></span><input class="form-control" type="search"
+                                    placeholder="搜索..." aria-describedby="searchbox"></div>
+                        </form>
+                    </div>
+                </div>
+            </div>
 
-            <div class="container-fluid">
-
-                <!-- end page title end breadcrumb -->
-                <div class="row">
-                    <div class="col-12">
-                        <div class="chat-box-left">
-                            <!-- <ul class="nav nav-tabs mb-3 nav-justified" id="myTab" role="tablist">
-                                <li class="nav-item" role="presentation">
-                                    <a class="nav-link active" id="general_chat_tab" data-bs-toggle="tab"
-                                        href="#" role="tab">消息通知</a>
-                                </li>
-
-
-                            </ul> -->
-                            <div class="chat-search mb-3">
-                                <div class="form-group">
-                                    <div class="input-group">
-                                        <input type="text" id="chat-search" name="chat-search" class="form-control"
-                                            placeholder="搜索消息">
-                                        <button type="button" class="btn btn-de-primary shadow-none"><i
-                                                class="la la-search"></i></button>
-                                    </div>
-                                </div>
-                            </div>
-                            <!--end chat-search-->
-
-                            <div class="chat-body-left" data-simplebar="">
-                                <div class="tab-content chat-list" id="pills-tabContent">
-                                    <div class="tab-pane fade show active" id="general_chat">
-                                        <a href="wechat.html" class="media new-message">
-                                            <div class="media-left">
-                                                <img src="static/picture/user-1.jpg" alt="user"
-                                                    class="rounded-circle thumb-md">
-                                                <span class="round-10 bg-success"></span>
-                                            </div><!-- media-left -->
-                                            <div class="media-body">
-                                                <div class="d-inline-block">
-                                                    <h6>莱昂纳多</h6>
-                                                    <p>好</p>
-                                                </div>
-                                                <div>
-                                                    <span>4/5</span>
-                                                    <span>3</span>
-                                                </div>
-                                            </div><!-- end media-body -->
-                                        </a>
-                                        <!--end media-->
-                                        <a href="wechat.html" class="media new-message">
-                                            <div class="media-left">
-                                                <img src="static/picture/user-2.jpg" alt="user"
-                                                    class="rounded-circle thumb-md">
-                                                <span class="round-10 bg-success"></span>
-                                            </div><!-- media-left -->
-                                            <div class="media-body">
-                                                <div>
-                                                    <h6>2号</h6>
-                                                    <p>好的谢谢</p>
-                                                </div>
-                                                <div>
-                                                    <span>4/2</span>
-                                                    <span>1</span>
-                                                </div>
-                                            </div><!-- end media-body -->
-                                        </a>
-                                        <!--end media-->
-                                        <a href="wechat.html" class="media">
-                                            <div class="media-left">
-                                                <img src="static/picture/user-8.jpg" alt="user"
-                                                    class="rounded-circle thumb-md">
-                                                <span class="round-10 bg-secondary"></span>
-                                            </div><!-- media-left -->
-                                            <div class="media-body">
-                                                <div>
-                                                    <h6>9号</h6>
-                                                    <p>可以的没问题</p>
-                                                </div>
-                                                <div>
-                                                    <span>4/1</span>
-                                                </div>
-                                            </div><!-- end media-body -->
-                                        </a>
-                                        <!--end media-->
-                                        <a href="wechat.html" class="media">
-                                            <div class="media-left">
-                                                <img src="static/picture/user-4.jpg" alt="user"
-                                                    class="rounded-circle thumb-md">
-                                                <span class="round-10 bg-secondary"></span>
-                                            </div><!-- media-left -->
-                                            <div class="media-body">
-                                                <div>
-                                                    <h6>4号</h6>
-                                                    <p>再见</p>
-                                                </div>
-                                                <div>
-                                                    <span>3/31</span>
-                                                </div>
-                                            </div><!-- end media-body -->
-                                        </a>
-                                        <!--end media-->
-                                        <a href="wechat.html" class="media">
-                                            <div class="media-left">
-                                                <img src="static/picture/user-5.jpg" alt="user"
-                                                    class="rounded-circle thumb-md">
-                                                <span class="round-10 bg-success"></span>
-                                            </div><!-- media-left -->
-                                            <div class="media-body">
-                                                <div>
-                                                    <h6>7号</h6>
-                                                    <p>你好</p>
-                                                </div>
-                                                <div>
-                                                    <span>3/31</span>
-                                                </div>
-                                            </div><!-- end media-body -->
-                                        </a>
-                                        <!--end media-->
-                                        <a href="wechat.html" class="media">
-                                            <div class="media-left">
-                                                <img src="static/picture/user-6.jpg" alt="user"
-                                                    class="rounded-circle thumb-md">
-                                                <span class="round-10 bg-secondary"></span>
-                                            </div><!-- media-left -->
-                                            <div class="media-body">
-                                                <div>
-                                                    <h6>5号</h6>
-                                                    <p>成交</p>
-                                                </div>
-                                                <div>
-                                                    <span>2/1</span>
-                                                </div>
-                                            </div><!-- end media-body -->
-                                        </a>
-                                        <!--end media-->
-                                        <a href="wechat.html" class="media">
-                                            <div class="media-left">
-                                                <img src="static/picture/user-7.jpg" alt="user"
-                                                    class="rounded-circle thumb-md">
-                                                <span class="round-10 bg-secondary"></span>
-                                            </div><!-- media-left -->
-                                            <div class="media-body">
-                                                <div>
-                                                    <h6>3号</h6>
-                                                    <p>好的可以</p>
-                                                </div>
-                                                <div>
-                                                    <span>1/30</span>
-                                                </div>
-                                            </div><!-- end media-body -->
-                                        </a>
-                                        <!--end media-->
-                                        <a href="wechat.html" class="media">
-                                            <div class="media-left">
-                                                <img src="static/picture/user-8.jpg" alt="user"
-                                                    class="rounded-circle thumb-md">
-                                                <span class="round-10 bg-secondary"></span>
-                                            </div><!-- media-left -->
-                                            <div class="media-body">
-                                                <div>
-                                                    <h6>1号</h6>
-                                                    <p>谢谢</p>
-                                                </div>
-                                                <div>
-                                                    <span>1/26</span>
-                                                </div>
-                                            </div><!-- end media-body -->
-                                        </a>
-                                        <!--end media-->
-                                    </div>
-                                    <!--end general chat-->
-
-
-                                </div>
-                                <!--end tab-content-->
+            <!-- User Status Slide -->
+            <ul class="ps-0 chat-user-list">
+                <!-- Single Chat User -->
+                <li class="p-3 chat-unread"><a class="d-flex" href="wechat.html">
+                        <!-- Thumbnail -->
+                        <div class="chat-user-thumbnail me-3 shadow"><img class="img-circle"
+                                src="static/picture/user-1.jpg"><span class=" active-status"></span></div><!-- Info -->
+                        <div class="chat-user-info">
+                            <h6 class="text-truncate mb-0">莱昂纳多</h6>
+                            <div class="last-chat">
+                                <p class="mb-0 text-truncate">3080的<span
+                                        class="badge rounded-pill bg-primary ms-2">2</span></p>
                             </div>
                         </div>
-                        <!--end chat-box-left -->
+                    </a>
+                    <!-- Options -->
+                    <div class="dropstart chat-options-btn"><button class="btn dropdown-toggle" type="button"
+                            data-bs-toggle="dropdown" aria-expanded="false"><i class="ti ti-dots-vertical"></i></button>
+                        <ul class="dropdown-menu">
 
+                            <li><a href="#"><i class="ti ti-trash"></i>删除</a></li>
+                        </ul>
+                    </div>
+                </li>
 
-                    </div> <!-- end col -->
-                </div><!-- end row -->
+                <!-- Single Chat User -->
+                <li class="p-3">
+                    <a class="d-flex" href="wechat.html">
+                        <div class="chat-user-thumbnail me-3 shadow">
+                            <img class="img-circle" src="static/picture/user-2.jpg" alt=""><span
+                                class=" active-status"></span>
+                        </div>
+                        <!-- Info -->
+                        <div class="chat-user-info">
+                            <h6 class="text-truncate mb-0">1号</h6>
+                            <div class="last-chat">
+                                <p class="text-truncate mb-0">有什么可以帮您？</p>
+                            </div>
+                        </div>
+                    </a>
+                    <!-- Options -->
+                    <div class="dropstart chat-options-btn"><button class="btn dropdown-toggle" type="button"
+                            data-bs-toggle="dropdown" aria-expanded="false"><i class="ti ti-dots-vertical"></i></button>
+                        <ul class="dropdown-menu">
+                            <li><a href="#"><i class="ti ti-trash"></i>删除</a></li>
+                        </ul>
+                    </div>
+                </li>
 
-            </div><!-- container -->
+                <!-- Single Chat User -->
+                <li class="p-3 offline"><a class="d-flex" href="wechat.html">
+                        <!-- Thumbnail -->
+                        <div class="chat-user-thumbnail me-3 shadow"><img class="img-circle"
+                                src="static/picture/user-3.jpg" alt=""><span class="active-status"></span></div>
+                        <!-- Info -->
+                        <div class="chat-user-info">
+                            <h6 class="text-truncate mb-0">2号</h6>
+                            <div class="last-chat">
+                                <p class="text-truncate mb-0">请问有七成新的手机吗？</p>
+                            </div>
+                        </div>
+                    </a>
+                    <!-- Options -->
+                    <div class="dropstart chat-options-btn"><button class="btn dropdown-toggle" type="button"
+                            data-bs-toggle="dropdown" aria-expanded="false"><i class="ti ti-dots-vertical"></i></button>
+                        <ul class="dropdown-menu">
+                            <li><a href="#"><i class="ti ti-trash"></i>删除</a></li>
+                        </ul>
+                    </div>
+                </li>
 
+                <!-- Single Chat User -->
+                <li class="p-3"><a class="d-flex" href="wechat.html">
+                        <!-- Thumbnail -->
+                        <div class="chat-user-thumbnail me-3 shadow"><img class="img-circle"
+                                src="static/picture/user-4.jpg" alt=""><span class="active-status"></span></div>
+                        <!-- Info -->
+                        <div class="chat-user-info">
+                            <h6 class="text-truncate mb-0">3号</h6>
+                            <div class="last-chat">
+                                <p class="text-truncate mb-0">我需要一个ipad</p>
+                            </div>
+                        </div>
+                    </a>
+                    <!-- Options -->
+                    <div class="dropstart chat-options-btn"><button class="btn dropdown-toggle" type="button"
+                            data-bs-toggle="dropdown" aria-expanded="false"><i class="ti ti-dots-vertical"></i></button>
+                        <ul class="dropdown-menu">
+                            <li><a href="#"><i class="ti ti-trash"></i>删除</a></li>
+                        </ul>
+                    </div>
+                </li>
+
+                <!-- Single Chat User -->
+                <li class="p-3"><a class="d-flex" href="wechat.html">
+                        <!-- Thumbnail -->
+                        <div class="chat-user-thumbnail me-3 shadow"><img class="img-circle"
+                                src="static/picture/user-5.jpg" alt=""><span class="active-status"></span></div>
+                        <!-- Info -->
+                        <div class="chat-user-info">
+                            <h6 class="text-truncate mb-0">4号</h6>
+                            <div class="last-chat">
+                                <p class="text-truncate mb-0">好的谢谢</p>
+                            </div>
+                        </div>
+                    </a>
+                    <!-- Options -->
+                    <div class="dropstart chat-options-btn"><button class="btn dropdown-toggle" type="button"
+                            data-bs-toggle="dropdown" aria-expanded="false"><i class="ti ti-dots-vertical"></i></button>
+                        <ul class="dropdown-menu">
+                            <li><a href="#"><i class="ti ti-trash"></i>删除</a></li>
+                        </ul>
+                    </div>
+                </li>
+
+                <!-- Single Chat User -->
+                <li class="p-3 offline"><a class="d-flex" href="wechat.html">
+                        <!-- Thumbnail -->
+                        <div class="chat-user-thumbnail me-3 shadow"><img class="img-circle"
+                                src="static/picture/user-6.jpg" alt=""><span class="active-status"></span></div>
+                        <!-- Info -->
+                        <div class="chat-user-info">
+                            <h6 class="text-truncate mb-0">5号</h6>
+                            <div class="last-chat">
+                                <p class="text-truncate mb-0">请问需要什么？</p>
+                            </div>
+                        </div>
+                    </a>
+                    <!-- Options -->
+                    <div class="dropstart chat-options-btn"><button class="btn dropdown-toggle" type="button"
+                            data-bs-toggle="dropdown" aria-expanded="false"><i class="ti ti-dots-vertical"></i></button>
+                        <ul class="dropdown-menu">
+                            <li><a href="#"><i class="ti ti-trash"></i>删除</a></li>
+                        </ul>
+                    </div>
+                </li>
+            </ul>
         </div>
-        <!-- end page content -->
     </div>
-    <!-- end page-wrapper -->
 
 
 
+    <footer>
 
-    <!-- javascript  -->
-    <!-- App js -->
-    <script src="static/js/app.js"></script>
-    <script src="js/jquery.min.js"></script>
-    <script src="js/materialize.min.js"></script>
-    <script src="js/sliderbg.js"></script>
-    <!-- Modernizer JS -->
-    <script src="js/tabbar.js"></script>
-    <!-- Bootstrap JS -->
-    <script src="assets/js/bootstrap.min.js"></script>
+        <div class="sc-bottom-bar">
+            <a class="sc-menu-item " href="index.html"><i class="fas fa-home"></i></a>
+            <a class="sc-menu-item " href="goods-category.html"><i class="fas  fa-list"></i></a>
+            <a href="chat.html" class="sc-menu-item "><i class="fas fa-plus"></i></a>
+            <a class="sc-menu-item" href="cart.html"><i class="fas fa-clipboard"></i></a>
+            <a class="sc-menu-item" href="ui-me.html"><i class="fas fa-user"></i></a>
+        </div>
+
+    </footer>
+
+
+
+    <!-- jQuery JS -->
+    <script src="assets/js/jquery-3.4.1.min.js"></script>
     <script src="assets/js/main.js"></script>
+
+    <script src="js/bootstrap.bundle.min.js"></script>
+    <script src="js/tabbar.js"></script>
+
     <!-- script js -->
     <script src="js/popbox.js"></script>
     <script>
