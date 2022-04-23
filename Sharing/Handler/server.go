@@ -113,6 +113,7 @@ func respOK(c *gin.Context, data interface{}) {
 	c.JSON(200, gin.H{
 		"code": 0,
 		"data": data,
+
 	})
 }
 

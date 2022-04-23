@@ -127,12 +127,19 @@
 	<!-- script js -->
 	<script src="share/js/popbox.js"></script>
 	<script>
-		function okFunction() {
-			window.location.href = "login.html";
-		}
-		function cancelFunction() {
-			alert('Cancel!');
-		}
+        function okFunction() {
+            $.ajax({
+                type: "POST",
+                url: "/logoutPost",
+                success: function (data) {
+                    alert("用户退出成功!");
+                    window.location = "/login";
+                }
+            })
+        }
+        function cancelFunction() {
+            alert('Cancel!');
+        }
 	</script>
 
 
