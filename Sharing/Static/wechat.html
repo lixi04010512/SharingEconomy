@@ -52,17 +52,18 @@
 
 <div class="page-content-wrapper py-3" id="chat-wrapper">
     <div class="container">
-        <div class="chat-content-wrap">
+        <div class="chat-content-wrap" data-owner="{{ .owners }}" data-addr="{{ .addrs }}" data-img="{{ .imgs }}" data-img1="{{ .img }}">
             {{ $addr1 := .addrs }}
             {{ $owner1 := .owners }}
+            {{ $img_owner := .img }}
+            {{ $img_addr := .imgs }}
             {{ range $key,$value := .chat }}
             {{ if and (eq $value.Addr_from $addr1) (eq $value.Addr_to $owner1) }}
             <!-- Single Chat Item -->
-            <div class="single-chat-item" data-id="{{ $value.Id }}" data-owner="{{ $value.Addr_from }}"
-                 data-addr="{{ $value.Addr_to }}" data-img="{{ $value.Img_from }}" data-img1="{{ $value.Img_to }}">
+            <div class="single-chat-item" data-id="{{ $value.Id }}">
                 <!-- User Avatar -->
                 <div class="user-avatar mt-1">
-                    <img src="{{ $value.Img_from }}" alt="">
+                    <img src="{{ $img_addr }}" alt="">
                 </div>
                 <!-- User Message -->
                 <div class="user-message">
@@ -87,11 +88,10 @@
             </div>
             {{ else if and (eq $value.Addr_from $owner1) (eq $value.Addr_to $addr1) }}
             <!-- Single Chat Item -->
-            <div class="single-chat-item outgoing" data-id="{{ $value.Id }}" data-owner="{{ $value.Addr_from }}"
-                 data-addr="{{ $value.Addr_to }}" data-img="{{ $value.Img_from }}" data-img1="{{ $value.Img_to }}">
+            <div class="single-chat-item outgoing" data-id="{{ $value.Id }}">
                 <!-- User Avatar -->
                 <div class="user-avatar mt-1">
-                    <img src="{{ $value.Img_from }}" alt="">
+                    <img src="share/{{ $img_owner }}" alt="">
                 </div>
                 <!-- User Message -->
                 <div class="user-message">
@@ -158,11 +158,11 @@
             type: "POST",
             url: "/insert_chat_content",
             data: {
-                "addr_from": $(".single-chat-item").data("owner"),
-                "addr_to": $(".single-chat-item").data("addr"),
+                "addr_from": $(".chat-content-wrap").data("owner"),
+                "addr_to": $(".chat-content-wrap").data("addr"),
                 "content": $(".form-control").val(),
-                "img_from": $(".single-chat-item").data("img"),
-                "img_to": $(".single-chat-item").data("img1")
+                "img_from":$(".chat-content-wrap").data("img"),
+                "img_to":$(".chat-content-wrap").data("img1"),
             },
             success: function () {
                 location.reload();

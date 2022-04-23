@@ -6,20 +6,19 @@ contract SharingEconomy {
  
  //平台合约主持人EOA
  address private host;
- 
-     struct Managers {
-        address people;
-        string name;
-        string password;
-        bool exist;
-        bool isLogin;
-    }
- 
- //分类是否存在的记录
- mapping(string => bool)  goodsChk;
- 
- //管理员信息
- mapping(address => Managers) managersData;
+
+ //分类编号
+ uint stick_id;
+
+ //分类信息
+ struct Sticks{
+     string name;//分类名称
+     string img;//分类图标
+     bool exist;//是否存在
+     
+ }
+ //存储所有分类信息
+ mapping(uint => Sticks) stickData;
 
  
  //记录合约主持人
@@ -33,65 +32,40 @@ contract SharingEconomy {
    "only host can do this");
     _;
  }
-
- //查询分类是否已经存在
- function isStickExist(string memory species) public view returns(bool) {
-   return goodsChk[species];
- }
  
  //添加一种分类
- function addSticker(string memory species) public onlyHost {
-  //分类不存在，才可以添加
-  require(!isStickExist(species), 
-		 "stick already exist");
-		 
-   //设置可以使用此类分类
-  goodsChk[species] = true; 
+ function addSticker(string memory species,string memory img) public onlyHost {
+   stick_id++;
+   stickData[stick_id].name=species;
+   stickData[stick_id].img=img;
+   stickData[stick_id].exist=true;
  
  }
- //返回所有分类
-  string[] public stickData;
-  function getStick() public view  returns(string[] memory){
-
-    return stickData;
-  }
  
-  //查询合约余额
-  function queryBalance() public view returns (uint) {
-	return address(this).balance;
-  }	
-
-    //发起人添加管理员
-  function addManager(address people,string memory name,string memory password) public onlyHost{
-      require(managersData[people].exist == false,"user is exist");
-      managersData[people].people=people;
-      managersData[people].name=name;
-      managersData[people].password=password;
-      managersData[people].exist=true;
+ //返回分类
+  function getStick(uint id) public view  returns(string memory name,string memory img){
+   if(stickData[id].exist==true){
+    return (stickData[id].name,stickData[id].img);
+   }
   }
   
-  //管理员登录
- function signIn(address people) public {
-     require(people ==msg.sender,"not real user");
-     require(managersData[people].people == people,"address errror");
-     require(managersData[people].exist == true,"user not exist");
-     managersData[people].isLogin =true;
-
-}
-
-//修改管理员信息
-function updateUser(address people,string memory name,string memory password) public{
-  require(people ==msg.sender,"not real user");
-  require(managersData[people].people == people,"address errror");
-     managersData[people].name=name;
-     managersData[people].password=password;
-}
-
- //管理员注销登录
- function logOut(address people) public{
-     require(managersData[people].people == people,"address errror");
-     require(managersData[people].isLogin == true,"people is logout");
-     managersData[people].isLogin = false;
+  //修改分类
+ function updateStick(uint id,string memory newName) public {
+     require(stickData[id].exist==true,"not exist stick");
+     stickData[id].name=newName;
  }
+ //删除分类
+function delStick(uint id) public {
+     require(stickData[id].exist==true,"not exist stick");
+     stickData[id].exist=false;
+}
+  
+  //管理员登录
+ function signIn(address people) public view returns(string memory){
+     require(people==host,"not real user");
+     return "yes";
+
+}
+ 
 
 }

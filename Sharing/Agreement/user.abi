@@ -3,34 +3,6 @@
 		"inputs": [
 			{
 				"internalType": "address",
-				"name": "beneficiaryAddr",
-				"type": "address"
-			},
-			{
-				"internalType": "string",
-				"name": "communityName",
-				"type": "string"
-			},
-			{
-				"internalType": "string",
-				"name": "communityIntroduce",
-				"type": "string"
-			},
-			{
-				"internalType": "uint256",
-				"name": "communityAmounts",
-				"type": "uint256"
-			}
-		],
-		"name": "addCommunity",
-		"outputs": [],
-		"stateMutability": "nonpayable",
-		"type": "function"
-	},
-	{
-		"inputs": [
-			{
-				"internalType": "address",
 				"name": "owner",
 				"type": "address"
 			},
@@ -81,6 +53,11 @@
 			{
 				"internalType": "string",
 				"name": "species",
+				"type": "string"
+			},
+			{
+				"internalType": "string",
+				"name": "img",
 				"type": "string"
 			}
 		],
@@ -234,22 +211,19 @@
 				"internalType": "uint256",
 				"name": "id",
 				"type": "uint256"
-			}
-		],
-		"name": "delCommunity",
-		"outputs": [],
-		"stateMutability": "nonpayable",
-		"type": "function"
-	},
-	{
-		"inputs": [
+			},
 			{
 				"internalType": "uint256",
-				"name": "id",
+				"name": "deal",
+				"type": "uint256"
+			},
+			{
+				"internalType": "uint256",
+				"name": "blockNum",
 				"type": "uint256"
 			}
 		],
-		"name": "delGoods",
+		"name": "dealHash",
 		"outputs": [],
 		"stateMutability": "nonpayable",
 		"type": "function"
@@ -278,40 +252,6 @@
 		"name": "doGoodsReturn",
 		"outputs": [],
 		"stateMutability": "nonpayable",
-		"type": "function"
-	},
-	{
-		"inputs": [
-			{
-				"internalType": "uint256",
-				"name": "number",
-				"type": "uint256"
-			},
-			{
-				"internalType": "address",
-				"name": "donator",
-				"type": "address"
-			},
-			{
-				"internalType": "uint256",
-				"name": "amount",
-				"type": "uint256"
-			},
-			{
-				"internalType": "string",
-				"name": "donatorName",
-				"type": "string"
-			}
-		],
-		"name": "donate",
-		"outputs": [
-			{
-				"internalType": "uint256",
-				"name": "",
-				"type": "uint256"
-			}
-		],
-		"stateMutability": "payable",
 		"type": "function"
 	},
 	{
@@ -390,33 +330,18 @@
 		"inputs": [
 			{
 				"internalType": "uint256",
-				"name": "id",
+				"name": "myAmount",
 				"type": "uint256"
 			},
 			{
 				"internalType": "address",
-				"name": "beneficiaryAddr",
+				"name": "people",
 				"type": "address"
-			},
-			{
-				"internalType": "string",
-				"name": "communityName",
-				"type": "string"
-			},
-			{
-				"internalType": "string",
-				"name": "communityIntroduce",
-				"type": "string"
-			},
-			{
-				"internalType": "uint256",
-				"name": "communityAmounts",
-				"type": "uint256"
 			}
 		],
-		"name": "UpdateCommunity",
+		"name": "topUp",
 		"outputs": [],
-		"stateMutability": "nonpayable",
+		"stateMutability": "payable",
 		"type": "function"
 	},
 	{
@@ -499,72 +424,6 @@
 		"type": "function"
 	},
 	{
-		"inputs": [],
-		"name": "donatorData",
-		"outputs": [
-			{
-				"internalType": "address[]",
-				"name": "",
-				"type": "address[]"
-			}
-		],
-		"stateMutability": "view",
-		"type": "function"
-	},
-	{
-		"inputs": [
-			{
-				"internalType": "uint256",
-				"name": "",
-				"type": "uint256"
-			}
-		],
-		"name": "donatorsAddr",
-		"outputs": [
-			{
-				"internalType": "address",
-				"name": "",
-				"type": "address"
-			}
-		],
-		"stateMutability": "view",
-		"type": "function"
-	},
-	{
-		"inputs": [
-			{
-				"internalType": "uint256",
-				"name": "id",
-				"type": "uint256"
-			}
-		],
-		"name": "getCommunity",
-		"outputs": [
-			{
-				"internalType": "string",
-				"name": "name",
-				"type": "string"
-			},
-			{
-				"internalType": "address",
-				"name": "people",
-				"type": "address"
-			},
-			{
-				"internalType": "string",
-				"name": "introduce",
-				"type": "string"
-			},
-			{
-				"internalType": "uint256",
-				"name": "amount",
-				"type": "uint256"
-			}
-		],
-		"stateMutability": "view",
-		"type": "function"
-	},
-	{
 		"inputs": [
 			{
 				"internalType": "uint256",
@@ -634,6 +493,11 @@
 			{
 				"internalType": "string",
 				"name": "name",
+				"type": "string"
+			},
+			{
+				"internalType": "string",
+				"name": "img",
 				"type": "string"
 			}
 		],

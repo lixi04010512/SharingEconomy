@@ -14,7 +14,6 @@ import (
 	"time"
 )
 
-
 var jwtkey = []byte("www.topgoer.com")
 var str string
 
@@ -218,10 +217,16 @@ func addSticks(c *gin.Context) {
 		respError(c, err)
 		return
 	}
-	species := c.PostForm("species_name")
-	data, err := config.AddStick(client, contract, species)
-
+	species := c.PostForm("roleName")
+	img, err := c.FormFile("roleImg")
+	fildDir := "./Static/images/"
+	fileName := img.Filename
+	filepath := fmt.Sprintf("%s%s", fildDir, fileName)
+	fileH := fmt.Sprintf("share/images/%s", fileName)
+	c.SaveUploadedFile(img, filepath)
+	data, err := config.AddStick(client, contract, species, fileH)
 	fmt.Println("sticks", data)
+	c.Redirect(http.StatusFound, "/species")
 }
 
 //分类动态展示
@@ -311,5 +316,4 @@ func updateStick(c *gin.Context) {
 	data, err := config.UpdateStickMethod(client, contract, big.NewInt(id2), name)
 	fmt.Println(data)
 }
-
 

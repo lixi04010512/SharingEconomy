@@ -114,7 +114,6 @@ func shopPorduct(c *gin.Context) {
 		respError(c, err)
 		return
 	}
-
 	//id := config.HaveId(client)
 	//if err != nil {
 	//	fmt.Println(err)

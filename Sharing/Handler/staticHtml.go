@@ -8,6 +8,7 @@ import (
 	"net/http"
 )
 
+
 //获取用户信息
 func UserProfile(c *gin.Context) {
 	//初始化client

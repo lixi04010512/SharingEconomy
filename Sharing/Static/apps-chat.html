@@ -74,11 +74,12 @@
                 <div class="chat-user-thumbnail me-3 shadow"><img class="img-circle"
                                                                   src="{{ $value.Img  }}"><span
                         class=" active-status"></span></div><!-- Info -->
-                <div class="chat-user-info" data-addrto="{{ $value.Addr }}" data-nameto="{{ $value.Name }}">
+                <div class="chat-user-info" data-addrto="{{ $value.Addr }}" data-nameto="{{ $value.Name }}" data-img="{{ $value.Img }}">
                     <h6 class="text-truncate mb-0">{{ $value.Name }}</h6>
                     <div class="last-chat">
-                        <p class="mb-0 text-truncate">{{ $value.Time }}<span
-                                class="badge rounded-pill bg-primary ms-2">2</span></p>
+                        <p class="mb-0 text-truncate">{{ $value.Time }}
+<!--                            <span class="badge rounded-pill bg-primary ms-2">2</span>-->
+                        </p>
                     </div>
                 </div>
             </a>
@@ -118,7 +119,7 @@
         $.ajax({
             type: "POST",
             url: "/list_content",
-            data: {"addr": $(".chat-user-info").data("addrto"),"name": $(".chat-user-info").data("nameto")},
+            data: {"addr": $(".chat-user-info").data("addrto"),"name": $(".chat-user-info").data("nameto"),"img":$(".chat-user-info").data("img")},
             success: function () {
                 window.location = "/select_chat_content";
             }

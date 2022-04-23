@@ -1,39 +1,58 @@
 <!DOCTYPE html>
 <html>
-	<head>
-		<meta charset="UTF-8">
-		<title>添加分类</title>
-		<link rel="stylesheet" href="share/res/css/amazeui.min.css">
-		<link rel="stylesheet" href="share/res/css/admin.css">
-		<style>
-			.admin-main{
-				padding-top: 0px;
-			}
-		</style>
-	</head>
-	<body>
-		
-		<div class="am-cf admin-main">
-			<!-- content start -->
-			<div class="admin-content">
-				<div class="admin-content-body">
-					<div class="am-g">
-								<label>
-									类别名称
-								</label>
-								<div>
-									<input id="roleName" required="" placeholder="请输入类别名称" value="" name="roleName" type="text">
-								</div>
-								<br>
-								<div>
-									<input id="addSpecies" class="am-btn am-btn-success" value="新增分类" type="button">
-								</div>
-							</div>
-					</div>
-				</div>
-			</div>
-		</div>
-	</body>
-	<script src="share/js/jquery-1.11.3.min.js"></script>
-    <script src="share/javascripts/addSpecies.js"></script>
+<head>
+    <meta charset="UTF-8">
+    <title>添加分类</title>
+    <link rel="stylesheet" href="share/res/css/amazeui.min.css">
+    <link rel="stylesheet" href="share/res/css/admin.css">
+    <style>
+        .admin-main {
+            padding-top: 0px;
+        }
+    </style>
+</head>
+<body>
+
+<div class="am-cf admin-main">
+    <!-- content start -->
+    <div class="admin-content">
+        <div class="admin-content-body">
+            <form class="am-g" method="POST" action="/addSticks" enctype="multipart/form-data">
+                <label>
+                    类别名称
+                </label>
+                <div>
+                    <input id="roleName" required="" placeholder="请输入类别名称" value="" name="roleName" type="text">
+                </div>
+                <br>
+                <label>
+                    类别名称
+                </label>
+                <div>
+                    <input id="roleImg" required="" placeholder="请上传分类图标" value="" name="roleImg" type="file">
+                </div>
+				<br>
+                <div>
+                    <input id="addSpecies" class="am-btn am-btn-success" value="新增分类" type="submit">
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+</div>
+</body>
+<script src="share/js/jquery-1.11.3.min.js"></script>
+<!--<script>-->
+<!--    $('#addSpecies').click(function(){-->
+<!--        $.ajax({-->
+<!--            type:"POST",-->
+<!--            url:"/addSticks",-->
+<!--            data:{"species_name":$("#roleName").val()},-->
+<!--            success:function(){-->
+<!--                alert("添加成功！");-->
+<!--                window.location="/species"-->
+<!--            }-->
+<!--        })-->
+<!--    })-->
+<!--</script>-->
 </html>
