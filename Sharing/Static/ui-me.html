@@ -50,42 +50,7 @@
         </div>
     </header>
 
-    <div class="offcanvas-menu" id="offcanvas-menu">
-        <div class="profile-card text-center">
-            {{if eq "" .userImg}}
-            <div class="profile-card__image space-mb--10">
-                <img src="share/assets/img/profile.jpg" class="img-fluid" alt="">
-            </div>
-            {{else}}
-            <div class="profile-card__image space-mb--10">
-                <img src="share/{{.userImg}}" class="img-fluid" alt="">
-            </div>
-            {{end}}
-            <div class="profile-card__content">
-                <p class="name">{{.address}} <span class="id">{{.userName}}</span></p>
-            </div>
-        </div>
-        <div class="offcanvas-navigation-wrapper space-mt--40">
-            <ul class="offcanvas-navigation">
-
-
-                <li><span class="icon"><i class="ti ti-plus" style="font-size: 25px;"></i></span><a
-                        href="../lend-items">上传物品</a></li>
-                <li><span class="icon"><i class="ti ti-shopping-cart" style="font-size: 25px;"></i></span><a
-                        href="../shop">我租入的物品</a></li>
-                <li><span class="icon"><i class="ti ti-box" style="font-size: 25px;"></i></span><a
-                        href="../order">我借出的物品</a></li>
-                {{if eq "" .userName}}
-                <li><span class="icon"><i class="ti ti-login" style="font-size: 25px;"></i></span><a
-                        href="../login">登录/注册</a></li>
-                {{else}}
-                <li><span class="icon"><i class="ti ti-power" style="font-size: 25px;"></i></span><a
-                        id="confirm">退出登入</a>
-                </li>
-                {{end}}
-            </ul>
-        </div>
-    </div>
+    {{ template "Static/menu.html" . }}
 
 
     <div class="my_kuang" style="padding-top: 75px;">
