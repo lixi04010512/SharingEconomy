@@ -324,7 +324,6 @@
 <!--====================  End of footer area  ====================-->
 
 
-<<<<<<< HEAD
     <!-- App js -->
     <script src="share/static/js/app.js"></script>
     <script src="share/js/tabbar.js"></script>
@@ -334,56 +333,22 @@
     <script src="share/assets/js/bootstrap.min.js"></script>
     <!-- Main JS -->
     <script src="share/assets/js/main.js"></script>
-    <script src="share/js/popbox.js"></script>
     <script src="share/static/js/delGoods.js"></script>
+
+    <script src="share/js/pop-message.js"></script>
     <script>
-        function okFunction() {
-            $.ajax({
-                type: "POST",
-                url: "/logoutPost",
-                success: function (data) {
-                    alert("用户退出成功!");
-                    window.location = "/login";
-                }
+        document.getElementById('confirm').onclick = function () {
+            confirm('是否退出当前账号？').then(() => {
+                window.location.href = "login.html";
+                console.log('已确认')
+            }).catch(() => {
+                console.log('已取消')
             })
-        }
-        function cancelFunction() {
-            alert('Cancel!');
         }
     </script>
     <script src="https://www.jq22.com/jquery/jquery-1.10.2.js"></script>
     <script src="share/js/upload.js"></script>
     <script src="share/js/demo.js"></script>
-=======
-<!-- App js -->
-<script src="share/static/js/app.js"></script>
-<script src="share/js/tabbar.js"></script>
-<!-- jQuery JS -->
-<script src="share/assets/js/jquery-3.4.1.min.js"></script>
-<!-- Bootstrap JS -->
-<script src="share/assets/js/bootstrap.min.js"></script>
-<!-- Main JS -->
-<script src="share/assets/js/main.js"></script>
-<script src="share/js/popbox.js"></script>
-<script>
-    function okFunction() {
-        $.ajax({
-            type: "POST",
-            url: "/logoutPost",
-            success: function (data) {
-                alert("用户退出成功!");
-                window.location = "/login";
-            }
-        })
-    }
-    function cancelFunction() {
-        alert('Cancel!');
-    }
-</script>
-<script src="share/js/jquery-1.10.2.js"></script>
-<script src="share/js/upload.js"></script>
-<script src="share/js/demo.js"></script>
->>>>>>> 4893066f70bf10d6c9dbdc24ba83d7eaab173082
 </body>
 {{ end }}
 

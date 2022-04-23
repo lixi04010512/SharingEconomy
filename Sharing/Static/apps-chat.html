@@ -147,17 +147,18 @@
 <script src="share/js/tabbar.js"></script>
 
 <!-- script js -->
-<script src="share/js/popbox.js"></script>
 <script src="share/static/js/app.js"></script>
-<script>
-    function okFunction() {
-        window.location.href = "login.html";
-    }
-
-    function cancelFunction() {
-        alert('Cancel!');
-    }
-</script>
+<script src="share/js/pop-message.js"></script>
+    <script>
+        document.getElementById('confirm').onclick = function () {
+            confirm('是否退出当前账号？').then(() => {
+                window.location.href = "login.html";
+                console.log('已确认')
+            }).catch(() => {
+                console.log('已取消')
+            })
+        }
+    </script>
 
 </body>
 {{ end }}
