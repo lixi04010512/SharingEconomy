@@ -91,6 +91,7 @@ func privateLogin(c *gin.Context) {
 		return
 	}
 
+
 	privKey, _ = crypto.HexToECDSA(privateKeyStr)
 	fmt.Println("prikey",privKey)
 
