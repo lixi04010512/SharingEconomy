@@ -181,13 +181,15 @@
 
     <!-- Main JS -->
     <script src="assets/js/main.js"></script>
-    <script src="js/popbox.js"></script>
+    <script src="js/pop-message.js"></script>
     <script>
-        function okFunction() {
-            window.location.href = "login.html";
-        }
-        function cancelFunction() {
-            alert('Cancel!');
+        document.getElementById('confirm').onclick = function () {
+            confirm('是否退出当前账号？').then(() => {
+                window.location.href = "login.html";
+                console.log('已确认')
+            }).catch(() => {
+                console.log('已取消')
+            })
         }
     </script>
 </body>

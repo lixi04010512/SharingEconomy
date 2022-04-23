@@ -3,10 +3,10 @@
 <html lang="en">
 
 <head>
-    <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no, minimal-ui"/>
-    <meta name="apple-mobile-web-app-capable" content="yes"/>
-    <meta name="apple-mobile-web-app-status-bar-style" content="black"/>
-    <meta name="format-detection" content="telephone=no, email=no"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no, minimal-ui" />
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+    <meta name="apple-mobile-web-app-status-bar-style" content="black" />
+    <meta name="format-detection" content="telephone=no, email=no" />
     <meta charset="UTF-8">
     <title>Share Fish-商品详情</title>
     <script src="../share/static/js/public.js"></script>
@@ -27,205 +27,207 @@
 
 <body>
 
-<header>
-    <div class="header-wrapper border-bottom">
-        <div class="container space-y--15">
-            <div class="row align-items-center">
-                <div class="col-auto">
-                    <a class="back-link" onClick="javascript :history.back(-1);"> <i class="fa fa-angle-left"></i>
-                        返回</a>
-                </div>
-                <div class="col d-flex justify-content-center">
-                    <div class="header-search">
-                        <div class="input-group">
-                            <h4 style="    padding-top: 18px;">商品详情</h4>
-                        </div>
+    <header>
+        <div class="header-wrapper border-bottom">
+            <div class="container space-y--15">
+                <div class="row align-items-center">
+                    <div class="col-auto">
+                        <a class="back-link" onClick="javascript :history.back(-1);"> <i class="fa fa-angle-left"></i>
+                            返回</a>
                     </div>
-                </div>
-                <div class="col-auto">
-                    <!-- header menu trigger -->
-                    <button class="header-menu-trigger" id="header-menu-trigger">
-                        <i class="fas fa-align-right" style="font-size: 20px;
-                                color: grey;"></i>
-                    </button>
-                </div>
-            </div>
-        </div>
-    </div>
-
-</header>
-<!--====================  End of header area  ====================-->
-<!--====================  mobile menu overlay ====================-->
-{{ template "Static/menu.html" . }}
-
-
-<div class="aui-banner-content aui-fixed-top" data-aui-slider>
-    <div class="col-3">
-
-    </div>
-    <div class="aui-banner-wrapper">
-        {{range $k,$v:=.goodsPort.GoodImg}}
-        <div class="aui-banner-wrapper-item">
-
-            <img src="../{{$v}}">
-
-        </div>
-        {{end}}
-
-    </div>
-    <div class="aui-banner-pagination"></div>
-
-</div>
-<div class="aui-product-content">
-    <div class="aui-real-price clearfix">
-			<span>
-				租金
-				<i>￥</i>{{.goodsPort.Rent}}/天
-			</span>
-
-    </div>
-    <div class="price" style="padding-left: 15px;">
-        <span class="main-price">押金</span>
-        <span class="discounted-price">{{.goodsPort.EthPledge}}</span>
-    </div>
-    <div class="aui-product-title">
-        <h2>
-            {{.goodsPort.Names}}
-        </h2>
-
-    </div>
-
-
-    <div class="aui-product-coupon">
-        <a href="" class="aui-address-cell aui-fl-arrow aui-fl-arrow-clear"
-           data-ydui-actionsheet="{target:'#actionSheet',closeElement:'#cancel'}">
-            <div class="aui-address-cell-bd">选择</div>
-        </a>
-
-        <!-- 弹窗A begin -->
-        <div class="m-actionsheet" id="actionSheet">
-            <div style="position:relative">
-                <div class="aui-spec-menu-top">
-                    <div class="aui-spec-first-pic">
-                        <img src="../share/themes/img/pd/pd-zf-1.jpg" alt="">
-                    </div>
-                    <div class="aui-spec-first-sif">
-                        <h2>￥{{.goodsPort.Rent}}/天 </h2>
-                        <p style="line-height: 0;">商品编号：{{.goodsPort.Id}}</p>
-                    </div>
-                </div>
-                <div class="aui-product-text-content">
-                    <div class="aui-product-text-content-list">
-                        <div class="aui-product-text-content-list-bd">
-                            <span>已选</span>
-                        </div>
-                        <div class="aui-product-text-content-list-ft">
-                            <span>{{.goodsPort.Names}} 1件</span>
-                        </div>
-                    </div>
-
-                    <div class="aui-product-text-content-list">
-                        <div class="aui-product-text-content-list-bd">
-                            <span>租用天数</span>
-                        </div>
-                        <div class="aui-car-box-list-text-price">
-                            <div class="aui-car-box-list-text-arithmetic" style="position:inherit">
-                                <a class="minus" id="reduce" onclick="reducecount()">-</a>
-                                <input class="num" type="text" id="text" value="0"/>
-                                <a class="plus" id="plus" onclick="pluscount()">+</a>
+                    <div class="col d-flex justify-content-center">
+                        <div class="header-search">
+                            <div class="input-group">
+                                <h4 style="    padding-top: 18px;">商品详情</h4>
                             </div>
                         </div>
                     </div>
+                    <div class="col-auto">
+                        <!-- header menu trigger -->
+                        <button class="header-menu-trigger" id="header-menu-trigger">
+                            <i class="fas fa-align-right" style="font-size: 20px;
+                                color: grey;"></i>
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </header>
+    <!--====================  End of header area  ====================-->
+    <!--====================  mobile menu overlay ====================-->
+    {{ template "Static/menu.html" . }}
+
+
+    <div class="aui-banner-content aui-fixed-top" data-aui-slider>
+        <div class="col-3">
+
+        </div>
+        <div class="aui-banner-wrapper">
+            {{range $k,$v:=.goodsPort.GoodImg}}
+            <div class="aui-banner-wrapper-item">
+
+                <img src="../{{$v}}">
+
+            </div>
+            {{end}}
+
+        </div>
+        <div class="aui-banner-pagination"></div>
+
+    </div>
+    <div class="aui-product-content">
+        <div class="aui-real-price clearfix">
+            <span>
+                租金
+                <i>￥</i>{{.goodsPort.Rent}}/天
+            </span>
+
+        </div>
+        <div class="price" style="padding-left: 15px;">
+            <span class="main-price">押金</span>
+            <span class="discounted-price">{{.goodsPort.EthPledge}}</span>
+        </div>
+        <div class="aui-product-title">
+            <h2>
+                {{.goodsPort.Names}}
+            </h2>
+            <p>描述：</p>
+        </div>
+
+
+        <div class="aui-product-coupon">
+            <a href="" class="aui-address-cell aui-fl-arrow aui-fl-arrow-clear"
+                data-ydui-actionsheet="{target:'#actionSheet',closeElement:'#cancel'}">
+                <div class="aui-address-cell-bd">选择</div>
+            </a>
+
+            <!-- 弹窗A begin -->
+            <div class="m-actionsheet" id="actionSheet">
+                <div style="position:relative">
+                    <div class="aui-spec-menu-top">
+                        <div class="aui-spec-first-pic">
+                            <img src="../share/themes/img/pd/pd-zf-1.jpg" alt="">
+                        </div>
+                        <div class="aui-spec-first-sif">
+                            <h2>￥{{.goodsPort.Rent}}/天 </h2>
+                            <p style="line-height: 0;">商品编号：{{.goodsPort.Id}}</p>
+                        </div>
+                    </div>
+                    <div class="aui-product-text-content">
+                        <div class="aui-product-text-content-list">
+                            <div class="aui-product-text-content-list-bd">
+                                <span>已选</span>
+                            </div>
+                            <div class="aui-product-text-content-list-ft">
+                                <span>{{.goodsPort.Names}} 1件</span>
+                            </div>
+                        </div>
+
+                        <div class="aui-product-text-content-list">
+                            <div class="aui-product-text-content-list-bd">
+                                <span>租用天数</span>
+                            </div>
+                            <div class="aui-car-box-list-text-price">
+                                <div class="aui-car-box-list-text-arithmetic" style="position:inherit">
+                                    <a class="minus" id="reduce" onclick="reducecount()">-</a>
+                                    <input class="num" type="text" id="text" value="0" />
+                                    <a class="plus" id="plus" onclick="pluscount()">+</a>
+                                </div>
+                            </div>
+                        </div>
+
+                    </div>
+
+                    <a href="javascript:;" class="actionsheet-action" id="cancel"></a>
+                    <a onclick="Qual.successd('Success','租用成功');">
+                        <div class="aui-btn aui-btn-gray" style="width: 400px;">确定</div>
+                    </a>
+
 
                 </div>
-
-                <a href="javascript:;" class="actionsheet-action" id="cancel"></a>
-                <a onclick="Qual.successd('Success','租用成功');">
-                    <div class="aui-btn aui-btn-gray" style="width: 400px;">确定</div>
-                </a>
-
-
             </div>
+
+            <!-- 弹窗A end-->
+
         </div>
 
-        <!-- 弹窗A end-->
 
     </div>
+    <footer class="aui-footer-button aui-footer-flex aui-footer-fixed" style="width: 100%; position: fixed;">
+        <div class="aui-footer-wrap">
+            <a href="../index">
+                <i class="fas fa-home"></i>
+                <span>首页</span></a>
+        </div>
 
+        <div class="aui-footer-wrap">
+            <a class="data_a" data-ad="{{ .address }}" data-addr="{{ .goodsPort.Addr }}" data-img="{{ .ownerImg }}"
+                data-name="{{ .ownerName }}" data-username="{{ .userName }}" data-userimg="{{ .userImg }}">
+                <i class="fas fa-comments"></i>
+                <span>咨询</span></a>
+        </div>
+        <div class="aui-footer-group aui-footer-flex1">
+            <div class="aui-footer-flex">
 
-</div>
-<footer class="aui-footer-button aui-footer-flex aui-footer-fixed" style="width: 100%; position: fixed;">
-    <div class="aui-footer-wrap">
-        <a href="../index">
-            <i class="fas fa-home"></i>
-            <span>首页</span></a>
-    </div>
-
-    <div class="aui-footer-wrap">
-        <a class="data_a" data-ad="{{ .address }}" data-addr="{{ .goodsPort.Addr }}" data-img="{{ .ownerImg }}" data-name="{{ .ownerName }}"  data-username="{{ .userName }}" data-userimg="{{ .userImg }}">
-            <i class="fas fa-comments"></i>
-            <span>咨询</span></a>
-    </div>
-    <div class="aui-footer-group aui-footer-flex1">
-        <div class="aui-footer-flex">
-
-            <div class="aui-btn aui-btn-red">
-                <a href="" style="color: inherit;"
-                   data-ydui-actionsheet="{target:'#actionSheet',closeElement:'#cancel'}">
-                    <span>立即抢租</span> </a>
+                <div class="aui-btn aui-btn-red">
+                    <a href="" style="color: inherit;"
+                        data-ydui-actionsheet="{target:'#actionSheet',closeElement:'#cancel'}">
+                        <span>立即抢租</span> </a>
+                </div>
             </div>
         </div>
-    </div>
-</footer>
+    </footer>
 
-<script src="../share/js/tabbar.js"></script>
-<!-- jQuery JS -->
-<script src="../share/assets/js/jquery-3.4.1.min.js"></script>
-<!-- Bootstrap JS -->
-<script src="../share/assets/js/bootstrap.min.js"></script>
-<!-- Main JS -->
-<script src="../share/assets/js/main.js"></script>
-<!-- script js -->
-<script src="../share/js/popbox.js"></script>
-<script>
-    function okFunction() {
-        $.ajax({
-            type: "POST",
-            url: "/logoutPost",
-            success: function (data) {
-                alert("用户退出成功!");
-                window.location = "/login";
-            }
+    <script src="../share/js/tabbar.js"></script>
+    <!-- jQuery JS -->
+    <script src="../share/assets/js/jquery-3.4.1.min.js"></script>
+    <!-- Bootstrap JS -->
+    <script src="../share/assets/js/bootstrap.min.js"></script>
+    <!-- Main JS -->
+    <script src="../share/assets/js/main.js"></script>
+    <!-- script js -->
+    <script src="../share/js/popbox.js"></script>
+    <script>
+        function okFunction() {
+            $.ajax({
+                type: "POST",
+                url: "/logoutPost",
+                success: function (data) {
+                    alert("用户退出成功!");
+                    window.location = "/login";
+                }
+            })
+        }
+
+        function cancelFunction() {
+            alert('Cancel!');
+        }
+
+        //点击咨询
+        console.log($(".data_a").data("ad"), $(".data_a").data("addr"), $(".data_a").data("img"), $(".data_a").data("name"))
+        $(".aui-footer-wrap").click(function () {
+            $.ajax({
+                type: "POST",
+                url: "/insert_chat_list",
+                data: {
+                    "owner": $(".data_a").data("ad"),
+                    "addr": $(".data_a").data("addr"),
+                    "img": $(".data_a").data("img"),
+                    "name": $(".data_a").data("name"),
+                    "username": $(".data_a").data("username"),
+                    "userimg": $(".data_a").data("userimg"),
+                },
+                success: function () {
+                    window.location = "/select_chat_list"
+                }
+            })
         })
-    }
 
-    function cancelFunction() {
-        alert('Cancel!');
-    }
+    </script>
 
-    //点击咨询
-    console.log($(".data_a").data("ad"),$(".data_a").data("addr"),$(".data_a").data("img"),$(".data_a").data("name"))
-    $(".aui-footer-wrap").click(function () {
-        $.ajax({
-            type: "POST",
-            url: "/insert_chat_list",
-            data: {
-                "owner":$(".data_a").data("ad"),
-                "addr": $(".data_a").data("addr"),
-                "img": $(".data_a").data("img"),
-                "name": $(".data_a").data("name"),
-                "username":$(".data_a").data("username"),
-                "userimg":$(".data_a").data("userimg"),
-            },
-            success: function () {
-                window.location = "/select_chat_list"
-            }
-        })
-    })
-
-</script>
-
-<script src="share/themes/js/aui.js"></script>
+    <script src="share/themes/js/aui.js"></script>
 </body>
 {{ end }}
+
 </html>

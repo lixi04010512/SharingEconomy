@@ -9,17 +9,15 @@
     <meta charset="UTF-8">
     <title>Share Fish-个人中心</title>
     <script src="static/js/public.js"></script>
-    <!-- <link rel="stylesheet" href="static/css/quantumalert.css"> -->
     <link rel="stylesheet" href="themes/css/icon.css">
     <link rel="stylesheet" href="css/tabbar.css">
     <link rel="stylesheet" href="css/personal.css">
 
     <link rel="stylesheet" href="assets/css/bootstrap.min.css">
     <link rel="stylesheet" href="assets/css/style.css">
-
     <!-- App css -->
     <link href="static/css/icons.min.css" rel="stylesheet" type="text/css">
-    
+
 </head>
 
 <body>
@@ -54,8 +52,8 @@
         <div class="profile-card text-center">
             <div class="profile-card__image space-mb--10" style="    padding-left: 40px;">
                 <a href="profile.html">
-                <img src="assets/img/profile.jpg" class="img-fluid" alt="">
-            </a>
+                    <img src="assets/img/profile.jpg" class="img-fluid" alt="">
+                </a>
             </div>
             <div class="profile-card__content">
                 <p class="name">0x5B38Da6a701c568545dCfcB03F <span class="id">John</span></p>
@@ -63,7 +61,7 @@
         </div>
         <div class="offcanvas-navigation-wrapper space-mt--40">
             <ul class="offcanvas-navigation">
-               <li><span class="icon"><i class="ti ti-login" style="font-size: 25px;"></i></span><a
+                <li><span class="icon"><i class="ti ti-login" style="font-size: 25px;"></i></span><a
                         href="login.html">登录/注册</a></li>
                 <li><span class="icon"><i class="ti ti-plus" style="font-size: 25px;"></i></span><a
                         href="lend-items.html">上传物品</a></li>
@@ -72,7 +70,7 @@
                 <li><span class="icon"><i class="ti ti-box" style="font-size: 25px;"></i></span><a
                         href="order.html">我借出的物品</a></li>
                 <li><span class="icon"><i class="ti ti-power" style="font-size: 25px;"></i></span><a
-                        onclick="Qual.confirmd('您确定要退出当前账号吗？', '点击OK按钮或者关闭', inf, 'OK', '', 'okFunction', 'cancelFunction')">退出登入</a>
+                        id="confirm">退出登入</a>
                 </li>
             </ul>
         </div>
@@ -100,9 +98,9 @@
                 <div class="yverjif">
                     <ul>
                         <li><a href="cart.html">
-                            <h2>0</h2>
-                            <p>订单数</p>
-                        </a>
+                                <h2>0</h2>
+                                <p>订单数</p>
+                            </a>
                         </li>
                         <li><a href="shop.html">
                                 <h2>9</h2>
@@ -110,9 +108,10 @@
                             </a></li>
                         <li>
                             <a href="order.html">
-                            <h2>17</h2>
-                            <p>借出</p>
-                        </a></li>
+                                <h2>17</h2>
+                                <p>借出</p>
+                            </a>
+                        </li>
                     </ul>
                 </div><!-- -->
                 <div class="my_tik_list fenh_ziyek yuanj_sd">
@@ -151,9 +150,9 @@
                                 <i class="aui-icon-large aui-icon-large-sm aui-icon-signs"></i>
                                 <p>个人信息</p>
                             </a></li>
-                        <li><a href="shop.html">
+                        <li><a href="cart.html">
                                 <i class="aui-icon-large aui-icon-large-sm aui-icon-coupon"></i>
-                                <p>我的物品</p>
+                                <p>我的在架</p>
                             </a></li>
                     </ul>
                 </div>
@@ -206,11 +205,12 @@
             <a class="sc-menu-item " href="goods-category.html"><i class="fas  fa-list"></i></a>
             <a href="chat.html" class="sc-menu-item "><i class="fas fa-plus"></i></a>
             <a class="sc-nav-indicator"></a>
-             <a class="sc-menu-item" href="apps-chat.html"><i class="fas fa-comments"></i></a>
+            <a class="sc-menu-item" href="apps-chat.html"><i class="fas fa-comments"></i></a>
             <a class="sc-menu-item sc-current" href="ui-me.html"><i class="fas fa-user"></i></a>
         </div>
 
     </footer>
+
 
 
     <script type="text/javascript" src="themes/js/jquery.min.js"></script>
@@ -229,13 +229,16 @@
     <script src="assets/js/plugins/slick.min.js"></script>
     <!-- Main JS -->
     <script src="assets/js/main.js"></script>
-    <script src="js/popbox.js"></script>
+
+    <script src="js/pop-message.js"></script>
     <script>
-        function okFunction() {
-            window.location.href = "login.html";
-        }
-        function cancelFunction() {
-            alert('Cancel!');
+        document.getElementById('confirm').onclick = function () {
+            confirm('是否退出当前账号？').then(() => {
+                window.location.href = "login.html";
+                console.log('已确认')
+            }).catch(() => {
+                console.log('已取消')
+            })
         }
     </script>
 </body>

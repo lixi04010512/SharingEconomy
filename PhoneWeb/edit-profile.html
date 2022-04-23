@@ -88,7 +88,7 @@
                 <li><span class="icon"><i class="ti ti-box" style="font-size: 25px;"></i></span><a
                         href="order.html">我借出的物品</a></li>
                 <li><span class="icon"><i class="ti ti-power" style="font-size: 25px;"></i></span><a
-                        onclick="Qual.confirmd('您确定要退出当前账号吗？', '点击OK按钮或者关闭', inf, 'OK', '', 'okFunction', 'cancelFunction')">退出登入</a>
+                        id="confirm">退出登入</a>
                 </li>
                 </ul>
             </div>
@@ -161,13 +161,15 @@
     <!-- Bootstrap JS -->
     <script src="assets/js/bootstrap.min.js"></script>
     <script src="assets/js/main.js"></script>
-    <script src="js/popbox.js"></script>
+    <script src="js/pop-message.js"></script>
     <script>
-        function okFunction() {
-            window.location.href = "login.html";
-        }
-        function cancelFunction() {
-            alert('Cancel!');
+        document.getElementById('confirm').onclick = function () {
+            confirm('是否退出当前账号？').then(() => {
+                window.location.href = "login.html";
+                console.log('已确认')
+            }).catch(() => {
+                console.log('已取消')
+            })
         }
     </script>
 </body>
