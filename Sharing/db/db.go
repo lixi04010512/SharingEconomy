@@ -113,4 +113,3 @@ func DeleteNeeds(id int64) (DemandList []DemandDB, err error) {
 	_, err = db.Exec(sqlStr, id)
 	return
 }
-

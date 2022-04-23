@@ -8,7 +8,6 @@ import (
 	"net/http"
 )
 
-
 //获取用户信息
 func UserProfile(c *gin.Context) {
 	//初始化client
@@ -310,8 +309,25 @@ func PostNeedStatic(c *gin.Context) {
 		respError(c, err)
 		return
 	}
-	userImg, err := contract.GetUserImg(nil, LoginUser)
-	c.HTML(http.StatusOK, "Static/post-need.html", gin.H{"userName": userName, "address": people, "userImg": userImg})
+	var stickArr []StickAll
+	for j := 1; j < 9; j++ {
+		//if j < 8 {
+		StickData, err := config.ShowStick(client, big.NewInt(int64(j)))
+		if err != nil {
+			respError(c, err)
+			return
+		}
+		stickArr1 := []StickAll{StickAll{Sticks: StickData}}
+		stickArr = append(stickArr, stickArr1...)
+		//}
+	}
+	userImg, _ := contract.GetUserImg(nil, LoginUser)
+	c.HTML(http.StatusOK, "Static/post-need.html", gin.H{
+		"userName":  userName,
+		"address":   people,
+		"userImg":   userImg,
+		"StickList": stickArr,
+	})
 }
 
 //渲染public-benefit
