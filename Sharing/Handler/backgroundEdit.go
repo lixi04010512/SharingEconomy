@@ -105,48 +105,48 @@ func editSpeciesPage(c *gin.Context) {
 
 }
 
-//定义一个结构体数组
-var arr1 []Community
+////定义一个结构体数组
+//var arr1 []Community
+//
+////修改公益页面
+//func editCommunities(c *gin.Context) {
+//	//初始化client
+//	client, err := config.GetClient()
+//	if err != nil {
+//		fmt.Println(err)
+//		respError(c, err)
+//		return
+//	}
+//	//初始化合约地址
+//	contract, err := config.GetAddress(client)
+//	if err != nil {
+//		fmt.Println("304:", err)
+//		respError(c, err)
+//		return
+//	}
+//
+//	id := c.PostForm("id")
+//	fmt.Println(id)
+//	id_community, err := strconv.Atoi(id)
+//	i := int64(id_community)
+//	name, addr, introduce, amount, err := config.ShowCommunities(contract, big.NewInt(i))
+//	fmt.Println("137:", err)
+//	arr2 := []Community{{Id: id_community, Name: name, People: addr, Introduce: introduce, Amount: amount}}
+//	fmt.Println("arr2", arr2)
+//	var arr3 []Community
+//	arr3 = append(arr3, arr2...)
+//	arr1 = arr3
+//	fmt.Println("community:", name)
+//	fmt.Println("arr:", arr)
+//
+//}
 
-//修改公益页面
-func editCommunities(c *gin.Context) {
-	//初始化client
-	client, err := config.GetClient()
-	if err != nil {
-		fmt.Println(err)
-		respError(c, err)
-		return
-	}
-	//初始化合约地址
-	contract, err := config.GetAddress(client)
-	if err != nil {
-		fmt.Println("304:", err)
-		respError(c, err)
-		return
-	}
-
-	id := c.PostForm("id")
-	fmt.Println(id)
-	id_community, err := strconv.Atoi(id)
-	i := int64(id_community)
-	name, addr, introduce, amount, err := config.ShowCommunities(contract, big.NewInt(i))
-	fmt.Println("137:", err)
-	arr2 := []Community{{Id: id_community, Name: name, People: addr, Introduce: introduce, Amount: amount}}
-	fmt.Println("arr2", arr2)
-	var arr3 []Community
-	arr3 = append(arr3, arr2...)
-	arr1 = arr3
-	fmt.Println("community:", name)
-	fmt.Println("arr:", arr)
-
-}
-
-//修改公益页面
-func editCommunity(c *gin.Context) {
-	c.HTML(http.StatusOK, "Static/editCommunity.html", gin.H{
-		"communities_name": arr1,
-	})
-}
+////修改公益页面
+//func editCommunity(c *gin.Context) {
+//	c.HTML(http.StatusOK, "Static/editCommunity.html", gin.H{
+//		"communities_name": arr1,
+//	})
+//}
 
 //颁发token
 func setting(ctx *gin.Context) {
@@ -365,127 +365,127 @@ func updateStick(c *gin.Context) {
 	fmt.Println(data)
 }
 
-//修改公益
-func updateCommunity(c *gin.Context) {
-	//初始化client
-	client, err := config.GetClient()
-	if err != nil {
-		fmt.Println(err)
-		respError(c, err)
-		return
-	}
-	//初始化合约地址
-	contract, err := config.GetAddress(client)
-	if err != nil {
-		fmt.Println("560:", err)
-		respError(c, err)
-		return
-	}
-	id := c.PostForm("id")
-	id1, err := strconv.Atoi(id)
-	id2 := int64(id1)
-	name := c.PostForm("name")
-	addr := c.PostForm("addr")
-	var data1 = []byte(addr)
-	address := common.BytesToAddress(data1)
-	introduce := c.PostForm("introduce")
-	amount := c.PostForm("amount")
-	money, err := strconv.Atoi(amount)
-	Money := int64(money)
-	data, err := config.UpdateCommunityMethod(client, contract, name, big.NewInt(id2), address, introduce, big.NewInt(Money))
-	fmt.Println(data)
-}
-
-//添加公益
-func addCommunities(c *gin.Context) {
-	//初始化client
-	client, err := config.GetClient()
-	if err != nil {
-		fmt.Println(err)
-		respError(c, err)
-		return
-	}
-	//初始化合约地址
-	contract, err := config.GetAddress(client)
-	if err != nil {
-		fmt.Println("591:", err)
-		respError(c, err)
-		return
-	}
-	addr := c.PostForm("addr")
-	var data1 = []byte(addr)
-	address := common.BytesToAddress(data1)
-	name := c.PostForm("name")
-	introduce := c.PostForm("introduce")
-	money := c.PostForm("amount")
-	money1, err := strconv.Atoi(money)
-	Money := int64(money1)
-	fmt.Println(address, name, introduce, Money)
-	data, err := config.AddCommunityMethod(client, contract, address, name, introduce, big.NewInt(Money))
-	fmt.Println("community,", data)
-}
-
-//删除公益
-func delCommunity(c *gin.Context) {
-	//初始化client
-	client, err := config.GetClient()
-	if err != nil {
-		fmt.Println(err)
-		respError(c, err)
-		return
-	}
-	//初始化合约地址
-	contract, err := config.GetAddress(client)
-	if err != nil {
-		fmt.Println("620:", err)
-		respError(c, err)
-		return
-	}
-	id := c.PostForm("id")
-	fmt.Println(id)
-	id_community, err := strconv.Atoi(id)
-	i := int64(id_community)
-	data, err := config.DelCommunityMethod(client, contract, big.NewInt(i))
-	fmt.Println("629data:", data)
-}
-
-//公益动态展示
-func showCommunities(c *gin.Context) {
-	//初始化client
-	client, err := config.GetClient()
-	if err != nil {
-		fmt.Println(err)
-		respError(c, err)
-		return
-	}
-	//初始化合约地址
-	contract, err := config.GetAddress(client)
-	if err != nil {
-		fmt.Println("644:", err)
-		respError(c, err)
-		return
-	}
-
-	//定义一个结构体数组
-	var arr []Community
-	for i := 1; i < 10; i++ {
-		//转*big.int
-		Int64 := int64(i)
-		name, people, introduce, amount, err := config.ShowCommunities(contract, big.NewInt(Int64))
-		fmt.Println("655:", err)
-		if name != "" {
-			arr1 := []Community{{Id: i, Name: name, People: people, Introduce: introduce, Amount: amount}}
-			fmt.Println("arr1", arr1)
-			arr = append(arr, arr1...)
-			fmt.Println("community:", name)
-			fmt.Println("arr:", arr)
-		}
-
-	}
-
-	c.HTML(http.StatusOK, "Static/community.html", gin.H{
-		"communities_name": arr,
-	})
-
-}
+////修改公益
+//func updateCommunity(c *gin.Context) {
+//	//初始化client
+//	client, err := config.GetClient()
+//	if err != nil {
+//		fmt.Println(err)
+//		respError(c, err)
+//		return
+//	}
+//	//初始化合约地址
+//	contract, err := config.GetAddress(client)
+//	if err != nil {
+//		fmt.Println("560:", err)
+//		respError(c, err)
+//		return
+//	}
+//	id := c.PostForm("id")
+//	id1, err := strconv.Atoi(id)
+//	id2 := int64(id1)
+//	name := c.PostForm("name")
+//	addr := c.PostForm("addr")
+//	var data1 = []byte(addr)
+//	address := common.BytesToAddress(data1)
+//	introduce := c.PostForm("introduce")
+//	amount := c.PostForm("amount")
+//	money, err := strconv.Atoi(amount)
+//	Money := int64(money)
+//	data, err := config.UpdateCommunityMethod(client, contract, name, big.NewInt(id2), address, introduce, big.NewInt(Money))
+//	fmt.Println(data)
+//}
+//
+////添加公益
+//func addCommunities(c *gin.Context) {
+//	//初始化client
+//	client, err := config.GetClient()
+//	if err != nil {
+//		fmt.Println(err)
+//		respError(c, err)
+//		return
+//	}
+//	//初始化合约地址
+//	contract, err := config.GetAddress(client)
+//	if err != nil {
+//		fmt.Println("591:", err)
+//		respError(c, err)
+//		return
+//	}
+//	addr := c.PostForm("addr")
+//	var data1 = []byte(addr)
+//	address := common.BytesToAddress(data1)
+//	name := c.PostForm("name")
+//	introduce := c.PostForm("introduce")
+//	money := c.PostForm("amount")
+//	money1, err := strconv.Atoi(money)
+//	Money := int64(money1)
+//	fmt.Println(address, name, introduce, Money)
+//	data, err := config.AddCommunityMethod(client, contract, address, name, introduce, big.NewInt(Money))
+//	fmt.Println("community,", data)
+//}
+//
+////删除公益
+//func delCommunity(c *gin.Context) {
+//	//初始化client
+//	client, err := config.GetClient()
+//	if err != nil {
+//		fmt.Println(err)
+//		respError(c, err)
+//		return
+//	}
+//	//初始化合约地址
+//	contract, err := config.GetAddress(client)
+//	if err != nil {
+//		fmt.Println("620:", err)
+//		respError(c, err)
+//		return
+//	}
+//	id := c.PostForm("id")
+//	fmt.Println(id)
+//	id_community, err := strconv.Atoi(id)
+//	i := int64(id_community)
+//	data, err := config.DelCommunityMethod(client, contract, big.NewInt(i))
+//	fmt.Println("629data:", data)
+//}
+//
+////公益动态展示
+//func showCommunities(c *gin.Context) {
+//	//初始化client
+//	client, err := config.GetClient()
+//	if err != nil {
+//		fmt.Println(err)
+//		respError(c, err)
+//		return
+//	}
+//	//初始化合约地址
+//	contract, err := config.GetAddress(client)
+//	if err != nil {
+//		fmt.Println("644:", err)
+//		respError(c, err)
+//		return
+//	}
+//
+//	//定义一个结构体数组
+//	var arr []Community
+//	for i := 1; i < 10; i++ {
+//		//转*big.int
+//		Int64 := int64(i)
+//		name, people, introduce, amount, err := config.ShowCommunities(contract, big.NewInt(Int64))
+//		fmt.Println("655:", err)
+//		if name != "" {
+//			arr1 := []Community{{Id: i, Name: name, People: people, Introduce: introduce, Amount: amount}}
+//			fmt.Println("arr1", arr1)
+//			arr = append(arr, arr1...)
+//			fmt.Println("community:", name)
+//			fmt.Println("arr:", arr)
+//		}
+//
+//	}
+//
+//	c.HTML(http.StatusOK, "Static/community.html", gin.H{
+//		"communities_name": arr,
+//	})
+//
+//}
 

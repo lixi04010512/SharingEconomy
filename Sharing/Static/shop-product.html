@@ -161,8 +161,8 @@
             <span>首页</span></a>
     </div>
 
-    <div class="aui-footer-wrap" data-ad="{{ .address }}" data-addr="{{ .goodsPort.Addr }}" data-img="{{ .ownerImg }}" data-name="{{ .ownerName }}">
-        <a>
+    <div class="aui-footer-wrap">
+        <a class="data_a" data-ad="{{ .address }}" data-addr="{{ .goodsPort.Addr }}" data-img="{{ .ownerImg }}" data-name="{{ .ownerName }}"  data-username="{{ .userName }}" data-userimg="{{ .userImg }}">
             <i class="fas fa-comments"></i>
             <span>咨询</span></a>
     </div>
@@ -204,16 +204,18 @@
     }
 
     //点击咨询
-    console.log($(".aui-footer-wrap").data("ad"),$(".aui-footer-wrap").data("addr"),$(".aui-footer-wrap").data("img"),$(".aui-footer-wrap").data("name"))
+    console.log($(".data_a").data("ad"),$(".data_a").data("addr"),$(".data_a").data("img"),$(".data_a").data("name"))
     $(".aui-footer-wrap").click(function () {
         $.ajax({
             type: "POST",
             url: "/insert_chat_list",
             data: {
-                "owner":$(".aui-footer-wrap").data("ad"),
-                "addr": $(".aui-footer-wrap").data("addr"),
-                "img": $(".aui-footer-wrap").data("img"),
-                "name": $(".aui-footer-wrap").data("name")
+                "owner":$(".data_a").data("ad"),
+                "addr": $(".data_a").data("addr"),
+                "img": $(".data_a").data("img"),
+                "name": $(".data_a").data("name"),
+                "username":$(".data_a").data("username"),
+                "userimg":$(".data_a").data("userimg"),
             },
             success: function () {
                 window.location = "/select_chat_list"

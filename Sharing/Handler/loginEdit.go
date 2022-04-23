@@ -16,6 +16,8 @@ import (
 //用户地址
 var LoginUser common.Address
 var privKey *ecdsa.PrivateKey
+var Addr_owner string
+var Userimg string
 
 //登录
 func login(c *gin.Context) {
@@ -58,8 +60,11 @@ func login(c *gin.Context) {
 	privKey = unlockedKey.PrivateKey
 	comAddr := unlockedKey.Address
 	LoginUser = comAddr
+	Addr_owner =LoginUser.Hex()
 	data, err := config.LoginMethod(client, contract, comAddr, privKey)
 	addr := comAddr.Hex()
+	userImg, err := contract.GetUserImg(nil, comAddr)
+	Userimg=userImg
 
 	c.Redirect(http.StatusFound, "/index")
 	//respOK(c,data)
@@ -99,6 +104,8 @@ func privateLogin(c *gin.Context) {
 	LoginUser = comAddr
 	data, err := config.LoginMethod(client, contract, comAddr, privKey)
 	addr := comAddr.Hex()
+	userImg, err := contract.GetUserImg(nil, comAddr)
+	Userimg=userImg
 
 	c.Redirect(http.StatusFound, "/index")
 	//respOK(c,data)

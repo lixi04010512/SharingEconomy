@@ -22,13 +22,13 @@ func select_chat_list(c *gin.Context) {
 	fmt.Println(chat)
 }
 
-var addr_owner = LoginUser.Hex()
-
 //消息列表页面
 func apps_chat(c *gin.Context) {
+	fmt.Println("29LoginUser:", LoginUser)
+	fmt.Println("29addr_owner:", Addr_owner)
 	c.HTML(http.StatusOK, "Static/apps-chat.html", gin.H{
 		"chat_list": chat,
-		"owners":    addr_owner,
+		"owners":    Addr_owner,
 	})
 }
 
@@ -50,22 +50,31 @@ func select_chat_content(c *gin.Context) {
 //消息列表跳转消息详情
 var addr_x string
 var name_x string
+var img_x string
 
 func list_content(c *gin.Context) {
 	addr := c.PostForm("addr")
 	name := c.PostForm("name")
+	img := c.PostForm("img")
 	addr = string([]byte(addr)[:42])
 	addr_x = addr
+	fmt.Println("59addr_x:", addr_x)
 	name_x = name
+	fmt.Println("63name:", name_x)
+	img_x = img
+	fmt.Println("65img:", img_x)
 }
 
 //消息详情页面
 func wechat(c *gin.Context) {
+	fmt.Println("70loginimg:", Userimg)
 	c.HTML(http.StatusOK, "Static/wechat.html", gin.H{
 		"chat":   chat1,
-		"owners": addr_owner,
+		"owners": Addr_owner,
 		"addrs":  addr_x,
 		"names":  name_x,
+		"imgs":   img_x,
+		"img":    Userimg,
 	})
 }
 
@@ -76,7 +85,10 @@ func insert_chat_list(c *gin.Context) {
 		respError(c, err)
 		return
 	}
-	err := todo.Insert_chat_list()
+	username :=c.PostForm("username")
+	userimg :=c.PostForm("userimg")
+	fmt.Println("userimg",userimg)
+	err := todo.Insert_chat_list(username,userimg)
 	if err != nil {
 		respError(c, err)
 		return
@@ -91,9 +103,9 @@ func insert_chat_content(c *gin.Context) {
 		respError(c, err)
 		return
 	}
-	err := todo.Insert_chat_content()
-	if err != nil {
-		respError(c, err)
+	err1 := todo.Insert_chat_content()
+	if err1 != nil {
+		respError(c, err1)
 		return
 	}
 	respOK(c, "ok")
