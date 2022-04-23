@@ -4,7 +4,7 @@
 <head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <title>Share Fish-我的交易</title>
+    <title>Share Fish-我的在架</title>
     <meta name="description" content="">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <script src="static/js/public.js"></script>
@@ -90,7 +90,7 @@
                 <li><span class="icon"><i class="ti ti-box" style="font-size: 25px;"></i></span><a
                         href="order.html">我借出的物品</a></li>
                 <li><span class="icon"><i class="ti ti-power" style="font-size: 25px;"></i></span><a
-                        onclick="Qual.confirmd('您确定要退出当前账号吗？', '点击OK按钮或者关闭', inf, 'OK', '', 'okFunction', 'cancelFunction')">退出登入</a>
+                        id="confirm">退出登入</a>
                 </li>
             </ul>
         </div>
@@ -115,7 +115,7 @@
                                     返回</a>
                             </div>
                             <div class="col-6">
-                                <h4 class="category-title text-center">我的交易</h4>
+                                <h4 class="category-title text-center">我的在架</h4>
                             </div>
                         </div>
                     </div>
@@ -374,8 +374,7 @@
             <a class="sc-menu-item " href="index.html"><i class="fas fa-home"></i></a>
             <a class="sc-menu-item " href="goods-category.html"><i class="fas  fa-list"></i></a>
             <a href="chat.html" class="sc-menu-item "><i class="fas fa-plus"></i></a>
-            <a class="sc-menu-item sc-current" href="cart.html"><i class="fas fa-clipboard"></i></a>
-            <a class="sc-nav-indicator"></a>
+            <a class="sc-menu-item" href="apps-chat.html"><i class="fas fa-comments"></i></a>
             <a class="sc-menu-item" href="ui-me.html"><i class="fas fa-user"></i></a>
         </div>
     </footer>
@@ -391,13 +390,15 @@
     <script src="assets/js/bootstrap.min.js"></script>
     <!-- Main JS -->
     <script src="assets/js/main.js"></script>
-    <script src="js/popbox.js"></script>
+    <script src="js/pop-message.js"></script>
     <script>
-        function okFunction() {
-            window.location.href = "login.html";
-        }
-        function cancelFunction() {
-            alert('Cancel!');
+        document.getElementById('confirm').onclick = function () {
+            confirm('是否退出当前账号？').then(() => {
+                window.location.href = "login.html";
+                console.log('已确认')
+            }).catch(() => {
+                console.log('已取消')
+            })
         }
     </script>
     <script src="js/jquery-1.10.2.js"></script>

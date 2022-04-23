@@ -1,6 +1,7 @@
 package handler
 
 import (
+	config "Sharing/Config"
 	"Sharing/db"
 	"fmt"
 	"github.com/gin-gonic/gin"
@@ -24,11 +25,32 @@ func select_chat_list(c *gin.Context) {
 
 //消息列表页面
 func apps_chat(c *gin.Context) {
+	client, err := config.GetClient()
+	if err != nil {
+		fmt.Println(err)
+		respError(c, err)
+		return
+	}
+	contract, err := config.GetAddress(client)
+	if err != nil {
+		respError(c, err)
+		return
+	}
+	userName, people, _, _, _, _, _, err := config.GetUserMethod(contract, LoginUser)
+	userImg, err := contract.GetUserImg(nil, LoginUser)
+	fmt.Println("res", userName)
+	if err != nil {
+		respError(c, err)
+		return
+	}
 	fmt.Println("29LoginUser:", LoginUser)
 	fmt.Println("29addr_owner:", Addr_owner)
 	c.HTML(http.StatusOK, "Static/apps-chat.html", gin.H{
 		"chat_list": chat,
 		"owners":    Addr_owner,
+		"userName": userName,
+		"address":  people,
+		"userImg":  userImg,
 	})
 }
 

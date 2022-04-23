@@ -81,7 +81,7 @@
                     <li><span class="icon"><i class="ti ti-box" style="font-size: 25px;"></i></span><a
                             href="order.html">我借出的物品</a></li>
                     <li><span class="icon"><i class="ti ti-power" style="font-size: 25px;"></i></span><a
-                            onclick="Qual.confirmd('您确定要退出当前账号吗？', '点击OK按钮或者关闭', inf, 'OK', '', 'okFunction', 'cancelFunction')">退出登入</a>
+                            id="confirm">退出登入</a>
                     </li>
                 </ul>
             </div>
@@ -111,9 +111,10 @@
                             <div class="profile-header">
                                 <div class="profile-header__image">
                                     <a href="mod-photo.html">
-                                        <img id="box-container" src="assets/img/profile.jpg" class="img-fluid" alt=""></a>
+                                        <img id="box-container" src="assets/img/profile.jpg" class="img-fluid"
+                                            alt=""></a>
                                 </div>
-                  
+
 
 
                                 <div class="profile-header__content " style=" padding-left: 12px;">
@@ -180,14 +181,6 @@
                                         <div class="profile-info-block__title"><a href="shop.html">我的物品</a></div>
                                         <div class="profile-info-block__value">23</div>
                                     </div>
-                                    <div class="profile-info-block">
-                                        <div class="profile-info-block__title"><a href="wishlist.html">我的积分</a></div>
-                                        <div class="profile-info-block__value">223</div>
-                                    </div>
-                                    <div class="profile-info-block">
-                                        <div class="profile-info-block__title"><a href="wishlist.html">我的公益</a></div>
-                                        <div class="profile-info-block__value">10</div>
-                                    </div>
                                 </div>
 
 
@@ -217,16 +210,18 @@
         <script src="assets/js/bootstrap.min.js"></script>
         <!-- Main JS -->
         <script src="assets/js/main.js"></script>
-        <script src="js/popbox.js"></script>
-        <script>
-            function okFunction() {
+        <script src="js/pop-message.js"></script>
+    <script>
+        document.getElementById('confirm').onclick = function () {
+            confirm('是否退出当前账号？').then(() => {
                 window.location.href = "login.html";
-            }
-            function cancelFunction() {
-                alert('Cancel!');
-            }
-        </script>
-        
+                console.log('已确认')
+            }).catch(() => {
+                console.log('已取消')
+            })
+        }
+    </script>
+
 </body>
 
 </html>
