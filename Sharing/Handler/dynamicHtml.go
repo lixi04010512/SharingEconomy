@@ -82,8 +82,8 @@ func addIndex(c *gin.Context) {
 			//goodsPort1 := goodsPort{ Names: names, Species: species, Rent: rent, EthPledge: ethPledge}
 			//fmt.Println(goodsPort{},addr)
 		} else {
-			userName, people, _, _, _, _, _, err := config.GetUserMethod(contract, loginUser)
-			userImg, err := contract.GetUserImg(nil, loginUser)
+			userName, people, _, _, _, _, _, err := config.GetUserMethod(contract, LoginUser)
+			userImg, err := contract.GetUserImg(nil, LoginUser)
 			fmt.Println("res", userName)
 			if err != nil {
 				respError(c, err)
@@ -123,9 +123,12 @@ func shopPorduct(c *gin.Context) {
 	//}
 	var names string
 	goodData, goodData1, err := config.HaveIndex(client, id)
-	userName, people, _, _, _, _, _, err := config.GetUserMethod(contract, loginUser)
-	userImg, err := contract.GetUserImg(nil, loginUser)
+	userName, people, _, _, _, _, _, err := config.GetUserMethod(contract, LoginUser)
+	userImg, err := contract.GetUserImg(nil, LoginUser)
+	ownerName, _, _, _, _, _, _, err := config.GetUserMethod(contract, goodData1.Owner)
+	ownerImg, err := contract.GetUserImg(nil, goodData1.Owner)
 	fmt.Println("res", userName)
+	fmt.Println("131ownerImg Name:",ownerImg,ownerName)
 	if err != nil {
 		respError(c, err)
 		return
@@ -134,6 +137,7 @@ func shopPorduct(c *gin.Context) {
 		"goodsPort": GoodsPort{
 			Id:        goodData.Id,
 			Names:     names,
+			Addr:      goodData1.Owner,
 			Rent:      goodData.Rent,
 			EthPledge: goodData.EthPledge,
 			GoodImg:   goodData1.GoodImg,
@@ -141,7 +145,21 @@ func shopPorduct(c *gin.Context) {
 		"userName": userName,
 		"address":  people,
 		"userImg":  userImg,
+		"ownerImg": ownerImg,
+		"ownerName":ownerName,
 	})
+}
+
+//限制展示个数
+var additionGoods int
+
+func addGoodsCategory(int) int {
+	additionGoods++
+	if additionGoods >= 3 {
+		additionGoods = 0
+	}
+	//fmt.Println("additionGoods",additionGoods)
+	return additionGoods
 }
 
 //商品分类展示
@@ -150,8 +168,8 @@ func goodsCategory(c *gin.Context) {
 	contract, err := config.GetAddress(client)
 	//获取id
 	id := config.HaveId(client)
-	userName, people, _, _, _, _, _, err := config.GetUserMethod(contract, loginUser)
-	userImg, err := contract.GetUserImg(nil, loginUser)
+	userName, people, _, _, _, _, _, err := config.GetUserMethod(contract, LoginUser)
+	userImg, err := contract.GetUserImg(nil, LoginUser)
 	if err != nil {
 		respError(c, err)
 		return
@@ -181,13 +199,15 @@ func goodsCategory(c *gin.Context) {
 				}
 			}
 		} else {
-			fmt.Println("stickArr===", stickArr)
+			//fmt.Println("stickArr===", stickArr)
+			fmt.Println("ashvdlasjvhlja", additionGoods)
 			stickArr = append(stickArr, arr...)
 			c.HTML(http.StatusOK, "Static/goods-category.html", gin.H{
 				"goodsCategory": stickArr,
 				"userName":      userName,
 				"address":       people,
 				"userImg":       userImg,
+				"LimitAdd":      additionGoods,
 			})
 
 		}
@@ -207,8 +227,8 @@ func CartGood(c *gin.Context) {
 		respError(c, err)
 		return
 	}
-	userName, people, _, _, _, _, _, err := config.GetUserMethod(contract, loginUser)
-	userImg, err := contract.GetUserImg(nil, loginUser)
+	userName, people, _, _, _, _, _, err := config.GetUserMethod(contract, LoginUser)
+	userImg, err := contract.GetUserImg(nil, LoginUser)
 	fmt.Println("res", userName)
 	if err != nil {
 		respError(c, err)
@@ -267,8 +287,8 @@ func MyOrder(c *gin.Context) {
 		respError(c, err)
 		return
 	}
-	userName, people, _, _, _, _, _, err := config.GetUserMethod(contract, loginUser)
-	userImg, err := contract.GetUserImg(nil, loginUser)
+	userName, people, _, _, _, _, _, err := config.GetUserMethod(contract, LoginUser)
+	userImg, err := contract.GetUserImg(nil, LoginUser)
 	fmt.Println("res", userName)
 	if err != nil {
 		respError(c, err)
@@ -328,8 +348,8 @@ func CategoryDetails(c *gin.Context) {
 		respError(c, err)
 		return
 	}
-	userName, people, _, _, _, _, _, err := config.GetUserMethod(contract, loginUser)
-	userImg, err := contract.GetUserImg(nil, loginUser)
+	userName, people, _, _, _, _, _, err := config.GetUserMethod(contract, LoginUser)
+	userImg, err := contract.GetUserImg(nil, LoginUser)
 	fmt.Println("res", userName)
 	if err != nil {
 		respError(c, err)
@@ -382,8 +402,8 @@ func Myshop(c *gin.Context) {
 		respError(c, err)
 		return
 	}
-	userName, people, _, _, _, _, _, err := config.GetUserMethod(contract, loginUser)
-	userImg, err := contract.GetUserImg(nil, loginUser)
+	userName, people, _, _, _, _, _, err := config.GetUserMethod(contract, LoginUser)
+	userImg, err := contract.GetUserImg(nil, LoginUser)
 	fmt.Println("res", userName)
 	if err != nil {
 		respError(c, err)

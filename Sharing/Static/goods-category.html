@@ -153,8 +153,12 @@
 							</div>
 						</div>
 					</div>
+					{{$x := 2}}
+					{{$y := .LimitAdd}}
 					{{ range $key ,$value:=.goodsCategory }}
-						{{if eq $value.Sticks ""}}
+
+						{{if eq $value.Sticks "" }}
+
 							<a href="../shop-product/{{$value.GoodsPortStick.Id}}" class="aui-flex-links-item">
 								{{ range $k ,$v:=$value.GoodsPortStick.GoodImg}}
 									<div class="aui-flex-links-img">
@@ -203,7 +207,7 @@
 			<a class="sc-menu-item sc-current" href="../goods-category"><i class="fas  fa-list"></i></a>
 			<a href="../chat" class="sc-menu-item "><i class="fas fa-plus"></i></a>
 			<a class="sc-nav-indicator"></a>
-			<a class="sc-menu-item" href="../cart"><i class="fas fa-clipboard"></i></a>
+			<a class="sc-menu-item" href="../apps-chat"><i class="fas fa-comments"></i></a>
 			<a class="sc-menu-item" href="../ui-me"><i class="fas fa-user"></i></a>
 		</div>
 

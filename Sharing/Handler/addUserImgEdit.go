@@ -30,7 +30,7 @@ func AddUserImg(c *gin.Context)  {
 		return
 	}
 	fmt.Println("img",img)
-	data,err :=config.AddUserImgMethod(client,contract,loginUser,img,privKey)
+	data,err :=config.AddUserImgMethod(client,contract, LoginUser,img,privKey)
 	fmt.Println("userImg",data)
 	c.Redirect(http.StatusFound, "/profile")
 
