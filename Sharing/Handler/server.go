@@ -31,18 +31,11 @@ func Start(addr, webDir string) (err error) {
 	r.POST("/set", setting, loginManager)
 	r.GET("/index1", getting, index1)
 	r.POST("/addSticks", getting, addSticks)
-	r.POST("/addCommunities", getting, addCommunities)
 	r.GET("/species", getting, showSpecies)
-	r.GET("/showCommunities", getting, showCommunities)
 	r.GET("/user", getting, user)
 	r.GET("/addSpecies", getting, addSpecies)
-	r.GET("/addCommunity", getting, addCommunity)
 	r.POST("/editSpecies", getting, editSpecies)
-	r.GET("/editCommunity", getting, editCommunity)
-	r.POST("/editCommunities", getting, editCommunities)
-	r.POST("/updateCommunity", getting, updateCommunity)
 	r.POST("/delSpecie", getting, delSpecie)
-	r.POST("/delCommunity", getting, delCommunity)
 	r.GET("/editSpeciesPage", getting, editSpeciesPage)
 	r.POST("/updateStick", getting, updateStick)
 
@@ -101,6 +94,7 @@ func Start(addr, webDir string) (err error) {
 		share.GET("/carts", CartGood)
 		share.GET("/mod-photo", modPhotoStatic)
 		share.GET("/order-receiving/:id", orderReceiving)
+		share.GET("/pay",PayStatic)
 
 	}
 	// 启动web服务

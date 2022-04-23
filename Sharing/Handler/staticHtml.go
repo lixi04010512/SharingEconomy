@@ -512,12 +512,12 @@ func PayStatic(c *gin.Context) {
 		return
 	}
 
-	userName, people, _, _, _, _, _, err := config.GetUserMethod(contract, loginUser)
+	userName, people, _, _, _, _, _, err := config.GetUserMethod(contract, LoginUser)
 	fmt.Println("res", userName)
 	if err != nil {
 		respError(c, err)
 		return
 	}
-	userImg, err := contract.GetUserImg(nil, loginUser)
+	userImg, err := contract.GetUserImg(nil, LoginUser)
 	c.HTML(http.StatusOK, "Static/pay.html", gin.H{"userName": userName, "address": people, "userImg": userImg})
 }
