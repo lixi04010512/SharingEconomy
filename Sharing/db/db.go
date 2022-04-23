@@ -13,7 +13,7 @@ var db *sql.DB
 func Init() (err error) {
 	// 打开mysql数据库
 	fmt.Println()
-	db, err = sql.Open("mysql", "root:1234@tcp(127.0.0.1:3306)/sharefish")
+	db, err = sql.Open("mysql", "root:ys3285739@tcp(127.0.0.1:3306)/sharefish?charset=utf8&parseTime=true")
 	if err != nil {
 		panic(err)
 	}
@@ -126,4 +126,3 @@ func DeleteNeeds(id int64) (DemandList []DemandDB, err error) {
 	_, err = db.Exec(sqlStr, id)
 	return
 }
-

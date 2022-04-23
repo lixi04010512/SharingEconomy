@@ -114,6 +114,7 @@ func shopPorduct(c *gin.Context) {
 		respError(c, err)
 		return
 	}
+
 	//id := config.HaveId(client)
 	//if err != nil {
 	//	fmt.Println(err)
@@ -124,10 +125,7 @@ func shopPorduct(c *gin.Context) {
 	goodData, goodData1, err := config.HaveIndex(client, id)
 	userName, people, _, _, _, _, _, err := config.GetUserMethod(contract, LoginUser)
 	userImg, err := contract.GetUserImg(nil, LoginUser)
-	ownerName, _, _, _, _, _, _, err := config.GetUserMethod(contract, goodData1.Owner)
-	ownerImg, err := contract.GetUserImg(nil, goodData1.Owner)
 	fmt.Println("res", userName)
-	fmt.Println("131ownerImg Name:",ownerImg,ownerName)
 	if err != nil {
 		respError(c, err)
 		return
@@ -136,7 +134,6 @@ func shopPorduct(c *gin.Context) {
 		"goodsPort": GoodsPort{
 			Id:        goodData.Id,
 			Names:     names,
-			Addr:      goodData1.Owner,
 			Rent:      goodData.Rent,
 			EthPledge: goodData.EthPledge,
 			GoodImg:   goodData1.GoodImg,
@@ -144,8 +141,6 @@ func shopPorduct(c *gin.Context) {
 		"userName": userName,
 		"address":  people,
 		"userImg":  userImg,
-		"ownerImg": ownerImg,
-		"ownerName":ownerName,
 	})
 }
 
