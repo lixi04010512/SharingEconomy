@@ -15,7 +15,7 @@
     <link rel="stylesheet" href="share/css/sliderbg.css">
 
     <!-- 底部导航 -->
-   <link rel="stylesheet" href="share/css/tabbar.css">
+    <link rel="stylesheet" href="share/css/tabbar.css">
     <!-- CSS -->
     <!-- Bootstrap CSS -->
     <link rel="stylesheet" href="share/assets/css/bootstrap.min.css">
@@ -30,159 +30,162 @@
 
 <body>
 
-    <header>
-        <div class="header-wrapper border-bottom">
-            <div class="container space-y--15">
-                <div class="row align-items-center">
-                    <div class="col-auto">
-                        <!-- header logo -->
-                        <div class="header-logo">
-                            <a href="../index">
-                               <img src="share/assets/img/logo.png" class="img-fluid" alt="" style="width: 75px;">
-                            </a>
-                        </div>
-                    </div>
-                    <div class="col d-flex justify-content-center">
-                        <!-- 搜索框 -->
-                        <div class="header-search" style="padding-top: 8px;">
-                            <a href="../search-page">
-                                <div class="input-group">
-                                    <input type="text" id="chat-search" name="chat-search" class="form-control"
-                                        placeholder="搜索好物" style="    padding-left: 30px;">
-                            </a>
-
-                            <span style="position: absolute;padding-top: 7px;padding-left: 10px;
-                                       "><i class="fa fa-search"></i></span>
-                        </div>
+<header>
+    <div class="header-wrapper border-bottom">
+        <div class="container space-y--15">
+            <div class="row align-items-center">
+                <div class="col-auto">
+                    <!-- header logo -->
+                    <div class="header-logo">
+                        <a href="../index">
+                            <img src="share/assets/img/logo.png" class="img-fluid" alt="" style="width: 75px;">
+                        </a>
                     </div>
                 </div>
-                <div class="col-auto">
-                    <button class="header-menu-trigger" id="header-menu-trigger">
-                        <i class="fas fa-align-right" style="font-size: 20px;padding-right: 8px;
-                            padding-top: 15px;
-                                color: grey;"></i>
-                    </button>
+                <div class="col d-flex justify-content-center">
+                    <!-- 搜索框 -->
+                    <div class="header-search" style="padding-top: 8px;">
+                        <a href="../search-page">
+                            <div class="input-group">
+                                <input type="text" id="chat-search" name="chat-search" class="form-control"
+                                       placeholder="搜索好物" style="    padding-left: 30px;">
+                        </a>
+
+                        <span style="position: absolute;padding-top: 7px;padding-left: 10px;
+                                       "><i class="fa fa-search"></i></span>
+                    </div>
                 </div>
             </div>
+            <div class="col-auto">
+                <button class="header-menu-trigger" id="header-menu-trigger">
+                    <i class="fas fa-align-right" style="font-size: 20px;padding-right: 8px;
+                            padding-top: 15px;
+                                color: grey;"></i>
+                </button>
+            </div>
         </div>
-    </header>
-    <!--====================  End of header area  ====================-->
-    <!--====================  mobile menu overlay ====================-->
-    {{ template "Static/menu.html" . }}
-
-
-    <!-- slider -->
-    <div class="slider">
-        <ul class="slides" style="background: none;">
-            <li><img src="share/images/1.jpg" alt="">
-                <div class="caption slider-content center-align ">
-                    <div class="container">
-                        <h2>想要更多...</h2>
-                        <h4>去发布</h4><a href="../post-need" class="button-default">发布需求</a>
-                    </div>
-                </div>
-            </li>
-            <li><img src="share/images/2.jpg" alt="">
-                <div class="caption slider-content center-align">
-                    <div class="container">
-                        <h2>更多好物</h2>
-                        <h4>Share Fish</h4><a href="../post-need" class="button-default">发布需求</a>
-                    </div>
-                </div>
-            </li>
-            <li><img src="share/images/3.jpg" alt="">
-                <div class="caption slider-content center-align">
-                    <div class="container">
-                        <h2>没有你想要的?</h2>
-                        <h4>找人帮忙</h4><a href="../post-need" class="button-default">发布需求</a>
-                    </div>
-                </div>
-            </li>
-        </ul>
     </div>
+</header>
+<!--====================  End of header area  ====================-->
+<!--====================  mobile menu overlay ====================-->
+{{ template "Static/menu.html" . }}
 
-  
 
-        <div class="col-lg-6 text-end" style="padding-top: 14px;">
-           <a href="../myneed"><button type="button" class="btn btn-primary btn-sm mb-3">我的需求</button> </a>                      
-        </div><!--end col-->
-    
-    <div class="col-md-12">
-        <label for="addnote" class="form-label" style="
+<!-- slider -->
+<div class="slider">
+    <ul class="slides" style="background: none;">
+        <li><img src="share/images/1.jpg" alt="">
+            <div class="caption slider-content center-align ">
+                <div class="container">
+                    <h2>想要更多...</h2>
+                    <h4>去发布</h4><a href="../post-need" class="button-default">发布需求</a>
+                </div>
+            </div>
+        </li>
+        <li><img src="share/images/2.jpg" alt="">
+            <div class="caption slider-content center-align">
+                <div class="container">
+                    <h2>更多好物</h2>
+                    <h4>Share Fish</h4><a href="../post-need" class="button-default">发布需求</a>
+                </div>
+            </div>
+        </li>
+        <li><img src="share/images/3.jpg" alt="">
+            <div class="caption slider-content center-align">
+                <div class="container">
+                    <h2>没有你想要的?</h2>
+                    <h4>找人帮忙</h4><a href="../post-need" class="button-default">发布需求</a>
+                </div>
+            </div>
+        </li>
+    </ul>
+</div>
+
+
+<div class="col-lg-6 text-end" style="padding-top: 14px;">
+    <a href="../myneed">
+        <button type="button" class="btn btn-primary btn-sm mb-3">我的需求</button>
+    </a>
+</div><!--end col-->
+
+<div class="col-md-12">
+    <label for="addnote" class="form-label" style="
         padding-top: 0px;
     font-size: 16px;
     padding-left: 12px;
     ">需求详情</label>
-    </div>
+</div>
 
-    <div class="col-lg-6" id="ListNeeds">
+<div class="col-lg-6" id="ListNeeds">
 
-        <!--end card-->
-    </div>
-    <!--end col-->
-
-    <!--end col-->
-    </div> <!-- end row -->
-    </div>
-    </div>
-    <!--end card-body-->
-    </div>
     <!--end card-->
+</div>
+<!--end col-->
+
+<!--end col-->
+</div> <!-- end row -->
+</div>
+</div>
+<!--end card-body-->
+</div>
+<!--end card-->
+</div>
+<!--end col-->
+</div>
+<!--end row-->
+</div><!-- container -->
+</div>
+
+
+<!-- footer -->
+<footer style="padding-bottom: 100px;">
+
+    <div class="sc-bottom-bar">
+        <a class="sc-menu-item " href="../index"><i class="fas fa-home"></i></a>
+        <a class="sc-menu-item " href="../goods-category"><i class="fas  fa-list"></i></a>
+        <a href="../chat" class="sc-menu-item sc-current"><i class="fas fa-plus"></i></a>
+        <a class="sc-menu-item" href="../select_chat_list"><i class="fas fa-comments"></i></a>
+        <a class="sc-nav-indicator"></a>
+        <a class="sc-menu-item" href="../ui-me"><i class="fas fa-user"></i></a>
     </div>
-    <!--end col-->
-    </div>
-    <!--end row-->
-    </div><!-- container -->
-    </div>
 
-
-    <!-- footer -->
-    <footer style="padding-bottom: 100px;">
-
-        <div class="sc-bottom-bar">
-            <a class="sc-menu-item " href="../index"><i class="fas fa-home"></i></a>
-            <a class="sc-menu-item " href="../goods-category"><i class="fas  fa-list"></i></a>
-            <a href="../chat" class="sc-menu-item sc-current"><i class="fas fa-plus"></i></a>
-             <a class="sc-menu-item" href="../select_chat_list"><i class="fas fa-comments"></i></a>
-            <a class="sc-nav-indicator"></a>
-            <a class="sc-menu-item" href="../ui-me"><i class="fas fa-user"></i></a>
-        </div>
-
-    </footer>
-    <!-- scripts -->
-    <script src="share/js/jquery.min.js"></script>
-    <script src="share/js/materialize.min.js"></script>
-    <script src="share/js/sliderbg.js"></script>
-    <!-- Modernizer JS -->
-    <script src="share/js/tabbar.js"></script>
-    <!-- Bootstrap JS -->
-    <script src="share/assets/js/bootstrap.min.js"></script>
-    <script src="share/assets/js/main.js"></script>
-    <!-- script js -->
-    <script src="share/js/popbox.js"></script>
-    <script>
-        function okFunction() {
-            $.ajax({
-                type: "POST",
-                url: "/logoutPost",
-                success: function (data) {
-                    alert("用户退出成功!");
-                    window.location = "/login";
-                }
-            })
-        }
-        function cancelFunction() {
-            alert('Cancel!');
-        }
-    </script>
-    <script>
+</footer>
+<!-- scripts -->
+<script src="share/js/jquery.min.js"></script>
+<script src="share/js/materialize.min.js"></script>
+<script src="share/js/sliderbg.js"></script>
+<!-- Modernizer JS -->
+<script src="share/js/tabbar.js"></script>
+<!-- Bootstrap JS -->
+<script src="share/assets/js/bootstrap.min.js"></script>
+<script src="share/assets/js/main.js"></script>
+<!-- script js -->
+<script src="share/js/popbox.js"></script>
+<script>
+    function okFunction() {
         $.ajax({
-            url: "/ListNeeds",
             type: "POST",
-            success:function (data){
-                console.log("hhh",data)
-                for (const key in data.data){
-                    $('#ListNeeds').append(`
+            url: "/logoutPost",
+            success: function (data) {
+                alert("用户退出成功!");
+                window.location = "/login";
+            }
+        })
+    }
+
+    function cancelFunction() {
+        alert('Cancel!');
+    }
+</script>
+<script>
+    $.ajax({
+        url: "/ListNeeds",
+        type: "POST",
+        success: function (data) {
+            console.log("hhh", data)
+            for (const key in data.data) {
+                console.log(data.data);
+                $('#ListNeeds').append(`
                       <div class="card">
             <div class="card-body">
                 <div class="task-box">
@@ -200,10 +203,10 @@
                     </div>
 
                     </div>`)
-                }
             }
-        })
-    </script>
+        }
+    })
+</script>
 </body>
 {{ end }}
 </html>
