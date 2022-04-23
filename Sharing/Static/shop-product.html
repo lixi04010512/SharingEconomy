@@ -64,7 +64,7 @@
             </div>
             {{else}}
             <div class="profile-card__image space-mb--10">
-                <img src="share/{{.userImg}}" class="img-fluid" alt="">
+                <img src="../share/{{.userImg}}" class="img-fluid" alt="">
             </div>
             {{end}}
             <div class="profile-card__content">
@@ -87,7 +87,7 @@
                         href="../login">登录/注册</a></li>
                 {{else}}
                 <li><span class="icon"><i class="ti ti-power" style="font-size: 25px;"></i></span><a
-                        onclick="Qual.confirmd('您确定要退出当前账号吗？', '点击OK按钮或者关闭', inf, 'OK', '', 'okFunction', 'cancelFunction')">退出登录</a>
+                        id="confirm">退出登入</a>
                 </li>
                 {{end}}
             </ul>
@@ -176,7 +176,7 @@
                     </div>
 
                     <a href="javascript:;" class="actionsheet-action" id="cancel"></a>
-                    <a onclick="Qual.successd('Success','租用成功');">
+                    <a href="../share/tally-order">
                         <div class="aui-btn aui-btn-gray" style="width: 400px;">确定</div>
                     </a>
 
@@ -222,23 +222,21 @@
     <script src="../share/assets/js/bootstrap.min.js"></script>
     <!-- Main JS -->
     <script src="../share/assets/js/main.js"></script>
-    <!-- script js -->
-    <script src="../share/js/popbox.js"></script>
+    <script src="../share/themes/js/aui.js"></script>
+    
+    <script src="../share/js/pop-message.js"></script>
     <script>
-        function okFunction() {
-            $.ajax({
-                type: "POST",
-                url: "/logoutPost",
-                success: function (data) {
-                    alert("用户退出成功!");
-                    window.location = "/login";
-                }
+        document.getElementById('confirm').onclick = function () {
+            confirm('是否退出当前账号？').then(() => {
+                window.location.href = "login.html";
+                console.log('已确认')
+            }).catch(() => {
+                console.log('已取消')
             })
         }
+    </script>
 
-        function cancelFunction() {
-            alert('Cancel!');
-        }
+    <script>
 
         //点击咨询
         console.log($(".data_a").data("ad"), $(".data_a").data("addr"), $(".data_a").data("img"), $(".data_a").data("name"))
@@ -262,7 +260,7 @@
 
     </script>
 
-    <script src="share/themes/js/aui.js"></script>
+    
 </body>
 {{ end }}
 
