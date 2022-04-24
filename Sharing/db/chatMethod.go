@@ -11,14 +11,14 @@ func Select_chat_list() (todos []Chat_list, err error) {
 	var sqlStr = `select * from chat_list`
 	r, err := db.Query(sqlStr)
 	if err != nil {
-		fmt.Println("35:", err)
+		fmt.Println("14:", err)
 		return
 	}
 	for r.Next() {
 		todo := Chat_list{}
 		err = r.Scan(&todo.Id, &todo.Owner, &todo.Addr, &todo.Name, &todo.Img, &todo.Time,&todo.No_read)
 		if err != nil {
-			fmt.Println("42:", err)
+			fmt.Println("21:", err)
 			return
 		}
 		todos = append(todos, todo)
@@ -72,7 +72,7 @@ func (chat *Chat_list) Insert_chat_list(username string,userimg string) (err err
 	r1, err := db.Query("select * from chat_list where addr=? and owner=?", chat.Addr, chat.Owner)
 	for r1.Next() {
 		todo := Chat_list{}
-		err = r1.Scan(&todo.Id, &todo.Owner, &todo.Addr, &todo.Name, &todo.Img, &todo.Time)
+		err = r1.Scan(&todo.Id, &todo.Owner, &todo.Addr, &todo.Name, &todo.Img, &todo.Time,&todo.No_read)
 		if err != nil {
 			fmt.Println("64:", err)
 			return
