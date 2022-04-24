@@ -27,14 +27,14 @@ func OutGoodsMethod(client *ethclient.Client, contract *Agreement.User, owner co
 
 
 //修改物品
-func UpdateGoodsMethod(client *ethclient.Client, contract *Agreement.User,id *big.Int, name string, species string, rent *big.Int, ethPledge *big.Int,privateKey *ecdsa.PrivateKey) (*types.Transaction, error)   {
-	opts := GetMsgOpts(privateKey)
-	res, err := contract.UpdGoods(opts,id,name,species,rent,ethPledge)
-	fmt.Println("update:", res)
-	opts.GasLimit = gasLimit
-	opts.GasPrice, err = GetgasPrice(client)
-	if err != nil {
-		log.Fatal(err)
-	}
-	return res, nil
-}
+//func UpdateGoodsMethod(client *ethclient.Client, contract *Agreement.User,id *big.Int, name string, species string, rent *big.Int, ethPledge *big.Int,privateKey *ecdsa.PrivateKey) (*types.Transaction, error)   {
+//	opts := GetMsgOpts(privateKey)
+//	res, err := contract.UpdGoods(opts,id,name,species,rent,ethPledge)
+//	fmt.Println("update:", res)
+//	opts.GasLimit = gasLimit
+//	opts.GasPrice, err = GetgasPrice(client)
+//	if err != nil {
+//		log.Fatal(err)
+//	}
+//	return res, nil
+//}

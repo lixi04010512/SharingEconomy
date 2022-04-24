@@ -146,20 +146,9 @@
     <script src="share/assets/js/main.js"></script>
     <script src="share/js/popbox.js"></script>
     <script src="share/post--need.js"></script>
+    <script src="share/js/pop-message.js"></script>
+    <script type="text/javascript" src="share/static/js/logout.js"></script>
     <script>
-        function okFunction() {
-            $.ajax({
-                type: "POST",
-                url: "/logoutPost",
-                success: function (data) {
-                    alert("用户退出成功!");
-                    window.location = "/login";
-                }
-            })
-        }
-        function cancelFunction() {
-            alert('Cancel!');
-        }
 
         $("#needBtn").click(function (){
             demandKinds=$(".form-select").val()
