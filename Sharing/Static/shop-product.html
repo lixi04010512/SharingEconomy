@@ -1,6 +1,6 @@
 {{ define "Static/shop-product.html" }}
 <!DOCTYPE html>
-<html lang="en">
+<html>
 
 <head>
     <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no, minimal-ui" />
@@ -13,6 +13,7 @@
     <link rel="stylesheet" href="../share/themes/css/product-details.css">
     <link rel="stylesheet" href="../share/themes/css/core.css">
     <link rel="stylesheet" href="../share/themes/css/home.css">
+    <link rel="stylesheet" type="text/css" href="../share/css/shoppingcart.css" />
 
     <!-- Bootstrap CSS -->
     <link rel="stylesheet" href="../share/assets/css/bootstrap.min.css">
@@ -133,11 +134,7 @@
 
 
         <div class="aui-product-coupon">
-            <a href="" class="aui-address-cell aui-fl-arrow aui-fl-arrow-clear"
-                data-ydui-actionsheet="{target:'#actionSheet',closeElement:'#cancel'}">
-                <div class="aui-address-cell-bd">选择</div>
-            </a>
-
+            <div class="product-ckb"><em class="product-em product-xz"></em></div>
             <!-- 弹窗A begin -->
             <div class="m-actionsheet" id="actionSheet">
                 <div style="position:relative">
@@ -146,8 +143,10 @@
                             <img src="../share/themes/img/pd/pd-zf-1.jpg" alt="">
                         </div>
                         <div class="aui-spec-first-sif">
-                            <h2>￥{{.goodsPort.Rent}}/天 </h2>
-                            <p style="line-height: 0;">商品编号：{{.goodsPort.Id}}</p>
+                            <span class="product-price" style="color:#da4644">租金¥&thinsp;<span class="price">{{.goodsPort.Rent}}</span></span>
+							<p></p>
+							<span class="product-price">押金¥&thinsp;<span class="rent">{{.goodsPort.EthPledge}}</span></span>
+
                         </div>
                     </div>
                     <div class="aui-product-text-content">
@@ -164,19 +163,19 @@
                             <div class="aui-product-text-content-list-bd">
                                 <span>租用天数</span>
                             </div>
-                            <div class="aui-car-box-list-text-price">
-                                <div class="aui-car-box-list-text-arithmetic" style="position:inherit">
-                                    <a class="minus" id="reduce" onclick="reducecount()">-</a>
-                                    <input class="num" type="text" id="text" value="0" />
-                                    <a class="plus" id="plus" onclick="pluscount()">+</a>
-                                </div>
-                            </div>
+                            <div class="product_gw">
+								<em class="product-jian">-</em>
+								<input type="text" value="1" class="product-num" />
+								<em class="product-add">+</em>
+							</div>
                         </div>
 
+                        <div class="all-product"><span class="all-product-a">¥&thinsp;<span
+                            class="all-price">296</span></span></div>
                     </div>
 
                     <a href="javascript:;" class="actionsheet-action" id="cancel"></a>
-                    <a href="../share/tally-order">
+                    <a href="../tally-order">
                         <div class="aui-btn aui-btn-gray" style="width: 400px;">确定</div>
                     </a>
 
@@ -215,6 +214,8 @@
         </div>
     </footer>
 
+    <script src="https://www.jq22.com/jquery/jquery-1.10.2.js"></script>
+	<script src="../share/js/shoppingcart.js" type="text/javascript" charset="utf-8"></script>
     <script src="../share/js/tabbar.js"></script>
     <!-- jQuery JS -->
     <script src="../share/assets/js/jquery-3.4.1.min.js"></script>
