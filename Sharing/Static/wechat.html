@@ -76,7 +76,7 @@
                             <button class="btn btn-options dropdown-toggle" type="button" data-bs-toggle="dropdown"
                                     aria-expanded="false"><i class="ti ti-dots-vertical"></i></button>
                             <ul class="dropdown-menu">
-                                <li class="del"><a><i class="ti ti-trash"></i>删除</a></li>
+                                <li><a><i class="ti ti-trash"></i>删除</a></li>
                             </ul>
                         </div>
                     </div>
@@ -104,7 +104,7 @@
                             <button class="btn btn-options dropdown-toggle" type="button" data-bs-toggle="dropdown"
                                     aria-expanded="false"><i class="ti ti-dots-vertical"></i></button>
                             <ul class="dropdown-menu">
-                                <li class="del"><a><i class="ti ti-trash"></i>删除</a></li>
+                                <li><a><i class="ti ti-trash"></i>删除</a></li>
                             </ul>
                         </div>
                     </div>
@@ -142,6 +142,7 @@
     </div>
 </div>
 <script src="share/assets/js/jquery-3.4.1.min.js"></script>
+<script src="share/static/js/app.js"></script>
 <script>
     $(".dropdown-menu").delegate(".del", "click", function () {
         $.ajax({
@@ -173,7 +174,6 @@
 </script>
 <!-- All JavaScript Files -->
 <script src="share/js/bootstrap.bundle.min.js"></script>
-<script src="share/static/js/app.js"></script>
 <script src="share/assets/js/main.js"></script>
 </body>
 {{ end }}
