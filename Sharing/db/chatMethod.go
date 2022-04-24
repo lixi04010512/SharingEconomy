@@ -9,7 +9,6 @@ import (
 //查询消息列表
 func Select_chat_list() (todos []Chat_list, err error) {
 	var sqlStr = `select * from chat_list`
-
 	r, err := db.Query(sqlStr)
 	if err != nil {
 		fmt.Println("35:", err)
@@ -17,7 +16,7 @@ func Select_chat_list() (todos []Chat_list, err error) {
 	}
 	for r.Next() {
 		todo := Chat_list{}
-		err = r.Scan(&todo.Id, &todo.Owner, &todo.Addr, &todo.Name, &todo.Img, &todo.Time)
+		err = r.Scan(&todo.Id, &todo.Owner, &todo.Addr, &todo.Name, &todo.Img, &todo.Time,&todo.No_read)
 		if err != nil {
 			fmt.Println("42:", err)
 			return
@@ -50,6 +49,17 @@ func Select_chat_content() (todos []Chat, err error) {
 	return todos, err
 }
 
+//点开某人的聊天详情，未读归0
+func Update_chat_list(addr string,owner string) (err error) {
+	r, err := db.Exec("update chat_list set no_read=0 where owner=? and addr=?",owner,addr )
+	if err != nil {
+		fmt.Println("exec failed, ", err)
+		return
+	}
+	fmt.Println("update chat_list succ:", r)
+	return
+}
+
 //增加消息列表
 var id int
 
@@ -72,8 +82,8 @@ func (chat *Chat_list) Insert_chat_list(username string,userimg string) (err err
 	}
 	fmt.Println("strconv.Itoa(id):",strconv.Itoa(id))
 	if strconv.Itoa(id) == "0" {
-		r, err2 := db.Exec("insert into chat_list(owner,addr,name,img,time)values(?, ?,?,?,?)", chat.Owner, chat.Addr, chat.Name, img, strTime)
-		r2, err2 := db.Exec("insert into chat_list(owner,addr,name,img,time)values(?, ?,?,?,?)", chat.Addr, chat.Owner, username, userimg, strTime)
+		r, err2 := db.Exec("insert into chat_list(owner,addr,name,img,time,no_read)values(?, ?,?,?,?,?)", chat.Owner, chat.Addr, chat.Name, img, strTime,0)
+		r2, err2 := db.Exec("insert into chat_list(owner,addr,name,img,time,no_read)values(?, ?,?,?,?,?)", chat.Addr, chat.Owner, username, userimg, strTime,0)
 		if err2 != nil {
 			fmt.Println("exec failed, ", err)
 			return
@@ -108,7 +118,7 @@ func (chat *Chat) Insert_chat_content() (err error) {
 	fmt.Println("insert chat succ:", id1)
 
 	r1, err := db.Exec("update chat_list set time=? where owner=? and addr =? ", strTime, chat.Addr_from, chat.Addr_to)
-	r2, err := db.Exec("update chat_list set time=? where owner=? and addr =? ", strTime, chat.Addr_to, chat.Addr_from)
+	r2, err := db.Exec("update chat_list set time=?,no_read=no_read+1 where owner=? and addr =? ", strTime, chat.Addr_to, chat.Addr_from)
 	if err != nil {
 		fmt.Println("exec failed, ", err)
 		return
