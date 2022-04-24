@@ -13,11 +13,7 @@ var db *sql.DB
 func Init() (err error) {
 	// 打开mysql数据库
 	fmt.Println()
-<<<<<<< HEAD
 	db, err = sql.Open("mysql", "root:@tcp(127.0.0.1:3306)/sharefish")
-=======
-	db, err = sql.Open("mysql", "root:1234@tcp(127.0.0.1:3306)/sharefish")
->>>>>>> 34a72ad02789a0db86603a676d29f9b6e1d6a20c
 	if err != nil {
 		panic(err)
 	}
