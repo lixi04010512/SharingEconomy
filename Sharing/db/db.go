@@ -23,22 +23,6 @@ func Init() (err error) {
 		fmt.Print("数据库链截失败")
 	}
 	fmt.Println("已经连接MYSQL")
-	var sqlStr = `DROP TABLE IF EXISTS demand;
-CREATE TABLE demand  (
-  demandID int(64) NOT NULL AUTO_INCREMENT,
-  demandKinds varchar(25) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT NULL,
-  demandName longtext CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL,
-  demandTime timestamp(0) NULL DEFAULT NULL,
-  demandAddr varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT NULL,
-  PRIMARY KEY (demandID) USING BTREE
-) ENGINE = InnoDB CHARACTER SET = utf8mb4 COLLATE = utf8mb4_0900_ai_ci ROW_FORMAT = Dynamic;
-
-SET FOREIGN_KEY_CHECKS = 1;
-`
-	_, err = db.Exec(sqlStr)
-	if err != nil {
-		return err
-	}
 	return
 }
 
@@ -48,14 +32,16 @@ func ListNeedAll() (DemandList []DemandDB, err error) {
 	var sqlStr = `select * from demand `
 	rows, err := db.Query(sqlStr)
 	if err != nil {
+		fmt.Println("select_demand_err:",err)
 		return nil, err
 	}
 
 	for rows.Next() {
 		DemandStr := DemandDB{}
-		err = rows.Scan(&DemandStr.DemandID, &DemandStr.DemandKinds, &DemandStr.DemandName, &DemandStr.DemandTime, &DemandStr.DemandAddr)
+		err1 := rows.Scan(&DemandStr.DemandID, &DemandStr.DemandKinds, &DemandStr.DemandName, &DemandStr.DemandTime, &DemandStr.DemandAddr)
 
-		if err != nil {
+		if err1 != nil {
+			fmt.Println("select_demand_scan_err:",err1)
 			return nil, err
 		}
 		DemandList = append(DemandList, DemandStr)
@@ -126,4 +112,3 @@ func DeleteNeeds(id int64) (DemandList []DemandDB, err error) {
 	_, err = db.Exec(sqlStr, id)
 	return
 }
-

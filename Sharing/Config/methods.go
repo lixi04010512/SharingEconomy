@@ -27,7 +27,6 @@ const (
 	//lixi
 	//Prikey       = "45ee84c9fbfee72f88392d5e99fd071bfb1a89c2c1482456547e049d437c1380"
 	//ShareFishAddress = "0x7c095a378463d1B75dDF8A686d7bd7f96ed2276d"
-
 	//Prikey       = "769f41a9de1f6f1848d7631e274f2168e3cb20d16c81f688a49d081965a53861"
 	//ShareFishAddress = "0x18A57E91380D5E0705b406aD19665AB499CeFf93"
 
@@ -35,7 +34,7 @@ const (
 	//fileKeystore     = "UTC--2022-03-17T08-08-40.600466800Z--59b0f8a34d8f0dd0e0eef44d02cef0c12fffb9de"
 	//Prikey = "c5b9c7fd467335bd829b3b2a3098a72ac39b7f5efa162220b7907cfc684df9a3"
 	//privateKey       = "111"
-	//ShareFishAddress = "0x1415f8284C54Fbbf5b5300B6177a24A491b1bd07"
+	//ShareFishAddress = "0xAe03C34544973DEc93464121859fF8F7203d75fC"
 )
 
 //获取client
