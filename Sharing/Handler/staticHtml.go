@@ -6,6 +6,7 @@ import (
 	"github.com/gin-gonic/gin"
 	"math/big"
 	"net/http"
+	"strconv"
 )
 
 //获取用户信息
@@ -24,15 +25,20 @@ func UserProfile(c *gin.Context) {
 		return
 	}
 
-	userName, people, integral, email, sign, goodsNum, balance, err := config.GetUserMethod(contract, LoginUser)
+	userName, people, email, sign, goodsNum, err := config.GetUserMethod(contract, LoginUser)
+	balances,err := contract.GetBalance(nil,LoginUser)
+
+	balanceStr:=balances.String()
+	balanceF, err := strconv.ParseFloat(balanceStr, 64)
+	balance, err := strconv.ParseFloat(fmt.Sprintf("%.2f",balanceF/1000000000000000), 256)
 	fmt.Println("res", userName)
-	fmt.Println("peo", people, integral)
+	fmt.Println("peo", people,balances)
 	userImg, err := contract.GetUserImg(nil, LoginUser)
 	if err != nil {
 		respError(c, err)
 		return
 	}
-	c.HTML(http.StatusOK, "Static/profile.html", gin.H{"userName": userName, "address": people, "integral": integral, "email": email, "sign": sign, "goodsNum": goodsNum, "balance": balance, "userImg": userImg})
+	c.HTML(http.StatusOK, "Static/profile.html", gin.H{"userName": userName, "address": people, "email": email, "sign": sign, "goodsNum": goodsNum, "balance": balance, "userImg": userImg})
 }
 
 //渲染mod-photo
@@ -51,7 +57,7 @@ func modPhotoStatic(c *gin.Context) {
 		return
 	}
 
-	userName, people, _, _, _, _, _, err := config.GetUserMethod(contract, LoginUser)
+	userName, people, _, _, _, err := config.GetUserMethod(contract, LoginUser)
 	fmt.Println("res", userName)
 	if err != nil {
 		respError(c, err)
@@ -77,7 +83,7 @@ func CategoryStatic(c *gin.Context) {
 		return
 	}
 
-	userName, people, _, _, _, _, _, err := config.GetUserMethod(contract, LoginUser)
+	userName, people, _, _, _, err := config.GetUserMethod(contract, LoginUser)
 	fmt.Println("res", userName)
 	if err != nil {
 		respError(c, err)
@@ -129,7 +135,7 @@ func EditNeedStatic(c *gin.Context) {
 		return
 	}
 
-	userName, people, _, _, _, _, _, err := config.GetUserMethod(contract, LoginUser)
+	userName, people, _, _, _, err := config.GetUserMethod(contract, LoginUser)
 	fmt.Println("res", userName)
 	if err != nil {
 		respError(c, err)
@@ -155,7 +161,7 @@ func EditProfileStatic(c *gin.Context) {
 		return
 	}
 
-	userName, people, _, email, sign, _, _, err := config.GetUserMethod(contract, LoginUser)
+	userName, people, email, sign, _, err := config.GetUserMethod(contract, LoginUser)
 	fmt.Println("res", userName)
 	if err != nil {
 		respError(c, err)
@@ -181,7 +187,7 @@ func LendStatic(c *gin.Context) {
 		return
 	}
 
-	userName, people, _, _, _, _, _, err := config.GetUserMethod(contract, LoginUser)
+	userName, people, _, _, _, err := config.GetUserMethod(contract, LoginUser)
 	fmt.Println("res", userName)
 	if err != nil {
 		respError(c, err)
@@ -225,7 +231,7 @@ func LoginStatic(c *gin.Context) {
 		return
 	}
 
-	userName, people, _, _, _, _, _, err := config.GetUserMethod(contract, LoginUser)
+	userName, people, _, _, _, err := config.GetUserMethod(contract, LoginUser)
 	fmt.Println("res", userName)
 	if err != nil {
 		respError(c, err)
@@ -251,7 +257,7 @@ func MyNeedStatic(c *gin.Context) {
 		return
 	}
 
-	userName, people, _, _, _, _, _, err := config.GetUserMethod(contract, LoginUser)
+	userName, people, _, _, _, err := config.GetUserMethod(contract, LoginUser)
 	fmt.Println("res", userName)
 	if err != nil {
 		respError(c, err)
@@ -277,7 +283,7 @@ func OrderStatic(c *gin.Context) {
 		return
 	}
 
-	userName, people, _, _, _, _, _, err := config.GetUserMethod(contract, LoginUser)
+	userName, people, _, _, _, err := config.GetUserMethod(contract, LoginUser)
 	fmt.Println("res", userName)
 	if err != nil {
 		respError(c, err)
@@ -303,7 +309,7 @@ func PostNeedStatic(c *gin.Context) {
 		return
 	}
 
-	userName, people, _, _, _, _, _, err := config.GetUserMethod(contract, LoginUser)
+	userName, people, _, _, _, err := config.GetUserMethod(contract, LoginUser)
 	fmt.Println("res", userName)
 	if err != nil {
 		respError(c, err)
@@ -346,7 +352,7 @@ func PubBenefitStatic(c *gin.Context) {
 		return
 	}
 
-	userName, people, _, _, _, _, _, err := config.GetUserMethod(contract, LoginUser)
+	userName, people, _, _, _, err := config.GetUserMethod(contract, LoginUser)
 	fmt.Println("res", userName)
 	if err != nil {
 		respError(c, err)
@@ -372,7 +378,7 @@ func PubDetailsStatic(c *gin.Context) {
 		return
 	}
 
-	userName, people, _, _, _, _, _, err := config.GetUserMethod(contract, LoginUser)
+	userName, people, _, _, _, err := config.GetUserMethod(contract, LoginUser)
 	fmt.Println("res", userName)
 	if err != nil {
 		respError(c, err)
@@ -398,7 +404,7 @@ func RegisterStatic(c *gin.Context) {
 		return
 	}
 
-	userName, people, _, _, _, _, _, err := config.GetUserMethod(contract, LoginUser)
+	userName, people, _, _, _, err := config.GetUserMethod(contract, LoginUser)
 	fmt.Println("res", userName)
 	if err != nil {
 		respError(c, err)
@@ -424,7 +430,7 @@ func SearchPageStatic(c *gin.Context) {
 		return
 	}
 
-	userName, people, _, _, _, _, _, err := config.GetUserMethod(contract, LoginUser)
+	userName, people, _, _, _, err := config.GetUserMethod(contract, LoginUser)
 	fmt.Println("res", userName)
 	if err != nil {
 		respError(c, err)
@@ -450,7 +456,7 @@ func ShopStatic(c *gin.Context) {
 		return
 	}
 
-	userName, people, _, _, _, _, _, err := config.GetUserMethod(contract, LoginUser)
+	userName, people, _, _, _, err := config.GetUserMethod(contract, LoginUser)
 	fmt.Println("res", userName)
 	if err != nil {
 		respError(c, err)
@@ -476,7 +482,7 @@ func UiMeStatic(c *gin.Context) {
 		return
 	}
 
-	userName, people, _, _, _, _, _, err := config.GetUserMethod(contract, LoginUser)
+	userName, people, _, _, _, err := config.GetUserMethod(contract, LoginUser)
 	fmt.Println("res", userName)
 	if err != nil {
 		respError(c, err)
@@ -503,7 +509,7 @@ func WishlistStatic(c *gin.Context) {
 		return
 	}
 
-	userName, people, _, _, _, _, _, err := config.GetUserMethod(contract, LoginUser)
+	userName, people, _, _, _, err := config.GetUserMethod(contract, LoginUser)
 	fmt.Println("res", userName)
 	if err != nil {
 		respError(c, err)
@@ -529,7 +535,7 @@ func PayStatic(c *gin.Context) {
 		return
 	}
 
-	userName, people, _, _, _, _, _, err := config.GetUserMethod(contract, LoginUser)
+	userName, people, _, _, _, err := config.GetUserMethod(contract, LoginUser)
 	fmt.Println("res", userName)
 	if err != nil {
 		respError(c, err)

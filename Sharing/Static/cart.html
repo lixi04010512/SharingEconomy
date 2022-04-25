@@ -126,11 +126,11 @@
                                                                         class="me-3 align-self-center rounded"
                                                                         alt="...">
                                                                     {{end}}
-                                                                    <div class="media-body align-self-center">
+                                                                    <div class="media-body align-self-center delMyId" data-id="{{ $vlaue.Id }}">
                                                                         <h6 class="m-0" name="goodsName" id="goodsName">
                                                                             {{$vlaue.Names}}</h6>
                                                                         <a href="#" class="font-12 text-primary "
-                                                                            name="delId" >ID:
+                                                                            name="rent" >ID:
                                                                             {{$vlaue.Id}}</a>
                                                                     </div>
                                                                     <!--end media body-->
@@ -156,7 +156,7 @@
                                                                         <a class="dropdown-item" data-bs-toggle="modal"
                                                                             data-bs-target="#exampleModalSend"
                                                                             href="#">编辑</a>
-                                                                        <button class="dropdown-item delMyDoods ">下架</button>
+                                                                        <a class="dropdown-item delMyGoods">下架</a>
 
                                                                     </div>
                                                                 </div>
@@ -333,7 +333,26 @@
     <script src="share/assets/js/bootstrap.min.js"></script>
     <!-- Main JS -->
     <script src="share/assets/js/main.js"></script>
-    <script src="share/static/js/delGoods.js"></script>
+{{/*    <script src="share/static/js/delGoods.js"></script>*/}}
+<script>
+    //下架商品按钮
+    $(".delMyGoods").click(function(){
+
+        var delid = $(".delMyId").data("id")
+        console.log("id",delid)
+
+        $.ajax({
+            type: "POST",
+            url: "/delGoodsPost",
+            data: {"delId": $(".delMyId").data("id")},
+            success: function (data) {
+                console.log(data)
+                alert("商品下架成功!");
+                window.location = "/cart";
+            }
+        })
+    })
+</script>
 
     <script src="share/js/pop-message.js"></script>
 <script type="text/javascript" src="share/static/js/logout.js"></script>

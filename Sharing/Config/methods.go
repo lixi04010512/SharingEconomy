@@ -20,7 +20,7 @@ const (
 	//ShareFishAddress = "0x097Dbbe9AC7dDd12919A1C6C1D364852F5bcefdE"
 	//hch
 	Prikey       = "5fd7eb82fbd4c5cc87fbeb867ff4804537723d80a5289606c28ca5c8eed4aa77"
-	ShareFishAddress = "0xeE0dC74b1E6fE1105aDb5B958CeE3243b8c37EC3"
+	ShareFishAddress = "0xD51713a453398A9aE3266695d5F29A659292388c"
 
 	//Prikey       = "45ee84c9fbfee72f88392d5e99fd071bfb1a89c2c1482456547e049d437c1380"
 	//ShareFishAddress = "0x7c095a378463d1B75dDF8A686d7bd7f96ed2276d"

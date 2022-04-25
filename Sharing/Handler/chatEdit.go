@@ -36,7 +36,7 @@ func apps_chat(c *gin.Context) {
 		respError(c, err)
 		return
 	}
-	userName, people, _, _, _, _, _, err := config.GetUserMethod(contract, LoginUser)
+	userName, people, _, _, _, err := config.GetUserMethod(contract, LoginUser)
 	userImg, err := contract.GetUserImg(nil, LoginUser)
 	fmt.Println("res", userName)
 	if err != nil {

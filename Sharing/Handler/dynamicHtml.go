@@ -65,24 +65,28 @@ func addIndex(c *gin.Context) {
 
 	//定义一个结构体数组
 	var arr []GoodsPort
-	for i := 1; i < len(id)+1; i++ {
+	for i := 0; i < len(id)+1; i++ {
 		if i < len(id) {
 			//var Owner common.Address
+			var arr1 []GoodsPort
+			if id[i] != big.NewInt(0) {
+				goodData, goodData1, err := config.HaveIndex(client, id[i])
+				//print("图片路径",goodImg)
+				if err != nil {
+					respError(c, err)
+					return
+				}
+				arr1 = []GoodsPort{GoodsPort{Id: goodData.Id, Names: goodData.Name, Species: goodData.Species, Rent: goodData.Rent, EthPledge: goodData.EthPledge, GoodImg: goodData1.GoodImg}}
 
-			goodData, goodData1, err := config.HaveIndex(client, id[i])
-
-			//print("图片路径",goodImg)
-			if err != nil {
-				respError(c, err)
-				return
 			}
-			arr1 := []GoodsPort{GoodsPort{Id: goodData.Id, Names: goodData.Name, Species: goodData.Species, Rent: goodData.Rent, EthPledge: goodData.EthPledge, GoodImg: goodData1.GoodImg}}
+
+
 			arr = append(arr, arr1...)
 
 			//goodsPort1 := goodsPort{ Names: names, Species: species, Rent: rent, EthPledge: ethPledge}
 			//fmt.Println(goodsPort{},addr)
 		} else {
-			userName, people, _, _, _, _, _, err := config.GetUserMethod(contract, LoginUser)
+			userName, people, _, _, _, err := config.GetUserMethod(contract, LoginUser)
 			userImg, err := contract.GetUserImg(nil, LoginUser)
 			fmt.Println("res", userName)
 			if err != nil {
@@ -123,7 +127,7 @@ func shopPorduct(c *gin.Context) {
 	//}
 	var names string
 	goodData, goodData1, err := config.HaveIndex(client, id)
-	userName, people, _, _, _, _, _, err := config.GetUserMethod(contract, LoginUser)
+	userName, people, _, _, _, err := config.GetUserMethod(contract, LoginUser)
 	userImg, err := contract.GetUserImg(nil, LoginUser)
 	fmt.Println("res", userName)
 	if err != nil {
@@ -162,7 +166,7 @@ func goodsCategory(c *gin.Context) {
 	contract, err := config.GetAddress(client)
 	//获取id
 	id := config.HaveId(client)
-	userName, people, _, _, _, _, _, err := config.GetUserMethod(contract, LoginUser)
+	userName, people, _, _, _, err := config.GetUserMethod(contract, LoginUser)
 	userImg, err := contract.GetUserImg(nil, LoginUser)
 	if err != nil {
 		respError(c, err)
@@ -221,7 +225,7 @@ func CartGood(c *gin.Context) {
 		respError(c, err)
 		return
 	}
-	userName, people, _, _, _, _, _, err := config.GetUserMethod(contract, LoginUser)
+	userName, people, _, _, _, err := config.GetUserMethod(contract, LoginUser)
 	userImg, err := contract.GetUserImg(nil, LoginUser)
 	fmt.Println("res", userName)
 	if err != nil {
@@ -238,7 +242,7 @@ func CartGood(c *gin.Context) {
 	//定义一个结构体数组
 	var arrUp []GoodsPort
 	var arrDown []GoodsPort
-	for i := 1; i < len(id)+1; i++ {
+	for i := 0; i < len(id)+1; i++ {
 		if i < len(id) {
 			//var addr common.Address
 			goodData, goodData1, err := config.HaveIndex(client, id[i])
@@ -281,7 +285,7 @@ func MyOrder(c *gin.Context) {
 		respError(c, err)
 		return
 	}
-	userName, people, _, _, _, _, _, err := config.GetUserMethod(contract, LoginUser)
+	userName, people, _, _, _, err := config.GetUserMethod(contract, LoginUser)
 	userImg, err := contract.GetUserImg(nil, LoginUser)
 	fmt.Println("res", userName)
 	if err != nil {
@@ -298,7 +302,7 @@ func MyOrder(c *gin.Context) {
 	//定义一个结构体数组
 	var arrUp []GoodsPort
 	var arrDown []GoodsPort
-	for i := 1; i < len(id)+1; i++ {
+	for i := 0; i < len(id)+1; i++ {
 		if i < len(id) {
 			//var addr common.Address
 			goodData, goodData1, err := config.HaveIndex(client, id[i])
@@ -342,7 +346,7 @@ func CategoryDetails(c *gin.Context) {
 		respError(c, err)
 		return
 	}
-	userName, people, _, _, _, _, _, err := config.GetUserMethod(contract, LoginUser)
+	userName, people, _, _, _, err := config.GetUserMethod(contract, LoginUser)
 	userImg, err := contract.GetUserImg(nil, LoginUser)
 	fmt.Println("res", userName)
 	if err != nil {
@@ -357,7 +361,7 @@ func CategoryDetails(c *gin.Context) {
 		return
 	}
 	var arrDetails []GoodsPort
-	for i := 1; i < len(id)+1; i++ {
+	for i := 0; i < len(id)+1; i++ {
 		if i < len(id) {
 			//var addr common.Address
 			goodData, goodData1, err := config.HaveIndex(client, id[i])
@@ -396,7 +400,7 @@ func Myshop(c *gin.Context) {
 		respError(c, err)
 		return
 	}
-	userName, people, _, _, _, _, _, err := config.GetUserMethod(contract, LoginUser)
+	userName, people, _, _, _, err := config.GetUserMethod(contract, LoginUser)
 	userImg, err := contract.GetUserImg(nil, LoginUser)
 	fmt.Println("res", userName)
 	if err != nil {
@@ -411,7 +415,7 @@ func Myshop(c *gin.Context) {
 		return
 	}
 	var myshoparr []GoodsPort
-	for i := 1; i < len(id)+1; i++ {
+	for i := 0; i < len(id)+1; i++ {
 		if i < len(id) {
 			//var addr common.Address
 			goodData, goodData1, err := config.HaveIndex(client, id[i])

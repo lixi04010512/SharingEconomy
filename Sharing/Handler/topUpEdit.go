@@ -5,10 +5,11 @@ import (
 	"fmt"
 	"github.com/gin-gonic/gin"
 	"math/big"
+	"net/http"
 	"strconv"
 )
 
-func delGoods(c *gin.Context) {
+func topUp(c *gin.Context) {
 	//初始化client
 	client, err := config.GetClient()
 	if err != nil {
@@ -23,11 +24,11 @@ func delGoods(c *gin.Context) {
 		return
 	}
 
-	id := c.PostForm("delId")
-	fmt.Println("id",id)
-	idInt, err := strconv.Atoi(id)
-	idInt64 := int64(idInt)
-	goodsData,_, err := config.HaveIndex(client, big.NewInt(idInt64))
-	data,err := config.OutGoodsMethod(client,contract,goodsData.Owner,big.NewInt(idInt64),privKey)
+	amount := c.PostForm("amount")
+	fmt.Println("amount",amount)
+	amountInt, err := strconv.Atoi(amount)
+	amountInt64 := int64(amountInt)
+	data,err := config.TopUpMethod(client,contract,big.NewInt(amountInt64),LoginUser)
 	fmt.Println("data",data)
+	c.Redirect(http.StatusFound, "/profile")
 }

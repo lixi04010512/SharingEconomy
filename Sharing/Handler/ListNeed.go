@@ -30,7 +30,7 @@ func MYList(c *gin.Context) {
 		respError(c, err)
 		return
 	}
-	_, people, _, _, _, _, _, err := config.GetUserMethod(contract, LoginUser)
+	_, people, _, _, _, err := config.GetUserMethod(contract, LoginUser)
 
 	if err != nil {
 		respError(c, err)

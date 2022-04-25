@@ -23,7 +23,7 @@ func orderReceiving(c *gin.Context) {
 		respError(c, err)
 		return
 	}
-	userName, people, _, _, _, _, _, err := config.GetUserMethod(contract, LoginUser)
+	userName, people, _, _, _, err := config.GetUserMethod(contract, LoginUser)
 
 	if err != nil {
 		respError(c, err)

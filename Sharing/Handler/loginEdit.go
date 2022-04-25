@@ -58,6 +58,7 @@ func login(c *gin.Context) {
 		return
 	}
 	privKey = unlockedKey.PrivateKey
+	fmt.Println("pri",privKey)
 	comAddr := unlockedKey.Address
 	LoginUser = comAddr
 	Addr_owner =LoginUser.Hex()

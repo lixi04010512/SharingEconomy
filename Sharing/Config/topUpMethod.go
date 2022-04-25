@@ -16,7 +16,7 @@ func TopUpMethod(client *ethclient.Client, contract *Agreement.User,myAmount *bi
 	opts := Getopts()
 
 	num, err := strconv.Atoi(myAmount.String())
-	opts.Value = big.NewInt(int64(num)*1000000000000000000)
+	opts.Value = big.NewInt(int64(num)*1000000000000000)
 	res, err := contract.TopUp(opts,myAmount,people)
 
 	fmt.Println("topUp:", res)

@@ -22,7 +22,7 @@ func demandAdd(c *gin.Context) {
 		respError(c, err)
 		return
 	}
-	userName, people, _, _, _, _, _, err := config.GetUserMethod(contract, LoginUser)
+	userName, people, _, _, _, err := config.GetUserMethod(contract, LoginUser)
 	fmt.Println("res", userName)
 	if err != nil {
 		respError(c, err)
@@ -55,7 +55,7 @@ func ChatStatic(c *gin.Context) {
 		respError(c, err)
 		return
 	}
-	userName, people, _, _, _, _, _, err := config.GetUserMethod(contract, LoginUser)
+	userName, people, _, _, _, err := config.GetUserMethod(contract, LoginUser)
 	fmt.Println("res", userName)
 	if err != nil {
 		respError(c, err)
