@@ -11,7 +11,9 @@
     <link rel="stylesheet" type="text/css" href="share/static/css/swiper-3.4.1.min.css">
     <link rel="stylesheet" type="text/css" href="share/static/css/style123.css">
     <link href="share/css/stylehd.css" rel="stylesheet" id="style">
-    
+    <link rel="stylesheet" href="share/css/not-login.css">
+    <link rel="stylesheet" href="share/css/materialize2.css">
+
     <!-- 图标 -->
     <link rel="stylesheet" href="share/static/css/flaticon.css">
     <!-- 底部导航 -->
@@ -28,6 +30,23 @@
 </head>
 
 <body>
+    <!-- 未登录 -->
+    <div class="slider" style=" position: fixed;
+        left: 0;
+        bottom: 86px;
+        width: 100%;
+        height: 49px;
+        line-height: 49px;
+        z-index: 1010;">
+        <ul class="slides" style="background: none;">
+            <li><img src="" alt="">
+                <div class="caption slider-content center-align ">
+                    <span style="font-size: 15px;">登录Share Fish打开精彩世界</span>
+                    <a href="../login" class="button-default" style="float: right;">立即登录</a>
+                </div>
+            </li>
+        </ul>
+    </div>
     <!--====================  preloader area ====================-->
     <div class="preloader-activate preloader-active">
         <div class="preloader-area-wrap">
@@ -397,7 +416,8 @@
             paginationClickable: true
         });
     </script>
-
+ <script src="share/js/materialize.min.js"></script>
+ <script src="share/js/sliderbg.js"></script>
 </body>
 {{ end }}
 </html>
