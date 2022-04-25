@@ -156,7 +156,7 @@
 
     //鼠标移开需求描述框开始验证
     $("#addnote").blur(function () {
-        var addnote = $("#addnote").text();
+        var addnote = $("#addnote").val();
         if (addnote == "") {
             $("#p_describe").html("<font color=\"red\" size=\"2\">商品描述不能为空！</font>");
         } else {

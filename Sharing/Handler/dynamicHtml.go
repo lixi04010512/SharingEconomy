@@ -175,7 +175,7 @@ func goodsCategory(c *gin.Context) {
 	//定义一个结构体数组
 	var stickArr []StickAll
 	var arr []StickAll
-	for j := 1; j < 9; j++ {
+	for j := 0; j < 9; j++ {
 		if j < 8 {
 			StickData, err := config.ShowStick(client, big.NewInt(int64(j)))
 			if err != nil {
@@ -184,7 +184,7 @@ func goodsCategory(c *gin.Context) {
 			}
 			stickArr1 := []StickAll{StickAll{Sticks: StickData}}
 			stickArr = append(stickArr, stickArr1...)
-			for i := 1; i < len(id); i++ {
+			for i := 0; i < len(id); i++ {
 				goodData, goodData1, _ := config.HaveIndex(client, id[i])
 				if goodData.Species == StickData {
 					//arr1 := []GoodsPort{GoodsPort{Id: goodData.Id, Names: goodData.Name, Species: goodData.Species, Rent: goodData.Rent, EthPledge: goodData.EthPledge, GoodImg: goodData1.GoodImg}}
