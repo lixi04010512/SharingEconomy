@@ -122,18 +122,24 @@
 
         </div>
         <div class="price" style="padding-left: 15px;">
-            <span class="main-price">押金</span>
+            <span class="main-price">押金¥</span>
             <span class="discounted-price">{{.goodsPort.EthPledge}}</span>
         </div>
         <div class="aui-product-title">
             <h2>
                 {{.goodsPort.Names}}
             </h2>
-            <p>描述：</p>
+            <p>物品描述：</p>
         </div>
 
 
         <div class="aui-product-coupon">
+
+            <a href="" class="aui-address-cell  aui-fl-arrow-clear">
+				<div class="aui-address-cell-bd">所属分类</div>
+				<div class="aui-address-cell-ft">苹果手机</div>
+			</a>
+
             <div class="product-ckb"><em class="product-em product-xz"></em></div>
             <!-- 弹窗A begin -->
             <div class="m-actionsheet" id="actionSheet">
@@ -186,6 +192,21 @@
             <!-- 弹窗A end-->
 
         </div>
+
+        <div class="aui-dri"></div>
+		<div class="aui-product-evaluate">
+			<a href="#" class="aui-address-cell  aui-fl-arrow-clear">
+				<div class="aui-address-cell-bd">精选商家：
+					<span class="aui-address-cell-ft">{{.userName}}</span>
+				</div>
+				
+			</a>
+			<div class="aui-product-boutique clearfix">
+				<img src="../share/themes/img/icon/icon-sj.png" alt="">
+				<span class="aui-product-tag-text">商家地址：</span>
+				<p class="aui-product-tag-text">{{.address}}</p>
+			</div>
+		</div>
 
 
     </div>

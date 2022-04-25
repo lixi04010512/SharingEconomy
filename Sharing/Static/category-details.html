@@ -109,7 +109,7 @@
             {{range $key,$vlaue:=.categoryDetail}}
                 <div class="col s6">
                     {{range $k,$v:=$vlaue.GoodImg}}
-                    <div class="shop"><a href="../shop-product"><img src="../{{$v}}" alt="">
+                    <div class="shop"><a href="../shop-product/{{$vlaue.Id}}"><img src="../{{$v}}" alt="">
                             {{end}}
                             <h6>{{$vlaue.Names}}</h6><span>${{$vlaue.Rent}}/天</span>
                         </a>

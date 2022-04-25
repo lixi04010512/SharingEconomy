@@ -21,230 +21,229 @@
 </head>
 
 <body id="body" class="dark-sidebar">
-    <header>
-        <div class="header-wrapper border-bottom">
-            <div class="container space-y--15">
-                <div class="row align-items-center">
-                    <div class="col-auto">
-                        <a class="back-link" onClick="javascript :history.back(-1);"> <i class="fa fa-angle-left"></i>
-                            返回</a>
-                    </div>
-                    <div class="col d-flex justify-content-center">
-                        <div class="header-search">
-                            <div class="input-group">
-                                <h4 style="    padding-top: 18px;">发布需求</h4>
-                            </div>
+<header>
+    <div class="header-wrapper border-bottom">
+        <div class="container space-y--15">
+            <div class="row align-items-center">
+                <div class="col-auto">
+                    <a class="back-link" onClick="javascript :history.back(-1);"> <i class="fa fa-angle-left"></i>
+                        返回</a>
+                </div>
+                <div class="col d-flex justify-content-center">
+                    <div class="header-search">
+                        <div class="input-group">
+                            <h4 style="    padding-top: 18px;">发布需求</h4>
                         </div>
                     </div>
-                    <div class="col-auto">
-                        <!-- header menu trigger -->
-                        <button class="header-menu-trigger" id="header-menu-trigger">
-                            <i class="fas fa-align-right" style="font-size: 20px;
+                </div>
+                <div class="col-auto">
+                    <!-- header menu trigger -->
+                    <button class="header-menu-trigger" id="header-menu-trigger">
+                        <i class="fas fa-align-right" style="font-size: 20px;
                                 color: grey;"></i>
-                        </button>
-                    </div>
+                    </button>
                 </div>
             </div>
         </div>
-
-    </header>
-
-    {{ template "Static/menu.html" . }}
-
-    <div class="breadcrumb-area bg-color--grey space-y--15">
     </div>
-    <div class="page-wrapper">
 
-        <!-- Page Content-->
-        <div class="page-content-tab">
+</header>
 
-            <div class="container-fluid">
-                <!-- Page-Title -->
+{{ template "Static/menu.html" . }}
 
-                <!-- end page title end breadcrumb -->
-                <div class="row">
-                    <div class="col-12">
-                        <div class="card">
+<div class="breadcrumb-area bg-color--grey space-y--15">
+</div>
+<div class="page-wrapper">
+
+    <!-- Page Content-->
+    <div class="page-content-tab">
+
+        <div class="container-fluid">
+            <!-- Page-Title -->
+
+            <!-- end page title end breadcrumb -->
+            <div class="row">
+                <div class="col-12">
+                    <div class="card">
 
 
-                            <div class="card-body p-0">
-                                <!-- Nav tabs -->
-                                <ul class="nav nav-tabs" role="tablist">
-                                    <li class="nav-item">
-                                        <a class="nav-link active" data-bs-toggle="tab" href="#Post" role="tab"
-                                            aria-selected="true">发布需求</a>
-                                    </li>
-                                </ul>
+                        <div class="card-body p-0">
+                            <!-- Nav tabs -->
+                            <ul class="nav nav-tabs" role="tablist">
+                                <li class="nav-item">
+                                    <a class="nav-link active" data-bs-toggle="tab" href="#Post" role="tab"
+                                       aria-selected="true">发布需求</a>
+                                </li>
+                            </ul>
 
-                                <!-- Tab panes -->
-                                <div class="tab-content">
-                                    <div class="tab-pane p-3 active" id="Post" role="tabpanel">
-                                        <div class="row">
-{{/*                                            <form method="post" action="" id="needForm">*/}}
-                                                <div class="col-md-6">
-                                                    <label class="form-label">物品类别</label>
-                                                    <select class="form-select" aria-label="Default select example">
-                                                        {{ range $key ,$value:=.StickList }}
-                                                                {{if ne $value.Sticks ""}}
-                                                            <option selected="">{{$value.Sticks}}</option>
-                                                                {{end}}
-                                                        {{end}}
-                                                        <option >其他</option>
-                                                    </select>
-                                                </div>
-                                                <div class="row g-3 align-items-center">
-                                                    <div class="col-md-12" style="    height: 500px;">
-                                                        <label for="addnote" class="form-label" style="padding-left: 16px;
+                            <!-- Tab panes -->
+                            <div class="tab-content">
+                                <div class="tab-pane p-3 active" id="Post" role="tabpanel">
+                                    <div class="row">
+                                        {{/*
+                                        <form method="post" action="" id="needForm">*/}}
+                                            <div class="col-md-6">
+                                                <label class="form-label">物品类别</label>
+                                                <select class="form-select" aria-label="Default select example">
+                                                    {{ range $key ,$value:=.StickList }}
+                                                    {{if ne $value.Sticks ""}}
+                                                    <option selected="">{{$value.Sticks}}</option>
+                                                    {{end}}
+                                                    {{end}}
+                                                    <option>其他</option>
+                                                </select>
+                                            </div>
+                                            <div class="row g-3 align-items-center">
+                                                <div class="col-md-12" style="    height: 500px;">
+                                                    <label for="addnote" class="form-label" style="padding-left: 16px;
                                                         padding-top: 20px;">需求描述</label>
-                                                        <textarea class="form-control" id="addnote" rows="3"
-                                                            name="addnote" style="    height: 460px;"></textarea>
-                                                    </div>
+                                                    <textarea class="form-control" id="addnote" rows="3"
+                                                              name="addnote" style="    height: 460px;"></textarea>
+                                                    <p id="p_describe"></p>
                                                 </div>
-                                                <button class="btn btn-primary mt-4" id="needBtn">确认发布</button>
-{{/*                                            </form>*/}}
-                                        </div>
-                                        <!--end row-->
+                                            </div>
+                                            <button class="btn btn-primary mt-4" id="needBtn">确认发布</button>
+                                            {{/*
+                                        </form>
+                                        */}}
                                     </div>
+                                    <!--end row-->
+                                </div>
 
-                                </div> <!-- end row -->
-                            </div>
+                            </div> <!-- end row -->
                         </div>
-                        <!--end card-body-->
                     </div>
-                    <!--end card-->
+                    <!--end card-body-->
                 </div>
-                <!--end col-->
+                <!--end card-->
             </div>
-            <!--end row-->
-        </div><!-- container -->
-    </div>
-    <!-- end page content -->
-    </div>
-
-    <!-- end page-wrapper -->
-    <footer style="padding-bottom: 100px;">
-
-        <div class="sc-bottom-bar">
-            <a class="sc-menu-item " href="../index"><i class="fas fa-home"></i></a>
-            <a class="sc-menu-item " href="../goods-category"><i class="fas  fa-list"></i></a>
-            <a href="../chat" class="sc-menu-item sc-current"><i class="fas fa-plus"></i></a>
-            <a class="sc-menu-item" href="../select_chat_list"><i class="fas fa-comments"></i></a>
-            <a class="sc-nav-indicator"></a>
-            <a class="sc-menu-item" href="../ui-me"><i class="fas fa-user"></i></a>
+            <!--end col-->
         </div>
+        <!--end row-->
+    </div><!-- container -->
+</div>
+<!-- end page content -->
+</div>
 
-    </footer>
+<!-- end page-wrapper -->
+<footer style="padding-bottom: 100px;">
 
-    <!-- App js -->
-    <script src="share/static/js/app.js"></script>
-    <script src="share/js/tabbar.js"></script>
-    <!-- jQuery JS -->
-    <script src="share/assets/js/jquery-3.4.1.min.js"></script>
-    <!-- Bootstrap JS -->
-    <script src="share/assets/js/bootstrap.min.js"></script>
-    <!-- Main JS -->
-    <script src="share/assets/js/main.js"></script>
-    <script src="share/js/popbox.js"></script>
-    <script src="share/post--need.js"></script>
-    <script src="share/js/pop-message.js"></script>
-    <script type="text/javascript" src="share/static/js/logout.js"></script>
-    <script>
+    <div class="sc-bottom-bar">
+        <a class="sc-menu-item " href="../index"><i class="fas fa-home"></i></a>
+        <a class="sc-menu-item " href="../goods-category"><i class="fas  fa-list"></i></a>
+        <a href="../chat" class="sc-menu-item sc-current"><i class="fas fa-plus"></i></a>
+        <a class="sc-menu-item" href="../select_chat_list"><i class="fas fa-comments"></i></a>
+        <a class="sc-nav-indicator"></a>
+        <a class="sc-menu-item" href="../ui-me"><i class="fas fa-user"></i></a>
+    </div>
 
-        $("#needBtn").click(function (){
-            demandKinds=$(".form-select").val()
-            demandName=$("#addnote").val()
-            console.log(demandKinds,"-----",demandName)
-            $.ajax({
-                url:"/addDemandPost",
-                type:"post",
-                async:false,
-                dataType:"json" ,
-                data: {'demandKinds': demandKinds,'demandName':demandName},
-                success:function (data){
-                    console.log("ok")
-                    window.location="/chat"
+</footer>
 
+<!-- App js -->
+<script src="share/static/js/app.js"></script>
+<script src="share/js/tabbar.js"></script>
+<!-- jQuery JS -->
+<script src="share/assets/js/jquery-3.4.1.min.js"></script>
+<!-- Bootstrap JS -->
+<script src="share/assets/js/bootstrap.min.js"></script>
+<!-- Main JS -->
+<script src="share/assets/js/main.js"></script>
+<script src="share/js/popbox.js"></script>
+<script src="share/post--need.js"></script>
+<script src="share/js/pop-message.js"></script>
+<script type="text/javascript" src="share/static/js/logout.js"></script>
+<script>
 
-                },
-
-
-            })
-        })
-
-    </script>
-    <script type="text/javascript">
-
-        function uploadIitems() {
-            var str = document.getElementById("text").value;
-            $.ajax
-                ({
-                    url: "/lend-items",
-                    dataType: "json",
-                    type: "post",
-                    data: {
-                        address: str,
-                        key: "7486e10d3ca83a934438176cf941df0c",
-                    },
-                    success: function (res) {
-
-                        console.log(res);  //在console中查看数据
-                    },
-                    error: function () {
-                        alert('failed!');
-                    },
-                });
+    //鼠标移开需求描述框开始验证
+    $("#addnote").blur(function () {
+        var addnote = $("#addnote").text();
+        if (addnote == "") {
+            $("#p_describe").html("<font color=\"red\" size=\"2\">商品描述不能为空！</font>");
+        } else {
+            $("#p_describe").html("<font color=\"green\" size=\"2\">商品描述格式正确！</font>");
         }
-    </script>
+    })
+    //鼠标放置需求描述框不验证
+    $("#addnote").focus(function () {
+        $("#p_describe").html("");
+    })
 
-    <script type="text/javascript">
-        $(function () {
-            //绑定滚动条事件
-            //绑定滚动条事件
-            $(window).bind("scroll", function () {
-                var sTop = $(window).scrollTop();
-                var sTop = parseInt(sTop);
-                if (sTop >= 10) {
-                    if (!$("#scrollBg").is(":visible")) {
-                        try {
-                            $("#scrollBg").slideDown();
-                        } catch (e) {
-                            $("#scrollBg").show();
-                        }
+    $("#needBtn").click(function () {
+            demandKinds = $(".form-select").val()
+            demandName = $("#addnote").val()
+            console.log(demandKinds, "-----", demandName)
+            if (demandName != "") {
+                $.ajax({
+                    url: "/addDemandPost",
+                    type: "post",
+                    async: false,
+                    dataType: "json",
+                    data: {'demandKinds': demandKinds, 'demandName': demandName},
+                    success: function (data) {
+                        console.log("ok")
+                        window.location = "/chat"
+                    },
+
+                })
+            }else {
+                alert("需求描述不能为空！")
+            }
+        }
+    )
+
+
+</script>
+<script type="text/javascript">
+
+    function uploadIitems() {
+        var str = document.getElementById("text").value;
+        $.ajax
+        ({
+            url: "/lend-items",
+            dataType: "json",
+            type: "post",
+            data: {
+                address: str,
+                key: "7486e10d3ca83a934438176cf941df0c",
+            },
+            success: function (res) {
+
+                console.log(res);  //在console中查看数据
+            },
+            error: function () {
+                alert('failed!');
+            },
+        });
+    }
+</script>
+
+<script type="text/javascript">
+    $(function () {
+        //绑定滚动条事件
+        //绑定滚动条事件
+        $(window).bind("scroll", function () {
+            var sTop = $(window).scrollTop();
+            var sTop = parseInt(sTop);
+            if (sTop >= 10) {
+                if (!$("#scrollBg").is(":visible")) {
+                    try {
+                        $("#scrollBg").slideDown();
+                    } catch (e) {
+                        $("#scrollBg").show();
                     }
                 }
-                else {
-                    if ($("#scrollBg").is(":visible")) {
-                        try {
-                            $("#scrollBg").slideUp();
-                        } catch (e) {
-                            $("#scrollBg").hide();
-                        }
+            } else {
+                if ($("#scrollBg").is(":visible")) {
+                    try {
+                        $("#scrollBg").slideUp();
+                    } catch (e) {
+                        $("#scrollBg").hide();
                     }
                 }
-            });
-        })
-    </script>
-
-{{/*    <script>*/}}
-{{/*        function addNeed() {*/}}
-{{/*            $.ajax({*/}}
-{{/*                url: "/chat",		  //请求的路径，获取数据源*/}}
-{{/*                type: "post",			  //请求的方式*/}}
-{{/*                dataType: "json",		  //请求返回的数据类型*/}}
-{{/*                data: {*/}}
-{{/*                    addnote: $("#addnote").val(),*/}}
-
-{{/*                },*/}}
-{{/*                success: function (data) {*/}}
-{{/*                    alert("添加成功");*/}}
-{{/*                    InitPapers();*/}}
-
-{{/*                }*/}}
-
-{{/*            }*/}}
-{{/*            )*/}}
-{{/*        }*/}}
-{{/*    </script>*/}}
+            }
+        });
+    })
+</script>
 </body>
 {{ end }}
 </html>

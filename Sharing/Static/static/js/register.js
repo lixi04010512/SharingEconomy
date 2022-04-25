@@ -75,6 +75,21 @@ $("#use_password1").focus(function(){
 	$("#p_password1").html("");
 })
 
+//鼠标移开同意协议框开始验证
+$("#check").blur(function () {
+	var check = $("#check").prop('checked');
+	if (check) {
+		$("#confirmCheck").html("<font color=\"green\" size=\"2\">已同意协议</font>");
+	} else {
+		$("#confirmCheck").html("<font color=\"red\" size=\"2\">未同意协议</font>");
+	}
+})
+
+//鼠标放置同意协议框不验证
+$("#check").focus(function(){
+	$("#confirmCheck").html("");
+})
+
 //注册确认按钮	  
 $("#register").click(function(){
 	var use_name = $("#use_name").val();
@@ -86,6 +101,7 @@ $("#register").click(function(){
 	var Password=/^(\w){6,20}$/;
 	var password1 = $("#use_password").val();
 	var password2 = $("#use_password1").val();
+	var check = $("#check").prop('checked');
 	if(!Username.test(use_name)){
 		alert("姓名输入格式错误！")
 	}else if(!Useremail.test(use_email)){
@@ -96,6 +112,8 @@ $("#register").click(function(){
 		alert("密码输入格式错误！")
 	}else if(password1!=password2){
 		alert("两次密码输入不一致！")
+	}else if(!check){
+		alert("未同意协议！")
 	}else{
 		$.ajax({
 			type:"POST",
