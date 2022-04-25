@@ -1,0 +1,17 @@
+/* ------------------------------  Slider---------------------------------*/.slider {	margin-top: 48px;	height: 260px !important;}.slider .slides {	height: 260px !important;}
+
+
+.slider-content {	margin: 10px auto;	top: 75% !important;	width: 100% !important;	left: -50px !important;	right: 0 !important;	position: relative;	flex-shrink: 0;}.slider .slides li img {	width: 100%;	height: 100%;}
+.slider .slides li::before {	background-color: #000;	opacity: 0.8;	content: "";	top: 198px;	right: 0;	left: 0;	position: absolute;	width: 100%;	height: 100%;	overflow: hidden;}
+.slider .indicators .indicator-item.active {display: none;	background: #ffffff;}
+.slider-content .button-default {padding-top: 0px;	padding-bottom: 0px;	background: #fff;	color: #222;}
+.button-default {	background: #222;	color: #ffffff;	box-shadow: none;		padding-left: 15px;	padding-right: 15px;	padding: 5px 12px 5px;	display: inline-block;	cursor: pointer;	border-radius: 0;	text-transform: uppercase;	font-weight: 600;	letter-spacing: 1px;	font-size: 11px;	border: 0;	}
+
+
+
+
+
+.slider-content h2 {	margin-bottom: 8px;	letter-spacing: 1px;	color: #fff;	font-size: 20px;	font-weight: 700;	text-transform: uppercase;}.slider-content h4 {	font-size: 14px;	color: #ffffff;}
+
+
+.slider .indicators {	position: relative;	bottom: 50px;	z-index: 95;	padding: 0 12px;}.slider .indicators .indicator-item {	z-index: 1000;	height: 8px;	width: 8px;	background: #cccccc;	margin: 0 8px;}
