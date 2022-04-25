@@ -109,7 +109,7 @@
                     <p>输入金额不能超出5000元</p>
                 </div>
                 <div class="modal-footer">
-                    <button type="button" class="btn btn-primary" data-dismiss="modal" aria-label="Close">确定</button>
+                    <button type="button" class="btn btn-primary" data-dismiss="modal" aria-label="Close" id="">确定</button>
                 </div>
             </div>
         </div>
@@ -126,16 +126,7 @@
 	<script src="share/assets/js/main.js"></script>
 	<!-- script js -->
 	<script src="share/js/pop-message.js"></script>
-    <script>
-        document.getElementById('confirm').onclick = function () {
-            confirm('是否退出当前账号？').then(() => {
-                window.location.href = "login.html";
-                console.log('已确认')
-            }).catch(() => {
-                console.log('已取消')
-            })
-        }
-    </script>
+    <script type="text/javascript" src="share/static/js/logout.js"></script>
 
 
     <script>

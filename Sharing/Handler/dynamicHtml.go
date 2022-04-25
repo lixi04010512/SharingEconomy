@@ -65,7 +65,7 @@ func addIndex(c *gin.Context) {
 
 	//定义一个结构体数组
 	var arr []GoodsPort
-	for i := 0; i < len(id)+1; i++ {
+	for i := 1; i < len(id)+1; i++ {
 		if i < len(id) {
 			//var Owner common.Address
 
@@ -180,7 +180,7 @@ func goodsCategory(c *gin.Context) {
 			}
 			stickArr1 := []StickAll{StickAll{Sticks: StickData}}
 			stickArr = append(stickArr, stickArr1...)
-			for i := 0; i < len(id); i++ {
+			for i := 1; i < len(id); i++ {
 				goodData, goodData1, _ := config.HaveIndex(client, id[i])
 				if goodData.Species == StickData {
 					//arr1 := []GoodsPort{GoodsPort{Id: goodData.Id, Names: goodData.Name, Species: goodData.Species, Rent: goodData.Rent, EthPledge: goodData.EthPledge, GoodImg: goodData1.GoodImg}}
@@ -238,7 +238,7 @@ func CartGood(c *gin.Context) {
 	//定义一个结构体数组
 	var arrUp []GoodsPort
 	var arrDown []GoodsPort
-	for i := 0; i < len(id)+1; i++ {
+	for i := 1; i < len(id)+1; i++ {
 		if i < len(id) {
 			//var addr common.Address
 			goodData, goodData1, err := config.HaveIndex(client, id[i])
@@ -298,7 +298,7 @@ func MyOrder(c *gin.Context) {
 	//定义一个结构体数组
 	var arrUp []GoodsPort
 	var arrDown []GoodsPort
-	for i := 0; i < len(id)+1; i++ {
+	for i := 1; i < len(id)+1; i++ {
 		if i < len(id) {
 			//var addr common.Address
 			goodData, goodData1, err := config.HaveIndex(client, id[i])
@@ -357,7 +357,7 @@ func CategoryDetails(c *gin.Context) {
 		return
 	}
 	var arrDetails []GoodsPort
-	for i := 0; i < len(id)+1; i++ {
+	for i := 1; i < len(id)+1; i++ {
 		if i < len(id) {
 			//var addr common.Address
 			goodData, goodData1, err := config.HaveIndex(client, id[i])
@@ -411,7 +411,7 @@ func Myshop(c *gin.Context) {
 		return
 	}
 	var myshoparr []GoodsPort
-	for i := 0; i < len(id)+1; i++ {
+	for i := 1; i < len(id)+1; i++ {
 		if i < len(id) {
 			//var addr common.Address
 			goodData, goodData1, err := config.HaveIndex(client, id[i])

@@ -90,6 +90,12 @@ func list_content(c *gin.Context) {
 //消息详情页面
 func wechat(c *gin.Context) {
 	fmt.Println("70loginimg:", Userimg)
+	err :=db.Update_chat_list(addr_x,Addr_owner)
+	if err != nil {
+		fmt.Println(err)
+		respError(c, err)
+		return
+	}
 	c.HTML(http.StatusOK, "Static/wechat.html", gin.H{
 		"chat":   chat1,
 		"owners": Addr_owner,

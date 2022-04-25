@@ -82,7 +82,7 @@
                     <h6 class="text-truncate mb-0">{{ $value.Name }}</h6>
                     <div class="last-chat">
                         <p class="mb-0 text-truncate">{{ $value.Time }}
-<!--                            <span class="badge rounded-pill bg-primary ms-2">2</span>-->
+                            <span class="badge rounded-pill bg-primary ms-2">{{ $value.No_read }}</span>
                         </p>
                     </div>
                 </div>
@@ -149,16 +149,7 @@
 <!-- script js -->
 <script src="share/static/js/app.js"></script>
 <script src="share/js/pop-message.js"></script>
-    <script>
-        document.getElementById('confirm').onclick = function () {
-            confirm('是否退出当前账号？').then(() => {
-                window.location.href = "login.html";
-                console.log('已确认')
-            }).catch(() => {
-                console.log('已取消')
-            })
-        }
-    </script>
+<script type="text/javascript" src="share/static/js/logout.js"></script>
 
 </body>
 {{ end }}

@@ -17,6 +17,7 @@ type Chat_list struct {
 	Name   string `db:"name" json:"name" form:"name"`
 	Img    string `db:"img" json:"img" form:"img"`
 	Time   string `db:"time" json:"time" form:"time"`
+	No_read int `db:"no_read" json:"no_read" form:"no_read"`
 }
 type Chat struct {
 	Id        int    `db:"id" json:"id" form:"id"`

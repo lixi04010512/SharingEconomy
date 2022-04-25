@@ -162,10 +162,6 @@
                                         <div class="profile-info-block__title"><a href="../shop">我的物品</a></div>
                                         <div class="profile-info-block__value">{{.goodsNum}}</div>
                                     </div>
-                                    <div class="profile-info-block">
-                                        <div class="profile-info-block__title"><a href="../wishlist">我的积分</a></div>
-                                        <div class="profile-info-block__value">{{.integral}}</div>
-                                    </div>
                                 </div>
 
 
@@ -196,16 +192,7 @@
         <!-- Main JS -->
         <script src="share/assets/js/main.js"></script>
         <script src="share/js/pop-message.js"></script>
-    <script>
-        document.getElementById('confirm').onclick = function () {
-            confirm('是否退出当前账号？').then(() => {
-                window.location.href = "login.html";
-                console.log('已确认')
-            }).catch(() => {
-                console.log('已取消')
-            })
-        }
-    </script>
+        <script type="text/javascript" src="share/static/js/logout.js"></script>
     
     </div>
 </body>
