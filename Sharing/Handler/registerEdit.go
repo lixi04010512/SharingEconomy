@@ -10,7 +10,7 @@ import (
 //邮箱验证
 func sendEmail(c *gin.Context) {
 	email := c.PostForm("use_email")
-	code := config.EmailSend(email)
+	var code = config.EmailSend(email)
 	respOK(c, code)
 }
 
