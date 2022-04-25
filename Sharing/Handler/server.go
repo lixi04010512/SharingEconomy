@@ -48,7 +48,7 @@ func Start(addr, webDir string) (err error) {
 	r.POST("/delete_chat_content", delete_chat_content)
 
 
-	// api接口服务，定义了路由组 /Sharing
+	// api接口服务，定义了路由组
 	todo := r.Group("")
 	{
 		// 定义增改查的接口，并注册到web服务器
