@@ -26,11 +26,6 @@ func BorrowGoods(c *gin.Context) {
 		return
 	}
 	id := c.PostForm("borrowId")
-	userimg := c.PostForm("userimg")
-	img := c.PostForm("img")
-	goods_owner := c.PostForm("goods_owner")
-	name_user := c.PostForm("name_from")
-	name_owner := c.PostForm("name_owner")
 	idInt, err := strconv.Atoi(id)
 	idInt64 := int64(idInt)
 	borrowDays := c.PostForm("borrowDays")
@@ -38,9 +33,15 @@ func BorrowGoods(c *gin.Context) {
 	borrowDaysInt64 := int64(borrowDaysInt)
 	res, deal, borrower, borrowDay, err := config.BorrowGoodsMethod(client, contract, big.NewInt(idInt64), big.NewInt(borrowDaysInt64), privKey)
 	message := fmt.Sprintf("你好，我是账号为%s的用户，我想借用%s天你的商品，我的借用号是%s，", borrower, borrowDay, deal)
+	goodsData,_, err := config.HaveIndex(client, big.NewInt(idInt64))
+	goods_owner := goodsData.Owner.String()
+	userImg, err := contract.GetUserImg(nil, goodsData.Owner)
+	img,err :=contract.GetUserImg(nil, borrower)
+	userName, _, _, _, _, err := config.GetUserMethod(contract, borrower)
+	name_owner, _, _, _, _, err := config.GetUserMethod(contract, goodsData.Owner)
 	fmt.Println("mess", message)
 	addr := borrower.Hex()
-	err = db.SendBorrow(addr, goods_owner, name_user, name_owner, message, userimg, img)
+	err = db.SendBorrow(addr, goods_owner, userName, name_owner, message, userImg, img)
 	if err != nil {
 		respError(c, err)
 	}

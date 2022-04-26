@@ -12,7 +12,7 @@ func Start(addr, webDir string) (err error) {
 	// 使用gin框架提供的默认web服务引擎
 	r := gin.Default()
 	r.SetFuncMap(template.FuncMap{
-		//"addGoodsCategory": addGoodsCategory,
+		"addGoodsCategory": addGoodsCategory,
 	})
 	r.LoadHTMLGlob("Static/*.html")
 	// 静态文件服务
@@ -39,13 +39,14 @@ func Start(addr, webDir string) (err error) {
 	r.GET("/editSpeciesPage", getting, editSpeciesPage)
 	r.POST("/updateStick", getting, updateStick)
 
-	r.GET("/select_chat_list", select_chat_list, apps_chat)
+	r.GET("/select_chat_list", select_chat_list,apps_chat)
 	r.POST("/list_content", list_content)
 	r.GET("/select_chat_content", select_chat_content, wechat)
 	r.POST("/insert_chat_list", insert_chat_list)
 	r.POST("/insert_chat_content", insert_chat_content)
 	r.POST("/delete_chat_list", delete_chat_list)
 	r.POST("/delete_chat_content", delete_chat_content)
+
 
 	// api接口服务，定义了路由组
 	todo := r.Group("")
@@ -66,9 +67,9 @@ func Start(addr, webDir string) (err error) {
 		todo.POST("/MyListNeeds", MYList)
 		todo.POST("/ListNeeds", ListNeedAll)
 		todo.GET("/delNeeds/:id", delNeeds)
-		todo.POST("/delGoodsPost", delGoods)
-		todo.POST("/topUpPost", topUp)
-		todo.POST("/sendBorrowMsg", BorrowGoods)
+		todo.POST("/delGoodsPost",delGoods)
+		todo.POST("/topUpPost",topUp)
+		todo.POST("/sendBorrowMsg",BorrowGoods)
 	}
 	share := r.Group("")
 	{
@@ -96,8 +97,9 @@ func Start(addr, webDir string) (err error) {
 		share.GET("/carts", CartGood)
 		share.GET("/mod-photo", modPhotoStatic)
 		share.GET("/order-receiving/:id", orderReceiving)
-		share.GET("/pay", PayStatic)
-		share.GET("/tally-order", TallyStatic)
+		share.GET("/pay",PayStatic)
+		share.GET("/tally-order",TallyStatic)
+		share.GET("/confirm-transaction",ConfirmStatic)
 
 	}
 	// 启动web服务
@@ -110,6 +112,7 @@ func respOK(c *gin.Context, data interface{}) {
 	c.JSON(200, gin.H{
 		"code": 0,
 		"data": data,
+
 	})
 }
 

@@ -116,7 +116,19 @@ func TallyStatic(c *gin.Context) {
 		return
 	}
 	userImg, err := contract.GetUserImg(nil, LoginUser)
-	c.HTML(http.StatusOK, "Static/tally-order.html", gin.H{"userName": userName, "address": people, "userImg": userImg})
+	id := c.PostForm("borrowId")
+	idInt, err := strconv.Atoi(id)
+	idInt64 := int64(idInt)
+	goodsData,goodsData1, err := config.HaveIndex(client, big.NewInt(idInt64))
+	c.HTML(http.StatusOK, "Static/tally-order.html", gin.H{
+		"userName": userName,
+		"address": people,
+		"userImg": userImg,
+		"goodsImg":goodsData1.GoodImg,
+		"goodsName":goodsData.Name,
+		"rent":goodsData.Rent,
+		"pledge":goodsData.EthPledge,
+	})
 }
 
 //渲染edit-need
@@ -543,4 +555,29 @@ func PayStatic(c *gin.Context) {
 	}
 	userImg, err := contract.GetUserImg(nil, LoginUser)
 	c.HTML(http.StatusOK, "Static/pay.html", gin.H{"userName": userName, "address": people, "userImg": userImg})
+}
+//渲染con
+func ConfirmStatic(c *gin.Context) {
+	//初始化client
+	client, err := config.GetClient()
+	if err != nil {
+		fmt.Println(err)
+		respError(c, err)
+		return
+	}
+	//初始化合约地址
+	contract, err := config.GetAddress(client)
+	if err != nil {
+		respError(c, err)
+		return
+	}
+
+	userName, people, _, _, _, err := config.GetUserMethod(contract, LoginUser)
+	fmt.Println("res", userName)
+	if err != nil {
+		respError(c, err)
+		return
+	}
+	userImg, err := contract.GetUserImg(nil, LoginUser)
+	c.HTML(http.StatusOK, "Static/confirm-transaction.html", gin.H{"userName": userName, "address": people, "userImg": userImg})
 }

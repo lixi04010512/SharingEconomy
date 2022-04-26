@@ -13,7 +13,7 @@ var db *sql.DB
 func Init() (err error) {
 	// 打开mysql数据库
 	fmt.Println()
-	db, err = sql.Open("mysql", "root:ys3285739@tcp(127.0.0.1:3306)/sharefish?charset=utf8&parseTime=true")
+	db, err = sql.Open("mysql", "root:1234@tcp(127.0.0.1:3306)/sharefish?parseTime=true")
 	if err != nil {
 		panic(err)
 	}
@@ -32,7 +32,7 @@ func ListNeedAll() (DemandList []DemandDB, err error) {
 	var sqlStr = `select * from demand `
 	rows, err := db.Query(sqlStr)
 	if err != nil {
-		fmt.Println("select_demand_err:", err)
+		fmt.Println("select_demand_err:",err)
 		return nil, err
 	}
 
@@ -41,7 +41,7 @@ func ListNeedAll() (DemandList []DemandDB, err error) {
 		err1 := rows.Scan(&DemandStr.DemandID, &DemandStr.DemandKinds, &DemandStr.DemandName, &DemandStr.DemandTime, &DemandStr.DemandAddr)
 
 		if err1 != nil {
-			fmt.Println("select_demand_scan_err:", err1)
+			fmt.Println("select_demand_scan_err:",err1)
 			return nil, err
 		}
 		DemandList = append(DemandList, DemandStr)
