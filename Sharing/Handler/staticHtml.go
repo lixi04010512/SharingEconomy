@@ -116,18 +116,19 @@ func TallyStatic(c *gin.Context) {
 		return
 	}
 	userImg, err := contract.GetUserImg(nil, LoginUser)
-	id := c.PostForm("borrowId")
+	id := c.Params.ByName("id")
 	idInt, err := strconv.Atoi(id)
 	idInt64 := int64(idInt)
 	goodsData, goodsData1, err := config.HaveIndex(client, big.NewInt(idInt64))
 	c.HTML(http.StatusOK, "Static/tally-order.html", gin.H{
-		"userName":  userName,
-		"address":   people,
-		"userImg":   userImg,
-		"goodsImg":  goodsData1.GoodImg,
-		"goodsName": goodsData.Name,
-		"rent":      goodsData.Rent,
-		"pledge":    goodsData.EthPledge,
+		"userName": userName,
+		"address": people,
+		"userImg": userImg,
+		"goodsImg":goodsData1.GoodImg,
+		"goodsName":goodsData.Name,
+		"rent":goodsData.Rent,
+		"pledge":goodsData.EthPledge,
+		"id":id,
 	})
 }
 

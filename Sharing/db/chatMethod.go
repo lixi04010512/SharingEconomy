@@ -72,29 +72,34 @@ func (chat *Chat_list) Insert_chat_list(username string, userimg string) (err er
 	r1, err := db.Query("select * from chat_list where addr=? and owner=?", chat.Addr, chat.Owner)
 	for r1.Next() {
 		todo := Chat_list{}
-		err = r1.Scan(&todo.Id, &todo.Owner, &todo.Addr, &todo.Name, &todo.Img, &todo.Time, &todo.No_read)
-		if err != nil {
-			fmt.Println("64:", err)
+		err0 := r1.Scan(&todo.Id, &todo.Owner, &todo.Addr, &todo.Name, &todo.Img, &todo.Time, &todo.No_read)
+		if err0 != nil {
+			fmt.Println("64:", err0)
 			return
 		}
 		id = todo.Id
 		fmt.Println("70id:", id)
 	}
-	fmt.Println("strconv.Itoa(id):", strconv.Itoa(id))
+	a1 :=strconv.Itoa(id)
+	fmt.Println("strconv.Itoa(id):", a1)
 	if strconv.Itoa(id) == "0" {
 		r, err2 := db.Exec("insert into chat_list(owner,addr,name,img,time,no_read)values(?, ?,?,?,?,?)", chat.Owner, chat.Addr, chat.Name, img, strTime, 0)
-		r2, err2 := db.Exec("insert into chat_list(owner,addr,name,img,time,no_read)values(?, ?,?,?,?,?)", chat.Addr, chat.Owner, username, userimg, strTime, 0)
+		r2, err3 := db.Exec("insert into chat_list(owner,addr,name,img,time,no_read)values(?, ?,?,?,?,?)", chat.Addr, chat.Owner, username, userimg, strTime, 0)
 		if err2 != nil {
-			fmt.Println("exec failed, ", err)
+			fmt.Println("exec failed, ", err2)
+			return
+		}
+		if err3 != nil {
+			fmt.Println("exec failed, ", err3)
 			return
 		}
 		fmt.Println(r2)
-		id, err1 := r.LastInsertId()
+		id1, err1 := r.LastInsertId()
 		if err1 != nil {
-			fmt.Println("exec failed, ", err)
+			fmt.Println("exec failed, ", err1)
 			return
 		}
-		fmt.Println("insert chat_list succ:", id)
+		fmt.Println("insert chat_list succ:", id1)
 		return
 	}
 	return

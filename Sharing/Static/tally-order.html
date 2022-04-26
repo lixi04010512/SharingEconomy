@@ -7,12 +7,12 @@
     <meta name="viewport"
         content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
     <title>ShareFish-订单结算</title>
-    <script src="share/static/js/public.js"></script>
-    <link rel="stylesheet" href="share/css/tally-order-style.css" />
-    <link rel="stylesheet" href="share/themes/css/home.css">
-    <link rel="stylesheet" type="text/css" href="share/css/shoppingcart.css"/>
+    <script src="../share/static/js/public.js"></script>
+    <link rel="stylesheet" href="../share/css/tally-order-style.css" />
+    <link rel="stylesheet" href="../share/themes/css/home.css">
+    <link rel="stylesheet" type="text/css" href="../share/css/shoppingcart.css"/>
 
-    <link href="share/static/css/icons.min.css" rel="stylesheet" type="text/css">
+    <link href="../share/static/css/icons.min.css" rel="stylesheet" type="text/css">
  
 
 </head>
@@ -20,7 +20,7 @@
 <body>
    
     
-
+<input type="hidden" id="borrowsId" value="{{.id}}">
     <div class="iphone">
         <a class="back-link" onClick="javascript :history.back(-1);"> <i class="fa fa-angle-left"></i>
             返回</a>
@@ -38,23 +38,25 @@
                     <div class="form__radio">
                         <div class="aui-list-product-float-item">
                             <a href="#" class="aui-list-product-fl-item">
+                                {{range $k,$v:=.goodsImg}}
                                 <div class="aui-list-product-fl-img">
-                                    <img src="{{.goodsImg}}" alt="">
+                                    <img src="../{{$v}}" alt="">
                                 </div>
+                                {{end}}
                                 <div class="aui-list-product-fl-text">
                                     <h3 class="aui-list-product-fl-title">
                                         {{.goodsName}}</h3>
                                     <div class="aui-list-product-fl-mes">
                                         <div>
                                             <span class="aui-list-product-item-price">
-                                                <em>租金ETH{{.rent}}/天</em>
+                                                <em>{{.rent}}ETH/天</em>
                                             </span>
                                             <span class="aui-list-product-item-del-price">
 
                                             </span>
                                         </div>
                                         <div class="aui-btn-purchase">
-                                            <span>押金¥{{.pledge}}</span>
+                                            <span>押金{{.pledge}}ETH</span>
                                         </div>
                                     </div>
 
@@ -76,7 +78,7 @@
                             <td align="right">
                                 <div class="product_gw">
                                    <em class="product-jian">-</em>
-                                   <input type="text" value="1" class="product-num"/>
+                                   <input type="text"  value="1" id="borrowDay" class="product-num"/>
                                    <em class="product-add">+</em>
                                 </div>
                             
@@ -105,16 +107,31 @@
             </div>
 
             <div>
-                <a class="button button--full" type="submit" onclick="Qual.successd('Success','租用成功');">提交订单</a>
+                <a class="button button--full" type="submit" id="sendOrder">提交订单</a>
             </div>
         </form>
     </div>
 
 
-    <script src="share/js/pop-message.js"></script>
-    <script type="text/javascript" src="share/static/js/logout.js"></script>
+    <script src="../share/js/pop-message.js"></script>
+    <script type="text/javascript" src="../share/static/js/logout.js"></script>
     <script src="https://www.jq22.com/jquery/jquery-1.10.2.js"></script>
-	<script src="share/js/shoppingcart.js" type="text/javascript" charset="utf-8"></script>
+	<script src="../share/js/shoppingcart.js" type="text/javascript" charset="utf-8"></script>
+<script>
+
+    $("#sendOrder").click(function(){
+
+        $.ajax({
+            type: "POST",
+            url: "/sendBorrowMsg",
+            data: {"id": $("#borrowsId").val(),"borrowDays":$("#borrowDay").val()},
+            success: function (data) {
+                alert("已提交订单");
+                window.location = "/select_chat_list";
+            }
+        })
+    })
+</script>
 
 </body>
 {{ end }}

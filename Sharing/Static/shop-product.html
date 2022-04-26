@@ -164,13 +164,11 @@
                                 <span>{{.goodsPort.Names}} 1件</span>
                             </div>
                         </div>
-
-                       
                     </div>
 
                     <a href="javascript:;" class="actionsheet-action" id="cancel"></a>
-                    <a href="../tally-order">
-                        <div class="aui-btn aui-btn-gray" style="width: 400px;">确定</div>
+                    <a href="../tally-order/{{.goodsPort.Id}}">
+                        <div class="aui-btn aui-btn-gray" style="width: 400px;" id="rentNow">确定</div>
                     </a>
 
 
@@ -185,14 +183,14 @@
 		<div class="aui-product-evaluate">
 			<a href="#" class="aui-address-cell  aui-fl-arrow-clear">
 				<div class="aui-address-cell-bd">精选商家：
-					<span class="aui-address-cell-ft">{{.userName}}</span>
+					<span class="aui-address-cell-ft">{{.ownerName}}</span>
 				</div>
 				
 			</a>
 			<div class="aui-product-boutique clearfix">
 				<img src="../share/themes/img/icon/icon-sj.png" alt="">
 				<span class="aui-product-tag-text">商家地址：</span>
-				<p class="aui-product-tag-text">{{.address}}</p>
+				<p class="aui-product-tag-text">{{.goodsPort.Addr}}</p>
 			</div>
 		</div>
 
@@ -266,7 +264,6 @@
 
     </script>
 
-    
 </body>
 {{ end }}
 

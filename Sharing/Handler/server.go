@@ -96,9 +96,9 @@ func Start(addr, webDir string) (err error) {
 		share.GET("/carts", CartGood)
 		share.GET("/mod-photo", modPhotoStatic)
 		share.GET("/order-receiving/:id", orderReceiving)
-		share.GET("/pay", PayStatic)
-		share.GET("/tally-order", TallyStatic)
-		share.GET("/confirm-transaction", ConfirmStatic)
+		share.GET("/pay",PayStatic)
+		share.GET("/tally-order/:id",TallyStatic)
+		share.GET("/confirm-transaction",ConfirmStatic)
 
 	}
 	// 启动web服务
