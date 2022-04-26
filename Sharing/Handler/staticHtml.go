@@ -116,7 +116,7 @@ func TallyStatic(c *gin.Context) {
 		return
 	}
 	userImg, err := contract.GetUserImg(nil, LoginUser)
-	id := c.PostForm("borrowId")
+	id := c.Params.ByName("id")
 	idInt, err := strconv.Atoi(id)
 	idInt64 := int64(idInt)
 	goodsData,goodsData1, err := config.HaveIndex(client, big.NewInt(idInt64))
@@ -128,6 +128,7 @@ func TallyStatic(c *gin.Context) {
 		"goodsName":goodsData.Name,
 		"rent":goodsData.Rent,
 		"pledge":goodsData.EthPledge,
+		"id":id,
 	})
 }
 
