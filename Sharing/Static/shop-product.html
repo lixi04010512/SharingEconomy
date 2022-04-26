@@ -137,7 +137,7 @@
 
             <a href="" class="aui-address-cell  aui-fl-arrow-clear">
 				<div class="aui-address-cell-bd">所属分类</div>
-				<div class="aui-address-cell-ft">苹果手机</div>
+				<div class="aui-address-cell-ft">{{.goodsPot.Species}}</div>
 			</a>
 
             <div class="product-ckb"><em class="product-em product-xz"></em></div>
@@ -213,9 +213,14 @@
             <div class="aui-footer-flex">
 
                 <div class="aui-btn aui-btn-red">
+                    {{if ne "" .userName}}
                     <a href="" style="color: inherit;"
                         data-ydui-actionsheet="{target:'#actionSheet',closeElement:'#cancel'}">
                         <span>立即抢租</span> </a>
+                    {{else}}
+                    <a href="../login" style="color: inherit;">
+                        <span>登录后立即抢租</span> </a>
+                    {{end}}
                 </div>
             </div>
         </div>

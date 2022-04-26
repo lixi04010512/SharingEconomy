@@ -23,13 +23,30 @@
     <link href="share/static/css/app.min.css" rel="stylesheet" type="text/css">
 
     <link rel="stylesheet" href="share/css/wechat.css">
-
+    <link rel="stylesheet" href="share/css/not-login.css">
+    <link rel="stylesheet" href="share/css/materialize2.css">
 </head>
 
 
 <body class="pe-0">
-
-
+{{if eq "" .userName}}
+    <div class="slider" style=" position: fixed;
+        left: 0;
+        bottom: 86px;
+        width: 100%;
+        height: 49px;
+        line-height: 49px;
+        z-index: 1010;">
+        <ul class="slides" style="background: none;">
+            <li><img src="" alt="">
+                <div class="caption slider-content center-align ">
+                    <span style="font-size: 15px;">登录Share Fish打开精彩世界</span>
+                    <a href="../login" class="button-default" style="float: right;">立即登录</a>
+                </div>
+            </li>
+        </ul>
+    </div>
+{{else}}
 <div class="internet-connection-status" id="internetStatus"></div>
 <!-- Header Area -->
 <div class="header-area" id="headerArea">
@@ -102,7 +119,7 @@
         </ul>
     </div>
 </div>
-
+{{end}}
 <footer>
 
     <div class="sc-bottom-bar">
@@ -151,7 +168,8 @@
 <script src="share/static/js/app.js"></script>
 <script src="share/js/pop-message.js"></script>
 <script type="text/javascript" src="share/static/js/logout.js"></script>
-
+<script src="share/js/materialize.min.js"></script>
+<script src="share/js/sliderbg.js"></script>
 </body>
 {{ end }}
 </html>

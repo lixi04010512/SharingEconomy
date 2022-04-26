@@ -32,6 +32,7 @@
 
 <body>
     <!-- 未登录 -->
+
     {{if eq "" .userName}}
         <div class="slider" style=" position: fixed;
         left: 0;
@@ -103,7 +104,9 @@
         </header>
         <!--====================  End of header area  ====================-->
         <!--====================  mobile menu overlay ====================-->
+
         {{ template "Static/menu.html" . }}
+
         <!--====================  End of mobile menu overlay  ====================-->
         <!--====================  hero slider ====================-->
         <div class="hero-slider bg-color--grey space-y--10">
@@ -176,62 +179,16 @@
             <div class="page-title-box">
                 <h4 class="mb-0"><b>商品分类</b></h4>
             </div>
-			<a href="../category-details/严选手机" class="jq22-palace-grid">
+            {{range $k,$v:=.stickArr}}
+			<a href="../category-details/{{$v.Sticks}}" class="jq22-palace-grid">
 				<div class="jq22-palace-grid-icon">
-					<img src="share/images/nav-001.png" alt="">
+					<img src="{{$v.SticksImg}}" alt="">
 				</div>
 				<div class="jq22-palace-grid-text">
-					<h2>严选手机</h2>
+					<h2>{{$v.Sticks}}</h2>
 				</div>
 			</a>
-			<a href="../category-details/电脑设备" class="jq22-palace-grid">
-				<div class="jq22-palace-grid-icon">
-					<img src="share/images/nav-002.png" alt="">
-				</div>
-				<div class="jq22-palace-grid-text">
-					<h2>电脑设备</h2>
-				</div>
-			</a>
-			<a href="../category-details/运动健身" class="jq22-palace-grid">
-				<div class="jq22-palace-grid-icon">
-					<img src="share/images/nav-003.png" alt="">
-				</div>
-				<div class="jq22-palace-grid-text">
-					<h2>运动健身</h2>
-				</div>
-			</a>
-			<a href="../category-details/相机数码" class="jq22-palace-grid">
-				<div class="jq22-palace-grid-icon">
-					<img src="share/images/nav-004.png" alt="">
-				</div>
-				<div class="jq22-palace-grid-text">
-					<h2>相机数码</h2>
-				</div>
-			</a>
-			<a href="../category-details/学习办公" class="jq22-palace-grid">
-				<div class="jq22-palace-grid-icon">
-					<img src="share/images/nav-005.png" alt="">
-				</div>
-				<div class="jq22-palace-grid-text">
-					<h2>学习办公</h2>
-				</div>
-			</a>
-			<a href="../category-details/平板iPad" class="jq22-palace-grid">
-				<div class="jq22-palace-grid-icon">
-					<img src="share/images/nav-006.png" alt="">
-				</div>
-				<div class="jq22-palace-grid-text">
-					<h2>平板iPad</h2>
-				</div>
-			</a>
-			<a href="../category-details/游戏设备" class="jq22-palace-grid">
-				<div class="jq22-palace-grid-icon">
-					<img src="share/images/nav-007.png" alt="">
-				</div>
-				<div class="jq22-palace-grid-text">
-					<h2>游戏设备</h2>
-				</div>
-			</a>
+            {{end}}
 			<a href="goods-category" class="jq22-palace-grid">
 				<div class="jq22-palace-grid-icon">
 					<img src="share/images/nav-008.png" alt="">
@@ -372,9 +329,9 @@
                         <!-- featured products -->
                         <div class="featured-product-wrapper space-mb-m--15">
                             <div class="row row-5">
-                                {{ range $key ,$value:=.goodsPor }}
-                                    {{if  le 3 $key}}<div></div>
-                                    {{else}}
+                                {{ range $key ,$value:=.goodArr }}
+{{/*                                    {{if  le 3 $key }}<div></div>*/}}
+{{/*                                    {{else}}*/}}
                                         <div class="col-4">
                                             <div class="featured-product space-mb--15">
                                                 <div class="featured-product__image">
@@ -393,7 +350,7 @@
                                                 </div>
                                             </div>
                                         </div>
-                                    {{end}}
+{{/*                                    {{end}}*/}}
                                 {{end}}
                             </div>
                         </div>

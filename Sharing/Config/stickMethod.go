@@ -10,9 +10,9 @@ import (
 )
 
 //封装添加分类方法
-func AddStick(client *ethclient.Client, contract *Agreement.User, stick string,img string) (*types.Transaction, error) {
+func AddStick(client *ethclient.Client, contract *Agreement.User, stick string, img string) (*types.Transaction, error) {
 	opts := Getopts()
-	res, err := contract.AddSticker(opts, stick,img)
+	res, err := contract.AddSticker(opts, stick, img)
 	fmt.Println("addstick:", res)
 	opts.GasLimit = gasLimit
 	opts.GasPrice, err = GetgasPrice(client)
@@ -35,7 +35,10 @@ func ShowSpecies(contract *Agreement.User, id *big.Int) (string, error) {
 }
 
 //封装分类展示方法
-func ShowStick(client *ethclient.Client, id *big.Int) (string, error) {
+func ShowStick(client *ethclient.Client, id *big.Int) (struct {
+	Name string
+	Img  string
+}, error) {
 	ins, err := HaveUserRead(client)
 	res, err := ins.GetStick(nil, id)
 
@@ -43,7 +46,7 @@ func ShowStick(client *ethclient.Client, id *big.Int) (string, error) {
 	if err != nil {
 		log.Fatal(err)
 	}
-	return res.Name, err
+	return res, err
 }
 
 //封装删除分类方法

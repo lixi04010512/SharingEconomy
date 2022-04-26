@@ -10,7 +10,7 @@
     <meta content="Premium Multipurpose Admin & Dashboard Template" name="description">
     <meta content="" name="author">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <script src="static/js/public.js"></script>
+    <script src="../static/js/public.js"></script>
 
     <link rel="stylesheet" href="../share/css/defaultStyle.css" />
     <link rel="stylesheet" href="../share/css/tabbar.css">
@@ -21,13 +21,33 @@
     <link href="../share/static/css/bootstrap.min.css" rel="stylesheet" type="text/css">
     <link href="../share/static/css/icons.min.css" rel="stylesheet" type="text/css">
     <link href="../share/static/css/app.min.css" rel="stylesheet" type="text/css">
+    <link rel="stylesheet" href="../share/css/not-login.css">
+    <link rel="stylesheet" href="../share/css/materialize2.css">
     <!-- 图片上传 css -->
     <link rel="stylesheet" href="../share/css/demo.css">
     <link rel="stylesheet" href="../share/css/cropper.min.css">
 </head>
 
 <body id="body" class="dark-sidebar">
-   
+{{if eq "" .userName}}
+    <div class="slider" style=" position: fixed;
+        left: 0;
+        bottom: 86px;
+        width: 100%;
+        height: 49px;
+        line-height: 49px;
+        z-index: 1010;">
+        <ul class="slides" style="background: none;">
+            <li><img src="" alt="">
+                <div class="caption slider-content center-align ">
+                    <span style="font-size: 15px;">登录Share Fish打开精彩世界</span>
+                    <a href="../login" class="button-default" style="float: right;">立即登录</a>
+                </div>
+            </li>
+        </ul>
+    </div>
+{{else}}
+
     <header>
 		<div class="header-wrapper border-bottom">
 			<div class="container space-y--15">
@@ -193,6 +213,7 @@
         </div>
         <!-- end page content -->
     </div>
+{{end}}
     <!-- end page-wrapper -->
     <footer>
 
@@ -219,6 +240,8 @@
     <script src="https://www.jq22.com/jquery/jquery-1.10.2.js"></script>
     <script src="../share/js/upload.js"></script>
     <script src="../share/js/demo.js"></script>
+<script src="../share/js/materialize.min.js"></script>
+<script src="../share/js/sliderbg.js"></script>
 
 </body>
 {{ end }}

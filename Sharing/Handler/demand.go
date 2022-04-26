@@ -34,8 +34,14 @@ func demandAdd(c *gin.Context) {
 
 	needs.DemandKinds = demandKinds
 	demandAddr := people.Hex()
+	fmt.Println("我的需求拦截器", demandAddr)
 	err = x.InsertDemand(demandKinds, demandAddr, demandNames)
-	respOK(c, "ok")
+	if demandAddr == "0x0000000000000000000000000000000000000000" {
+		respError(c, "请先登录")
+	} else {
+		respOK(c, "ok")
+	}
+
 }
 
 //查
