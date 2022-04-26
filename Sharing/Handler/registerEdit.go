@@ -38,6 +38,7 @@ func register(c *gin.Context) {
 	ks := keystore.NewKeyStore("./keystore", keystore.StandardScryptN, keystore.StandardScryptP)
 	account, _ := ks.NewAccount(password)
 	data, err := config.RegisterMethod(client, contract, account.Address, name, email, password)
+	//config.EmailSend1(email,"./keystore")
 	respOK(c, data)
 	fmt.Println("data", data)
 }
