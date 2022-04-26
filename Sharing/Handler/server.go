@@ -98,6 +98,7 @@ func Start(addr, webDir string) (err error) {
 		share.GET("/mod-photo", modPhotoStatic)
 		share.GET("/order-receiving/:id", orderReceiving)
 		share.GET("/pay",PayStatic)
+		share.GET("/tally-order",TallyStatic)
 
 	}
 	// 启动web服务
