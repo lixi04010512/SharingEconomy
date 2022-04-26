@@ -75,11 +75,12 @@
                         
                         <tr>
                             <td>租用天数</td>
-                            <td align="right">
+                            <td align="right" >
                                 <div class="product_gw">
                                    <em class="product-jian">-</em>
-                                   <input type="text"  value="1" id="borrowDay" class="product-num"/>
+                                   <input type="text"  value="1"  id="borrowDay" class="product-num"/>
                                    <em class="product-add">+</em>
+                                    <span id="span_data" style="display: none"></span>
                                 </div>
                             
                         </td>
@@ -116,7 +117,55 @@
     <script src="../share/js/pop-message.js"></script>
     <script type="text/javascript" src="../share/static/js/logout.js"></script>
     <script src="https://www.jq22.com/jquery/jquery-1.10.2.js"></script>
-	<script src="../share/js/shoppingcart.js" type="text/javascript" charset="utf-8"></script>
+{{/*	<script src="../share/js/shoppingcart.js" type="text/javascript" charset="utf-8"></script>*/}}
+<script>
+    $(function(){
+        //加的效果
+        $(".product-add").click(function(){
+            var n=$(this).prev().val();
+            var num=parseInt(n)+1;
+            if(num==99){ return;}
+            $(this).prev().val(num);
+            TotalPrice();
+        });
+        //减的效果
+        $(".product-jian").click(function(){
+            var n=$(this).next().val();
+            var num=parseInt(n)-1;
+            if(num==0){ return;}
+            $(this).next().val(num);
+            TotalPrice();
+        });
+
+        $(".product-ckb").click(function(){
+            $(this).children("em").toggleClass("product-xz");
+            TotalPrice();
+            productxz();
+        });
+
+//计算产品价格
+        function TotalPrice(){
+            //总价
+            var total = 0;
+            $(".product-em").each(function(){
+
+                if($(this).is(".product-xz")){
+                    var price = parseInt($(this).parents(".product-ckb").siblings().find(".price").text());//得到产品单价
+                    var slproice = parseInt($(this).parents(".product-ckb").siblings().find(".product-num").val());//得到产品数量
+                    var rent = parseInt($(this).parents(".product-ckb").siblings().find(".rent").text());
+                    var dgtotal = price * slproice + rent;
+                    total+=dgtotal;
+                    $("#span_data").html(slproice);
+                }
+                $(".all-price").text(total.toFixed(2)); //输出全部总价
+            });
+
+        }
+
+
+        TotalPrice();
+    });
+</script>
 <script>
 
     $("#sendOrder").click(function(){
@@ -124,7 +173,7 @@
         $.ajax({
             type: "POST",
             url: "/sendBorrowMsg",
-            data: {"id": $("#borrowsId").val(),"borrowDays":$("#borrowDay").val()},
+            data: {"id": $("#borrowsId").val(),"borrowDays":$("#span_data").text()},
             success: function (data) {
                 alert("已提交订单");
                 window.location = "/select_chat_list";

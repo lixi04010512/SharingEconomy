@@ -30,6 +30,7 @@ func BorrowGoods(c *gin.Context) {
 	idInt, err := strconv.Atoi(id)
 	idInt64 := int64(idInt)
 	borrowDays := c.PostForm("borrowDays")
+	fmt.Println("bo",borrowDays)
 	borrowDaysInt, err := strconv.Atoi(borrowDays)
 	borrowDaysInt64 := int64(borrowDaysInt)
 	res, deal, _, err := config.BorrowGoodsMethod(client, contract, big.NewInt(idInt64), big.NewInt(borrowDaysInt64), privKey)

@@ -34,6 +34,7 @@ function TotalPrice(){
 			var rent = parseInt($(this).parents(".product-ckb").siblings().find(".rent").text());
 			var dgtotal = price * slproice + rent;
 			total+=dgtotal;
+			$("#span_data").html(slproice);
 		}
 		$(".all-price").text(total.toFixed(2)); //输出全部总价
 	});

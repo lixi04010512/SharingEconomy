@@ -137,7 +137,7 @@ func (chat *Chat) Insert_chat_content() (err error) {
 func SendBorrow(addr_from string, addr_to string, name_from string, name_to string, content string, img_from string, img_to string) (err error) {
 	times := time.Now()
 	strTime := times.Format("15:05:05")
-	r1, err := db.Query("select * from chat_list where addr=? and owner=?", addr_from, addr_to)
+	r1, err := db.Query("select * from chat_list where addr=? and owner=?", addr_to, addr_from)
 	for r1.Next() {
 		todo := Chat_list{}
 		err = r1.Scan(&todo.Id, &todo.Owner, &todo.Addr, &todo.Name, &todo.Img, &todo.Time, &todo.No_read)
@@ -150,8 +150,8 @@ func SendBorrow(addr_from string, addr_to string, name_from string, name_to stri
 	}
 	fmt.Println("strconv.Itoa(id):", strconv.Itoa(id))
 	if strconv.Itoa(id) == "0" {
-		r, err2 := db.Exec("insert into chat_list(owner,addr,name,img,time,no_read)values(?, ?,?,?,?,?)", addr_from, addr_to, name_from, img_to, strTime, 0)
-		r2, err2 := db.Exec("insert into chat_list(owner,addr,name,img,time,no_read)values(?, ?,?,?,?,?)", addr_to, addr_from, name_to, img_from, strTime, 0)
+		r, err2 := db.Exec("insert into chat_list(owner,addr,name,img,time,no_read)values(?, ?,?,?,?,?)", addr_from, addr_to, name_to, img_to, strTime, 0)
+		r2, err2 := db.Exec("insert into chat_list(owner,addr,name,img,time,no_read)values(?, ?,?,?,?,?)", addr_to, addr_from, name_from, img_from, strTime, 0)
 		if err2 != nil {
 			fmt.Println("exec failed, ", err)
 			return
