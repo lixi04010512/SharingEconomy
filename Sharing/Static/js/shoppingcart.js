@@ -30,7 +30,7 @@ function TotalPrice(){
 		
 		if($(this).is(".product-xz")){
 			var price = parseInt($(this).parents(".product-ckb").siblings().find(".price").text());//得到产品单价
-			var slproice = parseInt($(this).parents(".product-ckb").siblings().find(".product-num").val());//得到产品数量
+			var slproice = parseInt($(this).parents(".product-ckb").siblings().find(".product-num").val());//得到产品天数
 			var rent = parseInt($(this).parents(".product-ckb").siblings().find(".rent").text());
 			var dgtotal = price * slproice + rent;
 			total+=dgtotal;
