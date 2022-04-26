@@ -37,6 +37,7 @@ type GoodsPort struct {
 }
 type StickAll struct {
 	Sticks         string `json:"sticks"`
+	SticksImg      string `json:"sticksImg"'`
 	GoodsPortStick GoodsPort
 }
 
@@ -91,7 +92,18 @@ func addIndex(c *gin.Context) {
 		respError(c, err)
 		return
 	}
+	//种类
+	var stickArr []StickAll
+	for j := 0; j < 7; j++ {
 
+		StickData, err := config.ShowStick(client, big.NewInt(int64(j)))
+		if err != nil {
+			respError(c, err)
+			return
+		}
+		stickArr1 := []StickAll{StickAll{Sticks: StickData.Name, SticksImg: StickData.Img}}
+		stickArr = append(stickArr, stickArr1...)
+	}
 	//定义一个结构体数组
 	var arr []GoodsPort
 	var goodArr []GoodsPort
@@ -144,6 +156,7 @@ func addIndex(c *gin.Context) {
 				"userName": userName,
 				"userImg":  userImg,
 				"address":  people,
+				"stickArr": stickArr,
 			})
 		}
 	}
@@ -229,11 +242,11 @@ func goodsCategory(c *gin.Context) {
 				respError(c, err)
 				return
 			}
-			stickArr1 := []StickAll{StickAll{Sticks: StickData}}
+			stickArr1 := []StickAll{StickAll{Sticks: StickData.Name, SticksImg: StickData.Img}}
 			stickArr = append(stickArr, stickArr1...)
 			for i := 0; i < len(id); i++ {
 				goodData, goodData1, _ := config.HaveIndex(client, id[i])
-				if goodData.Species == StickData {
+				if goodData.Species == StickData.Name {
 					//arr1 := []GoodsPort{GoodsPort{Id: goodData.Id, Names: goodData.Name, Species: goodData.Species, Rent: goodData.Rent, EthPledge: goodData.EthPledge, GoodImg: goodData1.GoodImg}}
 					//arr = append(arr, arr1...)
 					arr1 := []StickAll{StickAll{GoodsPortStick: GoodsPort{Id: goodData.Id, Names: goodData.Name, Species: goodData.Species, Rent: goodData.Rent, EthPledge: goodData.EthPledge, GoodImg: goodData1.GoodImg}}}

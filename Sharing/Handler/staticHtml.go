@@ -26,13 +26,13 @@ func UserProfile(c *gin.Context) {
 	}
 
 	userName, people, email, sign, goodsNum, err := config.GetUserMethod(contract, LoginUser)
-	balances,err := contract.GetBalance(nil,LoginUser)
+	balances, err := contract.GetBalance(nil, LoginUser)
 
-	balanceStr:=balances.String()
+	balanceStr := balances.String()
 	balanceF, err := strconv.ParseFloat(balanceStr, 64)
-	balance, err := strconv.ParseFloat(fmt.Sprintf("%.2f",balanceF/1000000000000000000), 256)
+	balance, err := strconv.ParseFloat(fmt.Sprintf("%.2f", balanceF/1000000000000000000), 256)
 	fmt.Println("res", userName)
-	fmt.Println("peo", people,balances)
+	fmt.Println("peo", people, balances)
 	userImg, err := contract.GetUserImg(nil, LoginUser)
 	if err != nil {
 		respError(c, err)
@@ -119,15 +119,15 @@ func TallyStatic(c *gin.Context) {
 	id := c.PostForm("borrowId")
 	idInt, err := strconv.Atoi(id)
 	idInt64 := int64(idInt)
-	goodsData,goodsData1, err := config.HaveIndex(client, big.NewInt(idInt64))
+	goodsData, goodsData1, err := config.HaveIndex(client, big.NewInt(idInt64))
 	c.HTML(http.StatusOK, "Static/tally-order.html", gin.H{
-		"userName": userName,
-		"address": people,
-		"userImg": userImg,
-		"goodsImg":goodsData1.GoodImg,
-		"goodsName":goodsData.Name,
-		"rent":goodsData.Rent,
-		"pledge":goodsData.EthPledge,
+		"userName":  userName,
+		"address":   people,
+		"userImg":   userImg,
+		"goodsImg":  goodsData1.GoodImg,
+		"goodsName": goodsData.Name,
+		"rent":      goodsData.Rent,
+		"pledge":    goodsData.EthPledge,
 	})
 }
 
@@ -335,7 +335,7 @@ func PostNeedStatic(c *gin.Context) {
 			respError(c, err)
 			return
 		}
-		stickArr1 := []StickAll{StickAll{Sticks: StickData}}
+		stickArr1 := []StickAll{StickAll{Sticks: StickData.Name, SticksImg: StickData.Img}}
 		stickArr = append(stickArr, stickArr1...)
 		//}
 	}
@@ -556,6 +556,7 @@ func PayStatic(c *gin.Context) {
 	userImg, err := contract.GetUserImg(nil, LoginUser)
 	c.HTML(http.StatusOK, "Static/pay.html", gin.H{"userName": userName, "address": people, "userImg": userImg})
 }
+
 //渲染con
 func ConfirmStatic(c *gin.Context) {
 	//初始化client
