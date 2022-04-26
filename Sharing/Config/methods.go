@@ -25,6 +25,10 @@ const (
 	//lixi
 	//Prikey       = "45ee84c9fbfee72f88392d5e99fd071bfb1a89c2c1482456547e049d437c1380"
 	//ShareFishAddress = "0xA714808022fd3840887149fe5E9B93ed52946bC7"
+	//Prikey       = "45ee84c9fbfee72f88392d5e99fd071bfb1a89c2c1482456547e049d437c1380"
+	//ShareFishAddress = "0x72B9CE9e08c7e0C4d5698186cc5271F6dc382c1f"
+	//Prikey       = "769f41a9de1f6f1848d7631e274f2168e3cb20d16c81f688a49d081965a53861"
+	//ShareFishAddress = "0x2632126fD88bf87810c05Cbd3f0dd4F843dBc628"
 
 	gasLimit = 3000000
 	//fileKeystore     = "UTC--2022-03-17T08-08-40.600466800Z--59b0f8a34d8f0dd0e0eef44d02cef0c12fffb9de"
