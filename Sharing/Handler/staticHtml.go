@@ -30,7 +30,7 @@ func UserProfile(c *gin.Context) {
 
 	balanceStr:=balances.String()
 	balanceF, err := strconv.ParseFloat(balanceStr, 64)
-	balance, err := strconv.ParseFloat(fmt.Sprintf("%.2f",balanceF/1000000000000000), 256)
+	balance, err := strconv.ParseFloat(fmt.Sprintf("%.2f",balanceF/1000000000000000000), 256)
 	fmt.Println("res", userName)
 	fmt.Println("peo", people,balances)
 	userImg, err := contract.GetUserImg(nil, LoginUser)
