@@ -26,19 +26,26 @@ func BorrowGoods(c *gin.Context) {
 		return
 	}
 	id := c.PostForm("borrowId")
+	userimg := c.PostForm("userimg")
+	img := c.PostForm("img")
+	goods_owner := c.PostForm("goods_owner")
+	name_user := c.PostForm("name_from")
+	name_owner := c.PostForm("name_owner")
 	idInt, err := strconv.Atoi(id)
 	idInt64 := int64(idInt)
 	borrowDays := c.PostForm("borrowDays")
 	borrowDaysInt, err := strconv.Atoi(borrowDays)
 	borrowDaysInt64 := int64(borrowDaysInt)
-	res,deal,borrower,borrowDay,err := config.BorrowGoodsMethod(client,contract,big.NewInt(idInt64),big.NewInt(borrowDaysInt64),privKey)
-	message :=fmt.Sprintf("你好，我是账号为%s的用户，我想借用%s天你的商品，我的借用号是%s，",borrower,borrowDay,deal)
-	fmt.Println("mess",message)
-	todo := db.Chat{}
+	res, deal, borrower, borrowDay, err := config.BorrowGoodsMethod(client, contract, big.NewInt(idInt64), big.NewInt(borrowDaysInt64), privKey)
+	message := fmt.Sprintf("你好，我是账号为%s的用户，我想借用%s天你的商品，我的借用号是%s，", borrower, borrowDay, deal)
+	fmt.Println("mess", message)
+	addr := borrower.Hex()
+	err = db.SendBorrow(addr, goods_owner, name_user, name_owner, message, userimg, img)
+	if err != nil {
+		respError(c, err)
+	}
 
-	todo.Insert_chat_content()
-
-	fmt.Println("sendBorrow",res)
+	fmt.Println("sendBorrow", res)
 	c.Redirect(http.StatusFound, "/cart")
 }
 
@@ -90,10 +97,8 @@ func Borrow(c *gin.Context) {
 	deal := c.PostForm("deal")
 	dealInt, err := strconv.Atoi(deal)
 	dealInt64 := int64(dealInt)
-	res,err := config.BorrowMethod(client,contract,big.NewInt(idInt64),big.NewInt(dealInt64),privKey)
+	res, err := config.BorrowMethod(client, contract, big.NewInt(idInt64), big.NewInt(dealInt64), privKey)
 
-	fmt.Println("Borrow",res)
+	fmt.Println("Borrow", res)
 	c.Redirect(http.StatusFound, "/cart")
 }
-
-
