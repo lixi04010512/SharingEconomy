@@ -94,7 +94,7 @@ func addIndex(c *gin.Context) {
 	}
 	//种类
 	var stickArr []StickAll
-	for j := 0; j < 7; j++ {
+	for j := 1; j < 7; j++ {
 
 		StickData, err := config.ShowStick(client, big.NewInt(int64(j)))
 		if err != nil {
