@@ -69,6 +69,7 @@ func Start(addr, webDir string) (err error) {
 		todo.GET("/delNeeds/:id", delNeeds)
 		todo.POST("/delGoodsPost",delGoods)
 		todo.POST("/topUpPost",topUp)
+		todo.POST("/sendBorrowMsg",BorrowGoods)
 	}
 	share := r.Group("")
 	{

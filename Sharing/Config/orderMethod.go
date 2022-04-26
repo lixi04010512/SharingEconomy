@@ -13,16 +13,19 @@ import (
 
 
 //封装物品借出方法
-func BorrowGoodsMethod(client *ethclient.Client, contract *Agreement.User, id *big.Int, borrowDays *big.Int,privateKey *ecdsa.PrivateKey) (*types.Transaction, error) {
+func BorrowGoodsMethod(client *ethclient.Client, contract *Agreement.User, id *big.Int, borrowDays *big.Int,privateKey *ecdsa.PrivateKey) (*types.Transaction,*big.Int,common.Address,*big.Int, error) {
 	opts := GetMsgOpts(privateKey)
 	res, err := contract.BorrowGoods(opts, id, borrowDays)
+
 	fmt.Println("bGoods:", res)
+	borrow,err:=contract.GoodsData(nil,id)
+
 	opts.GasLimit = gasLimit
 	opts.GasPrice, err = GetgasPrice(client)
 	if err != nil {
 		log.Fatal(err)
 	}
-	return res, nil
+	return res,borrow.Deal,borrow.Borrowers.Borrower,borrowDays, nil
 }
 
 //封装同意借出方法

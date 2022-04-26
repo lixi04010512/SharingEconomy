@@ -2,6 +2,7 @@ package handler
 
 import (
 	config "Sharing/Config"
+	"Sharing/db"
 	"fmt"
 	"github.com/gin-gonic/gin"
 	"math/big"
@@ -30,7 +31,12 @@ func BorrowGoods(c *gin.Context) {
 	borrowDays := c.PostForm("borrowDays")
 	borrowDaysInt, err := strconv.Atoi(borrowDays)
 	borrowDaysInt64 := int64(borrowDaysInt)
-	res,err := config.BorrowGoodsMethod(client,contract,big.NewInt(idInt64),big.NewInt(borrowDaysInt64),privKey)
+	res,deal,borrower,borrowDay,err := config.BorrowGoodsMethod(client,contract,big.NewInt(idInt64),big.NewInt(borrowDaysInt64),privKey)
+	message :=fmt.Sprintf("你好，我是账号为%s的用户，我想借用%s天你的商品，我的借用号是%s，",borrower,borrowDay,deal)
+	fmt.Println("mess",message)
+	todo := db.Chat{}
+
+	todo.Insert_chat_content()
 
 	fmt.Println("sendBorrow",res)
 	c.Redirect(http.StatusFound, "/cart")
