@@ -168,9 +168,9 @@
         url: "/ListNeeds",
         type: "POST",
         success: function (data) {
-            console.log("hhh", data)
+
             for (const key in data.data) {
-                console.log(data.data);
+
                 $('#ListNeeds').append(`
                       <div class="card">
             <div class="card-body">

@@ -6,8 +6,10 @@ import (
 	"github.com/ethereum/go-ethereum/common"
 	"github.com/gin-gonic/gin"
 	"math/big"
+	"math/rand"
 	"net/http"
 	"strconv"
+	"time"
 )
 
 //租借者信息
@@ -37,8 +39,35 @@ type StickAll struct {
 	Sticks         string `json:"sticks"`
 	GoodsPortStick GoodsPort
 }
-type GoodsAllInter interface {
-	goodsAll()
+
+//随机不重复
+//生成count个[start,end)结束的不重复的随机数
+func generateRandomNumber(start int, end int, count int) []int64 {
+	//范围检查
+	if end < start || (end-start) < count {
+		return nil
+	}
+	//存放结果的slice
+	nums := make([]int64, 0)
+	//随机数生成器，加入时间戳保证每次生成的随机数不一样
+	r := rand.New(rand.NewSource(time.Now().UnixNano()))
+	for len(nums) < count {
+		//生成随机数
+		num := r.Intn((end - start)) + start
+		//查重
+		exist := false
+		for _, v := range nums {
+			if v == int64(num) {
+				exist = true
+				break
+			}
+		}
+		if !exist {
+			nums = append(nums, int64(num))
+		}
+	}
+	return nums
+
 }
 
 //首页-动态展示
@@ -65,24 +94,40 @@ func addIndex(c *gin.Context) {
 
 	//定义一个结构体数组
 	var arr []GoodsPort
+	var goodArr []GoodsPort
+	//nums := make([]int64, 0)
+	nums := generateRandomNumber(0, len(id), len(id))
+	//goodNums:=generateRandomNumber(0, len(id), 4)
+	fmt.Println("nums", nums)
+	//gRand := rand.New(rand.NewSource(time.Now().UnixNano()).(rand.Source64))
+	for j := 0; j < 3; j++ {
+		x := int64(rand.Intn(len(id)))
+		goodData, goodData1, err := config.HaveIndex(client, big.NewInt(x))
+		//print("图片路径",goodImg)
+		if err != nil {
+			respError(c, err)
+			return
+		}
+		if goodData.Name != "" {
+			arr2 := []GoodsPort{GoodsPort{Id: goodData.Id, Names: goodData.Name, Species: goodData.Species, Rent: goodData.Rent, EthPledge: goodData.EthPledge, GoodImg: goodData1.GoodImg}}
+			goodArr = append(goodArr, arr2...)
+		}
+	}
 	for i := 0; i < len(id)+1; i++ {
 		if i < len(id) {
 			//var Owner common.Address
-			var arr1 []GoodsPort
-			if id[i] != big.NewInt(0) {
-				goodData, goodData1, err := config.HaveIndex(client, id[i])
-				//print("图片路径",goodImg)
-				if err != nil {
-					respError(c, err)
-					return
-				}
-				arr1 = []GoodsPort{GoodsPort{Id: goodData.Id, Names: goodData.Name, Species: goodData.Species, Rent: goodData.Rent, EthPledge: goodData.EthPledge, GoodImg: goodData1.GoodImg}}
-
+			//xint:=int64(rand.Intn(len(id)))
+			//xint := int64(gRand.Intn(len(id)))
+			goodData, goodData1, err := config.HaveIndex(client, big.NewInt(nums[i]))
+			//print("图片路径",goodImg)
+			if err != nil {
+				respError(c, err)
+				return
 			}
-
-
-			arr = append(arr, arr1...)
-
+			if goodData.Name != "" {
+				arr1 := []GoodsPort{GoodsPort{Id: goodData.Id, Names: goodData.Name, Species: goodData.Species, Rent: goodData.Rent, EthPledge: goodData.EthPledge, GoodImg: goodData1.GoodImg}}
+				arr = append(arr, arr1...)
+			}
 			//goodsPort1 := goodsPort{ Names: names, Species: species, Rent: rent, EthPledge: ethPledge}
 			//fmt.Println(goodsPort{},addr)
 		} else {
@@ -94,6 +139,7 @@ func addIndex(c *gin.Context) {
 				return
 			}
 			c.HTML(http.StatusOK, "Static/index.html", gin.H{
+				"goodArr":  goodArr,
 				"goodsPor": arr,
 				"userName": userName,
 				"userImg":  userImg,
@@ -141,6 +187,7 @@ func shopPorduct(c *gin.Context) {
 			Rent:      goodData.Rent,
 			EthPledge: goodData.EthPledge,
 			GoodImg:   goodData1.GoodImg,
+			Species:   goodData.Species,
 		},
 		"userName": userName,
 		"address":  people,
@@ -149,16 +196,16 @@ func shopPorduct(c *gin.Context) {
 }
 
 //限制展示个数
-var additionGoods int
-
-func addGoodsCategory(int) int {
-	additionGoods++
-	if additionGoods >= 3 {
-		additionGoods = 0
-	}
-	//fmt.Println("additionGoods",additionGoods)
-	return additionGoods
-}
+//var additionGoods int
+//
+//func addGoodsCategory(int) int {
+//	additionGoods++
+//	if additionGoods >= 3 {
+//		additionGoods = 0
+//	}
+//	//fmt.Println("additionGoods",additionGoods)
+//	return additionGoods
+//}
 
 //商品分类展示
 func goodsCategory(c *gin.Context) {
@@ -198,14 +245,14 @@ func goodsCategory(c *gin.Context) {
 			}
 		} else {
 			//fmt.Println("stickArr===", stickArr)
-			fmt.Println("ashvdlasjvhlja", additionGoods)
+			//fmt.Println("ashvdlasjvhlja", additionGoods)
 			stickArr = append(stickArr, arr...)
 			c.HTML(http.StatusOK, "Static/goods-category.html", gin.H{
 				"goodsCategory": stickArr,
 				"userName":      userName,
 				"address":       people,
 				"userImg":       userImg,
-				"LimitAdd":      additionGoods,
+				//"LimitAdd":      additionGoods,
 			})
 
 		}

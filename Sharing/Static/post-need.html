@@ -12,13 +12,33 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <script src="share/static/js/public.js"></script>
     <link rel="stylesheet" href="share/css/tabbar.css">
-
+    <link rel="stylesheet" href="share/css/not-login.css">
+    <link rel="stylesheet" href="share/css/materialize2.css">
     <link rel="stylesheet" href="share/assets/css/style.css">
     <!-- App css -->
     <link href="share/static/css/bootstrap.min.css" rel="stylesheet" type="text/css">
     <link href="share/static/css/icons.min.css" rel="stylesheet" type="text/css">
     <link href="share/static/css/app.min.css" rel="stylesheet" type="text/css">
 </head>
+{{if eq "" .userName}}
+    <div class="slider" style=" position: fixed;
+        left: 0;
+        bottom: 86px;
+        width: 100%;
+        height: 49px;
+        line-height: 49px;
+        z-index: 1010;">
+        <ul class="slides" style="background: none;">
+            <li><img src="" alt="">
+                <div class="caption slider-content center-align ">
+                    <span style="font-size: 15px;">登录Share Fish打开精彩世界</span>
+                    <a href="../login" class="button-default" style="float: right;">立即登录</a>
+                </div>
+            </li>
+        </ul>
+    </div>
+{{else}}
+
 
 <body id="body" class="dark-sidebar">
 <header>
@@ -138,7 +158,7 @@
     </div>
 
 </footer>
-
+{{end}}
 <!-- App js -->
 <script src="share/static/js/app.js"></script>
 <script src="share/js/tabbar.js"></script>
@@ -152,6 +172,8 @@
 <script src="share/post--need.js"></script>
 <script src="share/js/pop-message.js"></script>
 <script type="text/javascript" src="share/static/js/logout.js"></script>
+<script src="share/js/materialize.min.js"></script>
+<script src="share/js/sliderbg.js"></script>
 <script>
 
     //鼠标移开需求描述框开始验证
@@ -180,8 +202,12 @@
                     dataType: "json",
                     data: {'demandKinds': demandKinds, 'demandName': demandName},
                     success: function (data) {
-                        console.log("ok")
-                        window.location = "/chat"
+                        if (data.data=="请先登录"){
+                            alert("请先登录")
+                        }else {
+                            console.log("ok")
+                            window.location = "/chat"
+                        }
                     },
 
                 })

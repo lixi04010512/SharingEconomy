@@ -12,17 +12,37 @@
     <title>ShareFish</title>
     <script src="share/static/js/public.js"></script>
     <link rel="stylesheet" href="share/css/tabbar.css">
-
+    <link rel="stylesheet" href="../share/css/not-login.css">
+    <link rel="stylesheet" href="../share/css/materialize2.css">
     <link rel="stylesheet" href="share/assets/css/style.css">
     <!-- App css -->
+
     <link href="share/static/css/bootstrap.min.css" rel="stylesheet" type="text/css">
     <link href="share/static/css/icons.min.css" rel="stylesheet" type="text/css">
     <link href="share/static/css/app.min.css" rel="stylesheet" type="text/css">
 
 </head>
 
-<body>
 
+{{if eq "" .userName}}
+    <div class="slider" style=" position: fixed;
+        left: 0;
+        bottom: 86px;
+        width: 100%;
+        height: 49px;
+        line-height: 49px;
+        z-index: 1010;">
+        <ul class="slides" style="background: none;">
+            <li><img src="" alt="">
+                <div class="caption slider-content center-align ">
+                    <span style="font-size: 15px;">登录Share Fish打开精彩世界</span>
+                    <a href="../login" class="button-default" style="float: right;">立即登录</a>
+                </div>
+            </li>
+        </ul>
+    </div>
+{{else}}
+<body>
     <header>
         <div class="header-wrapper border-bottom">
             <div class="container space-y--15">
@@ -75,20 +95,16 @@
     <div class="row" id="myListNeed" style="    padding-top: 12px;">
 
     </div>
-
-
     <footer style="padding-bottom: 100px;">
-
         <div class="sc-bottom-bar">
             <a class="sc-menu-item " href="../index"><i class="fas fa-home"></i></a>
             <a class="sc-menu-item " href="../goods-category"><i class="fas  fa-list"></i></a>
             <a href="../chat" class="sc-menu-item "><i class="fas fa-plus"></i></a>
-
             <a class="sc-menu-item" href="../select_chat_list"><i class="fas fa-comments"></i></a>
             <a class="sc-menu-item " href="../ui-me"><i class="fas fa-user"></i></a>
         </div>
-
     </footer>
+    {{end}}
 
     <script src="share/static/js/app.js"></script>
     <script type="text/javascript" src="themes/js/jquery.min.js"></script>
@@ -110,6 +126,8 @@
     
     <script src="share/js/pop-message.js"></script>
     <script type="text/javascript" src="share/static/js/logout.js"></script>
+    <script src="share/js/materialize.min.js"></script>
+    <script src="share/js/sliderbg.js"></script>
     <script>
         $.ajax({
             url:"/MyListNeeds",
@@ -174,7 +192,7 @@
     </script>
 
 
-
-</body>
 {{ end }}
+</body>
+
 </html>

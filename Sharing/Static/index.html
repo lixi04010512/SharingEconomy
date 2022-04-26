@@ -32,6 +32,7 @@
 
 <body>
     <!-- 未登录 -->
+
     {{if eq "" .userName}}
         <div class="slider" style=" position: fixed;
         left: 0;
@@ -103,7 +104,9 @@
         </header>
         <!--====================  End of header area  ====================-->
         <!--====================  mobile menu overlay ====================-->
+
         {{ template "Static/menu.html" . }}
+
         <!--====================  End of mobile menu overlay  ====================-->
         <!--====================  hero slider ====================-->
         <div class="hero-slider bg-color--grey space-y--10">
@@ -372,9 +375,9 @@
                         <!-- featured products -->
                         <div class="featured-product-wrapper space-mb-m--15">
                             <div class="row row-5">
-                                {{ range $key ,$value:=.goodsPor }}
-                                    {{if  le 3 $key}}<div></div>
-                                    {{else}}
+                                {{ range $key ,$value:=.goodArr }}
+{{/*                                    {{if  le 3 $key }}<div></div>*/}}
+{{/*                                    {{else}}*/}}
                                         <div class="col-4">
                                             <div class="featured-product space-mb--15">
                                                 <div class="featured-product__image">
@@ -393,7 +396,7 @@
                                                 </div>
                                             </div>
                                         </div>
-                                    {{end}}
+{{/*                                    {{end}}*/}}
                                 {{end}}
                             </div>
                         </div>

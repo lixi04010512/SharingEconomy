@@ -125,7 +125,7 @@
                                 </div>
         
                                 <div class="signin-btn text-center">
-                                    <button type="submit">登录</button>
+                                    <button type="submit" id="loginText">登录</button>
                                 </div>
 
                                 <hr>
@@ -152,7 +152,7 @@
         
                                 <div class="form-group">
                                     <label>私钥</label>
-                                    <input type="text" class="form-control" placeholder="请输入你的私钥" required="" name="log_privateKey" id="log_privateKey">
+                                    <input type="password" class="form-control" placeholder="请输入你的私钥" required="" name="log_privateKey" id="log_privateKey">
                                     </div>
         
                                 <div class="signin-btn text-center">
@@ -221,6 +221,20 @@
     $("#use_password").focus(function(){
         $("#p_password").html("");
     })
+    // $("#loginText").click(function (){
+    //    $.ajax({
+    //            url:'/loginPost',
+    //            type:'POST',
+    //            success:function (data){
+    //                alert(data)
+    //                console.log(data,"data",data.data,"data.data")
+    //
+    //        }
+    //    }
+    //    )
+    //
+    //
+    // })
 </script>
 </body>
 {{ end }}

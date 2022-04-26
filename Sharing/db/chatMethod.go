@@ -183,20 +183,20 @@ func SendBorrow(addr_from string, addr_to string, name_from string, name_to stri
 		fmt.Println(r3, r4)
 		return
 	} else {
-		r, err := db.Exec("insert into chat(addr_from,addr_to,content,img_from,img_to,time)values(?, ?,?,?,?,?)", addr_from, addr_to, content, img_from, img_to, strTime)
-		if err != nil {
+		r, err1 := db.Exec("insert into chat(addr_from,addr_to,content,img_from,img_to,time)values(?, ?,?,?,?,?)", addr_from, addr_to, content, img_from, img_to, strTime)
+		if err1 != nil {
 			fmt.Println("exec failed, ", err)
 			return
 		}
-		id1, err := r.LastInsertId()
-		if err != nil {
+		id1, err2 := r.LastInsertId()
+		if err2 != nil {
 			fmt.Println("exec failed, ", err)
 			return
 		}
 		fmt.Println("insert chat succ:", id1)
-		r3, err := db.Exec("update chat_list set time=? where owner=? and addr =? ", strTime, addr_from, addr_to)
-		r4, err := db.Exec("update chat_list set time=?,no_read=no_read+1 where owner=? and addr =? ", strTime, addr_to, addr_from)
-		if err != nil {
+		r3, err3 := db.Exec("update chat_list set time=? where owner=? and addr =? ", strTime, addr_from, addr_to)
+		r4, err3 := db.Exec("update chat_list set time=?,no_read=no_read+1 where owner=? and addr =? ", strTime, addr_to, addr_from)
+		if err3 != nil {
 			fmt.Println("exec failed, ", err)
 			return
 		}

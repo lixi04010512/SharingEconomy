@@ -12,7 +12,6 @@ import (
 	"net/http"
 )
 
-
 //用户地址
 var LoginUser common.Address
 var privKey *ecdsa.PrivateKey
@@ -21,7 +20,7 @@ var Userimg string
 
 //登录
 func login(c *gin.Context) {
-	fmt.Println("login")
+	//fmt.Println("login")
 	//初始化client
 	client, err := config.GetClient()
 	if err != nil {
@@ -58,20 +57,25 @@ func login(c *gin.Context) {
 		return
 	}
 	privKey = unlockedKey.PrivateKey
-	fmt.Println("pri",privKey)
+	fmt.Println("pri", privKey)
 	comAddr := unlockedKey.Address
 	LoginUser = comAddr
-	Addr_owner =LoginUser.Hex()
+	Addr_owner = LoginUser.Hex()
 	data, err := config.LoginMethod(client, contract, comAddr, privKey)
 	addr := comAddr.Hex()
 	userImg, err := contract.GetUserImg(nil, comAddr)
-	Userimg=userImg
+	Userimg = userImg
+	if data != nil && unlockedKey != nil {
+		c.Redirect(http.StatusFound, "/index")
+		fmt.Println("addr", addr)
+		fmt.Println("data", data)
+	} else {
+		//respOK(c,"无法用给定的密码解密密钥")
+		c.Redirect(http.StatusFound, "/login")
 
-	c.Redirect(http.StatusFound, "/index")
-	//respOK(c,data)
-	fmt.Println("addr", addr)
-	fmt.Println("data", data)
+	}
 }
+
 //私钥登录
 func privateLogin(c *gin.Context) {
 	fmt.Println("ok")
@@ -89,25 +93,24 @@ func privateLogin(c *gin.Context) {
 		return
 	}
 
-	privateKeyStr:= c.PostForm("log_privateKey")
-	fmt.Println("str",privateKeyStr)
+	privateKeyStr := c.PostForm("log_privateKey")
+	fmt.Println("str", privateKeyStr)
 	if err != nil {
 		fmt.Println(err)
 		respError(c, err)
 		return
 	}
 
-
 	privKey, _ = crypto.HexToECDSA(privateKeyStr)
-	fmt.Println("prikey",privKey)
+	fmt.Println("prikey", privKey)
 
 	comAddr := crypto.PubkeyToAddress(privKey.PublicKey)
-	fmt.Println("comaddr",comAddr)
+	fmt.Println("comaddr", comAddr)
 	LoginUser = comAddr
 	data, err := config.LoginMethod(client, contract, comAddr, privKey)
 	addr := comAddr.Hex()
 	userImg, err := contract.GetUserImg(nil, comAddr)
-	Userimg=userImg
+	Userimg = userImg
 
 	c.Redirect(http.StatusFound, "/index")
 	//respOK(c,data)

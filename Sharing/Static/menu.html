@@ -18,20 +18,26 @@
     <div class="offcanvas-navigation-wrapper space-mt--40">
         <ul class="offcanvas-navigation">
 
-
+          {{if ne "" .userName}}
             <li><span class="icon"><i class="ti ti-plus" style="font-size: 25px;"></i></span><a
                     href="../lend-items">上传物品</a></li>
             <li><span class="icon"><i class="ti ti-shopping-cart" style="font-size: 25px;"></i></span><a
                     href="../shop">我租入的物品</a></li>
             <li><span class="icon"><i class="ti ti-box" style="font-size: 25px;"></i></span><a
                     href="../order">我借出的物品</a></li>
-            {{if eq "" .userName}}
-            <li><span class="icon"><i class="ti ti-login" style="font-size: 25px;"></i></span><a
-                    href="../login">登录/注册</a></li>
-            {{else}}
             <li><span class="icon"><i class="ti ti-power" style="font-size: 25px;"></i></span><a id="confirm">退出登入</a>
             </li>
-            {{end}}
+                {{else }}
+              <li><span class="icon"><i class="ti ti-login" style="font-size: 25px;"></i></span><a
+                          href="../login">登录/注册</a></li>
+                  {{end}}
+{{/*            {{if eq "" .userName}}*/}}
+{{/*            <li><span class="icon"><i class="ti ti-login" style="font-size: 25px;"></i></span><a*/}}
+{{/*                    href="../login">登录/注册</a></li>*/}}
+{{/*            {{else}}*/}}
+{{/*            <li><span class="icon"><i class="ti ti-power" style="font-size: 25px;"></i></span><a id="confirm">退出登入</a>*/}}
+{{/*            </li>*/}}
+{{/*            {{end}}*/}}
         </ul>
     </div>
 </div>
