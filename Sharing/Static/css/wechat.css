@@ -4143,6 +4143,7 @@ form .btn.btn-sm {
   margin-bottom: 0;
 }
 .single-chat-item.outgoing .user-message .single-message p {
+  text-align: left;
   background-color: #0d5afd;
   color: #ffffff;
 }
