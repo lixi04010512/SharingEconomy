@@ -20,7 +20,7 @@ a, label, button, input, select {
     -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
 }
 img {
-    /* width: 100%; */
+    width: 100%;
     height: auto;
     display: block;
     border: 0;

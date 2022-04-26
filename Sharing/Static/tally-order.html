@@ -10,17 +10,17 @@
     <script src="../share/static/js/public.js"></script>
     <link rel="stylesheet" href="../share/css/tally-order-style.css" />
     <link rel="stylesheet" href="../share/themes/css/home.css">
-    <link rel="stylesheet" type="text/css" href="../share/css/shoppingcart.css"/>
+    <link rel="stylesheet" type="text/css" href="../share/css/shoppingcart.css" />
 
     <link href="../share/static/css/icons.min.css" rel="stylesheet" type="text/css">
- 
+
 
 </head>
 
 <body>
-   
-    
-<input type="hidden" id="borrowsId" value="{{.id}}">
+
+
+    <input type="hidden" id="borrowsId" value="{{.id}}">
     <div class="iphone">
         <a class="back-link" onClick="javascript :history.back(-1);"> <i class="fa fa-angle-left"></i>
             返回</a>
@@ -29,7 +29,7 @@
         </header>
 
         <form action="" class="form" method="POST">
-           
+
 
             <fieldset>
                 <legend>商品信息</legend>
@@ -44,20 +44,15 @@
                                 </div>
                                 {{end}}
                                 <div class="aui-list-product-fl-text">
-                                    <h3 class="aui-list-product-fl-title">
-                                        {{.goodsName}}</h3>
+                                    <span class="aui-list-product-fl-title">
+                                        {{.goodsName}}</span>
                                     <div class="aui-list-product-fl-mes">
-                                        <div>
-                                            <span class="aui-list-product-item-price">
-                                                <em>{{.rent}}ETH/天</em>
-                                            </span>
-                                            <span class="aui-list-product-item-del-price">
-
-                                            </span>
-                                        </div>
-                                        <div class="aui-btn-purchase">
-                                            <span>押金{{.pledge}}ETH</span>
-                                        </div>
+                                        <p class="aui-list-product-item-price">
+                                            <em>租金 {{.rent}}ETH /天</em>
+                                        </p>
+                                    </div>
+                                    <div class="aui-btn-purchase">
+                                        <h3>押金 {{.pledge}}ETH</h3>
                                     </div>
 
                                 </div>
@@ -72,34 +67,38 @@
                 <table>
                     <tbody>
                         <div class="product-ckb"><em class="product-em product-xz"></em></div>
-                        
+
                         <tr>
                             <td>租用天数</td>
-                            <td align="right">
+                            <td align="right" >
                                 <div class="product_gw">
                                    <em class="product-jian">-</em>
-                                   <input type="text"  value="1" id="borrowDay" class="product-num"/>
+                                   <input type="text"  value="1"  id="borrowDay" class="product-num"/>
                                    <em class="product-add">+</em>
+                                    <span id="span_data" style="display: none"></span>
                                 </div>
-                            
-                        </td>
+
+                            </td>
                         </tr>
                         <tr>
                             <td>租金</td>
-                            <td align="right"><span class="product-price">ETH&thinsp;<span class="price">{{.rent}}</span></span></td>
-                        
+                            <td align="right"><span class="product-price">ETH&thinsp;<span
+                                        class="price">{{.rent}}</span></span></td>
+
                         </tr>
                         <tr>
                             <td>押金</td>
-                            <td align="right"><span class="product-price">ETH&thinsp;<span class="rent">{{.pledge}}</span></span></td>
-                
+                            <td align="right"><span class="product-price">ETH&thinsp;<span
+                                        class="rent">{{.pledge}}</span></span></td>
+
                         </tr>
                     </tbody>
                     <tfoot>
                         <tr>
                             <td>总共</td>
                             <td align="right">
-                                <div class="all-product"><span class="all-product-a">ETH&thinsp;<span class="all-price">296</span></span></div>
+                                <div class="all-product"><span class="all-product-a">ETH&thinsp;<span
+                                            class="all-price">0</span></span></div>
                             </td>
                         </tr>
                     </tfoot>
@@ -116,7 +115,56 @@
     <script src="../share/js/pop-message.js"></script>
     <script type="text/javascript" src="../share/static/js/logout.js"></script>
     <script src="https://www.jq22.com/jquery/jquery-1.10.2.js"></script>
-	<script src="../share/js/shoppingcart.js" type="text/javascript" charset="utf-8"></script>
+<<<<<<< HEAD
+{{/*	<script src="../share/js/shoppingcart.js" type="text/javascript" charset="utf-8"></script>*/}}
+<script>
+    $(function(){
+        //加的效果
+        $(".product-add").click(function(){
+            var n=$(this).prev().val();
+            var num=parseInt(n)+1;
+            if(num==99){ return;}
+            $(this).prev().val(num);
+            TotalPrice();
+        });
+        //减的效果
+        $(".product-jian").click(function(){
+            var n=$(this).next().val();
+            var num=parseInt(n)-1;
+            if(num==0){ return;}
+            $(this).next().val(num);
+            TotalPrice();
+        });
+
+        $(".product-ckb").click(function(){
+            $(this).children("em").toggleClass("product-xz");
+            TotalPrice();
+            productxz();
+        });
+
+//计算产品价格
+        function TotalPrice(){
+            //总价
+            var total = 0;
+            $(".product-em").each(function(){
+
+                if($(this).is(".product-xz")){
+                    var price = parseInt($(this).parents(".product-ckb").siblings().find(".price").text());//得到产品单价
+                    var slproice = parseInt($(this).parents(".product-ckb").siblings().find(".product-num").val());//得到产品数量
+                    var rent = parseInt($(this).parents(".product-ckb").siblings().find(".rent").text());
+                    var dgtotal = price * slproice + rent;
+                    total+=dgtotal;
+                    $("#span_data").html(slproice);
+                }
+                $(".all-price").text(total.toFixed(2)); //输出全部总价
+            });
+
+        }
+
+
+        TotalPrice();
+    });
+</script>
 <script>
 
     $("#sendOrder").click(function(){
@@ -124,15 +172,16 @@
         $.ajax({
             type: "POST",
             url: "/sendBorrowMsg",
-            data: {"id": $("#borrowsId").val(),"borrowDays":$("#borrowDay").val()},
+            data: {"id": $("#borrowsId").val(), "borrowDays": $("#span_data").text()},
             success: function (data) {
                 alert("已提交订单");
                 window.location = "/select_chat_list";
             }
         })
-    })
-</script>
+        })
+    </script>
 
 </body>
 {{ end }}
+
 </html>
