@@ -19,7 +19,7 @@ func AddStick(client *ethclient.Client, contract *Agreement.User, stick string,i
 	if err != nil {
 		log.Fatal(err)
 	}
-	return res, nil
+	return res, err
 }
 
 //封装分类展示方法
