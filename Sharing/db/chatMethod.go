@@ -128,6 +128,9 @@ func (chat *Chat) Insert_chat_content() (err error) {
 	return
 }
 
+//发送借用提醒
+
+
 //删除消息列表
 func (chat *Chat_list) Delete_chat_list() (err error) {
 	fmt.Println("chatlist:", chat.Id)

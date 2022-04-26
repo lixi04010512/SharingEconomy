@@ -19,11 +19,9 @@ const (
 	//Prikey       = "769f41a9de1f6f1848d7631e274f2168e3cb20d16c81f688a49d081965a53861"
 	//ShareFishAddress = "0x097Dbbe9AC7dDd12919A1C6C1D364852F5bcefdE"
 	//hch
-	//Prikey       = "5fd7eb82fbd4c5cc87fbeb867ff4804537723d80a5289606c28ca5c8eed4aa77"
-	//ShareFishAddress = "0x6fcf9cb4A8E1C39b619b6aeA8d12Bf60313b868f"
+	Prikey       = "5fd7eb82fbd4c5cc87fbeb867ff4804537723d80a5289606c28ca5c8eed4aa77"
+	ShareFishAddress = "0xE2FDDD21499fa8bc26ae16DA651cC5B66731c878"
 
-	//Prikey       = "45ee84c9fbfee72f88392d5e99fd071bfb1a89c2c1482456547e049d437c1380"
-	//ShareFishAddress = "0xd4F4239D6405C9A6bbE4F88Dc1CecA15043284f0"
 	//lixi
 	Prikey       = "45ee84c9fbfee72f88392d5e99fd071bfb1a89c2c1482456547e049d437c1380"
 	ShareFishAddress = "0xA714808022fd3840887149fe5E9B93ed52946bC7"
