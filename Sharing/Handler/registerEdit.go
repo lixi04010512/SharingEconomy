@@ -2,11 +2,10 @@ package handler
 
 import (
 	config "Sharing/Config"
-	"crypto/ecdsa"
-	"crypto/x509"
-	"encoding/base64"
+	"encoding/hex"
 	"fmt"
 	"github.com/ethereum/go-ethereum/accounts/keystore"
+	"github.com/ethereum/go-ethereum/crypto"
 	"github.com/gin-gonic/gin"
 	"io/ioutil"
 	"log"
@@ -72,8 +71,11 @@ func register(c *gin.Context) {
 	}
 	privKey = unlockedKey.PrivateKey
 	fmt.Println("pri", privKey)
-	key,err :=DumpPrivateKeyBase64(privKey)
-	err1 :=config.EmailSend1(email,names,key)
+	key :=crypto.FromECDSA(privKey)
+	fmt.Println(key)
+	keybase := hex.EncodeToString(key)
+	fmt.Println(keybase)
+	err1 :=config.EmailSend1(email,names,keybase)
 	if err1 !=nil {
 		fmt.Println(err1)
 	}
@@ -81,11 +83,4 @@ func register(c *gin.Context) {
 	fmt.Println("data", data)
 }
 
-func DumpPrivateKeyBase64(privatekey *ecdsa.PrivateKey) (string, error) {
-	keybytes,err := x509.MarshalECPrivateKey(privatekey)
-	if err !=nil {
-		fmt.Println(err)
-	}
-	keybase64 := base64.StdEncoding.EncodeToString(keybytes)
-	return keybase64, nil
-}
+

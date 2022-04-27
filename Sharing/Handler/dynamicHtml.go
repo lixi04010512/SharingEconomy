@@ -94,7 +94,7 @@ func addIndex(c *gin.Context) {
 	}
 	//种类
 	var stickArr []StickAll
-	for j := 1; j < 7; j++ {
+	for j := 1; j < 8; j++ {
 
 		StickData, err := config.ShowStick(client, big.NewInt(int64(j)))
 		if err != nil {
@@ -105,7 +105,7 @@ func addIndex(c *gin.Context) {
 		stickArr = append(stickArr, stickArr1...)
 	}
 	//定义一个结构体数组
-	var arr []GoodsPort
+	var arr1 []GoodsPort
 	var goodArr []GoodsPort
 	//nums := make([]int64, 0)
 	nums := generateRandomNumber(0, len(id), len(id))
@@ -114,10 +114,10 @@ func addIndex(c *gin.Context) {
 	//gRand := rand.New(rand.NewSource(time.Now().UnixNano()).(rand.Source64))
 	for j := 0; j < 3; j++ {
 		x := int64(rand.Intn(len(id)))
-		goodData, goodData1, err := config.HaveIndex(client, big.NewInt(x))
+		goodData, goodData1, err2 := config.HaveIndex(client, big.NewInt(x))
 		//print("图片路径",goodImg)
-		if err != nil {
-			respError(c, err)
+		if err2 != nil {
+			respError(c, err2)
 			return
 		}
 		if goodData.Name != "" {
@@ -130,15 +130,15 @@ func addIndex(c *gin.Context) {
 			//var Owner common.Address
 			//xint:=int64(rand.Intn(len(id)))
 			//xint := int64(gRand.Intn(len(id)))
-			goodData, goodData1, err := config.HaveIndex(client, big.NewInt(nums[i]))
+			goodData, goodData1, err3 := config.HaveIndex(client, big.NewInt(nums[i]))
 			//print("图片路径",goodImg)
-			if err != nil {
-				respError(c, err)
+			if err3 != nil {
+				respError(c, err3)
 				return
 			}
 			if goodData.Name != "" {
-				arr1 := []GoodsPort{GoodsPort{Id: goodData.Id, Names: goodData.Name, Species: goodData.Species, Rent: goodData.Rent, EthPledge: goodData.EthPledge, GoodImg: goodData1.GoodImg}}
-				arr = append(arr, arr1...)
+				arr2 := []GoodsPort{GoodsPort{Id: goodData.Id, Names: goodData.Name, Species: goodData.Species, Rent: goodData.Rent, EthPledge: goodData.EthPledge, GoodImg: goodData1.GoodImg}}
+				arr1 = append(arr1, arr2...)
 			}
 			//goodsPort1 := goodsPort{ Names: names, Species: species, Rent: rent, EthPledge: ethPledge}
 			//fmt.Println(goodsPort{},addr)
