@@ -79,28 +79,33 @@ func addIndex(c *gin.Context) {
 		respError(c, err)
 		return
 	}
-	contract, err1 := config.GetAddress(client)
-	if err1 != nil {
-		respError(c, err1)
+	contract, err := config.GetAddress(client)
+	if err != nil {
+		respError(c, err)
 		return
 	}
 
 	//获取id
 	id := config.HaveId(client)
+	if err != nil {
+		fmt.Println(err)
+		respError(c, err)
+		return
+	}
 	//种类
 	var stickArr []StickAll
 	for j := 1; j < 7; j++ {
 
-		StickData, err2 := config.ShowStick(client, big.NewInt(int64(j)))
-		if err2 != nil {
-			respError(c, err2)
+		StickData, err := config.ShowStick(client, big.NewInt(int64(j)))
+		if err != nil {
+			respError(c, err)
 			return
 		}
 		stickArr1 := []StickAll{StickAll{Sticks: StickData.Name, SticksImg: StickData.Img}}
 		stickArr = append(stickArr, stickArr1...)
 	}
 	//定义一个结构体数组
-	var arr1 []GoodsPort
+	var arr []GoodsPort
 	var goodArr []GoodsPort
 	//nums := make([]int64, 0)
 	nums := generateRandomNumber(0, len(id), len(id))
@@ -109,10 +114,10 @@ func addIndex(c *gin.Context) {
 	//gRand := rand.New(rand.NewSource(time.Now().UnixNano()).(rand.Source64))
 	for j := 0; j < 3; j++ {
 		x := int64(rand.Intn(len(id)))
-		goodData, goodData1, err3 := config.HaveIndex(client, big.NewInt(x))
+		goodData, goodData1, err := config.HaveIndex(client, big.NewInt(x))
 		//print("图片路径",goodImg)
-		if err3 != nil {
-			respError(c, err3)
+		if err != nil {
+			respError(c, err)
 			return
 		}
 		if goodData.Name != "" {
@@ -125,28 +130,24 @@ func addIndex(c *gin.Context) {
 			//var Owner common.Address
 			//xint:=int64(rand.Intn(len(id)))
 			//xint := int64(gRand.Intn(len(id)))
-			goodData, goodData1, err4 := config.HaveIndex(client, big.NewInt(nums[i]))
+			goodData, goodData1, err := config.HaveIndex(client, big.NewInt(nums[i]))
 			//print("图片路径",goodImg)
-			if err4 != nil {
-				respError(c, err4)
+			if err != nil {
+				respError(c, err)
 				return
 			}
 			if goodData.Name != "" {
-				arr2 := []GoodsPort{GoodsPort{Id: goodData.Id, Names: goodData.Name, Species: goodData.Species, Rent: goodData.Rent, EthPledge: goodData.EthPledge, GoodImg: goodData1.GoodImg}}
-				arr1 = append(arr1, arr2...)
+				arr1 := []GoodsPort{GoodsPort{Id: goodData.Id, Names: goodData.Name, Species: goodData.Species, Rent: goodData.Rent, EthPledge: goodData.EthPledge, GoodImg: goodData1.GoodImg}}
+				arr = append(arr, arr1...)
 			}
 			//goodsPort1 := goodsPort{ Names: names, Species: species, Rent: rent, EthPledge: ethPledge}
 			//fmt.Println(goodsPort{},addr)
 		} else {
-			userName, people, _, _, _, err6 := config.GetUserMethod(contract, LoginUser)
-			userImg, err7 := contract.GetUserImg(nil, LoginUser)
+			userName, people, _, _, _, err := config.GetUserMethod(contract, LoginUser)
+			userImg, err := contract.GetUserImg(nil, LoginUser)
 			fmt.Println("res", userName)
-			if err6 != nil {
-				respError(c, err6)
-				return
-			}
-			if err7 != nil {
-				respError(c, err7)
+			if err != nil {
+				respError(c, err)
 				return
 			}
 			c.HTML(http.StatusOK, "Static/index.html", gin.H{
@@ -189,6 +190,7 @@ func shopPorduct(c *gin.Context) {
 	userImg, err := contract.GetUserImg(nil, LoginUser)
 	ownerName, _, _, _, _, err := config.GetUserMethod(contract, goodData.Owner)
 	ownerImg, err := contract.GetUserImg(nil, goodData1.Owner)
+
 	fmt.Println("res", userName)
 	if err != nil {
 		respError(c, err)
