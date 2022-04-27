@@ -42,36 +42,35 @@
                 <div class="container space-y--15">
                     <div class="row align-items-center">
                         <div class="col-auto">
-
+                            <!-- header logo -->
                             <div class="header-logo">
                                 <a href="../index">
-                                   <img src="share/assets/img/logo.png" class="img-fluid" alt="" style="width: 75px;">
+                                    <img src="share/assets/img/logo.png" class="img-fluid" alt="" style="width: 75px;">
                                 </a>
                             </div>
                         </div>
-                        <div class="col-auto">
+                        <div class="col d-flex justify-content-center">
+                            <!-- 搜索框 -->
+                            <div class="header-search" style="padding-top: 20px;">
+                                <div class="input-group">
+                                    <input type="text" id="chat-search" name="chat-search" class="form-control"
+                                        placeholder="搜索好物">
 
-                            <input type="search" name="search" class="form-control  " placeholder="搜索..." style="position: relative;
-                            top: 20px; padding-right: 10px;padding-left: 7px;">
-                           <a href="../category-details"><button type="button" class="btn btn-de-primary shadow-none" style="position: relative;
-                            left: 182px;
-                            top: -16px;"><i class="la la-search"></i></button></a>
+                                    <button type="button" class="btn btn-de-primary shadow-none"><i
+                                            class="la la-search" onclick="window.location.href='../search-result'"></i></button>
+                                </div>
+                            </div>
                         </div>
-
-                        <div class="col-auto" style="padding-left: 60px;">
+                        <div class="col-auto">
                             <button class="header-menu-trigger" id="header-menu-trigger">
                                 <i class="fas fa-align-right" style="font-size: 20px;
-                                            color: grey;"></i>
+                                color: grey;"></i>
                             </button>
                         </div>
                     </div>
-
-
                 </div>
-
-            </div>
-
         </header>
+
     </div>
     {{ template "Static/menu.html" . }}
 
