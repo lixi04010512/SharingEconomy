@@ -151,7 +151,7 @@ func addIndex(c *gin.Context) {
 			}
 			c.HTML(http.StatusOK, "Static/index.html", gin.H{
 				"goodArr":  goodArr,
-				"goodsPor": arr,
+				"goodsPor": arr1,
 				"userName": userName,
 				"userImg":  userImg,
 				"address":  people,
@@ -188,6 +188,7 @@ func shopPorduct(c *gin.Context) {
 	userName, people, _, _, _, err := config.GetUserMethod(contract, LoginUser)
 	userImg, err := contract.GetUserImg(nil, LoginUser)
 	ownerName, _, _, _, _, err := config.GetUserMethod(contract, goodData.Owner)
+	ownerImg, err := contract.GetUserImg(nil, goodData1.Owner)
 	fmt.Println("res", userName)
 	if err != nil {
 		respError(c, err)
@@ -200,13 +201,14 @@ func shopPorduct(c *gin.Context) {
 			Rent:      goodData.Rent,
 			EthPledge: goodData.EthPledge,
 			GoodImg:   goodData1.GoodImg,
-			Addr: goodData.Owner,
+			Addr:      goodData.Owner,
 			Species:   goodData.Species,
 		},
-		"userName": userName,
-		"address":  people,
-		"userImg":  userImg,
-		"ownerName":ownerName,
+		"userName":  userName,
+		"address":   people,
+		"userImg":   userImg,
+		"ownerName": ownerName,
+		"ownerImg":ownerImg,
 	})
 }
 

@@ -118,11 +118,6 @@
 				"internalType": "string",
 				"name": "since",
 				"type": "string"
-			},
-			{
-				"internalType": "address",
-				"name": "borrower",
-				"type": "address"
 			}
 		],
 		"name": "agreeBorrow",
@@ -185,23 +180,7 @@
 			}
 		],
 		"name": "borrowGoods",
-		"outputs": [
-			{
-				"internalType": "uint256",
-				"name": "",
-				"type": "uint256"
-			},
-			{
-				"internalType": "address",
-				"name": "",
-				"type": "address"
-			},
-			{
-				"internalType": "uint256",
-				"name": "",
-				"type": "uint256"
-			}
-		],
+		"outputs": [],
 		"stateMutability": "nonpayable",
 		"type": "function"
 	},
@@ -239,6 +218,24 @@
 		"name": "delStick",
 		"outputs": [],
 		"stateMutability": "nonpayable",
+		"type": "function"
+	},
+	{
+		"inputs": [
+			{
+				"internalType": "uint256",
+				"name": "id",
+				"type": "uint256"
+			},
+			{
+				"internalType": "uint256",
+				"name": "deal",
+				"type": "uint256"
+			}
+		],
+		"name": "disagreeBorrow",
+		"outputs": [],
+		"stateMutability": "payable",
 		"type": "function"
 	},
 	{
@@ -475,9 +472,9 @@
 				"type": "uint256"
 			},
 			{
-				"internalType": "uint256",
-				"name": "count",
-				"type": "uint256"
+				"internalType": "bool",
+				"name": "isAgree",
+				"type": "bool"
 			},
 			{
 				"internalType": "uint256",
