@@ -79,7 +79,8 @@
                                                     <input type="text" class="form-control" name="" id="myAgreeId"
                                                         required="">
                                                 </div>
-                                            <button type="submit" class="btn btn-primary mt-4" id="agreeSub">确认提交</button>
+                                            <button type="submit" class="btn btn-primary mt-4" id="agreeSub">同意交易</button>
+                                                <button type="submit" class="btn btn-primary mt-4" id="disagreeSub">拒绝交易</button>
                                     </div>
                                     <!--end row-->
                                 </div>
@@ -121,21 +122,36 @@
 <script src="share/js/upload.js"></script>
 <script src="share/js/demo.js"></script>
 
-{{/*<script>*/}}
+<script>
 
-{{/*    $("#agreeSub").click(function(){*/}}
+    $("#agreeSub").click(function(){
 
-{{/*        $.ajax({*/}}
-{{/*            type: "POST",*/}}
-{{/*            url: "/sendBorrowMsg",*/}}
-{{/*            data: {"id": $("#borrowsId").val(), "borrowDays": $("#span_data").text()},*/}}
-{{/*            success: function (data) {*/}}
-{{/*                alert("已提交订单");*/}}
-{{/*                window.location = "/select_chat_list";*/}}
-{{/*            }*/}}
-{{/*        })*/}}
-{{/*    })*/}}
-{{/*</script>*/}}
+        $.ajax({
+            type: "POST",
+            url: "/agreePost",
+            data: {"dealId": $("#myOrderId").val(), "id": $("#myAgreeId").val()},
+            success: function (data) {
+                alert("已同意交易");
+                window.location = "/select_chat_list";
+            }
+        })
+    })
+</script>
+    <script>
+
+        $("#disagreeSub").click(function(){
+
+            $.ajax({
+                type: "POST",
+                url: "/disagreePost",
+                data: {"dealId": $("#myOrderId").val(), "id": $("#myAgreeId").val()},
+                success: function (data) {
+                    alert("已拒绝交易");
+                    window.location = "/select_chat_list";
+                }
+            })
+        })
+    </script>
 </body>
 {{ end }}
 </html>
