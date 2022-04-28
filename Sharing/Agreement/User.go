@@ -1046,6 +1046,7 @@ func (_User *UserTransactorSession) DelStick(id *big.Int) (*types.Transaction, e
 	return _User.Contract.DelStick(&_User.TransactOpts, id)
 }
 
+<<<<<<< HEAD
 // DisagreeBack is a paid mutator transaction binding the contract method 0x05f0cb25.
 //
 // Solidity: function disagreeBack(uint256 id, uint256 backs) returns()
@@ -1067,6 +1068,8 @@ func (_User *UserTransactorSession) DisagreeBack(id *big.Int, backs *big.Int) (*
 	return _User.Contract.DisagreeBack(&_User.TransactOpts, id, backs)
 }
 
+=======
+>>>>>>> 692f63c1b03bee8c50b8dfadd7fc74251d7f5da2
 // DisagreeBorrow is a paid mutator transaction binding the contract method 0x710878db.
 //
 // Solidity: function disagreeBorrow(uint256 id, uint256 deal) payable returns()

@@ -20,7 +20,7 @@ const (
 	//ShareFishAddress = "0x097Dbbe9AC7dDd12919A1C6C1D364852F5bcefdE"
 	//hch
 	//Prikey           = "5fd7eb82fbd4c5cc87fbeb867ff4804537723d80a5289606c28ca5c8eed4aa77"
-	//ShareFishAddress = "0xE7C0dFA71AEAbB67d73654c07eD4D79E66Bd53ce"
+	//ShareFishAddress = "0xe15A2B26B45c20b7BD1c0146602f517135F0a9CE"
 
 	//lixi
 	Prikey       = "45ee84c9fbfee72f88392d5e99fd071bfb1a89c2c1482456547e049d437c1380"
@@ -32,7 +32,6 @@ const (
 	//ShareFishAddress = "0xDAafB847bE536849D698CC6497c9c1746Ad61be4"
 	//Prikey       = "c2580b344445185338ba65d86073afbf25d1d419379836cf22fc832be18bd4f6"
 	//ShareFishAddress = "0xDAafB847bE536849D698CC6497c9c1746Ad61be4"
-
 
 	gasLimit = 3000000
 	//fileKeystore     = "UTC--2022-03-17T08-08-40.600466800Z--59b0f8a34d8f0dd0e0eef44d02cef0c12fffb9de"

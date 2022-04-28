@@ -68,30 +68,28 @@
                             <div class="tab-content">
                                 <div class="tab-pane p-3 active" id="Post" role="tabpanel">
                                     <div class="row">
-                                        <form method="post" action="" id="lendForm">
                                             <div class="row g-3 align-items-center">
                                                 <div class="col-md-6">
                                                     <label for="" class="form-label">交易ID</label>
                                                     <input type="text" class="form-control" name=""
-                                                        id="" value="">
+                                                        id="myOrderId" value="">
                                                 </div>
                                                 <div class="col-md-6">
                                                     <label for="" class="form-label">商品ID</label>
-                                                    <input type="text" class="form-control" name="" id=""
+                                                    <input type="text" class="form-control" name="" id="myAgreeId"
                                                         required="">
                                                 </div>
-                                             
-
-                                                <div class="col-md-6">
-                                                    <label for="" class="form-label">租用人账户</label>
-                                                    <input type="text" class="form-control" name=""
-                                                        id="" required="">
+                                                <div class="col-md-12">
+                                                    <label for="addnote" class="form-label">留言</label>
+                                                    <textarea class="form-control" name="" id=""
+                                                        rows="3"></textarea>
                                                 </div>
-                                            </div>
 
-                                            <button type="submit" class="btn btn-primary mt-4" id="ensure"
-                                                onclick="window.location.href=''">确认提交</button>
-                                        </form>
+                                            <button type="submit" class="btn btn-primary mt-4" id="agreeSub">确认提交</button>
+                                            <button type="submit" class="btn btn-primary mt-4" id="disagree" 
+                                                style="background-color: transparent!important;
+                                                color: #557ef8!important;
+                                                border: 1px solid #e8ebf3;">不同意</button>
                                     </div>
                                     <!--end row-->
                                 </div>
@@ -133,7 +131,21 @@
 <script src="share/js/upload.js"></script>
 <script src="share/js/demo.js"></script>
 
+<!-- {{/*<script>*/}}
 
+{{/*    $("#agreeSub").click(function(){*/}}
+
+{{/*        $.ajax({*/}}
+{{/*            type: "POST",*/}}
+{{/*            url: "/sendBorrowMsg",*/}}
+{{/*            data: {"id": $("#borrowsId").val(), "borrowDays": $("#span_data").text()},*/}}
+{{/*            success: function (data) {*/}}
+{{/*                alert("已提交订单");*/}}
+{{/*                window.location = "/select_chat_list";*/}}
+{{/*            }*/}}
+{{/*        })*/}}
+{{/*    })*/}}
+{{/*</script>*/}} -->
 </body>
 {{ end }}
 </html>
