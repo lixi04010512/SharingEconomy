@@ -121,14 +121,14 @@ func TallyStatic(c *gin.Context) {
 	idInt64 := int64(idInt)
 	goodsData, goodsData1, err := config.HaveIndex(client, big.NewInt(idInt64))
 	c.HTML(http.StatusOK, "Static/tally-order.html", gin.H{
-		"userName": userName,
-		"address": people,
-		"userImg": userImg,
-		"goodsImg":goodsData1.GoodImg,
-		"goodsName":goodsData.Name,
-		"rent":goodsData.Rent,
-		"pledge":goodsData.EthPledge,
-		"id":id,
+		"userName":  userName,
+		"address":   people,
+		"userImg":   userImg,
+		"goodsImg":  goodsData1.GoodImg,
+		"goodsName": goodsData.Name,
+		"rent":      goodsData.Rent,
+		"pledge":    goodsData.EthPledge,
+		"id":        id,
 	})
 }
 
@@ -450,7 +450,7 @@ func SearchPageStatic(c *gin.Context) {
 		return
 	}
 	userImg, err := contract.GetUserImg(nil, LoginUser)
-	c.HTML(http.StatusOK, "Static/search-page.html", gin.H{"userName": userName, "address": people, "userImg": userImg})
+	c.HTML(http.StatusOK, "Static/search-result.html", gin.H{"userName": userName, "address": people, "userImg": userImg})
 }
 
 //渲染shop

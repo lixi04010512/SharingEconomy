@@ -79,21 +79,26 @@ func addIndex(c *gin.Context) {
 		respError(c, err)
 		return
 	}
-	contract, err1 := config.GetAddress(client)
-	if err1 != nil {
-		respError(c, err1)
+	contract, err := config.GetAddress(client)
+	if err != nil {
+		respError(c, err)
 		return
 	}
 
 	//获取id
 	id := config.HaveId(client)
+	if err != nil {
+		fmt.Println(err)
+		respError(c, err)
+		return
+	}
 	//种类
 	var stickArr []StickAll
-	for j := 1; j < 7; j++ {
+	for j := 1; j < 8; j++ {
 
-		StickData, err2 := config.ShowStick(client, big.NewInt(int64(j)))
-		if err2 != nil {
-			respError(c, err2)
+		StickData, err := config.ShowStick(client, big.NewInt(int64(j)))
+		if err != nil {
+			respError(c, err)
 			return
 		}
 		stickArr1 := []StickAll{StickAll{Sticks: StickData.Name, SticksImg: StickData.Img}}
@@ -109,13 +114,13 @@ func addIndex(c *gin.Context) {
 	//gRand := rand.New(rand.NewSource(time.Now().UnixNano()).(rand.Source64))
 	for j := 0; j < 3; j++ {
 		x := int64(rand.Intn(len(id)))
-		goodData, goodData1, err3 := config.HaveIndex(client, big.NewInt(x))
+		goodData, goodData1, err2 := config.HaveIndex(client, big.NewInt(x))
 		//print("图片路径",goodImg)
-		if err3 != nil {
-			respError(c, err3)
+		if err2 != nil {
+			respError(c, err2)
 			return
 		}
-		if goodData.Name != "" {
+		if goodData.Name != "" && goodData.Available == true && goodData.IsBorrow == false {
 			arr2 := []GoodsPort{GoodsPort{Id: goodData.Id, Names: goodData.Name, Species: goodData.Species, Rent: goodData.Rent, EthPledge: goodData.EthPledge, GoodImg: goodData1.GoodImg}}
 			goodArr = append(goodArr, arr2...)
 		}
@@ -125,33 +130,29 @@ func addIndex(c *gin.Context) {
 			//var Owner common.Address
 			//xint:=int64(rand.Intn(len(id)))
 			//xint := int64(gRand.Intn(len(id)))
-			goodData, goodData1, err4 := config.HaveIndex(client, big.NewInt(nums[i]))
+			goodData, goodData1, err3 := config.HaveIndex(client, big.NewInt(nums[i]))
 			//print("图片路径",goodImg)
-			if err4 != nil {
-				respError(c, err4)
+			if err3 != nil {
+				respError(c, err3)
 				return
 			}
-			if goodData.Name != "" {
+			if goodData.Name != "" && goodData.Available == true && goodData.IsBorrow == false {
 				arr2 := []GoodsPort{GoodsPort{Id: goodData.Id, Names: goodData.Name, Species: goodData.Species, Rent: goodData.Rent, EthPledge: goodData.EthPledge, GoodImg: goodData1.GoodImg}}
 				arr1 = append(arr1, arr2...)
 			}
 			//goodsPort1 := goodsPort{ Names: names, Species: species, Rent: rent, EthPledge: ethPledge}
 			//fmt.Println(goodsPort{},addr)
 		} else {
-			userName, people, _, _, _, err6 := config.GetUserMethod(contract, LoginUser)
-			userImg, err7 := contract.GetUserImg(nil, LoginUser)
+			userName, people, _, _, _, err := config.GetUserMethod(contract, LoginUser)
+			userImg, err := contract.GetUserImg(nil, LoginUser)
 			fmt.Println("res", userName)
-			if err6 != nil {
-				respError(c, err6)
-				return
-			}
-			if err7 != nil {
-				respError(c, err7)
+			if err != nil {
+				respError(c, err)
 				return
 			}
 			c.HTML(http.StatusOK, "Static/index.html", gin.H{
 				"goodArr":  goodArr,
-				"goodsPor": arr,
+				"goodsPor": arr1,
 				"userName": userName,
 				"userImg":  userImg,
 				"address":  people,
@@ -188,6 +189,8 @@ func shopPorduct(c *gin.Context) {
 	userName, people, _, _, _, err := config.GetUserMethod(contract, LoginUser)
 	userImg, err := contract.GetUserImg(nil, LoginUser)
 	ownerName, _, _, _, _, err := config.GetUserMethod(contract, goodData.Owner)
+	ownerImg, err := contract.GetUserImg(nil, goodData1.Owner)
+
 	fmt.Println("res", userName)
 	if err != nil {
 		respError(c, err)
@@ -200,13 +203,14 @@ func shopPorduct(c *gin.Context) {
 			Rent:      goodData.Rent,
 			EthPledge: goodData.EthPledge,
 			GoodImg:   goodData1.GoodImg,
-			Addr: goodData.Owner,
+			Addr:      goodData.Owner,
 			Species:   goodData.Species,
 		},
-		"userName": userName,
-		"address":  people,
-		"userImg":  userImg,
-		"ownerName":ownerName,
+		"userName":  userName,
+		"address":   people,
+		"userImg":   userImg,
+		"ownerName": ownerName,
+		"ownerImg":  ownerImg,
 	})
 }
 

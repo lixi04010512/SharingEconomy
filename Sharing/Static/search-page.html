@@ -16,7 +16,7 @@
     <link rel="stylesheet" href="share/static/css/flaticon.css">
     <link rel="stylesheet" href="share/static/css/responsive.css">
     <!-- 底部导航 -->
-   <link rel="stylesheet" href="share/css/tabbar.css">
+    <link rel="stylesheet" href="share/css/tabbar.css">
 
     <!-- Slick CSS -->
     <link rel="stylesheet" href="share/assets/css/plugins/slick.min.css">
@@ -34,97 +34,125 @@
 
 
 
-    <div class="body-wrapper space-pt--70 ">
-        <!--====================  header area ====================-->
+<div class="body-wrapper space-pt--70 ">
+    <!--====================  header area ====================-->
 
-        <header>
-            <div class="header-wrapper border-bottom">
-                <div class="container space-y--15">
-                    <div class="row align-items-center">
-                        <div class="col-auto">
-
-                            <div class="header-logo">
-                                <a href="../index">
-                                   <img src="share/assets/img/logo.png" class="img-fluid" alt="" style="width: 75px;">
-                                </a>
-                            </div>
-                        </div>
-                        <div class="col-auto">
-
-                            <input type="search" name="search" class="form-control  " placeholder="搜索..." style="position: relative;
-                            top: 20px; padding-right: 10px;padding-left: 7px;">
-                           <a href="../category-details"><button type="button" class="btn btn-de-primary shadow-none" style="position: relative;
-                            left: 182px;
-                            top: -16px;"><i class="la la-search"></i></button></a>
-                        </div>
-
-                        <div class="col-auto" style="padding-left: 60px;">
-                            <button class="header-menu-trigger" id="header-menu-trigger">
-                                <i class="fas fa-align-right" style="font-size: 20px;
-                                            color: grey;"></i>
-                            </button>
+    <header>
+        <div class="header-wrapper border-bottom">
+            <div class="container space-y--15">
+                <div class="row align-items-center">
+                    <div class="col-auto">
+                        <!-- header logo -->
+                        <div class="header-logo">
+                            <a href="../index">
+                                <img src="share/assets/img/logo.png" class="img-fluid" alt="" style="width: 75px;">
+                            </a>
                         </div>
                     </div>
+                    <div class="col d-flex justify-content-center">
+                        <!-- 搜索框 -->
+                        <div class="header-search" style="padding-top: 20px;">
+                            <div class="input-group">
+                                <input type="text" id="chat-search" name="chat-search" class="form-control"
+                                       placeholder="搜索好物">
 
-
+                                <button type="button" id="seachButton" class="btn btn-de-primary shadow-none"><i
+                                        class="la la-search" onclick="window.location.href='../search-result'"></i></button>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-auto">
+                        <button class="header-menu-trigger" id="header-menu-trigger">
+                            <i class="fas fa-align-right" style="font-size: 20px;
+                                color: grey;"></i>
+                        </button>
+                    </div>
                 </div>
-
             </div>
+    </header>
 
-        </header>
+</div>
+{{ template "Static/menu.html" . }}
+
+
+<section class="aui-scrollView">
+    <div class="aui-hot-key">
+        <h2>热门搜索词</h2>
+        <ul>
+            <li>笔记本</li>
+            <li class="tenCent">iPhone13</li>
+            <li>华为</li>
+            <li>三星</li>
+            <li class="tenCent">iPad</li>
+            <li>显卡</li>
+            <li>电动车</li>
+            <li class="tenCent">相机</li>
+            <li class="tenCent">耳机</li>
+        </ul>
     </div>
-    {{ template "Static/menu.html" . }}
 
+</section>
+<footer style="padding-bottom: 100px;">
 
-    <section class="aui-scrollView">
-        <div class="aui-hot-key">
-            <h2>热门搜索词</h2>
-            <ul>
-                <li>笔记本</li>
-                <li class="tenCent">iPhone13</li>
-                <li>华为</li>
-                <li>三星</li>
-                <li class="tenCent">iPad</li>
-                <li>显卡</li>
-                <li>电动车</li>
-                <li class="tenCent">相机</li>
-                <li class="tenCent">耳机</li>
-            </ul>
-        </div>
+    <div class="sc-bottom-bar">
+        <a class="sc-menu-item " href="../index"><i class="fas fa-home"></i></a>
+        <a class="sc-menu-item " href="../goods-category"><i class="fas  fa-list"></i></a>
+        <a href="../chat" class="sc-menu-item "><i class="fas fa-plus"></i></a>
+        <a class="sc-menu-item" href="../select_chat_list"><i class="fas fa-comments"></i></a>
+        <a class="sc-menu-item" href="../ui-me"><i class="fas fa-user"></i></a>
+    </div>
 
-    </section>
-    <footer style="padding-bottom: 100px;">
-
-        <div class="sc-bottom-bar">
-            <a class="sc-menu-item " href="../index"><i class="fas fa-home"></i></a>
-            <a class="sc-menu-item " href="../goods-category"><i class="fas  fa-list"></i></a>
-            <a href="../chat" class="sc-menu-item "><i class="fas fa-plus"></i></a>
-            <a class="sc-menu-item" href="../select_chat_list"><i class="fas fa-comments"></i></a>
-            <a class="sc-menu-item" href="../ui-me"><i class="fas fa-user"></i></a>
-        </div>
-
-    </footer>
+</footer>
 
 
 
-    <script type="text/javascript" src="share/themes/js/jquery.min.js"></script>
-    <script src="share/js/tabbar.js"></script>
-    <!-- Modernizer JS -->
-    <script src="share/assets/js/modernizr-2.8.3.min.js"></script>
-    <!-- jQuery JS -->
-    <script src="share/assets/js/jquery-3.4.1.min.js"></script>
-    <!-- Bootstrap JS -->
-    <script src="share/assets/js/bootstrap.min.js"></script>
-    <!-- IonRanger JS -->
-    <script src="share/assets/js/plugins/ion.rangeSlider.min.js"></script>
-    <!-- SVG inject JS -->
-    <script src="share/assets/js/plugins/svg-inject.min.js"></script>
-    <!-- Slick slider JS -->
-    <script src="share/assets/js/plugins/slick.min.js"></script>
-    <!-- Main JS -->
-    <script src="share/assets/js/main.js"></script>
-    <script src="share/js/pop-message.js"></script>
-    <script type="text/javascript" src="share/static/js/logout.js"></script>
+<script type="text/javascript" src="share/themes/js/jquery.min.js"></script>
+<script src="share/js/tabbar.js"></script>
+<!-- Modernizer JS -->
+<script src="share/assets/js/modernizr-2.8.3.min.js"></script>
+<!-- jQuery JS -->
+<script src="share/assets/js/jquery-3.4.1.min.js"></script>
+<!-- Bootstrap JS -->
+<script src="share/assets/js/bootstrap.min.js"></script>
+<!-- IonRanger JS -->
+<script src="share/assets/js/plugins/ion.rangeSlider.min.js"></script>
+<!-- SVG inject JS -->
+<script src="share/assets/js/plugins/svg-inject.min.js"></script>
+<!-- Slick slider JS -->
+<script src="share/assets/js/plugins/slick.min.js"></script>
+<!-- Main JS -->
+<script src="share/assets/js/main.js"></script>
+<script src="share/js/pop-message.js"></script>
+<script type="text/javascript" src="share/static/js/logout.js"></script>
+<script>
+    $("#testButton").click(function (){
+        keysGoods=$("#seachID").val()
+        $.ajax({
+            url:"/searchGoods",
+            type:"POST",
+            dataType: "json",
+            data:{'keysGoods':keysGoods},
+            success:function (data){
+                console.log("data.data",data.data)
+                for (const key in data.data){
+                    $("#SearchList").append(` <div class="shop"><a href="../shop-product/${data.data[key].id}}"><img src="../${data.data[key].GoodImg}" alt="">
+
+                                    <h6>${data.data[key].names}</h6><span>${data.data[key].rent}/天</span>
+                                </a>
+                                <div style="text-align:center;padding: 12px;">
+                                    <button class="button-default
+                                            onclick="window.location.href = 'shop-product.html'>去租用</button>
+                                </div>
+                            </div>`)
+                }
+
+            },
+            error:function (data){
+                console.log("错误",data.data)
+            }
+        })
+    })
+</script>
 </body>
 {{ end }}
 </html>

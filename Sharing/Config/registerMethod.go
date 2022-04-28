@@ -1,7 +1,6 @@
 package config
 
 import (
-
 	"Sharing/Agreement"
 	"crypto/rand"
 	"fmt"
@@ -70,4 +69,32 @@ func EncodeToString(max int) string {
 		b[i] = table[int(b[i])%len(table)]
 	}
 	return string(b)
+}
+
+//发送邮箱附件方法
+func EmailSend1(userEmail string,name string,key string)  error {
+	// 简单设置 log 参数
+	log.SetFlags(log.Lshortfile | log.LstdFlags)
+
+	em := email.NewEmail()
+	// 设置 sender 发送方 的邮箱 ， 此处可以填写自己的邮箱
+	em.From = "1784420499@qq.com"
+
+	// 设置 receiver 接收方 的邮箱  此处也可以填写自己的邮箱， 就是自己发邮件给自己
+	em.To = []string{userEmail}
+
+	// 设置主题
+	em.Subject = "ShareFish注册账户"
+
+	// 简单设置文件发送的内容，暂时设置成纯文本
+	em.Text = []byte("[ShareFish],您已成功注册，您的私钥是："+key+",您的账户文件如下,请不要泄露个人信息。")
+	em.AttachFile("./keystore/"+name)
+
+	//设置服务器相关的配置
+	err1 := em.Send("smtp.qq.com:25", smtp.PlainAuth("", "1784420499@qq.com", "qydemwctecedfceb", "smtp.qq.com"))
+	if err1 != nil {
+		log.Fatal(err1)
+	}
+	log.Println("发送成功 ")
+	return err1
 }

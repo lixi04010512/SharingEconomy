@@ -107,6 +107,7 @@ func privateLogin(c *gin.Context) {
 	comAddr := crypto.PubkeyToAddress(privKey.PublicKey)
 	fmt.Println("comaddr", comAddr)
 	LoginUser = comAddr
+	Addr_owner = LoginUser.Hex()
 	data, err := config.LoginMethod(client, contract, comAddr, privKey)
 	addr := comAddr.Hex()
 	userImg, err := contract.GetUserImg(nil, comAddr)
