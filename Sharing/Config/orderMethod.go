@@ -43,18 +43,6 @@ func AgreeMethod(client *ethclient.Client, contract *Agreement.User,id *big.Int,
 	return res, nil
 }
 
-//封装物品借出方法
-func BorrowMethod(client *ethclient.Client, contract *Agreement.User, id *big.Int, deal *big.Int,privateKey *ecdsa.PrivateKey) (*types.Transaction, error) {
-	opts := GetMsgOpts(privateKey)
-	res, err := contract.Borrow(opts, id, deal)
-	fmt.Println("borrow:", res)
-	opts.GasLimit = gasLimit
-	opts.GasPrice, err = GetgasPrice(client)
-	if err != nil {
-		log.Fatal(err)
-	}
-	return res, nil
-}
 
 //封装物品归还方法
 func DoGoodsReturnMethod(client *ethclient.Client, contract *Agreement.User, id *big.Int,privateKey *ecdsa.PrivateKey) (*types.Transaction, error) {

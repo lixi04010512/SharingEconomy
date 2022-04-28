@@ -73,35 +73,58 @@ func BorrowGoods(c *gin.Context) {
 //	borrowDays := c.PostForm("borrowDays")
 //	borrowDaysInt, err := strconv.Atoi(borrowDays)
 //	borrowDaysInt64 := int64(borrowDaysInt)
-//	res,err := config.AgreeMethod(client,contract,big.NewInt(idInt64),big.NewInt(borrowDaysInt64),privKey)
+//
 //
 //	fmt.Println("sendBorrow",res)
 //	c.Redirect(http.StatusFound, "/cart")
 //}
-
-//借用物品
-func Borrow(c *gin.Context) {
-	//初始化client
-	client, err := config.GetClient()
-	if err != nil {
-		respError(c, err)
-		fmt.Println(err)
-		return
-	}
-	//初始化合约地址
-	contract, err := config.GetAddress(client)
-	if err != nil {
-		respError(c, err)
-		return
-	}
-	id := c.PostForm("borrowId")
-	idInt, err := strconv.Atoi(id)
-	idInt64 := int64(idInt)
-	deal := c.PostForm("deal")
-	dealInt, err := strconv.Atoi(deal)
-	dealInt64 := int64(dealInt)
-	res, err := config.BorrowMethod(client, contract, big.NewInt(idInt64), big.NewInt(dealInt64), privKey)
-
-	fmt.Println("Borrow", res)
-	c.Redirect(http.StatusFound, "/cart")
-}
+//
+////借用物品
+//func Borrow(c *gin.Context) {
+//	//初始化client
+//	client, err := config.GetClient()
+//	if err != nil {
+//		respError(c, err)
+//		fmt.Println(err)
+//		return
+//	}
+//	//初始化合约地址
+//	contract, err := config.GetAddress(client)
+//	if err != nil {
+//		respError(c, err)
+//		return
+//	}
+//	id := c.PostForm("borrowId")
+//	idInt, err := strconv.Atoi(id)
+//	idInt64 := int64(idInt)
+//	deal := c.PostForm("deal")
+//	dealInt, err := strconv.Atoi(deal)
+//	dealInt64 := int64(dealInt)
+//	res,err := config.AgreeMethod(client,contract,big.NewInt(idInt64),big.NewInt(borrowDaysInt64),privKey)
+//	opts := config.GetMsgOpts(privateKey)
+//	amountf, err := strconv.ParseFloat(amount, 64) //先转换为 float64
+//
+//	if err != nil {
+//
+//		log.Println("is not a number")
+//
+//	}
+//
+//	// 再通过sprintf格式化为*Int
+//
+//	valueWei, isOk := new(big.Int).SetString(fmt.Sprintf("%.0f", amountf*1000000000000000000), 10)
+//
+//	if !isOk {
+//		log.Println("float to bigInt failed!")
+//	}
+//	opts.Value = valueWei
+//	opts.GasLimit = 3000000
+//	opts.GasPrice, err = config.GetgasPrice(client)
+//	if err != nil {
+//		log.Fatal(err)
+//	}
+//
+//	res, err := contract.Borrow(opts, big.NewInt(idInt64), big.NewInt(dealInt64))
+//	fmt.Println("borrow:", res)
+//	c.Redirect(http.StatusFound, "/cart")
+//}
