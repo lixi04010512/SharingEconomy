@@ -69,6 +69,7 @@ func Start(addr, webDir string) (err error) {
 		todo.POST("/delGoodsPost", delGoods)
 		todo.POST("/topUpPost", topUp)
 		todo.POST("/sendBorrowMsg", BorrowGoods)
+		todo.POST("/searchGoods", searchGoods)
 	}
 	share := r.Group("")
 	{
@@ -96,9 +97,9 @@ func Start(addr, webDir string) (err error) {
 		share.GET("/carts", CartGood)
 		share.GET("/mod-photo", modPhotoStatic)
 		share.GET("/order-receiving/:id", orderReceiving)
-		share.GET("/pay",PayStatic)
-		share.GET("/tally-order/:id",TallyStatic)
-		share.GET("/confirm-transaction",ConfirmStatic)
+		share.GET("/pay", PayStatic)
+		share.GET("/tally-order/:id", TallyStatic)
+		share.GET("/confirm-transaction", ConfirmStatic)
 
 	}
 	// 启动web服务

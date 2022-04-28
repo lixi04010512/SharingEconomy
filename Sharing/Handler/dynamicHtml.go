@@ -120,7 +120,7 @@ func addIndex(c *gin.Context) {
 			respError(c, err2)
 			return
 		}
-		if goodData.Name != "" {
+		if goodData.Name != "" && goodData.Available == true && goodData.IsBorrow == false {
 			arr2 := []GoodsPort{GoodsPort{Id: goodData.Id, Names: goodData.Name, Species: goodData.Species, Rent: goodData.Rent, EthPledge: goodData.EthPledge, GoodImg: goodData1.GoodImg}}
 			goodArr = append(goodArr, arr2...)
 		}
@@ -136,7 +136,7 @@ func addIndex(c *gin.Context) {
 				respError(c, err3)
 				return
 			}
-			if goodData.Name != "" {
+			if goodData.Name != "" && goodData.Available == true && goodData.IsBorrow == false {
 				arr2 := []GoodsPort{GoodsPort{Id: goodData.Id, Names: goodData.Name, Species: goodData.Species, Rent: goodData.Rent, EthPledge: goodData.EthPledge, GoodImg: goodData1.GoodImg}}
 				arr1 = append(arr1, arr2...)
 			}
@@ -210,7 +210,7 @@ func shopPorduct(c *gin.Context) {
 		"address":   people,
 		"userImg":   userImg,
 		"ownerName": ownerName,
-		"ownerImg":ownerImg,
+		"ownerImg":  ownerImg,
 	})
 }
 
