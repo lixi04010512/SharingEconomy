@@ -73,23 +73,15 @@
                                                 <div class="col-md-6">
                                                     <label for="" class="form-label">交易ID</label>
                                                     <input type="text" class="form-control" name=""
-                                                        id="" value="">
+                                                        id="myOrderId" value="">
                                                 </div>
                                                 <div class="col-md-6">
                                                     <label for="" class="form-label">商品ID</label>
-                                                    <input type="text" class="form-control" name="" id=""
+                                                    <input type="text" class="form-control" name="" id="myAgreeId"
                                                         required="">
                                                 </div>
-                                             
 
-                                                <div class="col-md-6">
-                                                    <label for="" class="form-label">租用人账户</label>
-                                                    <input type="text" class="form-control" name=""
-                                                        id="" required="">
-                                                </div>
-                                            </div>
-
-                                            <button type="submit" class="btn btn-primary mt-4" id="ensure">确认提交</button>
+                                            <button type="submit" class="btn btn-primary mt-4" id="agreeSub">确认提交</button>
                                         </form>
                                     </div>
                                     <!--end row-->
@@ -132,7 +124,21 @@
 <script src="share/js/upload.js"></script>
 <script src="share/js/demo.js"></script>
 
+{{/*<script>*/}}
 
+{{/*    $("#agreeSub").click(function(){*/}}
+
+{{/*        $.ajax({*/}}
+{{/*            type: "POST",*/}}
+{{/*            url: "/sendBorrowMsg",*/}}
+{{/*            data: {"id": $("#borrowsId").val(), "borrowDays": $("#span_data").text()},*/}}
+{{/*            success: function (data) {*/}}
+{{/*                alert("已提交订单");*/}}
+{{/*                window.location = "/select_chat_list";*/}}
+{{/*            }*/}}
+{{/*        })*/}}
+{{/*    })*/}}
+{{/*</script>*/}}
 </body>
 {{ end }}
 </html>

@@ -13,8 +13,9 @@ import (
 
 
 //封装物品借出方法
-func BorrowGoodsMethod(client *ethclient.Client, contract *Agreement.User, id *big.Int, borrowDays *big.Int,privateKey *ecdsa.PrivateKey) (*types.Transaction,*big.Int,common.Address, error) {
+func BorrowGoodsMethod(client *ethclient.Client, contract *Agreement.User, id *big.Int, borrowDays *big.Int,valueWei *big.Int,privateKey *ecdsa.PrivateKey) (*types.Transaction,*big.Int,common.Address, error) {
 	opts := GetMsgOpts(privateKey)
+	opts.Value = valueWei
 	res, err := contract.BorrowGoods(opts, id, borrowDays)
 
 	fmt.Println("bGoods:", res)
@@ -30,9 +31,10 @@ func BorrowGoodsMethod(client *ethclient.Client, contract *Agreement.User, id *b
 }
 
 //封装同意借出方法
-func AgreeMethod(client *ethclient.Client, contract *Agreement.User,id *big.Int, deal *big.Int, since string, borrower common.Address,privateKey *ecdsa.PrivateKey) (*types.Transaction, error)  {
-	opts := GetMsgOpts(privateKey)
-	res, err := contract.AgreeBorrow(opts,id,deal,since,borrower)
+func AgreeMethod(client *ethclient.Client, contract *Agreement.User,id *big.Int, deal *big.Int, since string) (*types.Transaction, error)  {
+	opts := Getopts()
+	opts.Value = big.NewInt(1000000000000000000)
+	res, err := contract.AgreeBorrow(opts,id,deal,since)
 
 	fmt.Println("agree:", res)
 	opts.GasLimit = gasLimit
