@@ -79,6 +79,10 @@
                                                     <input type="text" class="form-control" name="" id="myAgreeId"
                                                         required="">
                                                 </div>
+<<<<<<< HEAD
+                                            <button type="submit" class="btn btn-primary mt-4" id="agreeSub">同意交易</button>
+                                                <button type="submit" class="btn btn-primary mt-4" id="disagreeSub">拒绝交易</button>
+=======
                                                 <div class="col-md-12">
                                                     <label for="addnote" class="form-label">留言</label>
                                                     <textarea class="form-control" name="" id=""
@@ -90,6 +94,7 @@
                                                 style="background-color: transparent!important;
                                                 color: #557ef8!important;
                                                 border: 1px solid #e8ebf3;">不同意</button>
+>>>>>>> d4513db8cbc2efb4b05ca36deba616cbe54dd45e
                                     </div>
                                     <!--end row-->
                                 </div>
@@ -131,10 +136,42 @@
 <script src="share/js/upload.js"></script>
 <script src="share/js/demo.js"></script>
 
+<<<<<<< HEAD
+<script>
+=======
 <!-- {{/*<script>*/}}
+>>>>>>> d4513db8cbc2efb4b05ca36deba616cbe54dd45e
 
-{{/*    $("#agreeSub").click(function(){*/}}
+    $("#agreeSub").click(function(){
 
+<<<<<<< HEAD
+        $.ajax({
+            type: "POST",
+            url: "/agreePost",
+            data: {"dealId": $("#myOrderId").val(), "id": $("#myAgreeId").val()},
+            success: function (data) {
+                alert("已同意交易");
+                window.location = "/select_chat_list";
+            }
+        })
+    })
+</script>
+    <script>
+
+        $("#disagreeSub").click(function(){
+
+            $.ajax({
+                type: "POST",
+                url: "/disagreePost",
+                data: {"dealId": $("#myOrderId").val(), "id": $("#myAgreeId").val()},
+                success: function (data) {
+                    alert("已拒绝交易");
+                    window.location = "/select_chat_list";
+                }
+            })
+        })
+    </script>
+=======
 {{/*        $.ajax({*/}}
 {{/*            type: "POST",*/}}
 {{/*            url: "/sendBorrowMsg",*/}}
@@ -146,6 +183,7 @@
 {{/*        })*/}}
 {{/*    })*/}}
 {{/*</script>*/}} -->
+>>>>>>> d4513db8cbc2efb4b05ca36deba616cbe54dd45e
 </body>
 {{ end }}
 </html>

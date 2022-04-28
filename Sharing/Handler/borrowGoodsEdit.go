@@ -9,6 +9,7 @@ import (
 	"math/big"
 	"net/http"
 	"strconv"
+	"time"
 )
 
 //发送借用物品消息
@@ -78,79 +79,91 @@ func BorrowGoods(c *gin.Context) {
 }
 
 //发送借用物品消息
-//func DisagreeBorrowGoods(c *gin.Context) {
-//	//初始化client
-//	client, err := config.GetClient()
-//	if err != nil {
-//		respError(c, err)
-//		fmt.Println(err)
-//		return
-//	}
-//	//初始化合约地址
-//	contract, err := config.GetAddress(client)
-//	if err != nil {
-//		respError(c, err)
-//		return
-//	}
-//	id := c.PostForm("borrowId")
-//	idInt, err := strconv.Atoi(id)
-//	idInt64 := int64(idInt)
-//	borrowDays := c.PostForm("borrowDays")
-//	borrowDaysInt, err := strconv.Atoi(borrowDays)
-//	borrowDaysInt64 := int64(borrowDaysInt)
-//
-//
-//	fmt.Println("sendBorrow",res)
-//	c.Redirect(http.StatusFound, "/cart")
-//}
+func DisagreeBorrowGoods(c *gin.Context) {
+	//初始化client
+	//client, err := config.GetClient()
+	//if err != nil {
+	//	respError(c, err)
+	//	fmt.Println(err)
+	//	return
+	//}
+	////初始化合约地址
+	//contract, err := config.GetAddress(client)
+	//if err != nil {
+	//	respError(c, err)
+	//	return
+	//}
+	//id := c.PostForm("borrowId")
+	//idInt, err := strconv.Atoi(id)
+	//idInt64 := int64(idInt)
+	//borrowDays := c.PostForm("borrowDays")
+	//borrowDaysInt, err := strconv.Atoi(borrowDays)
+	//borrowDaysInt64 := int64(borrowDaysInt)
+	//
+	//
+	//fmt.Println("sendBorrow",res)
+	//c.Redirect(http.StatusFound, "/cart")
+}
 
 ////借用物品
-//func AgreeBorrow(c *gin.Context) {
-//	//初始化client
-//	client, err := config.GetClient()
-//	if err != nil {
-//		respError(c, err)
-//		fmt.Println(err)
-//		return
-//	}
-//	//初始化合约地址
-//	contract, err := config.GetAddress(client)
-//	if err != nil {
-//		respError(c, err)
-//		return
-//	}
-//	id := c.PostForm("my")
-//	idInt, err := strconv.Atoi(id)
-//	idInt64 := int64(idInt)
-//	deal := c.PostForm("deal")
-//	dealInt, err := strconv.Atoi(deal)
-//	dealInt64 := int64(dealInt)
-//	timeStr:=time.Now().Format("2006-01-02 15:04:05")
-//	res,err := config.AgreeMethod(client,contract,big.NewInt(idInt64),big.NewInt(dealInt64),timeStr)
-//	opts := config.GetMsgOpts(privateKey)
-//	amountf, err := strconv.ParseFloat(amount, 64) //先转换为 float64
-//
-//	if err != nil {
-//
-//		log.Println("is not a number")
-//
-//	}
-//
-//	// 再通过sprintf格式化为*Int
-//
-//	valueWei, isOk := new(big.Int).SetString(fmt.Sprintf("%.0f", amountf*1000000000000000000), 10)
-//
-//	if !isOk {
-//		log.Println("float to bigInt failed!")
-//	}
-//	opts.Value = valueWei
-//	opts.GasLimit = 3000000
-//	opts.GasPrice, err = config.GetgasPrice(client)
-//	if err != nil {
-//		log.Fatal(err)
-//	}
-//
-//	res, err := contract.Borrow(opts, big.NewInt(idInt64), big.NewInt(dealInt64))
-//	fmt.Println("borrow:", res)
-//	c.Redirect(http.StatusFound, "/cart")
-//}
+func AgreeBorrow(c *gin.Context) {
+	//初始化client
+	client, err := config.GetClient()
+	if err != nil {
+		respError(c, err)
+		fmt.Println(err)
+		return
+	}
+	//初始化合约地址
+	contract, err := config.GetAddress(client)
+	if err != nil {
+		respError(c, err)
+		return
+	}
+	id := c.PostForm("my")
+	idInt, err := strconv.Atoi(id)
+	idInt64 := int64(idInt)
+	deal := c.PostForm("deal")
+	dealInt, err := strconv.Atoi(deal)
+	dealInt64 := int64(dealInt)
+	timeStr:=time.Now().Format("2006-01-02 15:04:05")
+	goodsData,_, err := config.HaveIndex(client, big.NewInt(idInt64))
+	rent:=goodsData.Rent
+	rentStr := rent.String()//转成string
+	rentInt, err := strconv.Atoi(rentStr)//string转int
+	_,_,_,borrowDays,err:=contract.GetDealRec(nil,big.NewInt(idInt64),big.NewInt(dealInt64))
+	borrowDaysStr := borrowDays.String()//转成string
+	borrowDaysInt, err := strconv.Atoi(borrowDaysStr)//string转int
+
+	transfEth := rentInt*borrowDaysInt
+	transfEths:= strconv.Itoa(transfEth)
+	amountf, err := strconv.ParseFloat(transfEths, 64) //先转换为 float64
+	if err != nil {
+
+		log.Println("is not a number")
+
+	}
+
+	// 再通过sprintf格式化为*Int
+
+	value, isOk := new(big.Int).SetString(fmt.Sprintf("%.0f", amountf*1000000000000000000), 10)
+
+	if !isOk {
+		log.Println("float to bigInt failed!")
+	}
+	res,err := config.AgreeMethod(client,contract,big.NewInt(idInt64),big.NewInt(dealInt64),timeStr,value)
+	//opts := config.Getopts()
+
+
+
+	//opts.Value = valueWei
+	//opts.GasLimit = 3000000
+	//opts.GasPrice, err = config.GetgasPrice(client)
+	//if err != nil {
+	//	log.Fatal(err)
+	//}
+	//
+	//res, err := contract.Borrow(opts, big.NewInt(idInt64), big.NewInt(dealInt64))
+	fmt.Println("borrow:", res)
+	c.Redirect(http.StatusFound, "/cart")
+}

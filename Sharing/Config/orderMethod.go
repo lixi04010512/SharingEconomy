@@ -31,9 +31,9 @@ func BorrowGoodsMethod(client *ethclient.Client, contract *Agreement.User, id *b
 }
 
 //封装同意借出方法
-func AgreeMethod(client *ethclient.Client, contract *Agreement.User,id *big.Int, deal *big.Int, since string) (*types.Transaction, error)  {
+func AgreeMethod(client *ethclient.Client, contract *Agreement.User,id *big.Int, deal *big.Int, since string,value *big.Int) (*types.Transaction, error)  {
 	opts := Getopts()
-	opts.Value = big.NewInt(1000000000000000000)
+	opts.Value = value
 	res, err := contract.AgreeBorrow(opts,id,deal,since)
 
 	fmt.Println("agree:", res)
