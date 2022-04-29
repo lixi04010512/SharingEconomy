@@ -132,10 +132,10 @@ func DisagreeBorrowGoods(c *gin.Context) {
 	fmt.Println("mess",message)
 	fmt.Println("sendDisBorrow",res)
 
-    err1 :=db.DisagreeBorrow()
-	if err1 !=nil {
-		fmt.Println("137err1:",err1)
-	}
+    //err1 :=db.DisagreeBorrow()
+	//if err1 !=nil {
+	//	fmt.Println("137err1:",err1)
+	//}
 }
 
 //同意借用物品
@@ -202,8 +202,8 @@ func AgreeBorrow(c *gin.Context) {
 	fmt.Println("mess",message)
 	fmt.Println("borrow:", res)
 	fmt.Println("borr",data)
-	err1 :=db.AgreeBorrow()
-	if err1 !=nil {
-		fmt.Println("202err:",err1)
-	}
+	//err1 :=db.AgreeBorrow()
+	//if err1 !=nil {
+	//	fmt.Println("202err:",err1)
+	//}
 }

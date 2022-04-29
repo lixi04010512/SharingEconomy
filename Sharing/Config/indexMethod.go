@@ -18,7 +18,7 @@ func HaveIndex(client *ethclient.Client, id *big.Int) (
 		Species   string
 		Rent      *big.Int
 		EthPledge *big.Int
-		Count     *big.Int
+		IsAgree   bool
 		Deal      *big.Int
 		Backs     *big.Int
 		Available bool
