@@ -84,8 +84,8 @@
                                                         rows="3"></textarea>
                                                 </div>
 
-                                            <button type="submit" class="btn btn-primary mt-4" id="agreeSub">确认提交</button>
-                                            <button type="submit" class="btn btn-primary mt-4" id="disagreeSub"
+                                            <button class="btn btn-primary mt-4" id="agreeSub">确认提交</button>
+                                            <button class="btn btn-primary mt-4" id="disagreeSub"
                                                 style="background-color: transparent!important;
                                                 color: #557ef8!important;
                                                 border: 1px solid #e8ebf3;">不同意</button>
@@ -136,7 +136,7 @@
         $.ajax({
             type: "POST",
             url: "/agreePost",
-            data: {"dealId": $("#myOrderId").val(), "agreeId": $("#myAgreeId").val(),"message":$("leaveMessage").val()},
+            data: {"dealId": $("#myOrderId").val(), "agreeId": $("#myAgreeId").val(),"message":$("#leaveMessage").val()},
             success: function (data) {
                 alert("已同意交易");
                 window.location = "/select_chat_list";
@@ -151,7 +151,7 @@
             $.ajax({
                 type: "POST",
                 url: "/disagreePost",
-                data: {"dealId": $("#myOrderId").val(), "disagreeId": $("#myAgreeId").val(),"message":$("leaveMessage").val()},
+                data: {"dealId": $("#myOrderId").val(), "disagreeId": $("#myAgreeId").val(),"message":$("#leaveMessage").val()},
                 success: function (data) {
                     alert("已拒绝交易");
                     window.location = "/select_chat_list";

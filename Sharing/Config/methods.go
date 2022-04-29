@@ -24,7 +24,7 @@ const (
 
 	//lixi
 	Prikey       = "45ee84c9fbfee72f88392d5e99fd071bfb1a89c2c1482456547e049d437c1380"
-	ShareFishAddress = "0x5bB5139b0d37775Af85E49BF1c2951f93bC78c33"
+	ShareFishAddress = "0xa9B59f0E136A652b0001221F22db3a0A6737AC62"
 	//Prikey       = "45ee84c9fbfee72f88392d5e99fd071bfb1a89c2c1482456547e049d437c1380"
 	//ShareFishAddress = "0x72B9CE9e08c7e0C4d5698186cc5271F6dc382c1f"
 
