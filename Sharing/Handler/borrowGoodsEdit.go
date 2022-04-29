@@ -132,10 +132,14 @@ func DisagreeBorrowGoods(c *gin.Context) {
 	fmt.Println("mess",message)
 	fmt.Println("sendDisBorrow",res)
 
-    //err1 :=db.DisagreeBorrow()
-	//if err1 !=nil {
-	//	fmt.Println("137err1:",err1)
-	//}
+	userImg, err := contract.GetUserImg(nil, goodsData.Owner)
+	img,err :=contract.GetUserImg(nil, goodsData.Borrowers.Borrower)
+	userName, _, _, _, _, err := config.GetUserMethod(contract, goodsData.Borrowers.Borrower)
+	name_owner, _, _, _, _, err := config.GetUserMethod(contract, goodsData.Owner)
+    err1 :=db.DisagreeBorrow(goodsData.Owner.String(),goodsData.Borrowers.Borrower.String(),name_owner,userName,message,userImg,img)
+	if err1 !=nil {
+		fmt.Println("137err1:",err1)
+	}
 }
 
 //同意借用物品
@@ -202,8 +206,14 @@ func AgreeBorrow(c *gin.Context) {
 	fmt.Println("mess",message)
 	fmt.Println("borrow:", res)
 	fmt.Println("borr",data)
-	//err1 :=db.AgreeBorrow()
-	//if err1 !=nil {
-	//	fmt.Println("202err:",err1)
-	//}
+
+	userImg, err := contract.GetUserImg(nil, goodsData.Owner)
+	img,err :=contract.GetUserImg(nil, goodsData.Borrowers.Borrower)
+	userName, _, _, _, _, err := config.GetUserMethod(contract, goodsData.Borrowers.Borrower)
+	name_owner, _, _, _, _, err := config.GetUserMethod(contract, goodsData.Owner)
+	err1 :=db.AgreeBorrow(goodsData.Owner.String(),goodsData.Borrowers.Borrower.String(),name_owner,userName,message,userImg,img)
+	if err1 !=nil {
+		fmt.Println("202err:",err1)
+	}
+
 }
