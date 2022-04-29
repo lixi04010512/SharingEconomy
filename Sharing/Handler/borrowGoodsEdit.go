@@ -7,7 +7,6 @@ import (
 	"github.com/gin-gonic/gin"
 	"log"
 	"math/big"
-	"net/http"
 	"strconv"
 	"time"
 )
@@ -75,10 +74,9 @@ func BorrowGoods(c *gin.Context) {
 	}
 
 	fmt.Println("sendBorrow", res)
-	c.Redirect(http.StatusFound, "/cart")
 }
 
-//发送借用物品消息
+//不同意借出
 func DisagreeBorrowGoods(c *gin.Context) {
 	//初始化client
 	client, err := config.GetClient()
@@ -93,19 +91,49 @@ func DisagreeBorrowGoods(c *gin.Context) {
 		respError(c, err)
 		return
 	}
-	id := c.PostForm("borrowId")
+	id := c.PostForm("disagreeId")
 	idInt, err := strconv.Atoi(id)
 	idInt64 := int64(idInt)
-	borrowDays := c.PostForm("borrowDays")
-	borrowDaysInt, err := strconv.Atoi(borrowDays)
-	borrowDaysInt64 := int64(borrowDaysInt)
+	deal := c.PostForm("dealId")
+	dealInt, err := strconv.Atoi(deal)
+	dealInt64 := int64(dealInt)
+	goodsData,_, err := config.HaveIndex(client, big.NewInt(idInt64))
+	rent:=goodsData.Rent
+	rentStr := rent.String()//转成string
+	rentInt, err := strconv.Atoi(rentStr)//string转int
+	_,_,_,borrowDays,err:=contract.GetDealRec(nil,big.NewInt(idInt64),big.NewInt(dealInt64))
+	borrowDaysStr := borrowDays.String()//转成string
+	borrowDaysInt, err := strconv.Atoi(borrowDaysStr)//string转int
+	pledge:=goodsData.EthPledge
+	pledgeStr := pledge.String()//转成string
+	pledgeInt, err := strconv.Atoi(pledgeStr)//string转int
 
+	transfEth := rentInt*borrowDaysInt+pledgeInt
+	transfEths:= strconv.Itoa(transfEth)
+	amountf, err := strconv.ParseFloat(transfEths, 64) //先转换为 float64
+	if err != nil {
 
-	fmt.Println("sendBorrow",res)
-	c.Redirect(http.StatusFound, "/cart")
+		log.Println("is not a number")
+
+	}
+
+	// 再通过sprintf格式化为*Int
+
+	value, isOk := new(big.Int).SetString(fmt.Sprintf("%.0f", amountf*1000000000000000000), 10)
+
+	if !isOk {
+		log.Println("float to bigInt failed!")
+	}
+
+	res,err:=config.DisagreeMethod(client,contract,big.NewInt(idInt64),big.NewInt(dealInt64),value)
+
+	//发送留言消息
+	message := c.PostForm("message")
+	fmt.Println("mess",message)
+	fmt.Println("sendDisBorrow",res)
 }
 
-////借用物品
+//借用物品
 func AgreeBorrow(c *gin.Context) {
 	//初始化client
 	client, err := config.GetClient()
@@ -120,10 +148,11 @@ func AgreeBorrow(c *gin.Context) {
 		respError(c, err)
 		return
 	}
-	id := c.PostForm("my")
+	//页面获取id
+	id := c.PostForm("agreeId")
 	idInt, err := strconv.Atoi(id)
 	idInt64 := int64(idInt)
-	deal := c.PostForm("deal")
+	deal := c.PostForm("dealId")
 	dealInt, err := strconv.Atoi(deal)
 	dealInt64 := int64(dealInt)
 	timeStr:=time.Now().Format("2006-01-02 15:04:05")
@@ -134,7 +163,7 @@ func AgreeBorrow(c *gin.Context) {
 	_,_,_,borrowDays,err:=contract.GetDealRec(nil,big.NewInt(idInt64),big.NewInt(dealInt64))
 	borrowDaysStr := borrowDays.String()//转成string
 	borrowDaysInt, err := strconv.Atoi(borrowDaysStr)//string转int
-
+//获取转账金额
 	transfEth := rentInt*borrowDaysInt
 	transfEths:= strconv.Itoa(transfEth)
 	amountf, err := strconv.ParseFloat(transfEths, 64) //先转换为 float64
@@ -152,18 +181,20 @@ func AgreeBorrow(c *gin.Context) {
 		log.Println("float to bigInt failed!")
 	}
 	res,err := config.AgreeMethod(client,contract,big.NewInt(idInt64),big.NewInt(dealInt64),timeStr,value)
-	//opts := config.Getopts()
 
+	//借出物品
+	opts := config.Getopts()
+	opts.GasLimit = 3000000
+	opts.GasPrice, err = config.GetgasPrice(client)
+	if err != nil {
+		log.Fatal(err)
+	}
 
+	data, err := contract.Borrow(opts, big.NewInt(idInt64), big.NewInt(dealInt64))
 
-	//opts.Value = valueWei
-	//opts.GasLimit = 3000000
-	//opts.GasPrice, err = config.GetgasPrice(client)
-	//if err != nil {
-	//	log.Fatal(err)
-	//}
-	//
-	//res, err := contract.Borrow(opts, big.NewInt(idInt64), big.NewInt(dealInt64))
+	//发送留言消息
+	message := c.PostForm("message")
+	fmt.Println("mess",message)
 	fmt.Println("borrow:", res)
-	c.Redirect(http.StatusFound, "/cart")
+	fmt.Println("borr",data)
 }
