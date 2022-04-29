@@ -44,6 +44,20 @@ func AgreeMethod(client *ethclient.Client, contract *Agreement.User,id *big.Int,
 	}
 	return res, nil
 }
+//封装不同意同意借出方法
+func DisagreeMethod(client *ethclient.Client, contract *Agreement.User,id *big.Int, deal *big.Int,value *big.Int) (*types.Transaction, error)  {
+	opts := Getopts()
+	opts.Value = value
+	res, err := contract.DisagreeBorrow(opts,id,deal)
+
+	fmt.Println("agree:", res)
+	opts.GasLimit = gasLimit
+	opts.GasPrice, err = GetgasPrice(client)
+	if err != nil {
+		log.Fatal(err)
+	}
+	return res, nil
+}
 
 
 //封装物品归还方法
