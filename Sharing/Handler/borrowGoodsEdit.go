@@ -81,28 +81,28 @@ func BorrowGoods(c *gin.Context) {
 //发送借用物品消息
 func DisagreeBorrowGoods(c *gin.Context) {
 	//初始化client
-	//client, err := config.GetClient()
-	//if err != nil {
-	//	respError(c, err)
-	//	fmt.Println(err)
-	//	return
-	//}
-	////初始化合约地址
-	//contract, err := config.GetAddress(client)
-	//if err != nil {
-	//	respError(c, err)
-	//	return
-	//}
-	//id := c.PostForm("borrowId")
-	//idInt, err := strconv.Atoi(id)
-	//idInt64 := int64(idInt)
-	//borrowDays := c.PostForm("borrowDays")
-	//borrowDaysInt, err := strconv.Atoi(borrowDays)
-	//borrowDaysInt64 := int64(borrowDaysInt)
-	//
-	//
-	//fmt.Println("sendBorrow",res)
-	//c.Redirect(http.StatusFound, "/cart")
+	client, err := config.GetClient()
+	if err != nil {
+		respError(c, err)
+		fmt.Println(err)
+		return
+	}
+	//初始化合约地址
+	contract, err := config.GetAddress(client)
+	if err != nil {
+		respError(c, err)
+		return
+	}
+	id := c.PostForm("borrowId")
+	idInt, err := strconv.Atoi(id)
+	idInt64 := int64(idInt)
+	borrowDays := c.PostForm("borrowDays")
+	borrowDaysInt, err := strconv.Atoi(borrowDays)
+	borrowDaysInt64 := int64(borrowDaysInt)
+
+
+	fmt.Println("sendBorrow",res)
+	c.Redirect(http.StatusFound, "/cart")
 }
 
 ////借用物品
