@@ -239,7 +239,9 @@
     $("#rent").blur(function(){
         var rent = $("#rent").val();
         var Rent = /^[0-9]*$/;
-        if (!Rent.test(rent)) {
+        if (rent ==""){
+            $("#p_rent").html("<font color=\"red\" size=\"2\">租金不能为空！</font>");
+        }else if (!Rent.test(rent)) {
             $("#p_rent").html("<font color=\"red\" size=\"2\">租金格式填写错误！</font>");
         } else {
             $("#p_rent").html("<font color=\"green\" size=\"2\">租金格式正确！</font>");
@@ -254,7 +256,9 @@
     $("#textDeposit").blur(function(){
         var textDeposit = $("#textDeposit").val();
         var TextDeposit = /^[0-9]*$/;
-        if (!TextDeposit.test(textDeposit)) {
+        if (textDeposit ==""){
+            $("#p_money").html("<font color=\"red\" size=\"2\">押金不能为空！</font>");
+        }else if (!TextDeposit.test(textDeposit)) {
             $("#p_money").html("<font color=\"red\" size=\"2\">押金格式填写错误！</font>");
         } else {
             $("#p_money").html("<font color=\"green\" size=\"2\">押金格式正确！</font>");
