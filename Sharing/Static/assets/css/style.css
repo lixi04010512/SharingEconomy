@@ -2207,10 +2207,11 @@ header .header-menu-trigger:focus {
 }
 
 .profile-header__image {
+	padding-top: 14px;
 	-webkit-flex-basis: 120px;
-	-ms-flex-preferred-size: 120px;
-	flex-basis: 120px;
-	margin-right: 15px;
+	/*-ms-flex-preferred-size: 120px;*/
+	/*flex-basis: 120px;*/
+	/*margin-right: 15px;*/
 }
 
 .profile-header__image img {
@@ -2224,6 +2225,7 @@ header .header-menu-trigger:focus {
 }
 
 .profile-header__content .name {
+	word-break: break-all;
 	font-size: 14px;
 	font-weight: 700;
 }
