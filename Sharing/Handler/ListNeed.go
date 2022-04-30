@@ -15,7 +15,7 @@ func ListNeedAll(c *gin.Context) {
 		respError(c, err)
 		return
 	}
-	//fmt.Println("x----x",x)
+	fmt.Println("x----x", x)
 	respOK(c, x)
 }
 func demandCount(c *gin.Context) {

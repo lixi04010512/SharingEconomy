@@ -106,14 +106,18 @@
 
         <!--====================  End of mobile menu overlay  ====================-->
         <!--====================  hero slider ====================-->
+
         <div class="hero-slider bg-color--grey space-y--10">
             <div class="container">
                 <div class="row row-10">
                     <div class="col-12">
                         <div class="hero-slider-wrapper">
-                            <a href="../shop-product/1">
+                            {{range  $key,$vlaue:=.goodArr1}}
+                            <a href="../shop-product/{{$vlaue.Id}}">
+                                {{range $k,$v:=$vlaue.GoodImg}}
                                 <div class="hero-slider-item d-flex bg-img"
-                                    data-bg="share/assets/img/hero-slider/slider-01.jpg">
+                                    data-bg=../{{$v}}>
+                                    {{end}}
                                     <div class="container">
                                         <div class="row">
                                             <div class="col-12">
@@ -128,42 +132,8 @@
                                     </div>
                                 </div>
                             </a>
-                            <a href="../shop-product/2">
-                                <div class="hero-slider-item d-flex bg-img"
-                                    data-bg="share/assets/img/hero-slider/slider-02.jpg">
-                                    <div class="container">
-                                        <div class="row">
-                                            <div class="col-12">
-                                                <!-- hero slider content -->
-                                                <div class="hero-slider-content">
-                                                    <h2 class="hero-slider-content__title space-mb--10">更多好物尽在 <br>
-                                                        Share
-                                                        Fish</h2>
-                                                    <p class="hero-slider-content__text">-----</p>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </a>
-                            <a href="../shop-product/3">
-                                <div class="hero-slider-item d-flex bg-img"
-                                    data-bg="share/assets/img/hero-slider/slider-1.jpg">
-                                    <div class="container">
-                                        <div class="row">
-                                            <div class="col-12">
-                                                <!-- hero slider content -->
-                                                <div class="hero-slider-content">
-                                                    <h2 class="hero-slider-content__title space-mb--10">Share Fish <br>
-                                                        立即抢租
-                                                    </h2>
-                                                    <p class="hero-slider-content__text">-----</p>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </a>
+                            {{end}}
+
                         </div>
                     </div>
                 </div>

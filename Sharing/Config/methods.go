@@ -23,8 +23,8 @@ const (
 	//ShareFishAddress = "0xe15A2B26B45c20b7BD1c0146602f517135F0a9CE"
 
 	//lixi
-	Prikey       = "45ee84c9fbfee72f88392d5e99fd071bfb1a89c2c1482456547e049d437c1380"
-	ShareFishAddress = "0xa9B59f0E136A652b0001221F22db3a0A6737AC62"
+	//Prikey       = "45ee84c9fbfee72f88392d5e99fd071bfb1a89c2c1482456547e049d437c1380"
+	//ShareFishAddress = "0xa9B59f0E136A652b0001221F22db3a0A6737AC62"
 	//Prikey       = "45ee84c9fbfee72f88392d5e99fd071bfb1a89c2c1482456547e049d437c1380"
 	//ShareFishAddress = "0x72B9CE9e08c7e0C4d5698186cc5271F6dc382c1f"
 
@@ -35,9 +35,9 @@ const (
 
 	gasLimit = 3000000
 	//fileKeystore     = "UTC--2022-03-17T08-08-40.600466800Z--59b0f8a34d8f0dd0e0eef44d02cef0c12fffb9de"
-	//Prikey = "c5b9c7fd467335bd829b3b2a3098a72ac39b7f5efa162220b7907cfc684df9a3"
+	Prikey = "c5b9c7fd467335bd829b3b2a3098a72ac39b7f5efa162220b7907cfc684df9a3"
 	//privateKey       = "111"
-	//ShareFishAddress = "0xAe03C34544973DEc93464121859fF8F7203d75fC"
+	ShareFishAddress = "0xAe03C34544973DEc93464121859fF8F7203d75fC"
 )
 
 //获取client
