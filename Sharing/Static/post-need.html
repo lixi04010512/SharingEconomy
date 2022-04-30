@@ -102,23 +102,24 @@
                                     <div class="row">
                                         {{/*
                                         <form method="post" action="" id="needForm">*/}}
-                                            <div class="col-md-6">
-                                                <label class="form-label">物品类别</label>
-                                                <select class="form-select" aria-label="Default select example">
-                                                    {{ range $key ,$value:=.StickList }}
-                                                    {{if ne $value.Sticks ""}}
-                                                    <option selected="">{{$value.Sticks}}</option>
-                                                    {{end}}
-                                                    {{end}}
-                                                    <option>其他</option>
-                                                </select>
-                                            </div>
+                                            
                                             <div class="row g-3 align-items-center">
-                                                <div class="col-md-12" style="    height: 500px;">
-                                                    <label for="addnote" class="form-label" style="padding-left: 16px;
-                                                        padding-top: 20px;">需求描述</label>
+                                                <div class="col-md-6">
+                                                    <label class="form-label">物品类别</label>
+                                                    <select class="form-select" aria-label="Default select example">
+                                                        {{ range $key ,$value:=.StickList }}
+                                                        {{if ne $value.Sticks ""}}
+                                                        <option selected="">{{$value.Sticks}}</option>
+                                                        {{end}}
+                                                        {{end}}
+                                                        <option>其他</option>
+                                                    </select>
+                                                </div>
+
+                                                <div class="col-md-12">
+                                                    <label for="addnote" class="form-label" >需求描述</label>
                                                     <textarea class="form-control" id="addnote" rows="3"
-                                                              name="addnote" style="    height: 460px;"></textarea>
+                                                              name="addnote" style="height: 250px;"></textarea>
                                                     <p id="p_describe"></p>
                                                 </div>
                                             </div>
