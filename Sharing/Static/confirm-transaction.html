@@ -1,6 +1,7 @@
 {{ define "Static/confirm-transaction.html" }}
 <!DOCTYPE html>
-<html lang="en">
+<html>
+
 <head>
     <meta charset="utf-8">
     <title>Share Fish-确认交易</title>
@@ -21,144 +22,144 @@
     <link rel="stylesheet" href="share/css/demo.css">
     <link rel="stylesheet" href="share/css/cropper.min.css">
 </head>
+
 <body id="body" class="dark-sidebar">
-<!-- leftbar-menu -->
-<header>
-    <div class="header-wrapper border-bottom">
-        <div class="container space-y--15">
-            <div class="row align-items-center">
-                <div class="col-auto">
-                    <a class="back-link" onClick="javascript :history.back(-1);"> <i class="fa fa-angle-left"></i>
-                        返回</a>
-                </div>
-                <div class="col d-flex justify-content-center">
-                    <div class="header-search">
-                        <div class="input-group">
-                            <h4 style="padding-top: 18px;">交易确认</h4>
+    <!-- leftbar-menu -->
+    <header>
+        <div class="header-wrapper border-bottom">
+            <div class="container space-y--15">
+                <div class="row align-items-center">
+                    <div class="col-auto">
+                        <a class="back-link" onClick="javascript :history.back(-1);"> <i class="fa fa-angle-left"></i>
+                            返回</a>
+                    </div>
+                    <div class="col d-flex justify-content-center">
+                        <div class="header-search">
+                            <div class="input-group">
+                                <h4 style="padding-top: 18px;">交易确认</h4>
+                            </div>
                         </div>
                     </div>
-                </div>
-                <div class="col-auto">
-                    <!-- header menu trigger -->
-                    <button class="header-menu-trigger" id="header-menu-trigger">
-                        <i class="fas fa-align-right" style="font-size: 20px;
+                    <div class="col-auto">
+                        <!-- header menu trigger -->
+                        <button class="header-menu-trigger" id="header-menu-trigger">
+                            <i class="fas fa-align-right" style="font-size: 20px;
                             color: grey;"></i>
-                    </button>
+                        </button>
+                    </div>
                 </div>
             </div>
         </div>
-    </div>
 
-</header>
+    </header>
 
-{{ template "Static/menu.html" . }}
+    {{ template "Static/menu.html" . }}
 
-<div class="page-wrapper">
-    <!-- Page Content-->
-    <div class="page-content-tab">
+    <div class="page-wrapper">
+        <!-- Page Content-->
+        <div class="page-content-tab">
 
-        <div class="container-fluid">
-            <!-- Page-Title -->
-            
-            <!-- end page title end breadcrumb -->
-            <div class="row">
-                <div class="col-12">
-                    <div class="card">
-                        <div class="card-body p-0">
-                            <div class="tab-content">
-                                <div class="tab-pane p-3 active" id="Post" role="tabpanel">
-                                    <div class="row">
+            <div class="container-fluid">
+                <!-- Page-Title -->
+
+                <!-- end page title end breadcrumb -->
+                <div class="row">
+                    <div class="col-12">
+                        <div class="card">
+                            <div class="card-body p-0">
+                                <div class="tab-content">
+                                    <div class="tab-pane p-3 active" id="Post" role="tabpanel">
+                                        <div class="row">
                                             <div class="row g-3 align-items-center">
                                                 <div class="col-md-6">
                                                     <label for="" class="form-label">交易ID</label>
-                                                    <input type="text" class="form-control" name=""
-                                                        id="myOrderId" value="">
+                                                    <input type="text" class="form-control" name="" id="myOrderId"
+                                                        value="">
                                                 </div>
                                                 <div class="col-md-6">
                                                     <label for="" class="form-label">商品ID</label>
                                                     <input type="text" class="form-control" name="" id="myAgreeId"
                                                         required="">
+                                                </div>
                                                 <div class="col-md-12">
                                                     <label for="addnote" class="form-label">留言</label>
                                                     <textarea class="form-control" name="" id="leaveMessage"
                                                         rows="3"></textarea>
                                                 </div>
-
-                                            <button class="btn btn-primary mt-4" id="agreeSub">确认提交</button>
-                                            <button class="btn btn-primary mt-4" id="disagreeSub"
-                                                style="background-color: transparent!important;
+                                                <!--end row-->
+                                            </div>
+                                            <button class="btn btn-primary mt-4" id="agreeSub">同意</button>
+                                            <button class="btn btn-primary mt-4" id="disagreeSub" style="background-color: transparent!important;
                                                 color: #557ef8!important;
                                                 border: 1px solid #e8ebf3;">不同意</button>
+                                        </div>
                                     </div>
-                                    <!--end row-->
+                                    <!--end card-body-->
                                 </div>
+                                <!--end card-->
                             </div>
+                            <!--end col-->
                         </div>
-                        <!--end card-body-->
-                    </div>
-                    <!--end card-->
+                        <!--end row-->
+                    </div><!-- container -->
                 </div>
-                <!--end col-->
+                <!-- end page content -->
             </div>
-            <!--end row-->
-        </div><!-- container -->
-    </div>
-    <!-- end page content -->
-</div>
-<!-- end page-wrapper -->
-<footer>
+            <!-- end page-wrapper -->
+            <footer>
 
-    <div class="sc-bottom-bar">
-        <a class="sc-menu-item " href="../index"><i class="fas fa-home"></i></a>
-        <a class="sc-menu-item " href="../goods-category"><i class="fas  fa-list"></i></a>
-        <a href="../chat" class="sc-menu-item "><i class="fas fa-plus"></i></a>
-        <a class="sc-menu-item" href="../select_chat_list"><i class="fas fa-comments"></i></a>
-        <a class="sc-menu-item" href="../ui-me"><i class="fas fa-user"></i></a>
-    </div>
+                <div class="sc-bottom-bar">
+                    <a class="sc-menu-item " href="../index"><i class="fas fa-home"></i></a>
+                    <a class="sc-menu-item " href="../goods-category"><i class="fas  fa-list"></i></a>
+                    <a href="../chat" class="sc-menu-item "><i class="fas fa-plus"></i></a>
+                    <a class="sc-menu-item" href="../select_chat_list"><i class="fas fa-comments"></i></a>
+                    <a class="sc-menu-item" href="../ui-me"><i class="fas fa-user"></i></a>
+                </div>
 
-</footer>
-<!-- Javascript  -->
+            </footer>
+            <!-- Javascript  -->
 
-<script src="share/static/js/app.js"></script>
-<script src="share/assets/js/jquery-3.4.1.min.js"></script>
-<!-- Bootstrap JS -->
-<script src="share/assets/js/bootstrap.min.js"></script>
-<script src="share/assets/js/main.js"></script>
-<script src="share/js/pop-message.js"></script>
-<script type="text/javascript" src="share/static/js/logout.js"></script>
-<script src="share/js/jquery-1.10.2.js"></script>
-<script src="share/js/upload.js"></script>
-<script src="share/js/demo.js"></script>
+            <script src="share/static/js/app.js"></script>
+            <script src="share/assets/js/jquery-3.4.1.min.js"></script>
+            <!-- Bootstrap JS -->
+            <script src="share/assets/js/bootstrap.min.js"></script>
+            <script src="share/assets/js/main.js"></script>
+            <script src="share/js/pop-message.js"></script>
+            <script type="text/javascript" src="share/static/js/logout.js"></script>
+            <script src="share/js/jquery-1.10.2.js"></script>
+            <script src="share/js/upload.js"></script>
+            <script src="share/js/demo.js"></script>
 
-<script>
+            <script>
 
-    $("#agreeSub").click(function(){
-        $.ajax({
-            type: "POST",
-            url: "/agreePost",
-            data: {"dealId": $("#myOrderId").val(), "agreeId": $("#myAgreeId").val(),"message":$("#leaveMessage").val()},
-            success: function (data) {
-                alert("已同意交易");
-                window.location = "/select_chat_list";
-            }
-        })
-    })
-</script>
-    <script>
+                $("#agreeSub").click(function () {
+                    $.ajax({
+                        type: "POST",
+                        url: "/agreePost",
+                        data: { "dealId": $("#myOrderId").val(), "agreeId": $("#myAgreeId").val(), "message": $("#leaveMessage").val() },
+                        success: function (data) {
+                            alert("已同意交易");
+                            window.location = "/select_chat_list";
+                        }
+                    })
+                })
+            </script>
+            <script>
 
-        $("#disagreeSub").click(function(){
+                $("#disagreeSub").click(function () {
 
-            $.ajax({
-                type: "POST",
-                url: "/disagreePost",
-                data: {"dealId": $("#myOrderId").val(), "disagreeId": $("#myAgreeId").val(),"message":$("#leaveMessage").val()},
-                success: function (data) {
-                    alert("已拒绝交易");
-                    window.location = "/select_chat_list";
-                }
-            })
-        })
-    </script>
+                    $.ajax({
+                        type: "POST",
+                        url: "/disagreePost",
+                        data: { "dealId": $("#myOrderId").val(), "disagreeId": $("#myAgreeId").val(), "message": $("#leaveMessage").val() },
+                        success: function (data) {
+                            alert("已拒绝交易");
+                            window.location = "/select_chat_list";
+                        }
+                    })
+                })
+            </script>
 </body>
 {{ end }}
+
 </html>
