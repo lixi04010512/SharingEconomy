@@ -42,10 +42,10 @@ type StickAll struct {
 }
 
 //随机不重复
-//生成count个[start,end)结束的不重复的随机数
+//生成count个(start,end)结束的不重复的随机数
 func generateRandomNumber(start int, end int, count int) []int64 {
 	//范围检查
-	if end < start || (end-start) < count {
+	if end < start || (end-start+1) < count {
 		return nil
 	}
 	//存放结果的slice
@@ -54,7 +54,7 @@ func generateRandomNumber(start int, end int, count int) []int64 {
 	r := rand.New(rand.NewSource(time.Now().UnixNano()))
 	for len(nums) < count {
 		//生成随机数
-		num := r.Intn((end - start)) + start
+		num := r.Intn((end - start)) + start + 1
 		//查重
 		exist := false
 		for _, v := range nums {
@@ -109,6 +109,7 @@ func addIndex(c *gin.Context) {
 	var goodArr []GoodsPort
 	//nums := make([]int64, 0)
 	nums := generateRandomNumber(0, len(id), len(id))
+	fmt.Println("len(id):", len(id))
 	//goodNums:=generateRandomNumber(0, len(id), 4)
 	fmt.Println("nums", nums)
 	//gRand := rand.New(rand.NewSource(time.Now().UnixNano()).(rand.Source64))

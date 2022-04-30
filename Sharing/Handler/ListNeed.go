@@ -18,7 +18,27 @@ func ListNeedAll(c *gin.Context) {
 	//fmt.Println("x----x",x)
 	respOK(c, x)
 }
+func demandCount(c *gin.Context) {
+	client, err := config.GetClient()
+	if err != nil {
+		respError(c, err)
+		return
+	}
+	contract, err := config.GetAddress(client)
+	if err != nil {
+		respError(c, err)
+		return
+	}
+	_, people, _, _, _, err := config.GetUserMethod(contract, LoginUser)
 
+	if err != nil {
+		respError(c, err)
+		return
+	}
+	x, err := db.MyCountNeeds(people)
+	fmt.Println("demandCount", x)
+	respOK(c, x)
+}
 func MYList(c *gin.Context) {
 	client, err := config.GetClient()
 	if err != nil {

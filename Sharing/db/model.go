@@ -8,16 +8,17 @@ type DemandDB struct {
 	DemandName  string    `sql:"demandName" json:"demandName" from:"demandName"`
 	DemandTime  time.Time `sql:"demandTime" json:"demandTime" from:"demandTime"`
 	DemandAddr  string    `sql:"demandAddr" json:"demandAddr" from:"demandAddr"`
+	CountDemand int64     `sql:"count(demandID)" json:"countDemand" from:"countDemand"`
 }
 
 type Chat_list struct {
-	Id     int    `db:"id" json:"id" form:"id"`
-	Owner  string `db:"owner" json:"owner" form:"owner"`
-	Addr   string `db:"addr" json:"addr" form:"addr"`
-	Name   string `db:"name" json:"name" form:"name"`
-	Img    string `db:"img" json:"img" form:"img"`
-	Time   string `db:"time" json:"time" form:"time"`
-	No_read int `db:"no_read" json:"no_read" form:"no_read"`
+	Id      int    `db:"id" json:"id" form:"id"`
+	Owner   string `db:"owner" json:"owner" form:"owner"`
+	Addr    string `db:"addr" json:"addr" form:"addr"`
+	Name    string `db:"name" json:"name" form:"name"`
+	Img     string `db:"img" json:"img" form:"img"`
+	Time    string `db:"time" json:"time" form:"time"`
+	No_read int    `db:"no_read" json:"no_read" form:"no_read"`
 }
 type Chat struct {
 	Id        int    `db:"id" json:"id" form:"id"`

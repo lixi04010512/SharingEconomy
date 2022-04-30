@@ -103,18 +103,30 @@ func privateLogin(c *gin.Context) {
 
 	privKey, _ = crypto.HexToECDSA(privateKeyStr)
 	fmt.Println("prikey", privKey)
+	if privKey == nil {
 
-	comAddr := crypto.PubkeyToAddress(privKey.PublicKey)
-	fmt.Println("comaddr", comAddr)
-	LoginUser = comAddr
-	Addr_owner = LoginUser.Hex()
-	data, err := config.LoginMethod(client, contract, comAddr, privKey)
-	addr := comAddr.Hex()
-	userImg, err := contract.GetUserImg(nil, comAddr)
-	Userimg = userImg
+		c.Redirect(http.StatusFound, "/login")
 
-	c.Redirect(http.StatusFound, "/index")
-	//respOK(c,data)
-	fmt.Println("addr", addr)
-	fmt.Println("data", data)
+	} else {
+		comAddr := crypto.PubkeyToAddress(privKey.PublicKey)
+		fmt.Println("comaddr", comAddr)
+		LoginUser = comAddr
+		Addr_owner = LoginUser.Hex()
+		data, err := config.LoginMethod(client, contract, comAddr, privKey)
+		fmt.Println(data)
+		if err != nil {
+			return
+		}
+		addr := comAddr.Hex()
+		userImg, err := contract.GetUserImg(nil, comAddr)
+		Userimg = userImg
+		if data != nil {
+			c.Redirect(http.StatusFound, "/index")
+		} else {
+			c.Redirect(http.StatusFound, "/login")
+		}
+		//respOK(c,data)
+		fmt.Println("addr", addr)
+		fmt.Println("data", data)
+	}
 }
