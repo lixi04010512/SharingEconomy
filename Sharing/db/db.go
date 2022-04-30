@@ -94,6 +94,29 @@ func MyListNeeds(demandAddr common.Address) (DemandList []DemandDB, err error) {
 	return
 }
 
+//需求总数
+func MyCountNeeds(demandAddr common.Address) (DemandList []DemandDB, err error) {
+	// 查询数据
+	demandAddrStr := demandAddr.Hex()
+
+	var sqlStr = `select count(demandID) from demand where demandAddr =?`
+	rows, err := db.Query(sqlStr, demandAddrStr)
+	if err != nil {
+		return nil, err
+	}
+	for rows.Next() {
+		DemandStr := DemandDB{}
+		err = rows.Scan(&DemandStr.CountDemand)
+
+		if err != nil {
+			return nil, err
+		}
+		DemandList = append(DemandList, DemandStr)
+	}
+
+	return
+}
+
 //插入需求数据
 func InsertDemand(DemandKind string, DemandAddr string, DemandName string) (err error) {
 	nowTime := time.Now()
@@ -114,6 +137,7 @@ func DeleteNeeds(id int64) (DemandList []DemandDB, err error) {
 	_, err = db.Exec(sqlStr, id)
 	return
 }
+
 //发送同意借用消息
 func AgreeBorrow(addr_from string, addr_to string, name_from string, name_to string, content string, img_from string, img_to string) (err error) {
 	times := time.Now()
@@ -271,4 +295,3 @@ func DisagreeBorrow(addr_from string, addr_to string, name_from string, name_to 
 
 	return
 }
-
