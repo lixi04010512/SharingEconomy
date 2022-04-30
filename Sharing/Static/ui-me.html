@@ -180,13 +180,8 @@
                                 </div>
                             </a></div>
                     </div>
-                    <div class="my_dind">
-                        <div class="bt"><a href="../myneed">
-                                <h3>我的需求</h3>
-                                <div class="right">
-                                    <i class="ti ti-chevron-right"></i>
-                                </div>
-                            </a></div>
+                    <div class="my_dind" id="demandCount">
+
                     </div>
                 </div>
                 <div style="height: .9rem;"></div>
@@ -236,6 +231,27 @@
     <script type="text/javascript" src="share/static/js/logout.js"></script>
     <script src="share/js/materialize.min.js"></script>
     <script src="share/js/sliderbg.js"></script>
+<script>
+    $.ajax({
+        url:"/demandCount",
+        type:"POST",
+        success:function (data){
+            console.log(data.data)
+            for (key in data.data){
+                $("#demandCount").append(`
+
+                 <div class="bt"><a href="../myneed">
+                                <h3>我的需求</h3>
+                                <div class="right">
+                                ${data.data[key].countDemand}
+                                    <i class="ti ti-chevron-right"></i>
+                                </div>
+                            </a></div>
+                `)
+            }
+        }
+    })
+</script>
 </body>
 {{ end }}
 
