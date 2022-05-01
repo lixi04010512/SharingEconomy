@@ -29,14 +29,14 @@ func BorrowGoodsMethod(client *ethclient.Client, contract *Agreement.User, id *b
 	}
 	return res,borrow.Deal,borrow.Borrowers.Borrower, nil
 }
-
-//封装同意借出方法
-func AgreeMethod(client *ethclient.Client, contract *Agreement.User,id *big.Int, deal *big.Int, since string,value *big.Int) (*types.Transaction, error)  {
+//封装物品借出方法
+func AgreeBorrowMethod(client *ethclient.Client, contract *Agreement.User, id *big.Int, borrowDays *big.Int,valueWei *big.Int, since string) (*types.Transaction, error) {
 	opts := Getopts()
-	opts.Value = value
-	res, err := contract.AgreeBorrow(opts,id,deal,since)
+	opts.Value = valueWei
+	res, err := contract.AgreeBorrow(opts, id, borrowDays,since)
 
-	fmt.Println("agree:", res)
+	fmt.Println("AGoods:", res)
+
 	opts.GasLimit = gasLimit
 	opts.GasPrice, err = GetgasPrice(client)
 	if err != nil {
@@ -44,7 +44,21 @@ func AgreeMethod(client *ethclient.Client, contract *Agreement.User,id *big.Int,
 	}
 	return res, nil
 }
-//封装不同意同意借出方法
+
+//封装借出方法
+func BorrowMethod(client *ethclient.Client, contract *Agreement.User,id *big.Int, deal *big.Int) (*types.Transaction, error)  {
+	opts := Getopts()
+	res, err := contract.Borrow(opts,id,deal)
+
+	fmt.Println("Borrow:", res)
+	opts.GasLimit = gasLimit
+	opts.GasPrice, err = GetgasPrice(client)
+	if err != nil {
+		log.Fatal(err)
+	}
+	return res, nil
+}
+//封装不同意借出方法
 func DisagreeMethod(client *ethclient.Client, contract *Agreement.User,id *big.Int, deal *big.Int,value *big.Int) (*types.Transaction, error)  {
 	opts := Getopts()
 	opts.Value = value
@@ -61,10 +75,24 @@ func DisagreeMethod(client *ethclient.Client, contract *Agreement.User,id *big.I
 
 
 //封装物品归还方法
-func DoGoodsReturnMethod(client *ethclient.Client, contract *Agreement.User, id *big.Int,privateKey *ecdsa.PrivateKey) (*types.Transaction, error) {
+func DoGoodsReturnMethod(client *ethclient.Client, contract *Agreement.User, id *big.Int,privateKey *ecdsa.PrivateKey) (*types.Transaction,*big.Int, error) {
 	opts := GetMsgOpts(privateKey)
 	res, err := contract.DoGoodsReturn(opts, id)
 	fmt.Println("doGoods:", res)
+	back,err:=contract.GoodsData(nil,id)
+	backId:=back.Backs
+	opts.GasLimit = gasLimit
+	opts.GasPrice, err = GetgasPrice(client)
+	if err != nil {
+		log.Fatal(err)
+	}
+	return res,backId, nil
+}
+//封装同意归还方法
+func AgreeBackMethod(client *ethclient.Client, contract *Agreement.User, id *big.Int, backs *big.Int,privateKey *ecdsa.PrivateKey) (*types.Transaction, error) {
+	opts := GetMsgOpts(privateKey)
+	res, err := contract.AgreeBack(opts, id,backs)
+	fmt.Println("aback:", res)
 	opts.GasLimit = gasLimit
 	opts.GasPrice, err = GetgasPrice(client)
 	if err != nil {
@@ -72,8 +100,9 @@ func DoGoodsReturnMethod(client *ethclient.Client, contract *Agreement.User, id 
 	}
 	return res, nil
 }
-//封装同意归还方法
-func AgreeBackMethod(client *ethclient.Client, contract *Agreement.User, id *big.Int, backs *big.Int,privateKey *ecdsa.PrivateKey) (*types.Transaction, error) {
+
+//封装不同意归还方法
+func DisagreeBackMethod(client *ethclient.Client, contract *Agreement.User, id *big.Int, backs *big.Int,privateKey *ecdsa.PrivateKey) (*types.Transaction, error) {
 	opts := GetMsgOpts(privateKey)
 	res, err := contract.AgreeBack(opts, id,backs)
 	fmt.Println("aback:", res)

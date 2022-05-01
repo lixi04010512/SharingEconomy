@@ -185,7 +185,6 @@ func shopPorduct(c *gin.Context) {
 	//	respError(c, err)
 	//	return
 	//}
-	var names string
 	goodData, goodData1, err := config.HaveIndex(client, id)
 	userName, people, _, _, _, err := config.GetUserMethod(contract, LoginUser)
 	userImg, err := contract.GetUserImg(nil, LoginUser)
@@ -200,10 +199,11 @@ func shopPorduct(c *gin.Context) {
 	c.HTML(http.StatusOK, "Static/shop-product.html", gin.H{
 		"goodsPort": GoodsPort{
 			Id:        goodData.Id,
-			Names:     names,
+			Names:     goodData.Name,
 			Rent:      goodData.Rent,
 			EthPledge: goodData.EthPledge,
 			GoodImg:   goodData1.GoodImg,
+			//GoodSign: goodData1.GoodsSign,
 			Addr:      goodData.Owner,
 			Species:   goodData.Species,
 		},

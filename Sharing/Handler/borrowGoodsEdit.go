@@ -59,7 +59,7 @@ func BorrowGoods(c *gin.Context) {
 			log.Println("float to bigInt failed!")
 		}
 	res, deal, _, err := config.BorrowGoodsMethod(client, contract, big.NewInt(idInt64), big.NewInt(borrowDaysInt64),valueWei, privKey)
-	message := fmt.Sprintf("你好，我是账号为%s的用户，我想借用%s天你的商品，我的借用号是%s，", LoginUser, borrowDays, deal)
+	message := fmt.Sprintf("你好，我是账号为%s的用户，我想借用你的%s号商品%s天，本次交易id是%s，", LoginUser,id, borrowDays, deal)
 
 	goods_owner := goodsData.Owner.String()
 	userImg, err := contract.GetUserImg(nil, goodsData.Owner)
@@ -193,17 +193,9 @@ func AgreeBorrow(c *gin.Context) {
 	if !isOk {
 		log.Println("float to bigInt failed!")
 	}
-	res,err := config.AgreeMethod(client,contract,big.NewInt(idInt64),big.NewInt(dealInt64),timeStr,value)
+	res, err := config.AgreeBorrowMethod(client,contract, big.NewInt(idInt64), big.NewInt(dealInt64),value,timeStr)
 
-	//借出物品
-	opts := config.Getopts()
-	opts.GasLimit = 3000000
-	opts.GasPrice, err = config.GetgasPrice(client)
-	if err != nil {
-		log.Fatal(err)
-	}
-
-	data, err := contract.Borrow(opts, big.NewInt(idInt64), big.NewInt(dealInt64))
+	data, err := config.BorrowMethod(client,contract, big.NewInt(idInt64), big.NewInt(dealInt64))
 
 	//发送留言消息
 	message := c.PostForm("message")
