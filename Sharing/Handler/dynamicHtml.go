@@ -107,12 +107,27 @@ func addIndex(c *gin.Context) {
 	//定义一个结构体数组
 	var arr1 []GoodsPort
 	var goodArr []GoodsPort
+	var goodArr1 []GoodsPort
 	//nums := make([]int64, 0)
 	nums := generateRandomNumber(0, len(id), len(id))
 	fmt.Println("len(id):", len(id))
 	//goodNums:=generateRandomNumber(0, len(id), 4)
 	fmt.Println("nums", nums)
-	//gRand := rand.New(rand.NewSource(time.Now().UnixNano()).(rand.Source64))
+	//gRand := rand.New(rand.NewSource(time.Now().UnixNano()).(rand.Source64))、
+
+	//轮播
+	for j := 0; j < 3; j++ {
+
+		goodData, goodData1, err2 := config.HaveIndex(client, id[j])
+		//print("图片路径",goodImg)
+		if err2 != nil {
+			respError(c, err2)
+			return
+		}
+		arr0 := []GoodsPort{GoodsPort{Id: goodData.Id, Names: goodData.Name, Species: goodData.Species, Rent: goodData.Rent, EthPledge: goodData.EthPledge, GoodImg: goodData1.GoodImg}}
+		goodArr1 = append(goodArr, arr0...)
+
+	}
 	for j := 0; j < 3; j++ {
 		x := int64(rand.Intn(len(id)))
 		goodData, goodData1, err2 := config.HaveIndex(client, big.NewInt(x))
@@ -153,6 +168,7 @@ func addIndex(c *gin.Context) {
 			}
 			c.HTML(http.StatusOK, "Static/index.html", gin.H{
 				"goodArr":  goodArr,
+				"goodArr1": goodArr1,
 				"goodsPor": arr1,
 				"userName": userName,
 				"userImg":  userImg,

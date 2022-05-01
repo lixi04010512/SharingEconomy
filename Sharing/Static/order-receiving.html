@@ -79,8 +79,6 @@
     {{ template "Static/menu.html" . }}
 
 
-
-
     <div class="page-wrapper">
         <!-- Page Content-->
         <div class="page-content-tab">
@@ -230,70 +228,73 @@
         </div>
 
     </footer>
-
-   <script>
-       //鼠标移开物品名称框开始验证
-       $("#goodsName").blur(function(){
-           var goodsName = $("#goodsName").val();
-           if (goodsName =="") {
-               $("#p_name").html("<font color=\"red\" size=\"2\">物品名称不能为空！</font>");
-           } else {
-               $("#p_name").html("<font color=\"green\" size=\"2\">物品名称格式正确！</font>");
-           }
-       })
-       //鼠标放置物品名称框不验证
-       $("#goodsName").focus(function(){
-           $("#p_name").html("");
-       })
-
-       //鼠标移开租金框开始验证
-       $("#rent").blur(function(){
-           var rent = $("#rent").val();
-           var Rent = /^[0-9]*$/;
-           if (!Rent.test(rent)) {
-               $("#p_rent").html("<font color=\"red\" size=\"2\">租金格式填写错误！</font>");
-           } else {
-               $("#p_rent").html("<font color=\"green\" size=\"2\">租金格式正确！</font>");
-           }
-       })
-       //鼠标放置租金框不验证
-       $("#rent").focus(function(){
-           $("#p_rent").html("");
-       })
-
-       //鼠标移开押金框开始验证
-       $("#textDeposit").blur(function(){
-           var textDeposit = $("#textDeposit").val();
-           var TextDeposit = /^[0-9]*$/;
-           if (!TextDeposit.test(textDeposit)) {
-               $("#p_money").html("<font color=\"red\" size=\"2\">押金格式填写错误！</font>");
-           } else {
-               $("#p_money").html("<font color=\"green\" size=\"2\">押金格式正确！</font>");
-           }
-       })
-       //鼠标放置租金框不验证
-       $("#textDeposit").focus(function(){
-           $("#p_money").html("");
-       })
-
-       //鼠标移开物品描述框开始验证
-       $("#addnote").blur(function(){
-           var addnote = $("#addnote").val();
-           if (addnote =="") {
-               $("#p_describe").html("<font color=\"red\" size=\"2\">商品描述不能为空！</font>");
-           } else {
-               $("#p_describe").html("<font color=\"green\" size=\"2\">商品描述格式正确！</font>");
-           }
-       })
-       //鼠标放置物品描述框不验证
-       $("#addnote").focus(function(){
-           $("#p_describe").html("");
-       })
-
-   </script>
     <!-- Javascript  -->
     <script src="../share/static/js/app.js"></script>
     <script src="../share/assets/js/jquery-3.4.1.min.js"></script>
+<script>
+    //鼠标移开物品名称框开始验证
+    $("#goodsName").blur(function(){
+        var goodsName = $("#goodsName").val();
+        if (goodsName =="") {
+            $("#p_name").html("<font color=\"red\" size=\"2\">物品名称不能为空！</font>");
+        } else {
+            $("#p_name").html("<font color=\"green\" size=\"2\">物品名称格式正确！</font>");
+        }
+    })
+    //鼠标放置物品名称框不验证
+    $("#goodsName").focus(function(){
+        $("#p_name").html("");
+    })
+
+    //鼠标移开租金框开始验证
+    $("#rent").blur(function(){
+        var rent = $("#rent").val();
+        var Rent = /^[0-9]*$/;
+        if (rent ==""){
+            $("#p_rent").html("<font color=\"red\" size=\"2\">租金不能为空！</font>");
+        }else if (!Rent.test(rent)) {
+            $("#p_rent").html("<font color=\"red\" size=\"2\">租金格式填写错误！</font>");
+        } else {
+            $("#p_rent").html("<font color=\"green\" size=\"2\">租金格式正确！</font>");
+        }
+    })
+    //鼠标放置租金框不验证
+    $("#rent").focus(function(){
+        $("#p_rent").html("");
+    })
+
+    //鼠标移开押金框开始验证
+    $("#textDeposit").blur(function(){
+        var textDeposit = $("#textDeposit").val();
+        var TextDeposit = /^[0-9]*$/;
+        if (textDeposit ==""){
+            $("#p_money").html("<font color=\"red\" size=\"2\">押金不能为空！</font>");
+        }else if (!TextDeposit.test(textDeposit)) {
+            $("#p_money").html("<font color=\"red\" size=\"2\">押金格式填写错误！</font>");
+        } else {
+            $("#p_money").html("<font color=\"green\" size=\"2\">押金格式正确！</font>");
+        }
+    })
+    //鼠标放置租金框不验证
+    $("#textDeposit").focus(function(){
+        $("#p_money").html("");
+    })
+
+    //鼠标移开物品描述框开始验证
+    $("#addnote").blur(function(){
+        var addnote = $("#addnote").val();
+        if (addnote =="") {
+            $("#p_describe").html("<font color=\"red\" size=\"2\">商品描述不能为空！</font>");
+        } else {
+            $("#p_describe").html("<font color=\"green\" size=\"2\">商品描述格式正确！</font>");
+        }
+    })
+    //鼠标放置物品描述框不验证
+    $("#addnote").focus(function(){
+        $("#p_describe").html("");
+    })
+
+</script>
     <!-- Bootstrap JS -->
     <script src="../share/assets/js/bootstrap.min.js"></script>
     <script src="../share/assets/js/main.js"></script>
