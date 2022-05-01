@@ -35,9 +35,9 @@ const (
 
 	gasLimit = 3000000
 	//fileKeystore     = "UTC--2022-03-17T08-08-40.600466800Z--59b0f8a34d8f0dd0e0eef44d02cef0c12fffb9de"
-	//Prikey = "c5b9c7fd467335bd829b3b2a3098a72ac39b7f5efa162220b7907cfc684df9a3"
+	Prikey = "c5b9c7fd467335bd829b3b2a3098a72ac39b7f5efa162220b7907cfc684df9a3"
 	//privateKey       = "111"
-	//ShareFishAddress = "0xAe03C34544973DEc93464121859fF8F7203d75fC"
+	ShareFishAddress = "0xAe03C34544973DEc93464121859fF8F7203d75fC"
 )
 
 //获取client
