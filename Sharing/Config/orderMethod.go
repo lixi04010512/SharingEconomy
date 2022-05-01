@@ -115,8 +115,9 @@ func DisagreeBackMethod(client *ethclient.Client, contract *Agreement.User, id *
 }
 
 //封装归还方法
-func BackGoodsMethod(client *ethclient.Client, contract *Agreement.User, id *big.Int, backs *big.Int, over string,privateKey *ecdsa.PrivateKey) (*types.Transaction, error) {
-	opts := GetMsgOpts(privateKey)
+func BackGoodsMethod(client *ethclient.Client, contract *Agreement.User, id *big.Int, backs *big.Int, over string,value *big.Int) (*types.Transaction, error) {
+	opts := Getopts()
+	opts.Value =value
 	res, err := contract.BackGoods(opts, id,backs,over)
 	fmt.Println("back:", res)
 	opts.GasLimit = gasLimit
