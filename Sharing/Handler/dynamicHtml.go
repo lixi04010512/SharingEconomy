@@ -125,8 +125,8 @@ func addIndex(c *gin.Context) {
 			return
 		}
 		arr0 := []GoodsPort{GoodsPort{Id: goodData.Id, Names: goodData.Name, Species: goodData.Species, Rent: goodData.Rent, EthPledge: goodData.EthPledge, GoodImg: goodData1.GoodImg}}
-		goodArr1 = append(goodArr, arr0...)
-
+		goodArr1 = append(goodArr1, arr0...)
+		fmt.Println("goodArr", goodArr1)
 	}
 	for j := 0; j < 3; j++ {
 		x := int64(rand.Intn(len(id)))
@@ -220,8 +220,8 @@ func shopPorduct(c *gin.Context) {
 			EthPledge: goodData.EthPledge,
 			GoodImg:   goodData1.GoodImg,
 			//GoodSign: goodData1.GoodsSign,
-			Addr:      goodData.Owner,
-			Species:   goodData.Species,
+			Addr:    goodData.Owner,
+			Species: goodData.Species,
 		},
 		"userName":  userName,
 		"address":   people,
