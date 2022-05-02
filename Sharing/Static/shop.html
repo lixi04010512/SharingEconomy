@@ -120,8 +120,8 @@
                                     </div>
                                 </div>
                                 <div style="text-align:center;padding: 12px;">
-                                    <button class="btn btn-soft-primary"
-                                        onclick="Qual.successd('Success','归还成功');">归还</button>
+                                    <button class="btn btn-soft-primary backSub"
+                                        );>归还</button>
                                 </div>
                             </div>
                         </div>
@@ -158,6 +158,20 @@
     <script src="share/assets/js/main.js"></script>
     <script src="share/js/pop-message.js"></script>
     <script type="text/javascript" src="share/static/js/logout.js"></script>
+<script>
+    $(".backSub").click(function () {
+        $.ajax({
+            type: "POST",
+            url: "/returnGoodsPost",
+            data: {
+                "owner": $(".data_id").data("id"),
+            },
+            success: function () {
+                window.location = "/select_chat_list"
+            }
+        })
+    })
+</script>
 
 </body>
 {{ end }}

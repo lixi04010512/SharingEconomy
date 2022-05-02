@@ -173,7 +173,7 @@ func AgreeBorrow(c *gin.Context) {
 	rent:=goodsData.Rent
 	rentStr := rent.String()//转成string
 	rentInt, err := strconv.Atoi(rentStr)//string转int
-	_,_,_,borrowDays,err:=contract.GetDealRec(nil,big.NewInt(idInt64),big.NewInt(dealInt64))
+	blockNum,_,_,borrowDays,err:=contract.GetDealRec(nil,big.NewInt(idInt64),big.NewInt(dealInt64))
 	borrowDaysStr := borrowDays.String()//转成string
 	borrowDaysInt, err := strconv.Atoi(borrowDaysStr)//string转int
 //获取转账金额
@@ -197,11 +197,14 @@ func AgreeBorrow(c *gin.Context) {
 
 	data, err := config.BorrowMethod(client,contract, big.NewInt(idInt64), big.NewInt(dealInt64))
 
+	dealHash,err :=config.HashMethod(client,contract,big.NewInt(idInt64), big.NewInt(dealInt64),blockNum)
+
 	//发送留言消息
 	message := c.PostForm("message")
 	fmt.Println("mess",message)
 	fmt.Println("borrow:", res)
 	fmt.Println("borr",data)
+	fmt.Println("hash:", dealHash)
 
 	userImg, err := contract.GetUserImg(nil, goodsData.Owner)
 	img,err :=contract.GetUserImg(nil, goodsData.Borrowers.Borrower)

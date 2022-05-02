@@ -14,7 +14,7 @@ var db *sql.DB
 func Init() (err error) {
 	// 打开mysql数据库
 	fmt.Println()
-	db, err = sql.Open("mysql", "root:root@tcp(127.0.0.1:3306)/sharefish?charset=utf8&parseTime=true")
+	db, err = sql.Open("mysql", "root:@tcp(127.0.0.1:3306)/sharefish?charset=utf8&parseTime=true")
 	if err != nil {
 		panic(err)
 	}
