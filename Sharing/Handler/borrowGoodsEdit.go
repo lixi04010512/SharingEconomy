@@ -103,7 +103,7 @@ func DisagreeBorrowGoods(c *gin.Context) {
 	rent:=goodsData.Rent
 	rentStr := rent.String()//转成string
 	rentInt, err := strconv.Atoi(rentStr)//string转int
-	_,_,_,borrowDays,err:=contract.GetDealRec(nil,big.NewInt(idInt64),big.NewInt(dealInt64))
+	_,_,_,borrowDays,_,err:=contract.GetDealRec(nil,big.NewInt(idInt64),big.NewInt(dealInt64))
 	borrowDaysStr := borrowDays.String()//转成string
 	borrowDaysInt, err := strconv.Atoi(borrowDaysStr)//string转int
 	pledge:=goodsData.EthPledge
@@ -173,7 +173,7 @@ func AgreeBorrow(c *gin.Context) {
 	rent:=goodsData.Rent
 	rentStr := rent.String()//转成string
 	rentInt, err := strconv.Atoi(rentStr)//string转int
-	blockNum,_,_,borrowDays,err:=contract.GetDealRec(nil,big.NewInt(idInt64),big.NewInt(dealInt64))
+	blockNum,_,_,borrowDays,_,err:=contract.GetDealRec(nil,big.NewInt(idInt64),big.NewInt(dealInt64))
 	borrowDaysStr := borrowDays.String()//转成string
 	borrowDaysInt, err := strconv.Atoi(borrowDaysStr)//string转int
 //获取转账金额

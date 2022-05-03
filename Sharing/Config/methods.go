@@ -19,8 +19,8 @@ const (
 	//Prikey       = "769f41a9de1f6f1848d7631e274f2168e3cb20d16c81f688a49d081965a53861"
 	//ShareFishAddress = "0x097Dbbe9AC7dDd12919A1C6C1D364852F5bcefdE"
 	//hch
-	//Prikey           = "5fd7eb82fbd4c5cc87fbeb867ff4804537723d80a5289606c28ca5c8eed4aa77"
-	//ShareFishAddress = "0xC0311FF9fC690365c11973457d90DB1027bD7C2F"
+	Prikey           = "5fd7eb82fbd4c5cc87fbeb867ff4804537723d80a5289606c28ca5c8eed4aa77"
+	ShareFishAddress = "0xb74c2544B311583C02933Ed0c1e5a9Cfb5a81271"
 
 	//lixi
 	//Prikey       = "45ee84c9fbfee72f88392d5e99fd071bfb1a89c2c1482456547e049d437c1380"
@@ -30,8 +30,8 @@ const (
 
 	//Prikey       = "769f41a9de1f6f1848d7631e274f2168e3cb20d16c81f688a49d081965a53861"
 	//ShareFishAddress = "0xDAafB847bE536849D698CC6497c9c1746Ad61be4"
-	Prikey       = "c2580b344445185338ba65d86073afbf25d1d419379836cf22fc832be18bd4f6"
-	ShareFishAddress = "0x21Aa7632CBA949D2449552AeFdd9a17Ff0B4f7f0"
+	//Prikey       = "c2580b344445185338ba65d86073afbf25d1d419379836cf22fc832be18bd4f6"
+	//ShareFishAddress = "0x21Aa7632CBA949D2449552AeFdd9a17Ff0B4f7f0"
 
 	gasLimit = 3000000
 	//fileKeystore     = "UTC--2022-03-17T08-08-40.600466800Z--59b0f8a34d8f0dd0e0eef44d02cef0c12fffb9de"

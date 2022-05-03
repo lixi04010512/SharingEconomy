@@ -28,6 +28,7 @@ type GoodsPort struct {
 	Rent      *big.Int       `json:"rent"`      //价格
 	EthPledge *big.Int       `json:"ethPledge"` //押金
 	GoodImg   []string       `json:"GoodImg"`   //图片路径
+	GoodSign   string       `json:"GoodSign"`   //商品描述
 	Count     int            `json:"count"`     //借用次数
 	Deal      int            `json:"deal"`      //交易记录
 	Backs     int            `json:"backs"`     //归还记录
@@ -124,7 +125,7 @@ func addIndex(c *gin.Context) {
 			respError(c, err2)
 			return
 		}
-		arr0 := []GoodsPort{GoodsPort{Id: goodData.Id, Names: goodData.Name, Species: goodData.Species, Rent: goodData.Rent, EthPledge: goodData.EthPledge, GoodImg: goodData1.GoodImg}}
+		arr0 := []GoodsPort{GoodsPort{Id: goodData.Id, Names: goodData.Name, Species: goodData.Species, Rent: goodData.Rent, EthPledge: goodData.EthPledge, GoodImg: goodData1.GoodImg, GoodSign: goodData1.GoodSign}}
 		goodArr1 = append(goodArr1, arr0...)
 		fmt.Println("goodArr", goodArr1)
 	}
@@ -137,7 +138,7 @@ func addIndex(c *gin.Context) {
 			return
 		}
 		if goodData.Name != "" && goodData.Available == true && goodData.IsBorrow == false {
-			arr2 := []GoodsPort{GoodsPort{Id: goodData.Id, Names: goodData.Name, Species: goodData.Species, Rent: goodData.Rent, EthPledge: goodData.EthPledge, GoodImg: goodData1.GoodImg}}
+			arr2 := []GoodsPort{GoodsPort{Id: goodData.Id, Names: goodData.Name, Species: goodData.Species, Rent: goodData.Rent, EthPledge: goodData.EthPledge, GoodImg: goodData1.GoodImg, GoodSign: goodData1.GoodSign}}
 			goodArr = append(goodArr, arr2...)
 		}
 	}
@@ -153,7 +154,7 @@ func addIndex(c *gin.Context) {
 				return
 			}
 			if goodData.Name != "" && goodData.Available == true && goodData.IsBorrow == false {
-				arr2 := []GoodsPort{GoodsPort{Id: goodData.Id, Names: goodData.Name, Species: goodData.Species, Rent: goodData.Rent, EthPledge: goodData.EthPledge, GoodImg: goodData1.GoodImg}}
+				arr2 := []GoodsPort{GoodsPort{Id: goodData.Id, Names: goodData.Name, Species: goodData.Species, Rent: goodData.Rent, EthPledge: goodData.EthPledge, GoodImg: goodData1.GoodImg, GoodSign: goodData1.GoodSign}}
 				arr1 = append(arr1, arr2...)
 			}
 			//goodsPort1 := goodsPort{ Names: names, Species: species, Rent: rent, EthPledge: ethPledge}
@@ -272,7 +273,7 @@ func goodsCategory(c *gin.Context) {
 				if goodData.Species == StickData.Name {
 					//arr1 := []GoodsPort{GoodsPort{Id: goodData.Id, Names: goodData.Name, Species: goodData.Species, Rent: goodData.Rent, EthPledge: goodData.EthPledge, GoodImg: goodData1.GoodImg}}
 					//arr = append(arr, arr1...)
-					arr1 := []StickAll{StickAll{GoodsPortStick: GoodsPort{Id: goodData.Id, Names: goodData.Name, Species: goodData.Species, Rent: goodData.Rent, EthPledge: goodData.EthPledge, GoodImg: goodData1.GoodImg}}}
+					arr1 := []StickAll{StickAll{GoodsPortStick: GoodsPort{Id: goodData.Id, Names: goodData.Name, Species: goodData.Species, Rent: goodData.Rent, EthPledge: goodData.EthPledge, GoodImg: goodData1.GoodImg, GoodSign: goodData1.GoodSign}}}
 					stickArr = append(stickArr, arr1...)
 					//fmt.Println("stickA融入33",stickArr)
 					//goodsPort1 := goodsPort{ Names: names, Species: species, Rent: rent, EthPledge: ethPledge}
@@ -336,10 +337,10 @@ func CartGood(c *gin.Context) {
 			}
 
 			if people == goodData.Owner && goodData.Available == true {
-				arr1 := []GoodsPort{GoodsPort{Id: goodData.Id, Names: goodData.Name, Species: goodData.Species, Rent: goodData.Rent, EthPledge: goodData.EthPledge, IsBorrow: goodData.IsBorrow, GoodImg: goodData1.GoodImg}}
+				arr1 := []GoodsPort{GoodsPort{Id: goodData.Id, Names: goodData.Name, Species: goodData.Species, Rent: goodData.Rent, EthPledge: goodData.EthPledge, IsBorrow: goodData.IsBorrow, GoodImg: goodData1.GoodImg, GoodSign: goodData1.GoodSign}}
 				arrUp = append(arrUp, arr1...)
 			} else if people == goodData.Owner && goodData.Available == false {
-				arr2 := []GoodsPort{GoodsPort{Id: goodData.Id, Names: goodData.Name, Species: goodData.Species, Rent: goodData.Rent, EthPledge: goodData.EthPledge, IsBorrow: goodData.IsBorrow, GoodImg: goodData1.GoodImg}}
+				arr2 := []GoodsPort{GoodsPort{Id: goodData.Id, Names: goodData.Name, Species: goodData.Species, Rent: goodData.Rent, EthPledge: goodData.EthPledge, IsBorrow: goodData.IsBorrow, GoodImg: goodData1.GoodImg, GoodSign: goodData1.GoodSign}}
 				arrDown = append(arrDown, arr2...)
 			}
 		} else {
@@ -395,10 +396,10 @@ func MyOrder(c *gin.Context) {
 			}
 
 			if people == goodData.Owner && goodData.IsBorrow == true {
-				arr1 := []GoodsPort{GoodsPort{Id: goodData.Id, Names: goodData.Name, Species: goodData.Species, Rent: goodData.Rent, EthPledge: goodData.EthPledge, IsBorrow: goodData.IsBorrow, GoodImg: goodData1.GoodImg}}
+				arr1 := []GoodsPort{GoodsPort{Id: goodData.Id, Names: goodData.Name, Species: goodData.Species, Rent: goodData.Rent, EthPledge: goodData.EthPledge, IsBorrow: goodData.IsBorrow, GoodImg: goodData1.GoodImg, GoodSign: goodData1.GoodSign}}
 				arrUp = append(arrUp, arr1...)
 			} else if people == goodData.Owner && goodData.IsBorrow == false {
-				arr2 := []GoodsPort{GoodsPort{Id: goodData.Id, Names: goodData.Name, Species: goodData.Species, Rent: goodData.Rent, EthPledge: goodData.EthPledge, IsBorrow: goodData.IsBorrow, GoodImg: goodData1.GoodImg}}
+				arr2 := []GoodsPort{GoodsPort{Id: goodData.Id, Names: goodData.Name, Species: goodData.Species, Rent: goodData.Rent, EthPledge: goodData.EthPledge, IsBorrow: goodData.IsBorrow, GoodImg: goodData1.GoodImg, GoodSign: goodData1.GoodSign}}
 				arrDown = append(arrDown, arr2...)
 			}
 		} else {

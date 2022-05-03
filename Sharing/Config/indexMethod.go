@@ -30,7 +30,7 @@ func HaveIndex(client *ethclient.Client, id *big.Int) (
 	Rent      *big.Int
 	EthPledge *big.Int
 	GoodImg   []string
-	//GoodSign  string
+	GoodSign  string
 }, error) {
 	ins, err := HaveUserRead(client)
 	goodsD, err := ins.GoodsData(nil, id)

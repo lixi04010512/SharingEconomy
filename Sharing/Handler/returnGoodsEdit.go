@@ -105,6 +105,7 @@ func AgreeBackGoods(c *gin.Context) {
 	fmt.Println("mess",message)
 	fmt.Println("borrow:", res)
 	fmt.Println("borr",data)
+	fmt.Println("value",value)
 
 	userImg, err := contract.GetUserImg(nil, goodsData.Owner)
 	img,err :=contract.GetUserImg(nil, goodsData.Borrowers.Borrower)
