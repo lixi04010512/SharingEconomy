@@ -78,7 +78,7 @@ func AgreeBackGoods(c *gin.Context) {
 	goodsData,_, err := config.HaveIndex(client, big.NewInt(idInt64))
 	pledge:=goodsData.EthPledge
 	pledgeStr := pledge.String()//转成string
-	res, err := config.AgreeBackMethod(client,contract, big.NewInt(idInt64), big.NewInt(backInt64),privKey)
+
 	//isBack,err:=contract.GetBackRec(nil,big.NewInt(idInt64),big.NewInt(backInt64))
 
 	//获取转账金额
@@ -96,15 +96,12 @@ func AgreeBackGoods(c *gin.Context) {
 	if !isOk {
 		log.Println("float to bigInt failed!")
 	}
-
-
-	data, err := config.BackGoodsMethod(client,contract, big.NewInt(idInt64), big.NewInt(backInt64),timeStr,value)
+	res, err := config.AgreeBackMethod(client,contract, big.NewInt(idInt64), big.NewInt(backInt64),value,timeStr,privKey)
 
 	//发送留言消息
 	message := c.PostForm("message")
 	fmt.Println("mess",message)
 	fmt.Println("borrow:", res)
-	fmt.Println("borr",data)
 	fmt.Println("value",value)
 
 	userImg, err := contract.GetUserImg(nil, goodsData.Owner)
@@ -150,35 +147,16 @@ func DisagreeBackGoods(c *gin.Context) {
 	backInt64 := int64(backInt)
 	timeStr:=time.Now().Format("2006-01-02 15:04:05")
 	goodsData,_, err := config.HaveIndex(client, big.NewInt(idInt64))
-	pledge:=goodsData.EthPledge
-	pledgeStr := pledge.String()//转成string
-	res, err := config.DisagreeBackMethod(client,contract, big.NewInt(idInt64), big.NewInt(backInt64),privKey)
-	//isBack,err:=contract.GetBackRec(nil,big.NewInt(idInt64),big.NewInt(backInt64))
+	res, err := config.DisagreeBackMethod(client,contract, big.NewInt(idInt64), big.NewInt(backInt64),timeStr,privKey)
+	blockNum,_,_,_,_,_,err:=contract.GetBackRec(nil,big.NewInt(idInt64),big.NewInt(backInt64))
 
-	//获取转账金额
-	amountf, err := strconv.ParseFloat(pledgeStr, 64) //先转换为 float64
-	if err != nil {
-
-		log.Println("is not a number")
-
-	}
-
-	// 再通过sprintf格式化为*Int
-
-	value, isOk := new(big.Int).SetString(fmt.Sprintf("%.0f", amountf*1000000000000000000), 10)
-
-	if !isOk {
-		log.Println("float to bigInt failed!")
-	}
-
-
-	data, err := config.BackGoodsMethod(client,contract, big.NewInt(idInt64), big.NewInt(backInt64),timeStr,value)
+	dealHash,err :=config.HashMethod(client,contract,big.NewInt(idInt64), big.NewInt(backInt64),blockNum)
 
 	//发送留言消息
 	message := c.PostForm("message")
 	fmt.Println("mess",message)
 	fmt.Println("borrow:", res)
-	fmt.Println("borr",data)
+	fmt.Println("hash",dealHash)
 
 	userImg, err := contract.GetUserImg(nil, goodsData.Owner)
 	img,err :=contract.GetUserImg(nil, goodsData.Borrowers.Borrower)

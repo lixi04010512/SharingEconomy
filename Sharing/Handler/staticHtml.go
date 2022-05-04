@@ -613,7 +613,7 @@ func AppInvoiceStatic(c *gin.Context) {
 	deal := c.PostForm("dealId")
 	dealInt, err := strconv.Atoi(deal)
 	dealInt64 := int64(dealInt)
-	blockNum,_,dealHash,borrowDays,sinceTime,err:=contract.GetDealRec(nil,big.NewInt(idInt64),big.NewInt(dealInt64))
+	blockNum,_,dealHash,borrowDays,_,endTime,err:=contract.GetBackRec(nil,big.NewInt(idInt64),big.NewInt(dealInt64))
 	if err2 != nil {
 		respError(c, err)
 		return
@@ -630,7 +630,7 @@ func AppInvoiceStatic(c *gin.Context) {
 		"blockNum":blockNum,
 		"dealHash":dealHash,
 		"borrowDays":borrowDays,
-		"sinceTime":sinceTime,
+		"endTime":endTime,
 		"deal":deal,
 	})
 }

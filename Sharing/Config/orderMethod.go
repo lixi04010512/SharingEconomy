@@ -30,9 +30,8 @@ func BorrowGoodsMethod(client *ethclient.Client, contract *Agreement.User, id *b
 	return res,borrow.Deal,borrow.Borrowers.Borrower, nil
 }
 //封装物品借出方法
-func AgreeBorrowMethod(client *ethclient.Client, contract *Agreement.User, id *big.Int, borrowDays *big.Int,valueWei *big.Int, since string) (*types.Transaction, error) {
-	opts := Getopts()
-	opts.Value = valueWei
+func AgreeBorrowMethod(client *ethclient.Client, contract *Agreement.User, id *big.Int, borrowDays *big.Int, since string,privateKey *ecdsa.PrivateKey) (*types.Transaction, error) {
+	opts := GetMsgOpts(privateKey)
 	res, err := contract.AgreeBorrow(opts, id, borrowDays,since)
 
 	fmt.Println("AGoods:", res)
@@ -44,23 +43,9 @@ func AgreeBorrowMethod(client *ethclient.Client, contract *Agreement.User, id *b
 	}
 	return res, nil
 }
-
-//封装借出方法
-func BorrowMethod(client *ethclient.Client, contract *Agreement.User,id *big.Int, deal *big.Int) (*types.Transaction, error)  {
-	opts := Getopts()
-	res, err := contract.Borrow(opts,id,deal)
-
-	fmt.Println("Borrow:", res)
-	opts.GasLimit = gasLimit
-	opts.GasPrice, err = GetgasPrice(client)
-	if err != nil {
-		log.Fatal(err)
-	}
-	return res, nil
-}
 //封装不同意借出方法
-func DisagreeMethod(client *ethclient.Client, contract *Agreement.User,id *big.Int, deal *big.Int,value *big.Int) (*types.Transaction, error)  {
-	opts := Getopts()
+func DisagreeMethod(client *ethclient.Client, contract *Agreement.User,id *big.Int, deal *big.Int,value *big.Int,privateKey *ecdsa.PrivateKey) (*types.Transaction, error)  {
+	opts := GetMsgOpts(privateKey)
 	opts.Value = value
 	res, err := contract.DisagreeBorrow(opts,id,deal)
 
@@ -89,9 +74,10 @@ func DoGoodsReturnMethod(client *ethclient.Client, contract *Agreement.User, id 
 	return res,backId, nil
 }
 //封装同意归还方法
-func AgreeBackMethod(client *ethclient.Client, contract *Agreement.User, id *big.Int, backs *big.Int,privateKey *ecdsa.PrivateKey) (*types.Transaction, error) {
+func AgreeBackMethod(client *ethclient.Client, contract *Agreement.User, id *big.Int, backs *big.Int,value *big.Int,over string,privateKey *ecdsa.PrivateKey) (*types.Transaction, error) {
 	opts := GetMsgOpts(privateKey)
-	res, err := contract.AgreeBack(opts, id,backs)
+	opts.Value = value
+	res, err := contract.AgreeBack(opts, id,backs,over)
 	fmt.Println("aback:", res)
 	opts.GasLimit = gasLimit
 	opts.GasPrice, err = GetgasPrice(client)
@@ -102,9 +88,9 @@ func AgreeBackMethod(client *ethclient.Client, contract *Agreement.User, id *big
 }
 
 //封装不同意归还方法
-func DisagreeBackMethod(client *ethclient.Client, contract *Agreement.User, id *big.Int, backs *big.Int,privateKey *ecdsa.PrivateKey) (*types.Transaction, error) {
+func DisagreeBackMethod(client *ethclient.Client, contract *Agreement.User, id *big.Int, backs *big.Int,over string,privateKey *ecdsa.PrivateKey) (*types.Transaction, error) {
 	opts := GetMsgOpts(privateKey)
-	res, err := contract.AgreeBack(opts, id,backs)
+	res, err := contract.AgreeBack(opts, id,backs,over)
 	fmt.Println("aback:", res)
 	opts.GasLimit = gasLimit
 	opts.GasPrice, err = GetgasPrice(client)
@@ -115,18 +101,18 @@ func DisagreeBackMethod(client *ethclient.Client, contract *Agreement.User, id *
 }
 
 //封装归还方法
-func BackGoodsMethod(client *ethclient.Client, contract *Agreement.User, id *big.Int, backs *big.Int, over string,value *big.Int) (*types.Transaction, error) {
-	opts := Getopts()
-	opts.Value =value
-	res, err := contract.BackGoods(opts, id,backs,over)
-	fmt.Println("back:", res)
-	opts.GasLimit = gasLimit
-	opts.GasPrice, err = GetgasPrice(client)
-	if err != nil {
-		log.Fatal(err)
-	}
-	return res, nil
-}
+//func BackGoodsMethod(client *ethclient.Client, contract *Agreement.User, id *big.Int, backs *big.Int, over string,value *big.Int) (*types.Transaction, error) {
+//	opts := Getopts()
+//	opts.Value =value
+//	res, err := contract.BackGoods(opts, id,backs,over)
+//	fmt.Println("back:", res)
+//	opts.GasLimit = gasLimit
+//	opts.GasPrice, err = GetgasPrice(client)
+//	if err != nil {
+//		log.Fatal(err)
+//	}
+//	return res, nil
+//}
 
 //封装借出方法
 func HashMethod(client *ethclient.Client, contract *Agreement.User,id *big.Int, deal *big.Int,blockNum *big.Int) (*types.Transaction, error)  {

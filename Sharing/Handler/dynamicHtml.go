@@ -220,7 +220,7 @@ func shopPorduct(c *gin.Context) {
 			Rent:      goodData.Rent,
 			EthPledge: goodData.EthPledge,
 			GoodImg:   goodData1.GoodImg,
-			//GoodSign: goodData1.GoodsSign,
+			GoodSign: goodData1.GoodSign,
 			Addr:    goodData.Owner,
 			Species: goodData.Species,
 		},

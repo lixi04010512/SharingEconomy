@@ -103,7 +103,7 @@ func DisagreeBorrowGoods(c *gin.Context) {
 	rent:=goodsData.Rent
 	rentStr := rent.String()//转成string
 	rentInt, err := strconv.Atoi(rentStr)//string转int
-	_,_,_,borrowDays,_,err:=contract.GetDealRec(nil,big.NewInt(idInt64),big.NewInt(dealInt64))
+	borrowDays,_,err:=contract.GetDealRec(nil,big.NewInt(idInt64),big.NewInt(dealInt64))
 	borrowDaysStr := borrowDays.String()//转成string
 	borrowDaysInt, err := strconv.Atoi(borrowDaysStr)//string转int
 	pledge:=goodsData.EthPledge
@@ -127,7 +127,7 @@ func DisagreeBorrowGoods(c *gin.Context) {
 		log.Println("float to bigInt failed!")
 	}
 
-	res,err:=config.DisagreeMethod(client,contract,big.NewInt(idInt64),big.NewInt(dealInt64),value)
+	res,err:=config.DisagreeMethod(client,contract,big.NewInt(idInt64),big.NewInt(dealInt64),value,privKey)
 
 	//发送留言消息
 	message := c.PostForm("message")
@@ -170,41 +170,13 @@ func AgreeBorrow(c *gin.Context) {
 	dealInt64 := int64(dealInt)
 	timeStr:=time.Now().Format("2006-01-02 15:04:05")
 	goodsData,_, err := config.HaveIndex(client, big.NewInt(idInt64))
-	rent:=goodsData.Rent
-	rentStr := rent.String()//转成string
-	rentInt, err := strconv.Atoi(rentStr)//string转int
-	blockNum,_,_,borrowDays,_,err:=contract.GetDealRec(nil,big.NewInt(idInt64),big.NewInt(dealInt64))
-	borrowDaysStr := borrowDays.String()//转成string
-	borrowDaysInt, err := strconv.Atoi(borrowDaysStr)//string转int
-//获取转账金额
-	transfEth := rentInt*borrowDaysInt
-	transfEths:= strconv.Itoa(transfEth)
-	amountf, err := strconv.ParseFloat(transfEths, 64) //先转换为 float64
-	if err != nil {
 
-		log.Println("is not a number")
-
-	}
-
-	// 再通过sprintf格式化为*Int
-
-	value, isOk := new(big.Int).SetString(fmt.Sprintf("%.0f", amountf*1000000000000000000), 10)
-
-	if !isOk {
-		log.Println("float to bigInt failed!")
-	}
-	res, err := config.AgreeBorrowMethod(client,contract, big.NewInt(idInt64), big.NewInt(dealInt64),value,timeStr)
-
-	data, err := config.BorrowMethod(client,contract, big.NewInt(idInt64), big.NewInt(dealInt64))
-
-	dealHash,err :=config.HashMethod(client,contract,big.NewInt(idInt64), big.NewInt(dealInt64),blockNum)
+	res, err := config.AgreeBorrowMethod(client,contract, big.NewInt(idInt64), big.NewInt(dealInt64),timeStr,privKey)
 
 	//发送留言消息
 	message := c.PostForm("message")
 	fmt.Println("mess",message)
 	fmt.Println("borrow:", res)
-	fmt.Println("borr",data)
-	fmt.Println("hash:", dealHash)
 
 	userImg, err := contract.GetUserImg(nil, goodsData.Owner)
 	img,err :=contract.GetUserImg(nil, goodsData.Borrowers.Borrower)
