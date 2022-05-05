@@ -473,6 +473,7 @@ func (_User *UserCallerSession) GetOrders(oid *big.Int) (common.Address, common.
 	return _User.Contract.GetOrders(&_User.CallOpts, oid)
 }
 
+
 // GetOrdersId is a free data retrieval call binding the contract method 0x5d1e0ec1.
 //
 // Solidity: function getOrdersId() view returns(uint256[])
@@ -876,6 +877,7 @@ func (_User *UserCallerSession) IntegralData(arg0 common.Address) (struct {
 }, error) {
 	return _User.Contract.IntegralData(&_User.CallOpts, arg0)
 }
+
 
 // OrderData is a free data retrieval call binding the contract method 0xcfb04022.
 //
