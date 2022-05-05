@@ -20,6 +20,7 @@ type Renter struct {
 
 }
 type GoodsPort struct {
+	OId       *big.Int
 	Id        *big.Int       `json:"id"`
 	borrower  Renter         `json:"renter"`    //租用者
 	Addr      common.Address `json:"addr"`      //地址
@@ -28,7 +29,7 @@ type GoodsPort struct {
 	Rent      *big.Int       `json:"rent"`      //价格
 	EthPledge *big.Int       `json:"ethPledge"` //押金
 	GoodImg   []string       `json:"GoodImg"`   //图片路径
-	GoodSign   string       `json:"GoodSign"`   //商品描述
+	GoodSign  string         `json:"GoodSign"`  //商品描述
 	Count     int            `json:"count"`     //借用次数
 	Deal      int            `json:"deal"`      //交易记录
 	Backs     int            `json:"backs"`     //归还记录
@@ -105,6 +106,7 @@ func addIndex(c *gin.Context) {
 		stickArr1 := []StickAll{StickAll{Sticks: StickData.Name, SticksImg: StickData.Img}}
 		stickArr = append(stickArr, stickArr1...)
 	}
+	fmt.Println(stickArr)
 	//定义一个结构体数组
 	var arr1 []GoodsPort
 	var goodArr []GoodsPort
@@ -122,7 +124,8 @@ func addIndex(c *gin.Context) {
 		goodData, goodData1, err2 := config.HaveIndex(client, id[j])
 		//print("图片路径",goodImg)
 		if err2 != nil {
-			respError(c, err2)
+			//respError(c, err2)
+			fmt.Println(err2)
 			return
 		}
 		arr0 := []GoodsPort{GoodsPort{Id: goodData.Id, Names: goodData.Name, Species: goodData.Species, Rent: goodData.Rent, EthPledge: goodData.EthPledge, GoodImg: goodData1.GoodImg, GoodSign: goodData1.GoodSign}}
@@ -134,7 +137,8 @@ func addIndex(c *gin.Context) {
 		goodData, goodData1, err2 := config.HaveIndex(client, big.NewInt(x))
 		//print("图片路径",goodImg)
 		if err2 != nil {
-			respError(c, err2)
+			fmt.Println("err2", err2)
+
 			return
 		}
 		if goodData.Name != "" && goodData.Available == true && goodData.IsBorrow == false {
@@ -150,13 +154,15 @@ func addIndex(c *gin.Context) {
 			goodData, goodData1, err3 := config.HaveIndex(client, big.NewInt(nums[i]))
 			//print("图片路径",goodImg)
 			if err3 != nil {
-				respError(c, err3)
+				fmt.Println(err3)
+
 				return
 			}
 			if goodData.Name != "" && goodData.Available == true && goodData.IsBorrow == false {
 				arr2 := []GoodsPort{GoodsPort{Id: goodData.Id, Names: goodData.Name, Species: goodData.Species, Rent: goodData.Rent, EthPledge: goodData.EthPledge, GoodImg: goodData1.GoodImg, GoodSign: goodData1.GoodSign}}
 				arr1 = append(arr1, arr2...)
 			}
+
 			//goodsPort1 := goodsPort{ Names: names, Species: species, Rent: rent, EthPledge: ethPledge}
 			//fmt.Println(goodsPort{},addr)
 		} else {
@@ -164,7 +170,7 @@ func addIndex(c *gin.Context) {
 			userImg, err := contract.GetUserImg(nil, LoginUser)
 			fmt.Println("res", userName)
 			if err != nil {
-				respError(c, err)
+				fmt.Println(err)
 				return
 			}
 			c.HTML(http.StatusOK, "Static/index.html", gin.H{
@@ -202,6 +208,8 @@ func shopPorduct(c *gin.Context) {
 	//	respError(c, err)
 	//	return
 	//}
+	type OrderDet struct {
+	}
 	goodData, goodData1, err := config.HaveIndex(client, id)
 	userName, people, _, _, _, err := config.GetUserMethod(contract, LoginUser)
 	userImg, err := contract.GetUserImg(nil, LoginUser)
@@ -220,9 +228,9 @@ func shopPorduct(c *gin.Context) {
 			Rent:      goodData.Rent,
 			EthPledge: goodData.EthPledge,
 			GoodImg:   goodData1.GoodImg,
-			GoodSign: goodData1.GoodSign,
-			Addr:    goodData.Owner,
-			Species: goodData.Species,
+			GoodSign:  goodData1.GoodSign,
+			Addr:      goodData.Owner,
+			Species:   goodData.Species,
 		},
 		"userName":  userName,
 		"address":   people,
@@ -376,32 +384,30 @@ func MyOrder(c *gin.Context) {
 		respError(c, err)
 		return
 	}
-	//获取id
-	id := config.HaveId(client)
-	if err != nil {
-		fmt.Println(err)
-		respError(c, err)
-		return
-	}
+
+	orderId := config.HaveOrderId(client)
 	//定义一个结构体数组
 	var arrUp []GoodsPort
 	var arrDown []GoodsPort
-	for i := 0; i < len(id)+1; i++ {
-		if i < len(id) {
-			//var addr common.Address
-			goodData, goodData1, err := config.HaveIndex(client, id[i])
+
+	for i := 0; i < len(orderId)+1; i++ {
+		fmt.Println("len(orderid)", len(orderId))
+		if i < len(orderId) {
+			OrderDet, _ := config.HaveOrderDit(client, orderId[i])
+			goodData, goodData1, err := config.HaveIndex(client, OrderDet.Id)
+			fmt.Println("goodData", goodData)
 			if err != nil {
 				respError(c, err)
 				return
 			}
-
-			if people == goodData.Owner && goodData.IsBorrow == true {
-				arr1 := []GoodsPort{GoodsPort{Id: goodData.Id, Names: goodData.Name, Species: goodData.Species, Rent: goodData.Rent, EthPledge: goodData.EthPledge, IsBorrow: goodData.IsBorrow, GoodImg: goodData1.GoodImg, GoodSign: goodData1.GoodSign}}
+			fmt.Println("orderID", orderId, OrderDet.Id, OrderDet.OId, goodData.Owner, OrderDet.OrderOwner)
+			if people == OrderDet.OrderOwner {
+				arr1 := []GoodsPort{GoodsPort{OId: OrderDet.OId, Id: goodData.Id, Names: goodData.Name, Species: goodData.Species, Rent: goodData.Rent, EthPledge: goodData.EthPledge, IsBorrow: goodData.IsBorrow, GoodImg: goodData1.GoodImg, GoodSign: goodData1.GoodSign}}
 				arrUp = append(arrUp, arr1...)
-			} else if people == goodData.Owner && goodData.IsBorrow == false {
-				arr2 := []GoodsPort{GoodsPort{Id: goodData.Id, Names: goodData.Name, Species: goodData.Species, Rent: goodData.Rent, EthPledge: goodData.EthPledge, IsBorrow: goodData.IsBorrow, GoodImg: goodData1.GoodImg, GoodSign: goodData1.GoodSign}}
-				arrDown = append(arrDown, arr2...)
+				fmt.Println("arrUp", arrUp)
+
 			}
+
 		} else {
 
 			c.HTML(http.StatusOK, "Static/order.html", gin.H{
@@ -491,29 +497,32 @@ func Myshop(c *gin.Context) {
 		respError(c, err)
 		return
 	}
-	//获取id
-	id := config.HaveId(client)
-	if err != nil {
-		fmt.Println(err)
-		respError(c, err)
-		return
-	}
+	orderId := config.HaveOrderId(client)
 	var myshoparr []GoodsPort
-	for i := 0; i < len(id)+1; i++ {
-		if i < len(id) {
-			//var addr common.Address
-			goodData, goodData1, err := config.HaveIndex(client, id[i])
+	//var numx int
+	//if len(orderId)>=len(id){
+	//	numx=len(orderId)
+	//}else{
+	//	numx=len(id)
+	//}
+	for i := 0; i < len(orderId)+1; i++ {
+		fmt.Println("len(orderid)", len(orderId))
+		if i < len(orderId) {
+			OrderDtBorr, _ := config.HaveOrderDit(client, orderId[i])
+			goodData, goodData1, err := config.HaveIndex(client, OrderDtBorr.Id)
 			if err != nil {
 				respError(c, err)
 				return
 			}
-			if goodData.Borrowers.Borrower == people && goodData.IsBorrow == true {
-				arr1 := []GoodsPort{GoodsPort{Id: goodData.Id, Names: goodData.Name, Rent: goodData.Rent, GoodImg: goodData1.GoodImg, Species: goodData.Species}}
+			fmt.Println("orderBrrID", orderId, OrderDtBorr.Id, OrderDtBorr.OId, goodData.Owner, OrderDtBorr.OrderOwner)
+
+			if OrderDtBorr.OrderBorrower == people {
+				arr1 := []GoodsPort{GoodsPort{OId: OrderDtBorr.OId, Id: goodData.Id, Names: goodData.Name, Rent: goodData.Rent, GoodImg: goodData1.GoodImg, Species: goodData.Species}}
 				myshoparr = append(myshoparr, arr1...)
+				fmt.Println("myahopar", myshoparr)
+
 			}
-
 		} else {
-
 			c.HTML(http.StatusOK, "Static/shop.html", gin.H{
 				"shopDet":  myshoparr,
 				"userName": userName,

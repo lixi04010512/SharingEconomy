@@ -9,15 +9,15 @@
     <meta content="" name="author">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
 
-    <script src="share/static/js/public.js"></script>
+    <script src="../share/static/js/public.js"></script>
     <!-- Main Style CSS -->
-    <link rel="stylesheet" href="share/assets/css/style.css">
-    <link rel="stylesheet" href="share/assets/css/bootstrap.min.css">
+    <link rel="stylesheet" href="../share/assets/css/style.css">
+    <link rel="stylesheet" href="../share/assets/css/bootstrap.min.css">
 
     <!-- App css -->
-    <link href="share/static/css/bootstrap.min.css" rel="stylesheet" type="text/css">
-    <link href="share/static/css/icons.min.css" rel="stylesheet" type="text/css">
-    <link href="share/static/css/app.min.css" rel="stylesheet" type="text/css">
+    <link href="../share/static/css/bootstrap.min.css" rel="stylesheet" type="text/css">
+    <link href="../share/static/css/icons.min.css" rel="stylesheet" type="text/css">
+    <link href="../share/static/css/app.min.css" rel="stylesheet" type="text/css">
 
 </head>
 
@@ -108,49 +108,30 @@
                                             <table class="table mb-0">
                                                 <thead>
                                                     <tr>
+                                                        <th style="padding: 12px;">商品id</th>
                                                         <th style="padding: 12px;">商品名称</th>
-                                                        <th style="padding: 12px;">租用天数</th>                                                        
-                                                        <th style="padding: 12px;">价格</th>
+                                                        <th style="padding: 12px;">交易编号</th>
+                                                        <th style="padding: 12px;">每日租金</th>
                                                     </tr>
                                                 </thead>
                                                 <tbody>
                                                     <tr>
                                                         <td>
-                                                            <img src="https://mannatthemes.com/unikit/default/assets/images/products/01.png" alt="" height="40">
-                                                            <p class="d-inline-block align-middle mb-0 product-name">摄像头</p> 
+                                                            {{.id}}
                                                         </td>
                                                         <td>
-                                                            2
+                                                            {{range $k,$v:=.goodImg}}
+                                                            <img src=../{{$v}} alt="" height="40">
+                                                            {{end}}
+                                                            <p class="d-inline-block align-middle mb-0 product-name">
+                                                                {{.name}}</p>
                                                         </td>
-                                                        <td>$198</td>                                                        
+                                                        <td>
+                                                            {{.OId}}
+                                                        </td>
+                                                        <td>{{.rent}}ETH</td>
                                                     </tr>
-                                                    <tr>
-                                                        <td>
-                                                            <img src="https://mannatthemes.com/unikit/default/assets/images/products/04.png" alt="" height="40">
-                                                            <p class="d-inline-block align-middle mb-0 product-name">口罩</p> 
-                                                        </td>
-                                                        <td>
-                                                            1
-                                                        </td>
-                                                        <td>$49</td>                                                       
-                                                    </tr>
-                                                    <tr>
-                                                        <td>
-                                                            <img src="https://mannatthemes.com/unikit/default/assets/images/products/07.png" alt="" height="40">
-                                                            <p class="d-inline-block align-middle mb-0 product-name">双肩包</p>
-                                                        </td>
-                                                        <td>
-                                                            1
-                                                        </td>
-                                                        <td>$99</td>
-                                                    </tr>  
-                                                    <tr>
-                                                        <td class=" border-bottom-0">
-                                                            <h6>总价 :</h6>
-                                                        </td>
-                                                        <td class=" border-bottom-0"></td>
-                                                        <td class="text-dark border-bottom-0"><strong>$496</strong></td>
-                                                    </tr>                                                    
+
                                                 </tbody>
                                             </table>
                                         </div><!--end re-table-->
@@ -162,8 +143,8 @@
                                 <div class="row row-cols-3 d-flex justify-content-md-between">
                                     <div class="col-md-3 d-print-flex">
                                         <div class="">
-                                            <h6 class="mb-0"><b>交易日期 :</b> 2022/4/5</h6>
-                                            <h6><b>交易ID :</b> # 23654789</h6>
+                                            <h6 class="mb-0"><b>归还日期 :</b> {{.endTime}}</h6>
+
                                         </div>
                                     </div>
                                     <!--end col-->
@@ -173,7 +154,7 @@
                                             <address class="font-13">
                                                 <strong class="font-14">出借人 :</strong><br>
                                                 <!-- Joe Smith<br> -->
-                                                0x5B38Da6a701c568545dCfcB03F<br>
+                                                {{.owner}}<br>
                                             </address>
                                         </div>
                                     </div>
@@ -182,7 +163,7 @@
                                         <div class="">
                                             <address class="font-13">
                                                 <strong class="font-14">借入人:</strong><br>
-                                                0x5B38Da6a701c568545dCfcB03F<br>
+                                                {{.borrower}}<br>
                                             </address>
                                         </div>
                                     </div>
@@ -196,10 +177,10 @@
                                     <div class="col-lg-6">
                                         <h5 class="mt-4">区块链数据 :</h5>
                                         <ul class="ps-3">
-                                            <li><small class="font-12"><span>交易Hash：</span>0x5B38Da6a701c568545dCfcB03F
+                                            <li><small class="font-12"><span>交易Hash：</span>{{.dealHash}}
                                                 </small></li>
-                                            <li><small class="font-12"><span>所在区块：</span>128282671 </small></li>
-                                            <li><small class="font-12"><span>交易时间戳：</span>2022-4-5 10:30:23</small></li>
+                                            <li><small class="font-12"><span>所在区块：</span>{{.blockNum}} </small></li>
+                                            <li><small class="font-12"><span>交易时间戳：</span>{{.timeStamp}}</small></li>
                                         </ul>
                                     </div>
                                     <!--end col-->
@@ -235,14 +216,14 @@
 
 
     <!-- javascript  -->
-    <script src="share/assets/js/jquery-3.4.1.min.js"></script>
-    <script src="share/static/js/app.js"></script>
+    <script src="../share/assets/js/jquery-3.4.1.min.js"></script>
+    <script src="../share/static/js/app.js"></script>
     <!-- Bootstrap JS -->
-    <script src="share/assets/js/bootstrap.min.js"></script>
+    <script src="../share/assets/js/bootstrap.min.js"></script>
     <!-- App js -->
-    <script src="share/static/js/app.js"></script>
-    <script src="share/js/pop-message.js"></script>
-    <script type="text/javascript" src="share/static/js/logout.js"></script>
+    <script src="../share/static/js/app.js"></script>
+    <script src="../share/js/pop-message.js"></script>
+    <script type="text/javascript" src="../share/static/js/logout.js"></script>
 
 </body>
 {{ end }}
