@@ -115,8 +115,9 @@ func DisagreeBackMethod(client *ethclient.Client, contract *Agreement.User, id *
 //}
 
 //封装借出方法
-func HashMethod(client *ethclient.Client, contract *Agreement.User,id *big.Int, deal *big.Int,blockNum *big.Int) (*types.Transaction, error)  {
-	opts := Getopts()
+func HashMethod(client *ethclient.Client, contract *Agreement.User,id *big.Int, deal *big.Int,blockNum *big.Int,privateKey *ecdsa.PrivateKey) (*types.Transaction, error)  {
+
+	opts := GetMsgOpts(privateKey)
 	res,err := contract.DealHash(opts,id,deal,blockNum)
 
 	fmt.Println("Borrow:", res)

@@ -150,7 +150,7 @@ func DisagreeBackGoods(c *gin.Context) {
 	res, err := config.DisagreeBackMethod(client,contract, big.NewInt(idInt64), big.NewInt(backInt64),timeStr,privKey)
 	blockNum,_,_,_,_,_,err:=contract.GetBackRec(nil,big.NewInt(idInt64),big.NewInt(backInt64))
 
-	dealHash,err :=config.HashMethod(client,contract,big.NewInt(idInt64), big.NewInt(backInt64),blockNum)
+	dealHash,err :=config.HashMethod(client,contract,big.NewInt(idInt64), big.NewInt(backInt64),blockNum,privKey)
 
 	//发送留言消息
 	message := c.PostForm("message")
