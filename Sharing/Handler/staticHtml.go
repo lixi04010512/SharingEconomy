@@ -584,57 +584,6 @@ func ConfirmStatic(c *gin.Context) {
 	c.HTML(http.StatusOK, "Static/confirm-transaction.html", gin.H{"userName": userName, "address": people, "userImg": userImg})
 }
 
-//渲染con
-func AppInvoiceStatic(c *gin.Context) {
-	//初始化client
-	client, err := config.GetClient()
-	if err != nil {
-		fmt.Println(err)
-		respError(c, err)
-		return
-	}
-	//初始化合约地址
-	contract, err := config.GetAddress(client)
-	if err != nil {
-		respError(c, err)
-		return
-	}
-
-	userName, people, _, _, _, err := config.GetUserMethod(contract, LoginUser)
-	fmt.Println("res", userName)
-	if err != nil {
-		respError(c, err)
-		return
-	}
-	id := c.PostForm("disagreeId")
-	idInt, err := strconv.Atoi(id)
-	idInt64 := int64(idInt)
-	goodData, goodData1, err2 := config.HaveIndex(client, big.NewInt(idInt64))
-	deal := c.PostForm("dealId")
-	dealInt, err := strconv.Atoi(deal)
-	dealInt64 := int64(dealInt)
-	blockNum,_,dealHash,borrowDays,_,endTime,err:=contract.GetBackRec(nil,big.NewInt(idInt64),big.NewInt(dealInt64))
-	if err2 != nil {
-		respError(c, err)
-		return
-	}
-	userImg, err := contract.GetUserImg(nil, LoginUser)
-	c.HTML(http.StatusOK, "Static/apps-invoice.html", gin.H{
-		"userName": userName,
-		"address": people,
-		"userImg": userImg,
-		"owner":goodData.Owner,
-		"borrower":goodData.Borrowers.Borrower,
-		"goodImg":goodData1.GoodImg,
-		"rent":goodData.Rent,
-		"blockNum":blockNum,
-		"dealHash":dealHash,
-		"borrowDays":borrowDays,
-		"endTime":endTime,
-		"deal":deal,
-	})
-}
-
 //渲染give-back
 func GiveBackStatic(c *gin.Context) {
 	//初始化client

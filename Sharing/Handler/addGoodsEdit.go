@@ -38,14 +38,12 @@ func addGoods(c *gin.Context) {
 	ethPledgeInt64 := int64(ethPledgeInt)
 	goodSign := c.PostForm("addnote")
 
-
 	if err != nil {
 		c.String(http.StatusBadRequest, fmt.Sprintf("get err %s", err.Error()))
 	}
 	// 获取所有图片
 	files := form.File["myGoodsImg"]
-	fmt.Println("files",files)
-
+	fmt.Println("files", files)
 	//存储所有图片路径
 	var goodsImgs []string
 
@@ -55,9 +53,9 @@ func addGoods(c *gin.Context) {
 	for _, file := range files {
 		fmt.Println("fileok")
 		// 逐个存
-		fileName :=file.Filename
+		fileName := file.Filename
 		filepath := fmt.Sprintf("%s%s", fildDir, fileName)
-		fileH :=fmt.Sprintf("share/images/%s",fileName)
+		fileH := fmt.Sprintf("share/images/%s", fileName)
 		//fmt.Println("path",filepath)
 		goodsImgs = append(goodsImgs, fileH)
 		if err := c.SaveUploadedFile(file, filepath); err != nil {
@@ -67,10 +65,9 @@ func addGoods(c *gin.Context) {
 	}
 	//goodsImgs := c.PostForm("goodsImgs")
 	fmt.Println("pass", name)
-	fmt.Println("goodsImg",goodsImgs)
+	fmt.Println("goodsImg", goodsImgs)
 
-	data, err := config.AddGoodsMethod(client, contract, owner, name, species, big.NewInt(rentInt64), big.NewInt(ethPledgeInt64), goodsImgs,goodSign,privKey)
-	fmt.Println("addGood",data)
+	data, err := config.AddGoodsMethod(client, contract, owner, name, species, big.NewInt(rentInt64), big.NewInt(ethPledgeInt64), goodsImgs, goodSign, privKey)
+	fmt.Println("addGood", data)
 	c.Redirect(http.StatusFound, "/cart")
 }
-

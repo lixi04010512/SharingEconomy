@@ -95,11 +95,22 @@
 				"internalType": "uint256",
 				"name": "backs",
 				"type": "uint256"
+			},
+			{
+				"internalType": "string",
+				"name": "over",
+				"type": "string"
 			}
 		],
 		"name": "agreeBack",
-		"outputs": [],
-		"stateMutability": "nonpayable",
+		"outputs": [
+			{
+				"internalType": "uint256",
+				"name": "",
+				"type": "uint256"
+			}
+		],
+		"stateMutability": "payable",
 		"type": "function"
 	},
 	{
@@ -122,48 +133,33 @@
 		],
 		"name": "agreeBorrow",
 		"outputs": [],
-		"stateMutability": "payable",
-		"type": "function"
-	},
-	{
-		"inputs": [
-			{
-				"internalType": "uint256",
-				"name": "id",
-				"type": "uint256"
-			},
-			{
-				"internalType": "uint256",
-				"name": "backs",
-				"type": "uint256"
-			},
-			{
-				"internalType": "string",
-				"name": "over",
-				"type": "string"
-			}
-		],
-		"name": "backGoods",
-		"outputs": [],
-		"stateMutability": "payable",
-		"type": "function"
-	},
-	{
-		"inputs": [
-			{
-				"internalType": "uint256",
-				"name": "id",
-				"type": "uint256"
-			},
-			{
-				"internalType": "uint256",
-				"name": "deal",
-				"type": "uint256"
-			}
-		],
-		"name": "borrow",
-		"outputs": [],
 		"stateMutability": "nonpayable",
+		"type": "function"
+	},
+	{
+		"inputs": [],
+		"name": "auctionLimit",
+		"outputs": [
+			{
+				"internalType": "uint256",
+				"name": "",
+				"type": "uint256"
+			}
+		],
+		"stateMutability": "view",
+		"type": "function"
+	},
+	{
+		"inputs": [],
+		"name": "auctionStart",
+		"outputs": [
+			{
+				"internalType": "uint256",
+				"name": "",
+				"type": "uint256"
+			}
+		],
+		"stateMutability": "view",
 		"type": "function"
 	},
 	{
@@ -193,7 +189,7 @@
 			},
 			{
 				"internalType": "uint256",
-				"name": "deal",
+				"name": "back",
 				"type": "uint256"
 			},
 			{
@@ -231,10 +227,21 @@
 				"internalType": "uint256",
 				"name": "backs",
 				"type": "uint256"
+			},
+			{
+				"internalType": "string",
+				"name": "over",
+				"type": "string"
 			}
 		],
 		"name": "disagreeBack",
-		"outputs": [],
+		"outputs": [
+			{
+				"internalType": "uint256",
+				"name": "",
+				"type": "uint256"
+			}
+		],
 		"stateMutability": "nonpayable",
 		"type": "function"
 	},
@@ -285,9 +292,34 @@
 		"name": "getBackRec",
 		"outputs": [
 			{
+				"internalType": "uint256",
+				"name": "",
+				"type": "uint256"
+			},
+			{
+				"internalType": "uint256",
+				"name": "",
+				"type": "uint256"
+			},
+			{
+				"internalType": "bytes32",
+				"name": "",
+				"type": "bytes32"
+			},
+			{
+				"internalType": "uint256",
+				"name": "",
+				"type": "uint256"
+			},
+			{
 				"internalType": "bool",
 				"name": "",
 				"type": "bool"
+			},
+			{
+				"internalType": "string",
+				"name": "",
+				"type": "string"
 			}
 		],
 		"stateMutability": "view",
@@ -333,19 +365,9 @@
 				"type": "uint256"
 			},
 			{
-				"internalType": "uint256",
+				"internalType": "string",
 				"name": "",
-				"type": "uint256"
-			},
-			{
-				"internalType": "bytes32",
-				"name": "",
-				"type": "bytes32"
-			},
-			{
-				"internalType": "uint256",
-				"name": "",
-				"type": "uint256"
+				"type": "string"
 			}
 		],
 		"stateMutability": "view",
@@ -390,6 +412,11 @@
 				"internalType": "string[]",
 				"name": "goodImg",
 				"type": "string[]"
+			},
+			{
+				"internalType": "string",
+				"name": "goodSign",
+				"type": "string"
 			}
 		],
 		"stateMutability": "view",
@@ -398,6 +425,58 @@
 	{
 		"inputs": [],
 		"name": "getGoodsId",
+		"outputs": [
+			{
+				"internalType": "uint256[]",
+				"name": "",
+				"type": "uint256[]"
+			}
+		],
+		"stateMutability": "view",
+		"type": "function"
+	},
+	{
+		"inputs": [
+			{
+				"internalType": "uint256",
+				"name": "oid",
+				"type": "uint256"
+			}
+		],
+		"name": "getOrders",
+		"outputs": [
+			{
+				"internalType": "address",
+				"name": "",
+				"type": "address"
+			},
+			{
+				"internalType": "address",
+				"name": "",
+				"type": "address"
+			},
+			{
+				"internalType": "uint256",
+				"name": "",
+				"type": "uint256"
+			},
+			{
+				"internalType": "uint256",
+				"name": "",
+				"type": "uint256"
+			},
+			{
+				"internalType": "uint256",
+				"name": "",
+				"type": "uint256"
+			}
+		],
+		"stateMutability": "view",
+		"type": "function"
+	},
+	{
+		"inputs": [],
+		"name": "getOrdersId",
 		"outputs": [
 			{
 				"internalType": "uint256[]",
@@ -511,16 +590,6 @@
 						"internalType": "address",
 						"name": "borrower",
 						"type": "address"
-					},
-					{
-						"internalType": "string",
-						"name": "since",
-						"type": "string"
-					},
-					{
-						"internalType": "string",
-						"name": "over",
-						"type": "string"
 					}
 				],
 				"internalType": "struct User.Borrower",
@@ -601,19 +670,6 @@
 		"type": "function"
 	},
 	{
-		"inputs": [],
-		"name": "host",
-		"outputs": [
-			{
-				"internalType": "address",
-				"name": "",
-				"type": "address"
-			}
-		],
-		"stateMutability": "view",
-		"type": "function"
-	},
-	{
 		"inputs": [
 			{
 				"internalType": "address",
@@ -675,25 +731,6 @@
 	{
 		"inputs": [
 			{
-				"internalType": "uint256",
-				"name": "id",
-				"type": "uint256"
-			}
-		],
-		"name": "isGoodsLend",
-		"outputs": [
-			{
-				"internalType": "bool",
-				"name": "",
-				"type": "bool"
-			}
-		],
-		"stateMutability": "view",
-		"type": "function"
-	},
-	{
-		"inputs": [
-			{
 				"internalType": "address",
 				"name": "people",
 				"type": "address"
@@ -720,6 +757,64 @@
 	{
 		"inputs": [
 			{
+				"internalType": "uint256",
+				"name": "",
+				"type": "uint256"
+			}
+		],
+		"name": "orderData",
+		"outputs": [
+			{
+				"internalType": "address",
+				"name": "orderOwner",
+				"type": "address"
+			},
+			{
+				"internalType": "address",
+				"name": "orderBorrower",
+				"type": "address"
+			},
+			{
+				"internalType": "uint256",
+				"name": "oId",
+				"type": "uint256"
+			},
+			{
+				"internalType": "uint256",
+				"name": "id",
+				"type": "uint256"
+			},
+			{
+				"internalType": "uint256",
+				"name": "back",
+				"type": "uint256"
+			}
+		],
+		"stateMutability": "view",
+		"type": "function"
+	},
+	{
+		"inputs": [
+			{
+				"internalType": "uint256",
+				"name": "",
+				"type": "uint256"
+			}
+		],
+		"name": "ordersId",
+		"outputs": [
+			{
+				"internalType": "uint256",
+				"name": "",
+				"type": "uint256"
+			}
+		],
+		"stateMutability": "view",
+		"type": "function"
+	},
+	{
+		"inputs": [
+			{
 				"internalType": "address",
 				"name": "owner",
 				"type": "address"
@@ -733,25 +828,6 @@
 		"name": "outGoods",
 		"outputs": [],
 		"stateMutability": "nonpayable",
-		"type": "function"
-	},
-	{
-		"inputs": [
-			{
-				"internalType": "uint256",
-				"name": "id",
-				"type": "uint256"
-			}
-		],
-		"name": "queryBorrower",
-		"outputs": [
-			{
-				"internalType": "address",
-				"name": "",
-				"type": "address"
-			}
-		],
-		"stateMutability": "view",
 		"type": "function"
 	},
 	{

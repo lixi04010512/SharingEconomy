@@ -140,6 +140,7 @@
                                         <table class="table mb-0">
                                             <thead class="thead-light">
                                                 <tr>
+                                                    <th class="border-top-0">交易id</th>
                                                     <th class="border-top-0">商品</th>
                                                     <th class="border-top-0" style="padding-left: 25px;">剩余归还时间</th>
                                                     <th class="border-top-0" style="padding-left: 8px;">操作</th>
@@ -149,6 +150,16 @@
                                             <tbody>
                                                 {{range $key,$vluae:=.shopDet}}
                                                 <tr>
+
+                                                    <td>
+                                                        <a href="../apps-invoice/{{$vluae.OId}}">
+                                                            <div class="cart-product__content">
+                                                                <h6 class="m-0">{{$vluae.OId}}</h6>
+
+                                                            </div>
+                                                        </a>
+                                                    </td>
+
                                                     <td>
                                                         <a href="../apps-invoice">
                                                             {{range $k,$v:=$vluae.GoodImg}}
