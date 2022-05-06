@@ -15,7 +15,6 @@ import (
 )
 
 const (
-	//chainID = 8565 //8888
 	//Prikey       = "769f41a9de1f6f1848d7631e274f2168e3cb20d16c81f688a49d081965a53861"
 	//ShareFishAddress = "0x097Dbbe9AC7dDd12919A1C6C1D364852F5bcefdE"
 	//hch
@@ -25,8 +24,6 @@ const (
 	//lixi
 	Prikey       = "45ee84c9fbfee72f88392d5e99fd071bfb1a89c2c1482456547e049d437c1380"
 	ShareFishAddress = "0xA4300503eC7cC09ed4734F6d3724510530C7600a"
-	//Prikey       = "45ee84c9fbfee72f88392d5e99fd071bfb1a89c2c1482456547e049d437c1380"
-	//ShareFishAddress = "0x72B9CE9e08c7e0C4d5698186cc5271F6dc382c1f"
 
 	//Prikey       = "769f41a9de1f6f1848d7631e274f2168e3cb20d16c81f688a49d081965a53861"
 	//ShareFishAddress = "0xDAafB847bE536849D698CC6497c9c1746Ad61be4"
@@ -34,7 +31,6 @@ const (
 	//ShareFishAddress = "0x631e3481a84c82A683cD6fE927d742f9678e3d1B"
 
 	gasLimit = 3000000
-	//fileKeystore     = "UTC--2022-03-17T08-08-40.600466800Z--59b0f8a34d8f0dd0e0eef44d02cef0c12fffb9de"
 	//Prikey = "c5b9c7fd467335bd829b3b2a3098a72ac39b7f5efa162220b7907cfc684df9a3"
 	//privateKey       = "111"
 	//ShareFishAddress = "0x7D1672baDeA4825c4B8fFD938fFD29457D6aF6ae"
@@ -109,28 +105,6 @@ func GetPrivateKey() *ecdsa.PrivateKey {
 	}
 	return privateKey
 }
-
-//获取账户文件和密码 opts
-//func HaveGetOpts() *bind.TransactOpts {
-//	//账户文件
-//	b, err := ioutil.ReadFile(fileKeystore)
-//	if err != nil {
-//		log.Fatal("错误", err)
-//	}
-//	//账户密码
-//	key, err := keystore.DecryptKey(b, privateKey)
-//	if err != nil {
-//		log.Fatal(err)
-//	}
-//	fmt.Println("key:", key)
-//	reader, _ := os.Open(fileKeystore)
-//	//opts, err := bind.NewTransactor(reader, "111")
-//	opts, err := bind.NewTransactorWithChainID(reader, "111", big.NewInt(9696))
-//	if err != nil {
-//		log.Fatal("NewTransactor ", err)
-//	}
-//	return opts
-//}
 
 // 获取 gasPrice
 func GetgasPrice(client *ethclient.Client) (*big.Int, error) {
