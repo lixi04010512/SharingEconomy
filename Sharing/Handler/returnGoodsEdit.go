@@ -148,15 +148,14 @@ func DisagreeBackGoods(c *gin.Context) {
 	timeStr:=time.Now().Format("2006-01-02 15:04:05")
 	goodsData,_, err := config.HaveIndex(client, big.NewInt(idInt64))
 	res, err := config.DisagreeBackMethod(client,contract, big.NewInt(idInt64), big.NewInt(backInt64),timeStr,privKey)
-	blockNum,_,_,_,_,_,err:=contract.GetBackRec(nil,big.NewInt(idInt64),big.NewInt(backInt64))
+	//_,_,err:=contract.GetBackRec(nil,big.NewInt(idInt64),big.NewInt(backInt64))
 
-	dealHash,err :=config.HashMethod(client,contract,big.NewInt(idInt64), big.NewInt(backInt64),blockNum,privKey)
+
 
 	//发送留言消息
 	message := c.PostForm("message")
 	fmt.Println("mess",message)
 	fmt.Println("borrow:", res)
-	fmt.Println("hash",dealHash)
 
 	userImg, err := contract.GetUserImg(nil, goodsData.Owner)
 	img,err :=contract.GetUserImg(nil, goodsData.Borrowers.Borrower)

@@ -103,7 +103,7 @@ func DisagreeBorrowGoods(c *gin.Context) {
 	rent:=goodsData.Rent
 	rentStr := rent.String()//转成string
 	rentInt, err := strconv.Atoi(rentStr)//string转int
-	borrowDays,_,err:=contract.GetDealRec(nil,big.NewInt(idInt64),big.NewInt(dealInt64))
+	_,_,_,borrowDays,_,err:=contract.GetDealRec(nil,big.NewInt(idInt64),big.NewInt(dealInt64))
 	borrowDaysStr := borrowDays.String()//转成string
 	borrowDaysInt, err := strconv.Atoi(borrowDaysStr)//string转int
 	pledge:=goodsData.EthPledge
@@ -171,12 +171,17 @@ func AgreeBorrow(c *gin.Context) {
 	timeStr:=time.Now().Format("2006-01-02 15:04:05")
 	goodsData,_, err := config.HaveIndex(client, big.NewInt(idInt64))
 
+	blockNum,_,_,_,_,err:=contract.GetDealRec(nil,big.NewInt(idInt64),big.NewInt(dealInt64))
+
 	res, err := config.AgreeBorrowMethod(client,contract, big.NewInt(idInt64), big.NewInt(dealInt64),timeStr,privKey)
+
+	dealHash,err :=config.HashMethod(client,contract,big.NewInt(idInt64), big.NewInt(dealInt64),blockNum,privKey)
 
 	//发送留言消息
 	message := c.PostForm("message")
 	fmt.Println("mess",message)
 	fmt.Println("borrow:", res)
+	fmt.Println("hash",dealHash)
 
 	userImg, err := contract.GetUserImg(nil, goodsData.Owner)
 	img,err :=contract.GetUserImg(nil, goodsData.Borrowers.Borrower)
