@@ -103,13 +103,7 @@
 			}
 		],
 		"name": "agreeBack",
-		"outputs": [
-			{
-				"internalType": "uint256",
-				"name": "",
-				"type": "uint256"
-			}
-		],
+		"outputs": [],
 		"stateMutability": "payable",
 		"type": "function"
 	},
@@ -132,7 +126,13 @@
 			}
 		],
 		"name": "agreeBorrow",
-		"outputs": [],
+		"outputs": [
+			{
+				"internalType": "uint256",
+				"name": "",
+				"type": "uint256"
+			}
+		],
 		"stateMutability": "nonpayable",
 		"type": "function"
 	},
@@ -189,12 +189,12 @@
 			},
 			{
 				"internalType": "uint256",
-				"name": "back",
+				"name": "deal",
 				"type": "uint256"
 			},
 			{
 				"internalType": "uint256",
-				"name": "blockNum",
+				"name": "oid",
 				"type": "uint256"
 			}
 		],
@@ -235,13 +235,7 @@
 			}
 		],
 		"name": "disagreeBack",
-		"outputs": [
-			{
-				"internalType": "uint256",
-				"name": "",
-				"type": "uint256"
-			}
-		],
+		"outputs": [],
 		"stateMutability": "nonpayable",
 		"type": "function"
 	},
@@ -292,26 +286,6 @@
 		"name": "getBackRec",
 		"outputs": [
 			{
-				"internalType": "uint256",
-				"name": "",
-				"type": "uint256"
-			},
-			{
-				"internalType": "uint256",
-				"name": "",
-				"type": "uint256"
-			},
-			{
-				"internalType": "bytes32",
-				"name": "",
-				"type": "bytes32"
-			},
-			{
-				"internalType": "uint256",
-				"name": "",
-				"type": "uint256"
-			},
-			{
 				"internalType": "bool",
 				"name": "",
 				"type": "bool"
@@ -359,6 +333,21 @@
 		],
 		"name": "getDealRec",
 		"outputs": [
+			{
+				"internalType": "uint256",
+				"name": "",
+				"type": "uint256"
+			},
+			{
+				"internalType": "uint256",
+				"name": "",
+				"type": "uint256"
+			},
+			{
+				"internalType": "bytes32",
+				"name": "",
+				"type": "bytes32"
+			},
 			{
 				"internalType": "uint256",
 				"name": "",
@@ -670,6 +659,19 @@
 		"type": "function"
 	},
 	{
+		"inputs": [],
+		"name": "host",
+		"outputs": [
+			{
+				"internalType": "address",
+				"name": "",
+				"type": "address"
+			}
+		],
+		"stateMutability": "view",
+		"type": "function"
+	},
+	{
 		"inputs": [
 			{
 				"internalType": "address",
@@ -782,6 +784,11 @@
 			{
 				"internalType": "uint256",
 				"name": "id",
+				"type": "uint256"
+			},
+			{
+				"internalType": "uint256",
+				"name": "deal",
 				"type": "uint256"
 			},
 			{
