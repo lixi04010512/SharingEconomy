@@ -1200,7 +1200,7 @@ html {
   font-family: "Poppins", sans-serif;
   overflow-x: hidden;
   background-color: #f5f8fa;
-  color: #8480ae;
+  /* color: #8480ae; */
   scrollbar-width: thin;
 }
 
