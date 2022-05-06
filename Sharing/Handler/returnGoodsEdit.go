@@ -117,7 +117,7 @@ func AgreeBackGoods(c *gin.Context) {
 	fmt.Println("img",img)
 	userImg1 :="share/"+userImg
 	img1 :="share/"+img
-	err1 :=db.AgreeBorrow(goodsData.Owner.String(),goodsData.Borrowers.Borrower.String(),name_owner,userName,message,userImg1,img1)
+	err1 :=db.AgreeBorrow(goodsData.Owner.String(),goodsData.Borrowers.Borrower.String(),message,userImg1,img1)
 	if err1 !=nil {
 		fmt.Println("202err:",err1)
 	}
@@ -170,7 +170,7 @@ func DisagreeBackGoods(c *gin.Context) {
 	fmt.Println("img",img)
 	userImg1 :="share/"+userImg
 	img1 :="share/"+img
-	err1 :=db.DisagreeBorrow(goodsData.Owner.String(),goodsData.Borrowers.Borrower.String(),name_owner,userName,message,userImg1,img1)
+	err1 :=db.DisagreeBorrow(goodsData.Owner.String(),goodsData.Borrowers.Borrower.String(),message,userImg1,img1)
 	if err1 !=nil {
 		fmt.Println("202err:",err1)
 	}
