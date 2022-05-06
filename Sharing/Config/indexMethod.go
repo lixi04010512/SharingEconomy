@@ -67,6 +67,7 @@ func HaveOrderDit(client *ethclient.Client, id *big.Int) (struct {
 	OrderBorrower common.Address
 	OId           *big.Int
 	Id            *big.Int
+	Deal          *big.Int
 	Back          *big.Int
 }, error) {
 	ins, err := HaveUserRead(client)
