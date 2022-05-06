@@ -49,8 +49,8 @@ func AppInvoiceStatic(c *gin.Context) {
 	idInt64 := int64(idInt)
 	OrderDet, _ := config.HaveOrderDit(client, big.NewInt(idInt64))
 	goodData, goodData1, err2 := config.HaveIndex(client, OrderDet.Id)
-	blockNum, timeStamp, dealHash, _, startTime, err := contract.GetDealRec(nil, OrderDet.Id, OrderDet.Deal)
-	endTime,_,err :=contract.GetBackRec(nil,OrderDet.Id,OrderDet.Back)
+	blockNum, timeStamp, dealHash, days, startTime, err := contract.GetDealRec(nil, OrderDet.Id, OrderDet.Deal)
+	isBack, endTime, err := contract.GetBackRec(nil, OrderDet.Id, OrderDet.Back)
 	if err2 != nil {
 		respError(c, err)
 		return
@@ -68,9 +68,12 @@ func AppInvoiceStatic(c *gin.Context) {
 		"rent":      goodData.Rent,
 		"blockNum":  blockNum,
 		"dealHash":  dealHash,
-		"startTime":   startTime,
+		"startTime": startTime,
 		"endTime":   endTime,
 		"back":      OrderDet.Back,
 		"timeStamp": timeStamp,
+		"isBack":    isBack,
+		"days":      days,
+		"OId":       OId,
 	})
 }

@@ -63,8 +63,11 @@
                 <div class="row">
                     <div class="col-lg-10 mx-auto">
                         <div class="card">
-                           
-
+                            {{if eq .isBack false}}
+                            <h5>交易进行中</h5>
+{{else}}
+                            <h5>交易完成</h5>
+                            {{end}}
                             <div class="col-lg-4">
                                 <div class="card">
                                     <div class="card-header">
@@ -82,6 +85,7 @@
                                                         <th style="padding: 12px;">商品id</th>
                                                         <th style="padding: 12px;">商品名称</th>
                                                         <th style="padding: 12px;">交易编号</th>
+                                                        <th style="padding: 12px;">租用天数</th>
                                                         <th style="padding: 12px;">每日租金</th>
                                                     </tr>
                                                 </thead>
@@ -100,6 +104,7 @@
                                                         <td>
                                                             {{.OId}}
                                                         </td>
+                                                        <td>{{.days}}</td>
                                                         <td>{{.rent}}ETH</td>
                                                     </tr>
 
@@ -113,8 +118,23 @@
                             <div class="card-body">
                                 <div class="row row-cols-3 d-flex justify-content-md-between">
                                     <div class="col-md-3 d-print-flex">
+
                                         <div class="">
-                                            <h6 class="mb-0"><b>归还日期 :</b> {{.endTime}}</h6>
+                                            <h6 class="mb-0"><b>交易日期 :</b> {{.startTime}}</h6>
+
+                                        </div>
+                                    </div>
+
+                                    <div class="col-md-3 d-print-flex">
+
+                                        <div class="">
+                                            <div class="">
+                                                {{if eq .isBack false}}
+                                                <h6 class="mb-0"><b>归还日期 :</b>未归还</h6>
+                                                 {{else}}
+                                                <h6 class="mb-0"><b>归还日期 :</b>{{.endTime}}</h6>
+                                                    {{end}}
+                                            </div>
 
                                         </div>
                                     </div>
