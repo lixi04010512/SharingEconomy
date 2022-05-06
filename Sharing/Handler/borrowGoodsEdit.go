@@ -70,7 +70,7 @@ func BorrowGoods(c *gin.Context) {
 	addr := LoginUser.Hex()
 	userImg1 :="share/"+userImg
 	img1 :="share/"+img
-	err = db.SendBorrow(addr, goods_owner, userName, name_owner, message, userImg1, img1)
+	err = db.SendBorrow(addr, goods_owner, userName, name_owner, message, img1, userImg1)
 	if err != nil {
 		respError(c, err)
 	}
@@ -140,7 +140,8 @@ func DisagreeBorrowGoods(c *gin.Context) {
 	name_owner, _, _, _, _, err := config.GetUserMethod(contract, goodsData.Owner)
 	userImg1 :="share/"+userImg
 	img1 :="share/"+img
-	err1 :=db.DisagreeBorrow(goodsData.Owner.String(),goodsData.Borrowers.Borrower.String(),name_owner,userName,message,userImg1,img1)
+	fmt.Println("disagress:",)
+	err1 :=db.DisagreeBorrow(goodsData.Owner.String(),goodsData.Borrowers.Borrower.String(),name_owner,userName,message,img1,userImg1)
 	if err1 !=nil {
 		fmt.Println("137err1:",err1)
 	}
@@ -196,7 +197,7 @@ func AgreeBorrow(c *gin.Context) {
 	fmt.Println("img",img)
 	userImg1 :="share/"+userImg
 	img1 :="share/"+img
-	err1 :=db.AgreeBorrow(goodsData.Owner.String(),goodsData.Borrowers.Borrower.String(),name_owner,userName,message,userImg1,img1)
+	err1 :=db.AgreeBorrow(goodsData.Owner.String(),goodsData.Borrowers.Borrower.String(),name_owner,userName,message,img1,userImg1)
 	if err1 !=nil {
 		fmt.Println("202err:",err1)
 	}
