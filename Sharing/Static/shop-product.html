@@ -146,7 +146,9 @@
                 <div style="position:relative">
                     <div class="aui-spec-menu-top">
                         <div class="aui-spec-first-pic">
-                            <img src="../share/themes/img/pd/pd-zf-1.jpg" alt="">
+                            {{range $k,$v:=.goodsPort.GoodImg}}
+                            <img src=../{{$v}} alt="">
+                            {{end}}
                         </div>
                         <div class="aui-spec-first-sif">
                             <span class="product-price" style="color:#da4644">租金¥&thinsp;<span class="price">{{.goodsPort.Rent}}</span></span>

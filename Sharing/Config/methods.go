@@ -37,7 +37,7 @@ const (
 	//fileKeystore     = "UTC--2022-03-17T08-08-40.600466800Z--59b0f8a34d8f0dd0e0eef44d02cef0c12fffb9de"
 	//Prikey = "c5b9c7fd467335bd829b3b2a3098a72ac39b7f5efa162220b7907cfc684df9a3"
 	//privateKey       = "111"
-	//ShareFishAddress = "0x67a31De806F641e8cDEE95b0a69804Ab610025c2"
+	//ShareFishAddress = "0x7D1672baDeA4825c4B8fFD938fFD29457D6aF6ae"
 )
 
 //获取client
