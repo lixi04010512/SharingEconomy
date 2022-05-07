@@ -517,7 +517,7 @@ func Myshop(c *gin.Context) {
 			fmt.Println("orderBrrID", orderId, OrderDtBorr.Id, OrderDtBorr.OId, goodData.Owner, OrderDtBorr.OrderOwner)
 
 			if OrderDtBorr.OrderBorrower == people {
-				arr1 := []GoodsPort{GoodsPort{OId: OrderDtBorr.OId, Id: goodData.Id, Names: goodData.Name, Rent: goodData.Rent, GoodImg: goodData1.GoodImg, Species: goodData.Species}}
+				arr1 := []GoodsPort{GoodsPort{OId: OrderDtBorr.OId, Id: goodData.Id, Names: goodData.Name, Rent: goodData.Rent,EthPledge: goodData.EthPledge, GoodImg: goodData1.GoodImg, Species: goodData.Species}}
 				myshoparr = append(myshoparr, arr1...)
 				fmt.Println("myahopar", myshoparr)
 

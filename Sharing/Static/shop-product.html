@@ -116,13 +116,13 @@
     <div class="aui-product-content">
         <div class="aui-real-price clearfix">
             <span>
-                租金
-                <i>ETH</i>{{.goodsPort.Rent}}/天
+                租金:
+                <i style="padding-left: 10px;">ETH</i>{{.goodsPort.Rent}}/天
             </span>
 
         </div>
         <div class="price" style="padding-left: 15px;">
-            <span class="main-price">押金ETH</span>
+            <span class="main-price">押金: </span><i style="padding-left: 20px;">ETH</i>
             <span class="discounted-price">{{.goodsPort.EthPledge}}</span>
         </div>
         <div class="aui-product-title">
@@ -151,9 +151,9 @@
                             {{end}}
                         </div>
                         <div class="aui-spec-first-sif">
-                            <span class="product-price" style="color:#da4644">租金¥&thinsp;<span class="price">{{.goodsPort.Rent}}</span></span>
+                            <span class="product-price" style="color:#da4644">租金ETH&thinsp;<span class="price">{{.goodsPort.Rent}}</span></span>
 							<p></p>
-							<span class="product-price">押金¥&thinsp;<span class="rent">{{.goodsPort.EthPledge}}</span></span>
+							<span class="product-price">押金ETH&thinsp;<span class="rent">{{.goodsPort.EthPledge}}</span></span>
 
                         </div>
                     </div>
