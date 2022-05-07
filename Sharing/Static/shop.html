@@ -125,8 +125,18 @@
             </div>
             <div class="dpbtn">
                 <div class="dpbtn1" >
-                    <i class="ti ti-alarm"></i>
-                    <span>{{$vluae.BackTime}}</span>
+                    
+                  
+                    <div class="data-box" class="cart-product__status">
+                        <div class="badge badge-soft-warning px-2"
+                            id="dateShow1" data-date="{{$vluae.BackTime}}">
+                            <i class="ti ti-alarm"></i>
+                            <span class="date-tiem d">00</span>天
+                            <span class="date-tiem h">00</span>时
+                            <span class="date-tiem m">00</span>分
+                            <span class="date-s s">00</span>秒
+                        </div>
+                    </div>
                 </div>
                 <div class="dpbtn2">
                     <a class="backSub" style="color: white;">立即归还</a>
@@ -174,6 +184,27 @@
             })
         })
     </script>
+     <script src="share/js/leftTime.min.js"></script>
+     <script type="text/javascript">
+         $(function () {
+             //日期倒计时,现在距离下面的日期
+             var data_show = $('.data-box');
+             for (var i = 1; i <= data_show.length; i++) {
+                 function_name($("#dateShow" + i).data("date"), "#dateShow" + i);
+             }
+             function function_name(time, obj) {
+                 $.leftTime(time, function (d) {
+                     if (d.status) {
+                         var $dateShow1 = $(obj);
+                         $dateShow1.find(".d").html(d.d);
+                         $dateShow1.find(".h").html(d.h);
+                         $dateShow1.find(".m").html(d.m);
+                         $dateShow1.find(".s").html(d.s);
+                     }
+                 });
+             }
+         });
+     </script>
 
 </body>
 {{ end }}
