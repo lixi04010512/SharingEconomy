@@ -384,7 +384,7 @@ p{text-align:justify}
 .shopboxR_1 .sbr1_2{ float:right; height:2rem}
 .shopboxR_1 .sbr1_2 .p1{ color:#999;font-size:0.75rem; text-align:right; text-decoration:line-through}
 .shopboxR_1 .sbr1_2 .p2{ color:#333;font-size:0.8rem ; text-align:right}
-.shopboxR_2{ height:1rem; overflow:hidden;color:#999}
+.shopboxR_2{ height:2rem; overflow:hidden;color:#999}
 .shopboxR_2 .p3{ 
     float:left; width:70% ;overflow:hidden; white-space:nowrap;text-overflow:ellipsis; font-size:0.75rem; 
     /* padding-top:0.1rem */
