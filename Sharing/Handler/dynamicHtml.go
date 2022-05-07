@@ -513,14 +513,15 @@ func Myshop(c *gin.Context) {
 		if i < len(orderId) {
 			OrderDtBorr, _ := config.HaveOrderDit(client, orderId[i])
 			goodData, goodData1, err := config.HaveIndex(client, OrderDtBorr.Id)
-			_, _, _, days, _, err := contract.GetDealRec(nil, OrderDtBorr.Id, OrderDtBorr.Deal)
+			_, _, _, days, start, err := contract.GetDealRec(nil, OrderDtBorr.Id, OrderDtBorr.Deal)
 			fmt.Println("orderBrrID", orderId, OrderDtBorr.Id, OrderDtBorr.OId, goodData.Owner, OrderDtBorr.OrderOwner)
 			dayStr:=days.String()
 			daysInt,_ := strconv.Atoi(dayStr)
 			hour:=daysInt*24
 			day:=fmt.Sprintf("%dh",hour)
 			hh, _ := time.ParseDuration(day)
-			hh1 := time.Now().Add(hh)
+			startTime,err:=time.Parse("2006-01-02 15:04:05",start)
+			hh1 := startTime.Add(hh)
 			hh1Str=hh1.Format("2006-01-02 15:04:05")
 			fmt.Println("hh1",hh1)
 			fmt.Println("myahopar", myshoparr)
