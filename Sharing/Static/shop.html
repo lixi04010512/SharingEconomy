@@ -36,37 +36,59 @@
 
 <body id="body" class="dark-sidebar">
     <header>
-        <div class="header-wrapper border-bottom">
+        <div class="header-wrapper border-bottom" style="width: 285px;">
             <div class="container space-y--15">
                 <div class="row align-items-center">
                     <div class="col-auto">
-                        <a class="back-link" onClick="javascript :history.back(-1);"> <i class="fa fa-angle-left"></i>
-                            返回</a>
-                    </div>
-                    <div class="col d-flex justify-content-center">
-                        <div class="header-search">
-                            <div class="input-group">
-                                <h4 style="padding-top: 18px;">我租入的物品</h4>
-                            </div>
+                        <!-- header logo -->
+                        <div class="header-logo">
+                            <a href="../index">
+                                <img src="share/assets/img/logo.png" class="img-fluid" alt="" style="width: 75px;">
+                            </a>
                         </div>
                     </div>
-                    <div class="col-auto" style="width: 35px;">
-                        <!-- header menu trigger -->
-                        <button class="header-menu-trigger" id="header-menu-trigger">
-                            <i class="fas fa-align-right" style="font-size: 20px;
-                                color: grey;"></i>
-                        </button>
+                    <div class="col d-flex justify-content-center">
+                        <!-- 搜索框 -->
+                        <div class="header-search" style="padding-left: 20px;">
+                            <a href="../search-page">
+                                <div class="input-group">
+                                    <input type="text" id="chat-search" name="chat-search" class="form-control"
+                                        placeholder="搜索好物" style="padding-left: 30px;">
+                            </a>
+
+                            <span style="position: absolute;padding-top: 7px;padding-left: 10px;
+                                   "><i class="fa fa-search"></i></span>
+                        </div>
                     </div>
+                </div>
+                <div class="col-auto" style=" left: 70px;">
+                    <button class="header-menu-trigger" id="header-menu-trigger">
+                        <i class="fas fa-align-right" style="font-size: 20px;
+                            color: grey;"></i>
+                    </button>
                 </div>
             </div>
         </div>
-
     </header>
+
+    <div class="breadcrumb-area bg-color--grey space-y--15" style="padding-top: 80px;">
+        <div class="container" style="width: auto;">
+            <div class="row align-items-center">
+                <div class="col-3" style="width: 70px;">
+                    <a class="back-link" onClick="javascript :history.back(-1);"> <i class="fa fa-angle-left"></i>
+                        返回</a>
+                </div>
+                <div class="col-6">
+                    <h4 class="page-title text-center">我租入的物品</h4>
+                </div>
+            </div>
+        </div>
+    </div>
 
     {{ template "Static/menu.html" . }}
 
 
-    <div style="padding-top: 48px;"></div>
+    <div style="padding-top: 10px;"></div>
     {{range $key,$vluae:=.shopDet}}
     <div class="myddcon">
 
@@ -74,7 +96,6 @@
             <div class="dpbox">
                 <div class="dpL">
                     <span>商品ID：{{$vluae.OId}}</span>
-                    <span style="display: none">{{vluae.BackTime}}</span>
                 </div>
                 <div class="dpR"><a href="">待归还</a></div>
             </div>
@@ -93,6 +114,7 @@
                         </div>
                     </div>
                     <div class="shopboxR_2">
+                        <p class="p3">租用天数×1天</p>
                         <p class="p4">押金：ETH {{$vluae.EthPledge}}</p>
                     </div>
                 </div>
@@ -101,9 +123,12 @@
                 <p class="p5">实付: <span>ETH </span></p>
             </div>
             <div class="dpbtn">
-
+                <div class="dpbtn1" >
+                    <i class="ti ti-alarm"></i>
+                    <span>{{$vluae.BackTime}}</span>
+                </div>
                 <div class="dpbtn2">
-                    <a class="backSub">立即归还</a>
+                    <a class="backSub" style="color: white;">立即归还</a>
                 </div>
             </div>
         </div>
