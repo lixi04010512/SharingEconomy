@@ -32,6 +32,21 @@
         -webkit-box-sizing: unset;
         box-sizing: unset;
     }
+
+    .dpbtn2 a {
+        display: block;
+        border: 1px solid #999;
+        color: #999;
+        font-size: 0.75rem;
+        padding: 0 10px;
+        height: 1.4rem;
+        line-height: 1.4rem;
+        border-radius: 10px;
+        background: white;
+        box-sizing: border-box;
+        padding-bottom: 20px;
+        padding-top: 0px;
+    }
 </style>
 
 <body id="body" class="dark-sidebar">
@@ -54,10 +69,9 @@
                                 <div class="input-group">
                                     <input type="text" id="chat-search" name="chat-search" class="form-control"
                                         placeholder="搜索好物" style="padding-left: 30px;">
-                                </div>
                             </a>
 
-                            <span style="position: absolute;padding-top: 7px;padding-left: 10px;
+                            <span style="position: absolute;padding-top: 12px;padding-left: 10px;
                                    "><i class="fa fa-search"></i></span>
                         </div>
                     </div>
@@ -86,7 +100,53 @@
         </div>
     </div>
 
-    {{ template "Static/menu.html" . }}
+    <div class="offcanvas-menu" id="offcanvas-menu" style="width: 200px;">
+        <div class="profile-card text-center">
+            {{if eq "" .userImg}}
+            <div class="profile-card__image space-mb--10">
+                <img src="../share/assets/img/profile.jpg" class="img-fluid" alt="">
+            </div>
+            {{else}}
+            <div class="profile-card__image space-mb--10">
+                <img src="share/{{.userImg}}" class="img-fluid" alt="">
+            </div>
+            {{end}}
+            <div class="profile-card__content">
+                <p class="name"
+                    style="word-wrap: break-word;word-break: break-all;overflow: hidden;text-align: center;">
+                    {{.address}} <span class="id">{{.userName}}</span></p>
+            </div>
+        </div>
+        <div class="offcanvas-navigation-wrapper space-mt--40">
+            <ul class="offcanvas-navigation">
+
+                {{if ne "" .userName}}
+                <li><span class="icon"><i class="ti ti-plus" style="font-size: 25px;"></i></span><a
+                        href="../lend-items">上传物品</a></li>
+                <li><span class="icon"><i class="ti ti-shopping-cart" style="font-size: 25px;"></i></span><a
+                        href="../shop">我租入的物品</a></li>
+                <li><span class="icon"><i class="ti ti-box" style="font-size: 25px;"></i></span><a
+                        href="../order">我借出的物品</a></li>
+                <li><span class="icon"><i class="ti ti-power" style="font-size: 25px;"></i></span><a
+                        id="confirm">退出登入</a>
+                </li>
+                {{else }}
+                <li><span class="icon"><i class="ti ti-login" style="font-size: 25px;"></i></span><a
+                        href="../login">登录/注册</a></li>
+                {{end}}
+                {{/* {{if eq "" .userName}}*/}}
+                {{/* <li><span class="icon"><i class="ti ti-login" style="font-size: 25px;"></i></span>
+                    <a* /}} {{/* href="../login">登录/注册</a>
+                </li>*/}}
+                {{/* {{else}}*/}}
+                {{/* <li><span class="icon"><i class="ti ti-power" style="font-size: 25px;"></i></span><a
+                        id="confirm">退出登入</a>*/}}
+                    {{/* </li>*/}}
+                {{/* {{end}}*/}}
+            </ul>
+        </div>
+    </div>
+
 
 
     <div style="padding-top: 10px;"></div>
@@ -129,13 +189,12 @@
                 <p class="p5">实付: <span>{{$vluae.AllPrice}}ETH </span></p>
             </div>
             <div class="dpbtn">
-                <div class="dpbtn1" >
-                    
-                  
+                <div class="dpbtn1">
+
+
                     <div class="data-box" class="cart-product__status">
                         {{if eq $vluae.IsBack false}}
-                        <div class="badge badge-soft-warning px-2"
-                            id="dateShow1" data-date="{{$vluae.BackTime}}">
+                        <div class="badge badge-soft-warning px-2" id="dateShow1" data-date="{{$vluae.BackTime}}">
                             <i class="ti ti-alarm"></i>
                             <span class="date-tiem d">00</span>天
                             <span class="date-tiem h">00</span>时
@@ -149,12 +208,12 @@
                 </div>
                 {{if eq $vluae.IsBack false}}
                 <div class="dpbtn2">
-                    <a class="backSub" style="color: white;">立即归还</a>
+                    <a class="backSub">立即归还</a>
                 </div>
                 {{else}}
-                    <div class="dpbtn2">
-                        <a class="backSub" style="color: white;">和物主协商？</a>
-                    </div>
+                <div class="dpbtn2">
+                    <a class="backSub">和物主协商？</a>
+                </div>
                 {{end}}
             </div>
         </div>
@@ -199,27 +258,27 @@
             })
         })
     </script>
-     <script src="share/js/leftTime.min.js"></script>
-     <script type="text/javascript">
-         $(function () {
-             //日期倒计时,现在距离下面的日期
-             var data_show = $('.data-box');
-             for (var i = 1; i <= data_show.length; i++) {
-                 function_name($("#dateShow" + i).data("date"), "#dateShow" + i);
-             }
-             function function_name(time, obj) {
-                 $.leftTime(time, function (d) {
-                     if (d.status) {
-                         var $dateShow1 = $(obj);
-                         $dateShow1.find(".d").html(d.d);
-                         $dateShow1.find(".h").html(d.h);
-                         $dateShow1.find(".m").html(d.m);
-                         $dateShow1.find(".s").html(d.s);
-                     }
-                 });
-             }
-         });
-     </script>
+    <script src="share/js/leftTime.min.js"></script>
+    <script type="text/javascript">
+        $(function () {
+            //日期倒计时,现在距离下面的日期
+            var data_show = $('.data-box');
+            for (var i = 1; i <= data_show.length; i++) {
+                function_name($("#dateShow" + i).data("date"), "#dateShow" + i);
+            }
+            function function_name(time, obj) {
+                $.leftTime(time, function (d) {
+                    if (d.status) {
+                        var $dateShow1 = $(obj);
+                        $dateShow1.find(".d").html(d.d);
+                        $dateShow1.find(".h").html(d.h);
+                        $dateShow1.find(".m").html(d.m);
+                        $dateShow1.find(".s").html(d.s);
+                    }
+                });
+            }
+        });
+    </script>
 
 </body>
 {{ end }}
