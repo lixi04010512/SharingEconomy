@@ -83,7 +83,7 @@
                                 <div class="form__radio">
                                     <div class="aui-list-product-float-item">
                                         <h6 class="mb-0"><b> 商品ID : {{.id}}</b></h6>
-                                        <a href="shop-product.html" class="aui-list-product-fl-item">
+                                        <a href="#" class="aui-list-product-fl-item">
                                             <div class="aui-list-product-fl-img">
                                                 {{range $k,$v:=.goodImg}}
                                                 <img src=../{{$v}} alt="">
@@ -121,16 +121,17 @@
                                 <div class="row  d-flex justify-content-md-between">
                                     <div class="col-md-3 d-print-flex">
                                         <div class="">
-                                            <h6 class="mb-0"><b>交易日期 :</b> {{.startTime}}</h6>
+                                            <div class="">
+                                                {{if eq .isBack false}}
+                                                <h6 class="mb-0"><b>归还日期 :</b>未归还</h6>
+                                                 {{else}}
+                                                <h6 class="mb-0"><b>归还日期 :</b>{{.endTime}}</h6>
+                                                    {{end}}
+                                            </div>
 
-                                            {{if eq .isBack false}}
-                                            <h6 class="mb-0"><b>归还日期 :</b>未归还</h6>
-                                            {{else}}
-                                            <h6 class="mb-0"><b>归还日期 :</b>{{.endTime}}</h6>
-                                            {{end}}
                                         </div>
                                     </div>
-                                </div>
+                                    <!--end col-->
 
                                 <div class="row" style="padding-top: 10px;">
                                     <div class="col-md-3 d-print-flex">
@@ -164,7 +165,7 @@
                                         <h5 class="mt-4">区块链数据 :</h5>
                                         <ul class="ps-3">
                                             <li><small class="font-12" style="word-wrap: break-word;word-break: break-all;">
-                                                <span>交易Hash：</span>{{.dealHash}}
+                                                 <span>交易Hash：</span>{{range $k,$v:= .dealHash}}{{$v}}{{end}}
                                                 </small></li>
                                             <li><small class="font-12"><span>所在区块：</span>{{.blockNum}} </small></li>
                                             <li><small class="font-12"><span>交易时间戳：</span>{{.timeStamp}}</small>

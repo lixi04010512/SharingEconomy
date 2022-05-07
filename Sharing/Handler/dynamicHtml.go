@@ -20,6 +20,9 @@ type Renter struct {
 
 }
 type GoodsPort struct {
+	AllPrice  int
+	IsBack    bool
+	EndTime   string
 	BackTime  string
 	OId       *big.Int
 	Id        *big.Int       `json:"id"`
@@ -514,16 +517,17 @@ func Myshop(c *gin.Context) {
 			OrderDtBorr, _ := config.HaveOrderDit(client, orderId[i])
 			goodData, goodData1, err := config.HaveIndex(client, OrderDtBorr.Id)
 			_, _, _, days, start, err := contract.GetDealRec(nil, OrderDtBorr.Id, OrderDtBorr.Deal)
+			isBack, endTime, err := contract.GetBackRec(nil, OrderDtBorr.Id, OrderDtBorr.Back)
 			fmt.Println("orderBrrID", orderId, OrderDtBorr.Id, OrderDtBorr.OId, goodData.Owner, OrderDtBorr.OrderOwner)
-			dayStr:=days.String()
-			daysInt,_ := strconv.Atoi(dayStr)
-			hour:=daysInt*24
-			day:=fmt.Sprintf("%dh",hour)
+			dayStr := days.String()
+			daysInt, _ := strconv.Atoi(dayStr)
+			hour := daysInt * 24
+			day := fmt.Sprintf("%dh", hour)
 			hh, _ := time.ParseDuration(day)
-			startTime,err:=time.Parse("2006-01-02 15:04:05",start)
+			startTime, err := time.Parse("2006-01-02 15:04:05", start)
 			hh1 := startTime.Add(hh)
-			hh1Str=hh1.Format("2006-01-02 15:04:05")
-			fmt.Println("hh1",hh1)
+			hh1Str = hh1.Format("2006-01-02 15:04:05")
+			fmt.Println("hh1", hh1)
 			fmt.Println("myahopar", myshoparr)
 			if err != nil {
 				respError(c, err)
@@ -531,9 +535,12 @@ func Myshop(c *gin.Context) {
 			}
 
 			if OrderDtBorr.OrderBorrower == people {
-				arr1 := []GoodsPort{GoodsPort{BackTime:hh1Str,OId: OrderDtBorr.OId, Id: goodData.Id, Names: goodData.Name, Rent: goodData.Rent,EthPledge: goodData.EthPledge, GoodImg: goodData1.GoodImg, Species: goodData.Species}}
+				x, _ := strconv.Atoi(days.String())
+				y, _ := strconv.Atoi(goodData.Rent.String())
+				z, _ := strconv.Atoi(goodData.EthPledge.String())
+				allPrice := x*y + z
+				arr1 := []GoodsPort{GoodsPort{AllPrice: allPrice, IsBack: isBack, EndTime: endTime, BackTime: hh1Str, OId: OrderDtBorr.OId, Id: goodData.Id, Names: goodData.Name, Rent: goodData.Rent, EthPledge: goodData.EthPledge, GoodImg: goodData1.GoodImg, Species: goodData.Species}}
 				myshoparr = append(myshoparr, arr1...)
-
 
 			}
 		} else {
@@ -542,7 +549,6 @@ func Myshop(c *gin.Context) {
 				"userName": userName,
 				"address":  people,
 				"userImg":  userImg,
-
 			})
 		}
 	}

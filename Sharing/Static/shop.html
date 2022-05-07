@@ -98,7 +98,11 @@
                     <span>商品ID：{{$vluae.OId}}</span>
                     <span style="display: none">{{$vluae.BackTime}}</span>
                 </div>
+                {{if eq $vluae.IsBack false}}
                 <div class="dpR"><a href="">待归还</a></div>
+                {{else}}
+                <div class="dpR"><a href="">已归还</a></div>
+                {{end}}
             </div>
             <div class="shopbox" onclick="window.open('../apps-invoice/{{$vluae.OId}}','_self')">
                 <div class="shopboxL">
@@ -121,13 +125,14 @@
                 </div>
             </div>
             <div class="dphjbox">
-                <p class="p5">实付: <span>ETH </span></p>
+                <p class="p5">实付: <span>{{$vluae.AllPrice}}ETH </span></p>
             </div>
             <div class="dpbtn">
                 <div class="dpbtn1" >
                     
                   
                     <div class="data-box" class="cart-product__status">
+                        {{if eq $vluae.IsBack false}}
                         <div class="badge badge-soft-warning px-2"
                             id="dateShow1" data-date="{{$vluae.BackTime}}">
                             <i class="ti ti-alarm"></i>
@@ -136,11 +141,18 @@
                             <span class="date-tiem m">00</span>分
                             <span class="date-s s">00</span>秒
                         </div>
+                        {{else}}
+                        <div>归还日期:{{$vluae.EndTime}}</div>
+                        {{end}}
                     </div>
                 </div>
+                {{if eq $vluae.IsBack false}}
                 <div class="dpbtn2">
                     <a class="backSub" style="color: white;">立即归还</a>
                 </div>
+                {{else}}
+                    <div></div>
+                {{end}}
             </div>
         </div>
 

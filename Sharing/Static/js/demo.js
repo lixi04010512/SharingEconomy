@@ -51,27 +51,34 @@ $(function(){
         if (this.files.length === 0){
           return;
         }
-        var file = this.files[0];
+
+        // formData.append("myGoodsImg",this.files[i],this.files[i].name)
+        // console.log(formData.getAll('myGoodsImg'))
+        var file = this.files[i];
+
+
+        // axios.post('/addGoodsPost',formData)
 
         window
-        .lrz(file,{width: 600}) // 展示预览图
-        .then(function (rst) {
-          that.showCropBox();
+            .lrz(file, {width: 600}) // 展示预览图
+            .then(function (rst) {
+              that.showCropBox();
 
-          that.preImg.load(function(){
-            // 触发图像裁剪
-            that.preImg.cropper(that.cropOption);
-          });
-          that.preImg.attr('src',rst.base64);
+              that.preImg.load(function () {
+                // 触发图像裁剪
+                that.preImg.cropper(that.cropOption);
+              });
+              that.preImg.attr('src', rst.base64);
 
-        })
-        .catch(function (err) {
-          that.hideCropBox();
-          alert('读取图像失败！');
-        })
-        .always(function () {
+            })
+            .catch(function (err) {
+              that.hideCropBox();
+              alert('读取图像失败！');
+            })
+            .always(function () {
 
-        });
+            });
+
     });
   };
 
@@ -171,8 +178,10 @@ $(function(){
   // 获取全部base64数据
   PictureEdit.prototype.getPicsData = function(){
     var arr = [];
+    console.log("this,pics",this.pics)
     $.each(this.pics,function(i,n){
       arr.push(n);
+      console.log("arr.push(n)",arr.push(n),"arr",arr)
     });
     return arr.join(',');
   };
