@@ -50,6 +50,7 @@ func AppInvoiceStatic(c *gin.Context) {
 	OrderDet, _ := config.HaveOrderDit(client, big.NewInt(idInt64))
 	goodData, goodData1, err2 := config.HaveIndex(client, OrderDet.Id)
 	blockNum, timeStamp, dealHash, days, startTime, err := contract.GetDealRec(nil, OrderDet.Id, OrderDet.Deal)
+	dealHashStr:=fmt.Sprintf("0x%x",dealHash)
 	isBack, endTime, err := contract.GetBackRec(nil, OrderDet.Id, OrderDet.Back)
 	if err2 != nil {
 		respError(c, err)
@@ -67,7 +68,7 @@ func AppInvoiceStatic(c *gin.Context) {
 		"goodImg":   goodData1.GoodImg,
 		"rent":      goodData.Rent,
 		"blockNum":  blockNum,
-		"dealHash":  dealHash,
+		"dealHash":  dealHashStr,
 		"startTime": startTime,
 		"endTime":   endTime,
 		"back":      OrderDet.Back,
