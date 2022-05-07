@@ -165,7 +165,7 @@
                                         <h5 class="mt-4">区块链数据 :</h5>
                                         <ul class="ps-3">
                                             <li><small class="font-12" style="word-wrap: break-word;word-break: break-all;">
-                                                 <span>交易Hash：</span>{{range $k,$v:= .dealHash}}{{$v}}{{end}}
+                                                 <span>交易Hash：</span>{{.dealHash}}
                                                 </small></li>
                                             <li><small class="font-12"><span>所在区块：</span>{{.blockNum}} </small></li>
                                             <li><small class="font-12"><span>交易时间戳：</span>{{.timeStamp}}</small>
