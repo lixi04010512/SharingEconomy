@@ -20,6 +20,7 @@ type Renter struct {
 
 }
 type GoodsPort struct {
+	BackTime  string
 	OId       *big.Int
 	Id        *big.Int       `json:"id"`
 	borrower  Renter         `json:"renter"`    //租用者
@@ -492,6 +493,7 @@ func Myshop(c *gin.Context) {
 	}
 	userName, people, _, _, _, err := config.GetUserMethod(contract, LoginUser)
 	userImg, err := contract.GetUserImg(nil, LoginUser)
+
 	fmt.Println("res", userName)
 	if err != nil {
 		respError(c, err)
@@ -499,6 +501,7 @@ func Myshop(c *gin.Context) {
 	}
 	orderId := config.HaveOrderId(client)
 	var myshoparr []GoodsPort
+	var hh1Str string
 	//var numx int
 	//if len(orderId)>=len(id){
 	//	numx=len(orderId)
@@ -510,16 +513,26 @@ func Myshop(c *gin.Context) {
 		if i < len(orderId) {
 			OrderDtBorr, _ := config.HaveOrderDit(client, orderId[i])
 			goodData, goodData1, err := config.HaveIndex(client, OrderDtBorr.Id)
+			_, _, _, days, _, err := contract.GetDealRec(nil, OrderDtBorr.Id, OrderDtBorr.Deal)
+			fmt.Println("orderBrrID", orderId, OrderDtBorr.Id, OrderDtBorr.OId, goodData.Owner, OrderDtBorr.OrderOwner)
+			dayStr:=days.String()
+			daysInt,_ := strconv.Atoi(dayStr)
+			hour:=daysInt*24
+			day:=fmt.Sprintf("%dh",hour)
+			hh, _ := time.ParseDuration(day)
+			hh1 := time.Now().Add(hh)
+			hh1Str=hh1.Format("2006-01-02 15:04:05")
+			fmt.Println("hh1",hh1)
+			fmt.Println("myahopar", myshoparr)
 			if err != nil {
 				respError(c, err)
 				return
 			}
-			fmt.Println("orderBrrID", orderId, OrderDtBorr.Id, OrderDtBorr.OId, goodData.Owner, OrderDtBorr.OrderOwner)
 
 			if OrderDtBorr.OrderBorrower == people {
-				arr1 := []GoodsPort{GoodsPort{OId: OrderDtBorr.OId, Id: goodData.Id, Names: goodData.Name, Rent: goodData.Rent,EthPledge: goodData.EthPledge, GoodImg: goodData1.GoodImg, Species: goodData.Species}}
+				arr1 := []GoodsPort{GoodsPort{BackTime:hh1Str,OId: OrderDtBorr.OId, Id: goodData.Id, Names: goodData.Name, Rent: goodData.Rent,EthPledge: goodData.EthPledge, GoodImg: goodData1.GoodImg, Species: goodData.Species}}
 				myshoparr = append(myshoparr, arr1...)
-				fmt.Println("myahopar", myshoparr)
+
 
 			}
 		} else {
@@ -528,6 +541,7 @@ func Myshop(c *gin.Context) {
 				"userName": userName,
 				"address":  people,
 				"userImg":  userImg,
+
 			})
 		}
 	}
