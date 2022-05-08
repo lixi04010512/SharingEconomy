@@ -399,6 +399,8 @@ func MyOrder(c *gin.Context) {
 		if i < len(orderId) {
 			OrderDet, _ := config.HaveOrderDit(client, orderId[i])
 			goodData, goodData1, err := config.HaveIndex(client, OrderDet.Id)
+			isBack, endTime, err := contract.GetBackRec(nil, OrderDet.Id, OrderDet.Back)
+
 			fmt.Println("goodData", goodData)
 			if err != nil {
 				respError(c, err)
@@ -406,7 +408,7 @@ func MyOrder(c *gin.Context) {
 			}
 			fmt.Println("orderID", orderId, OrderDet.Id, OrderDet.OId, goodData.Owner, OrderDet.OrderOwner)
 			if people == OrderDet.OrderOwner {
-				arr1 := []GoodsPort{GoodsPort{OId: OrderDet.OId, Id: goodData.Id, Names: goodData.Name, Species: goodData.Species, Rent: goodData.Rent, EthPledge: goodData.EthPledge, IsBorrow: goodData.IsBorrow, GoodImg: goodData1.GoodImg, GoodSign: goodData1.GoodSign}}
+				arr1 := []GoodsPort{GoodsPort{IsBack: isBack, EndTime: endTime, OId: OrderDet.OId, Id: goodData.Id, Names: goodData.Name, Species: goodData.Species, Rent: goodData.Rent, EthPledge: goodData.EthPledge, IsBorrow: goodData.IsBorrow, GoodImg: goodData1.GoodImg, GoodSign: goodData1.GoodSign}}
 				arrUp = append(arrUp, arr1...)
 				fmt.Println("arrUp", arrUp)
 

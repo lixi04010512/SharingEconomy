@@ -107,9 +107,13 @@
                             <span class="discounted-price">￥{{$vlaue.Rent}}/天</span>
                         </div>
                     </div>
-                    <div class="cart-product__status">
-                        <p><span><i class="ti ti-circle-check"></i></span> 交易完成</p>
-                    </div>
+                    {{if eq $vlaue.IsBack false}}
+                        <p class="cart-product__status" style="font-size: 18px;color: #8997bd;"><span><i
+                                        class="ti ti-refresh"></i></span> 交易进行中</p>
+                    {{else}}
+                        <p class="cart-product__status" style="font-size: 18px;color: #8997bd;"><span><i
+                                        class="ti ti-circle-check"></i></span> 交易完成</p>
+                    {{end}}
                 </div>
             </a>
 {{end}}
