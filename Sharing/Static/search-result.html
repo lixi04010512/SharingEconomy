@@ -43,7 +43,7 @@
                                 <a>
                                     <div class="input-group">
                                         <input type="text" id="chat-search" name="chat-search" class="form-control"
-                                            placeholder="相机" style="padding-left: 30px;">
+                                            placeholder="搜索你的想要···" style="padding-left: 30px;">
                                 </a>
 
                                 <span style="position: absolute;padding-top: 7px;padding-left: 10px;
@@ -122,8 +122,9 @@
                 data: { 'keysGoods': keysGoods },
                 success: function (data) {
                     console.log("data.data", data.data)
-
+                    if(data.data !=null){
                     for (const key in data.data) {
+
                         $("#ListSearch").append(`  <div class="col-6">
                                     <div class="grid-product space-mb--20">
                                         <div class="grid-product__image">
@@ -140,7 +141,11 @@
                                         </div>
                                     </div>
                                 </div>`)
-                    }
+                        }
+                    }else{
+                           $("#ListSearch").append(`<div class="col-6">未找到你想要的商品</div>`)
+                        }
+
 
                 },
                 error: function (data) {
