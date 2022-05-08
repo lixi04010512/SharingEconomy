@@ -1120,6 +1120,7 @@ header .header-menu-trigger:focus {
 }
 
 .offcanvas-navigation li a {
+	font-size: 15px;
 	display: block;
 	width: 100%;
 	color: #06142D;
