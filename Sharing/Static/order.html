@@ -12,7 +12,7 @@
     <script src="share/static/js/public.js"></script>
     <!-- CSS-->
     <!-- Bootstrap CSS -->
-   <link rel="stylesheet" href="share/css/tabbar.css">
+    <link rel="stylesheet" href="share/css/tabbar.css">
     <link rel="stylesheet" href="share/assets/css/bootstrap.min.css">
     <!-- FontAwesome CSS -->
     <link rel="stylesheet" href="share/assets/css/font-awesome.min.css">
@@ -26,120 +26,131 @@
 </head>
 
 <body>
-    <!--====================  preloader area ====================-->
-    <div class="preloader-activate preloader-active">
-        <div class="preloader-area-wrap">
-            <div class="spinner d-flex justify-content-center align-items-center h-100">
-                <div class="img-loader"></div>
-            </div>
+<!--====================  preloader area ====================-->
+<div class="preloader-activate preloader-active">
+    <div class="preloader-area-wrap">
+        <div class="spinner d-flex justify-content-center align-items-center h-100">
+            <div class="img-loader"></div>
         </div>
     </div>
-    <!--====================  End of preloader area  ====================-->
-    <div class="body-wrapper space-pt--70 space-pb--120">
-        <!--====================  header area ====================-->
-       <header>
-            <div class="header-wrapper border-bottom">
-                <div class="container space-y--15">
-                    <div class="row align-items-center">
-                        <div class="col-auto">
-                            <!-- header logo -->
-                            <div class="header-logo">
-                                <a href="../index">
-                                   <img src="share/assets/img/logo.png" class="img-fluid" alt="" style="width: 75px;">
-                                </a>
-                            </div>
-                        </div>
-                        <div class="col d-flex justify-content-center">
-                            <!-- 搜索框 -->
-                            <div class="header-search">
-                                <a href="../search-page">
-                                    <div class="input-group">
-                                        <input type="text" id="chat-search" name="chat-search" class="form-control"
-                                            placeholder="搜索好物" style="    padding-left: 30px;">
-                                </a>
-
-                                <span style="position: absolute;padding-top: 7px;padding-left: 10px;
-                                       "><i class="fa fa-search"></i></span>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-auto">
-                        <button class="header-menu-trigger" id="header-menu-trigger">
-                            <i class="fas fa-align-right" style="font-size: 20px;
-                                color: grey;"></i>
-                        </button>
-                    </div>
-                </div>
-            </div>
-        </header>
-        <!--====================  End of header area  ====================-->
-        <!--====================  mobile menu overlay ====================-->
-        {{ template "Static/menu.html" . }}
-        <!--====================  End of mobile menu overlay  ====================-->
-        <!--====================  breadcrumb area ====================-->
-        <div class="breadcrumb-area bg-color--grey space-y--15">
-            <div class="container">
+</div>
+<!--====================  End of preloader area  ====================-->
+<div class="body-wrapper space-pt--70 space-pb--120">
+    <!--====================  header area ====================-->
+    <header>
+        <div class="header-wrapper border-bottom">
+            <div class="container space-y--15">
                 <div class="row align-items-center">
-                    <div class="col-3">
-                        <a  class="back-link" onClick="javascript :history.back(-1);"> <i class="fa fa-angle-left"></i> 返回</a>
-                    </div>
-                    <div class="col-6">
-                        <h4 class="page-title text-center">我借出的物品</h4>
-                    </div>
-                </div>
-            </div>
-        </div>
-        <!--====================  End of breadcrumb area  ====================-->
-        <!--====================  order product area ====================-->
-        <div class="order-product-area">
-{{range $key,$vlaue:=.goodsUp}}
-            <a href="../apps-invoice/{{$vlaue.OId}}">
-                <div class="cart-product border-bottom--medium">
-                    {{range $k,$v:=$vlaue.GoodImg}}
-                    <div class="cart-product__image">
-                        <img src={{$v}} class="img-fluid" alt="">
-                    </div>
-                    {{end}}
-                    <div class="cart-product__content">
-                        <h3 class="title">{{$vlaue.Names}}</h3>
-                        <span class="category">{{$vlaue.Species}}</span>
-                        <div class="price">
-                            <span class="discounted-price">￥{{$vlaue.Rent}}/天</span>
+                    <div class="col-auto">
+                        <!-- header logo -->
+                        <div class="header-logo">
+                            <a href="../index">
+                                <img src="share/assets/img/logo.png" class="img-fluid" alt="" style="width: 75px;">
+                            </a>
                         </div>
                     </div>
-                    <div class="cart-product__status">
-                        <p><span><i class="ti ti-circle-check"></i></span> 交易完成</p>
+                    <div class="col d-flex justify-content-center">
+                        <!-- 搜索框 -->
+                        <div class="header-search">
+                            <a href="../search-page">
+                                <div class="input-group">
+                                    <input type="text" id="chat-search" name="chat-search" class="form-control"
+                                           placeholder="搜索好物" style="    padding-left: 30px;">
+                                </div>
+                            </a>
+
+
+                            <span style="position: absolute;padding-top: 7px;padding-left: 10px;
+                                       "><i class="fa fa-search"></i></span>
+                        </div>
                     </div>
                 </div>
-            </a>
-{{end}}
-
-        </div>
-        <!--====================  End of order product area  ====================-->
-        <!--====================  footer area ====================-->
-        <footer style="padding-bottom: 100px;">
-
-            <div class="sc-bottom-bar">
-                <a class="sc-menu-item " href="../index"><i class="fas fa-home"></i></a>
-                <a class="sc-menu-item " href="../goods-category"><i class="fas  fa-list"></i></a>
-                <a href="../chat" class="sc-menu-item "><i class="fas fa-plus"></i></a>
-                  <a class="sc-menu-item" href="../select_chat_list"><i class="fas fa-comments"></i></a>
-                <a class="sc-menu-item" href="../ui-me"><i class="fas fa-user"></i></a>
+                <div class="col-auto">
+                    <button class="header-menu-trigger" id="header-menu-trigger">
+                        <i class="fas fa-align-right" style="font-size: 20px;
+                                color: grey;"></i>
+                    </button>
+                </div>
             </div>
-
-        </footer>
-        <!--====================  End of footer area  ====================-->
+        </div>
+    </header>
+    <!--====================  End of header area  ====================-->
+    <!--====================  mobile menu overlay ====================-->
+    {{ template "Static/menu.html" . }}
+    <!--====================  End of mobile menu overlay  ====================-->
+    <!--====================  breadcrumb area ====================-->
+    <div class="breadcrumb-area bg-color--grey space-y--15">
+        <div class="container">
+            <div class="row align-items-center">
+                <div class="col-3">
+                    <a class="back-link" onClick="javascript :history.back(-1);"> <i class="fa fa-angle-left"></i>
+                        返回</a>
+                </div>
+                <div class="col-6">
+                    <h4 class="page-title text-center">我借出的物品</h4>
+                </div>
+            </div>
+        </div>
     </div>
+    <!--====================  End of breadcrumb area  ====================-->
+    <!--====================  order product area ====================-->
+    <div class="order-product-area">
+        {{range $key,$vlaue:=.goodsUp}}
+        <a href="../apps-invoice/{{$vlaue.OId}}">
+            <div class="cart-product border-bottom--medium">
+                {{range $k,$v:=$vlaue.GoodImg}}
+                <div class="cart-product__image">
+                    <img src={{$v}} class="img-fluid" alt="">
+                </div>
+                {{end}}
+                <div class="cart-product__content">
+                    <h3 class="title">{{$vlaue.Names}}</h3>
+                    <span class="category">{{$vlaue.Species}}</span>
+                    <div class="price">
+                        <span class="discounted-price">￥{{$vlaue.Rent}}/天</span>
+                    </div>
+                </div>
+                <div class="card-body invoice-head" style="padding-left: 0px;">
+                    <div class="cart-product__status">
+                        {{if eq .isBack false}}
+                        <p class="cart-product__status" style="font-size: 18px;color: #8997bd;"><span><i
+                                class="ti ti-refresh"></i></span> 交易进行中</p >
+                        {{else}}
+                        <p class="cart-product__status" style="font-size: 18px;color: #8997bd;"><span><i
+                                class="ti ti-circle-check"></i></span> 交易完成</p >
+                        {{end}}
+                    </div>
+                </div>
+            </div>
+        </a>
+        {{end}}
 
-    <!-- JS-->
-    <!-- jQuery JS -->
-    <script src="share/assets/js/jquery-3.4.1.min.js"></script>
-    <!-- Bootstrap JS -->
-    <script src="share/assets/js/bootstrap.min.js"></script>
-    <!-- Main JS -->
-    <script src="share/assets/js/main.js"></script>
-    <script src="share/js/pop-message.js"></script>
-    <script type="text/javascript" src="share/static/js/logout.js"></script>
+    </div>
+    <!--====================  End of order product area  ====================-->
+    <!--====================  footer area ====================-->
+    <footer style="padding-bottom: 100px;">
+
+        <div class="sc-bottom-bar">
+            <a class="sc-menu-item " href="../index"><i class="fas fa-home"></i></a>
+            <a class="sc-menu-item " href="../goods-category"><i class="fas  fa-list"></i></a>
+            <a href="../chat" class="sc-menu-item "><i class="fas fa-plus"></i></a>
+            <a class="sc-menu-item" href="../select_chat_list"><i class="fas fa-comments"></i></a>
+            <a class="sc-menu-item" href="../ui-me"><i class="fas fa-user"></i></a>
+        </div>
+
+    </footer>
+    <!--====================  End of footer area  ====================-->
+</div>
+
+<!-- JS-->
+<!-- jQuery JS -->
+<script src="share/assets/js/jquery-3.4.1.min.js"></script>
+<!-- Bootstrap JS -->
+<script src="share/assets/js/bootstrap.min.js"></script>
+<!-- Main JS -->
+<script src="share/assets/js/main.js"></script>
+<script src="share/js/pop-message.js"></script>
+<script type="text/javascript" src="share/static/js/logout.js"></script>
 </body>
 {{ end }}
 </html>
