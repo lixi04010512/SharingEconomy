@@ -20,6 +20,7 @@ type Renter struct {
 
 }
 type GoodsPort struct {
+	Days      int
 	AllPrice  int
 	IsBack    bool
 	EndTime   string
@@ -537,11 +538,11 @@ func Myshop(c *gin.Context) {
 			}
 
 			if OrderDtBorr.OrderBorrower == people {
-				x, _ := strconv.Atoi(days.String())
+				//x, _ := strconv.Atoi(days.String())
 				y, _ := strconv.Atoi(goodData.Rent.String())
 				z, _ := strconv.Atoi(goodData.EthPledge.String())
-				allPrice := x*y + z
-				arr1 := []GoodsPort{GoodsPort{AllPrice: allPrice, IsBack: isBack, EndTime: endTime, BackTime: hh1Str, OId: OrderDtBorr.OId, Id: goodData.Id, Names: goodData.Name, Rent: goodData.Rent, EthPledge: goodData.EthPledge, GoodImg: goodData1.GoodImg, Species: goodData.Species}}
+				allPrice := daysInt*y + z
+				arr1 := []GoodsPort{GoodsPort{Days: daysInt, AllPrice: allPrice, IsBack: isBack, EndTime: endTime, BackTime: hh1Str, OId: OrderDtBorr.OId, Id: goodData.Id, Names: goodData.Name, Rent: goodData.Rent, EthPledge: goodData.EthPledge, GoodImg: goodData1.GoodImg, Species: goodData.Species}}
 				myshoparr = append(myshoparr, arr1...)
 
 			}
