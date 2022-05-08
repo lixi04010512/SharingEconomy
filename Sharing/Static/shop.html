@@ -134,15 +134,6 @@
                 <li><span class="icon"><i class="ti ti-login" style="font-size: 25px;"></i></span><a
                         href="../login">登录/注册</a></li>
                 {{end}}
-                {{/* {{if eq "" .userName}}*/}}
-                {{/* <li><span class="icon"><i class="ti ti-login" style="font-size: 25px;"></i></span>
-                    <a* /}} {{/* href="../login">登录/注册</a>
-                </li>*/}}
-                {{/* {{else}}*/}}
-                {{/* <li><span class="icon"><i class="ti ti-power" style="font-size: 25px;"></i></span><a
-                        id="confirm">退出登入</a>*/}}
-                    {{/* </li>*/}}
-                {{/* {{end}}*/}}
             </ul>
         </div>
     </div>
@@ -151,7 +142,7 @@
 
     <div style="padding-top: 10px;"></div>
     {{range $key,$vluae:=.shopDet}}
-    <div class="myddcon">
+    <div class="myddcon" data-id="{{$vluae.OId}}">
 
         <div class="myddcon1">
             <div class="dpbox">
@@ -208,7 +199,7 @@
                 </div>
                 {{if eq $vluae.IsBack false}}
                 <div class="dpbtn2">
-                    <a class="backSub">立即归还</a>
+                    <a class="backSub1">立即归还</a>
                 </div>
                 {{else}}
                 <div class="dpbtn2">
@@ -245,12 +236,12 @@
     <script src="share/js/pop-message.js"></script>
     <script type="text/javascript" src="share/static/js/logout.js"></script>
     <script>
-        $(".backSub").click(function () {
+        $(".backSub1").click(function () {
             $.ajax({
                 type: "POST",
                 url: "/returnGoodsPost",
                 data: {
-                    "id": $(".shopid").data("id"),
+                    "id": $(".myddcon").data("id"),
                 },
                 success: function () {
                     window.location = "/select_chat_list"
