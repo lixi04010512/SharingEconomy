@@ -122,10 +122,10 @@
                 data: { 'keysGoods': keysGoods },
                 success: function (data) {
                     console.log("data.data", data.data)
-                    if(data.data !=null){
-                    for (const key in data.data) {
+                    if (data.data != null) {
+                        for (const key in data.data) {
 
-                        $("#ListSearch").append(`  <div class="col-6">
+                            $("#ListSearch").append(`  <div class="col-6">
                                     <div class="grid-product space-mb--20">
                                         <div class="grid-product__image">
                                             <a href="../shop-product/${data.data[key].id}">
@@ -142,9 +142,14 @@
                                     </div>
                                 </div>`)
                         }
-                    }else{
-                           $("#ListSearch").append(`<div class="col-6">未找到你想要的商品</div>`)
-                        }
+                    } else {
+                        $("#ListSearch").append(`<div 
+                        style="text-align: center;border-radius: 20px;width: 300px;height: 350px;margin: auto;
+                        position: absolute;top: 570px;left: -20px;right: 0;bottom: 0;">
+                        
+                        <img src="share/images/notfind.jpg" style="width: 180px;">
+                        <h5 style="padding-left: 35px;">没有找到符合条件的商品</h5>`)
+                    }
 
 
                 },
