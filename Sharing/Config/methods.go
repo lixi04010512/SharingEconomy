@@ -33,7 +33,7 @@ const (
 	//Prikey       = "769f41a9de1f6f1848d7631e274f2168e3cb20d16c81f688a49d081965a53861"
 	//ShareFishAddress = "0xDAafB847bE536849D698CC6497c9c1746Ad61be4"
 	Prikey       = "40fb59f1551424cde70fdc153b7e98cad6528e0680a1e7a3a400d0e2c3d27019"
-	ShareFishAddress = "0xc379ae073b247E1301cD27d5C2BA17f122Ef2e61"
+	ShareFishAddress = "0xDbeee3cC222618345951D01288D7E0643C3c58BD"
 
 	gasLimit = 3000000
 	//fileKeystore     = "UTC--2022-03-17T08-08-40.600466800Z--59b0f8a34d8f0dd0e0eef44d02cef0c12fffb9de"

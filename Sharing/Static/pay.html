@@ -3,185 +3,139 @@
 <html>
 
 <head>
-	<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no, minimal-ui" />
-	<meta name="apple-mobile-web-app-capable" content="yes" />
-	<meta name="apple-mobile-web-app-status-bar-style" content="black" />
-	<meta name="format-detection" content="telephone=no, email=no" />
-	<meta charset="UTF-8">
-	<title>Share Fish-余额充值</title>
-	<script src="share/static/js/public.js"></script>
-    <link rel="stylesheet" href="share/css/pay.css">
-	<!-- Bootstrap CSS -->
-	<link rel="stylesheet" href="share/assets/css/bootstrap.min.css">
-	<!-- Main Style CSS -->
-	<link rel="stylesheet" href="share/assets/css/style.css">
+    <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no, minimal-ui" />
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+    <meta name="apple-mobile-web-app-status-bar-style" content="black" />
+    <meta name="format-detection" content="telephone=no, email=no" />
+    <meta charset="UTF-8">
+    <title>Share Fish-余额充值</title>
+    <script src="share/static/js/public.js"></script>
 
-	<!-- App css搜索框 -->
-	<link href="share/static/css/bootstrap.min.css" rel="stylesheet" type="text/css">
-	<link href="share/static/css/icons.min.css" rel="stylesheet" type="text/css">
-	<link href="share/static/css/app.min.css" rel="stylesheet" type="text/css">
+    <link rel="stylesheet" type="text/css" href="share/css/pay.css" />
+    <script src="share/js/flexible1.js" type="text/javascript" charset="utf-8"></script>
+    <script src="share/js/zepto.min.js" type="text/javascript" charset="utf-8"></script>
 
 </head>
 
 <body>
-
-	<header>
-		<div class="header-wrapper border-bottom">
-			<div class="container space-y--15">
-				<div class="row align-items-center">
-					<div class="col-auto">
-						<a class="back-link" onClick="javascript :history.back(-1);"> <i class="fa fa-angle-left"></i>
-							返回</a>
-					</div>
-					<div class="col d-flex justify-content-center">
-						<div class="header-search">
-							<div class="input-group">
-								<h4 style="padding-top: 18px;">余额充值</h4>
-							</div>
-						</div>
-					</div>
-					<div class="col-auto">
-						<!-- header menu trigger -->
-						<button class="header-menu-trigger" id="header-menu-trigger">
-							<i class="fas fa-align-right" style="font-size: 20px;
-                                color: grey;"></i>
-						</button>
-					</div>
-				</div>
-			</div>
-		</div>
-
-	</header>
-	<!--====================  End of header area  ====================-->
-	<!--====================  mobile menu overlay ====================-->
-	{{ template "Static/menu.html" . }}
-
+    <div class="nav-bar">
+        <a class="back-link" onClick="javascript :history.back(-1);">
+            <span class="back"></span>
+        </a>
+        <span>充值</span>
+    </div>
     <div class="container">
-        <div class="row">
-            <div class="container_logo">
-                <div class="play col-xs-10 col-sm-10 col-md-10 col-lg-10">
-                    <img src="./images/logo.png" />
-                </div>
-            </div>
+        <!-- <h2>充值金额</h2>
+        <div class="quick-pay">
+            <ul>
+                <li class="active"><span>5</span>ETH</li>
+                <li><span>10</span>ETH</li>
+                <li><span>30</span>ETH</li>
+                <li><span>50</span>ETH</li>
+            </ul>
+        </div> -->
+        <h2>充值金额</h2>
+        <div class="other-pay">
+            <input type="text" name="money" value="" placeholder="0" id="amount" />
         </div>
-<!--        <form action="/topUpPost" method="post">-->
-            <div class="row">
-                <div class="play col-xs-10 col-sm-10 col-md-10 col-lg-10">
-                    <div class="form-group">
-                        <input type="hidden" class="getId" name="id">
-                        <h4>充值金额</h4>
-                        <div class="number_amount">
-                            <label>ETH</label>
-                            <input type="number" id="amount" style="padding: 0 10vh;">
-                        </div>
+        <h2>支付方式</h2>
+        <div class="pay-type">
+            <ul>
+                <li class="active">
+                    <div class="type">
+                        <i class="wx"></i>
+                        <span>微信支付<sup>优惠</sup></span>
                     </div>
-                </div>
-            </div>
-            <div class="row" style="width: 350px;">
-                <div class="quick_amount col-xs-10 col-sm-10 col-md-10 col-lg-10">
-                    <p class="col-xs-3 col-sm-3 col-md-3 col-lg-3" data-item='100'>100</p>
-                    <p class="col-xs-3 col-sm-3 col-md-3 col-lg-3" data-item='200'>200</p>
-                    <p class="col-xs-3 col-sm-3 col-md-3 col-lg-3" data-item='500'>500</p>
-                    <p class="col-xs-3 col-sm-3 col-md-3 col-lg-3" data-item='1000'>1000</p>
-                    <p class="col-xs-3 col-sm-3 col-md-3 col-lg-3" data-item='2000'>2000</p>
-                    <p class="col-xs-3 col-sm-3 col-md-3 col-lg-3" data-item='5000'>5000</p>
-                </div>
-            </div>
-            <div class="row">
-                <div class="_submit col-xs-10 col-sm-10 col-md-10 col-lg-10" style="padding-top: 35px;">
-                    <!-- <input type="submit" value="充值" class="btn btn-primary submit-amount"> -->
-                    <button  class="btn btn-primary submit-amount" type="submit" id="topUpSub" style="color: white;">充值</button>
-                </div>
-            </div>
-<!--        </form>-->
-    </div>
-    </div>
-    <div class="modal fade" tabindex="-1" role="dialog" id='exampleModal'>
-        <div class="modal-dialog" role="document">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                        <span aria-hidden="true">&times;</span>
-                    </button>
-                    <h4 class="modal-title">提示</h4>
-                </div>
-                <div class="modal-body">
-                    <p>输入金额不能超出5000元</p>
-                </div>
-                <div class="modal-footer">
-                    <button type="button" class="btn btn-primary" data-dismiss="modal" aria-label="Close" id="">确定</button>
-                </div>
-            </div>
+                    <i class="check"></i>
+                </li>
+                <li>
+                    <div class="type">
+                        <i class="ali"></i>
+                        <span>支付宝支付</span>
+                    </div>
+                    <i class="check"></i>
+                </li>
+                <li>
+                    <div class="type">
+                        <i class="bank"></i>
+                        <span>银联支付</span>
+                    </div>
+                    <i class="check"></i>
+                </li>
+                <li class="hidden">
+                    <div class="type">
+                        <i class="ali"></i>
+                        <span>花呗支付</span>
+                    </div>
+                    <i class="check"></i>
+                </li>
+            </ul>
+            <p class="more">+&nbsp;<span>点击查看更多</span></p>
+        </div>
+        <!--充值金额-->
+        <div class="money">
+            <p>充值金额<span>ETH <i>0</i></span></p>
+            <button id="topUpSub">充值</button>
         </div>
     </div>
-    <div class="mask"></div>
 
 
-	<script src="share/js/tabbar.js"></script>
-	<!-- jQuery JS -->
-	<script src="share/assets/js/jquery-3.4.1.min.js"></script>
-	<!-- Bootstrap JS -->
-	<script src="share/assets/js/bootstrap.min.js"></script>
-	<!-- Main JS -->
-	<script src="share/assets/js/main.js"></script>
-	<!-- script js -->
-	<script src="share/js/pop-message.js"></script>
+    <script src="share/js/tabbar.js"></script>
+    <!-- jQuery JS -->
+    <script src="share/assets/js/jquery-3.4.1.min.js"></script>
+    <!-- Bootstrap JS -->
+    <script src="share/assets/js/bootstrap.min.js"></script>
+    <!-- Main JS -->
+    <script src="share/assets/js/main.js"></script>
+    <!-- script js -->
+    <script src="share/js/pop-message.js"></script>
     <script type="text/javascript" src="share/static/js/logout.js"></script>
     <script>
         //下架商品按钮
-        $("#topUpSub").click(function(){
+        $("#topUpSub").click(function () {
 
             $.ajax({
                 type: "POST",
                 url: "/topUpPost",
-                data: {"amount": $("#amount").val()},
+                data: { "amount": $("#amount").val() },
                 success: function (data) {
                     alert("充值成功!");
-                    window.location="/profile"
+                    window.location = "/profile"
                 }
             })
         })
     </script>
 
-
-    <script>
-        var $amountInput = $('[type="number"]');
-        var amount = '';
-        var $getId = $('[type="hidden"]');
-        var getparse = ParaMeter();
-        $getId.val(getparse.id);
-        $(".quick_amount p").off("click").on("click", function () {
-            amount = $(this).text();
-            if (!$(this).hasClass('active')) {
-                $(this).addClass('active').siblings().removeClass('active');
-                $amountInput.val(amount);
-            } else {
-                $(this).removeClass('active');
-                $amountInput.val('');
-            }
+    <script type="text/javascript">
+        // 快捷支付
+        $('.quick-pay ul li').click(function () {
+            var money = $(this).find('span').text()
+            $(this).addClass('active').siblings().removeClass('active')
+            $('.money').find('i').text(money)
         })
-        $amountInput.on('input propertychange', function () {
-            if ($(this).val() > 5000) {
-                $('#exampleModal').modal('show')
+        // 其他金额
+        $('.other-pay input').bind('input propertychange', function () {
+            if (!/^[0-9]*$/.test($(this).val()) || $(this).val() == 0) {
+                $(this).val("")
+                alert('请输入正确金额')
+                return
             }
-            if ($(this).val() !== $('.quick_amount p.active').text()) {
-                $('.quick_amount p').removeClass('active');
-            }
+            $('.quick-pay ul li').removeClass('active')
+            var money = $(this).val()
+            $('.money').find('i').text(money)
         })
-        $('#exampleModal').on('hidden.bs.modal', function (e) {
-            $amountInput.val(5000);
+        // 支付方式选择
+        $('.pay-type ul li').click(function () {
+            $(this).addClass('active').siblings().removeClass('active')
         })
-        function ParaMeter() {
-            var obj = {};
-            var arr = location.href.substring(location.href.lastIndexOf('?') + 1).split("&");
-            for (var i = 0; i < arr.length; i++) {
-                var aa = arr[i].split("=");
-                obj[aa[0]] = aa[1];
-            }
-            return obj;
-        }
+        // 查看更多
+        $('.pay-type .more').click(function () {
+            $(this).css('visibility', 'hidden')
+            $('.pay-type ul li').removeClass('hidden')
+        })
     </script>
 
 </body>
 {{ end }}
+
 </html>
