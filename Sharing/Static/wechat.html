@@ -31,7 +31,7 @@
             <div class="chat-user--info d-flex align-items-center">
                 <!-- Back Button -->
                 <div class="back-button">
-                    <a  class="back-link" onClick="javascript :history.back(-1);">
+                    <a class="back-link" onClick="javascript :history.back(-1);">
                         <svg class="bi bi-arrow-left-short" width="32" height="32" viewBox="0 0 16 16"
                              fill="currentColor" xmlns="http://www.w3.org/2000/svg">
                             <path fill-rule="evenodd"
@@ -52,7 +52,8 @@
 
 <div class="page-content-wrapper py-3" id="chat-wrapper">
     <div class="container">
-        <div class="chat-content-wrap" data-owner="{{ .owners }}" data-addr="{{ .addrs }}" data-img="{{ .imgs }}" data-img1="{{ .img }}">
+        <div class="chat-content-wrap" data-owner="{{ .owners }}" data-addr="{{ .addrs }}" data-img="{{ .imgs }}"
+             data-img1="{{ .img }}">
             {{ $addr1 := .addrs }}
             {{ $owner1 := .owners }}
             {{ $img_owner := .img }}
@@ -70,6 +71,10 @@
                     <div class="message-content">
                         <div class="single-message">
                             <p>{{ $value.Content }}</p>
+                            {{ if eq $value.Confirm "borrow" }}
+                            <input type="button" value="同意" class="yes">
+                            <input type="button" value="不同意" class="no">
+                            {{ end }}
                         </div>
                         <!-- Options -->
                         <div class="dropstart">
@@ -98,6 +103,9 @@
                     <div class="message-content">
                         <div class="single-message">
                             <p>{{ $value.Content }}</p>
+                            {{ if eq $value.Confirm "borrow" }}
+                            <span>待对方同意借用！</span>
+                            {{ end }}
                         </div>
                         <!-- Options -->
                         <div class="dropstart">
@@ -164,8 +172,8 @@
                 "addr_from": $(".chat-content-wrap").data("owner"),
                 "addr_to": $(".chat-content-wrap").data("addr"),
                 "content": $(".form-control").val(),
-                "img_from":$(".chat-content-wrap").data("img"),
-                "img_to":$(".chat-content-wrap").data("img1"),
+                "img_from": $(".chat-content-wrap").data("img"),
+                "img_to": $(".chat-content-wrap").data("img1"),
             },
             success: function () {
                 location.reload();

@@ -38,7 +38,7 @@ func Select_chat_content() (todos []Chat, err error) {
 	}
 	for r.Next() {
 		todo := Chat{}
-		err = r.Scan(&todo.Id, &todo.Addr_from, &todo.Addr_to, &todo.Content, &todo.Img_from, &todo.Img_to, &todo.Time)
+		err = r.Scan(&todo.Id, &todo.Addr_from, &todo.Addr_to, &todo.Content, &todo.Img_from, &todo.Img_to, &todo.Time, &todo.Confirm)
 		if err != nil {
 			fmt.Println("64:", err)
 			return
@@ -80,7 +80,7 @@ func (chat *Chat_list) Insert_chat_list(username string, userimg string) (err er
 		id = todo.Id
 		fmt.Println("70id:", id)
 	}
-	a1 :=strconv.Itoa(id)
+	a1 := strconv.Itoa(id)
 	fmt.Println("strconv.Itoa(id):", a1)
 	if strconv.Itoa(id) == "0" {
 		r, err2 := db.Exec("insert into chat_list(owner,addr,name,img,time,no_read)values(?, ?,?,?,?,?)", chat.Owner, chat.Addr, chat.Name, img, strTime, 0)
@@ -163,8 +163,7 @@ func SendBorrow(addr_from string, addr_to string, name_from string, name_to stri
 			return
 		}
 		fmt.Println("160insert chat_list succ:", id0)
-
-		r, err0 := db.Exec("insert into chat(addr_from,addr_to,content,img_from,img_to,time)values(?, ?,?,?,?,?)", addr_from, addr_to, content, img_from, img_to, strTime)
+		r, err0 := db.Exec("insert into chat(addr_from,addr_to,content,img_from,img_to,time,confirm)values(?, ?,?,?,?,?,?)", addr_from, addr_to, content, img_from, img_to, strTime, "borrow")
 		if err0 != nil {
 			fmt.Println("exec failed, ", err0)
 			return
@@ -188,7 +187,7 @@ func SendBorrow(addr_from string, addr_to string, name_from string, name_to stri
 		fmt.Println(r3, r4)
 		return
 	} else {
-		r, err1 := db.Exec("insert into chat(addr_from,addr_to,content,img_from,img_to,time)values(?, ?,?,?,?,?)", addr_from, addr_to, content, img_from, img_to, strTime)
+		r, err1 := db.Exec("insert into chat(addr_from,addr_to,content,img_from,img_to,time,confirm)values(?, ?,?,?,?,?,?)", addr_from, addr_to, content, img_from, img_to, strTime, "borrow")
 		if err1 != nil {
 			fmt.Println("exec failed, ", err1)
 			return
@@ -211,7 +210,6 @@ func SendBorrow(addr_from string, addr_to string, name_from string, name_to stri
 
 	return
 }
-
 
 //删除消息列表
 func (chat *Chat_list) Delete_chat_list() (err error) {
@@ -237,4 +235,3 @@ func (chat *Chat) Delete_chat_content() (err error) {
 	fmt.Println("delete chat succ:", r)
 	return
 }
-

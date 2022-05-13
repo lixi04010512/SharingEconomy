@@ -22,4 +22,5 @@ func LoginMethod(client *ethclient.Client, contract *Agreement.User, Address com
 		log.Fatal(err)
 	}
 	return res, nil
+
 }

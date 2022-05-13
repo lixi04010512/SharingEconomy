@@ -1,6 +1,8 @@
 package db
 
-import "time"
+import (
+	"time"
+)
 
 type DemandDB struct {
 	DemandID    int64     `sql:"demandID" json:"demandID"     from:"demandID"`
@@ -28,4 +30,5 @@ type Chat struct {
 	Img_from  string `db:"img_from" json:"img_from" form:"img_from"`
 	Img_to    string `db:"img_to" json:"img_to" form:"img_to"`
 	Time      string `db:"time" json:"time" form:"time"`
+	Confirm   string `db:"confirm" json:"confirm" form:"confirm"`
 }

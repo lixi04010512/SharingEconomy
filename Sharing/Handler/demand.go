@@ -44,7 +44,7 @@ func demandAdd(c *gin.Context) {
 
 }
 
-//查
+//需求页面
 func ChatStatic(c *gin.Context) {
 	//listNeeds, err := x.ListNeedAll()
 	//fmt.Println(listNeeds)
