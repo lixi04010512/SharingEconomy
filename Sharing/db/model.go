@@ -23,12 +23,14 @@ type Chat_list struct {
 	No_read int    `db:"no_read" json:"no_read" form:"no_read"`
 }
 type Chat struct {
-	Id        int    `db:"id" json:"id" form:"id"`
-	Addr_from string `db:"addr_from" json:"addr_from" form:"addr_from"`
-	Addr_to   string `db:"addr_to" json:"addr_to" form:"addr_to"`
-	Content   string `sb:"content" json:"content" form:"content"`
-	Img_from  string `db:"img_from" json:"img_from" form:"img_from"`
-	Img_to    string `db:"img_to" json:"img_to" form:"img_to"`
-	Time      string `db:"time" json:"time" form:"time"`
-	Confirm   string `db:"confirm" json:"confirm" form:"confirm"`
+	Id         int    `db:"id" json:"id" form:"id"`
+	Addr_from  string `db:"addr_from" json:"addr_from" form:"addr_from"`
+	Addr_to    string `db:"addr_to" json:"addr_to" form:"addr_to"`
+	Content    string `sb:"content" json:"content" form:"content"`
+	Img_from   string `db:"img_from" json:"img_from" form:"img_from"`
+	Img_to     string `db:"img_to" json:"img_to" form:"img_to"`
+	Time       string `db:"time" json:"time" form:"time"`
+	Confirm    string `db:"confirm" json:"confirm" form:"confirm"`
+	Product_id int    `db:"product_id" json:"product_id" form:"product_id"`
+	Deal_id    int    `db:"deal_id" json:"deal_id" form:"deal_id"`
 }

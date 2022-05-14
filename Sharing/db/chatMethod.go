@@ -110,7 +110,7 @@ func (chat *Chat) Insert_chat_content() (err error) {
 	times := time.Now()
 	strTime := times.Format("15:05:05")
 	fmt.Println("93allcontent:", chat.Addr_from, chat.Addr_to, chat.Img_from, chat.Img_to, chat.Content)
-	r, err := db.Exec("insert into chat(addr_from,addr_to,content,img_from,img_to,time)values(?, ?,?,?,?,?)", chat.Addr_from, chat.Addr_to, chat.Content, chat.Img_from, chat.Img_to, strTime)
+	r, err := db.Exec("insert into chat(addr_from,addr_to,content,img_from,img_to,time,confirm,product_id,deal_id)values(?, ?,?,?,?,?,?,?,?)", chat.Addr_from, chat.Addr_to, chat.Content, chat.Img_from, chat.Img_to, strTime, "justchat", 0, 0)
 	if err != nil {
 		fmt.Println("exec failed, ", err)
 		return
@@ -134,7 +134,7 @@ func (chat *Chat) Insert_chat_content() (err error) {
 }
 
 //发送借用提醒
-func SendBorrow(addr_from string, addr_to string, name_from string, name_to string, content string, img_from string, img_to string) (err error) {
+func SendBorrow(addr_from string, addr_to string, name_from string, name_to string, content string, img_from string, img_to string, id1 int, deal int) (err error) {
 	times := time.Now()
 	strTime := times.Format("15:05:05")
 	r1, err := db.Query("select * from chat_list where addr=? and owner=?", addr_to, addr_from)
@@ -163,7 +163,7 @@ func SendBorrow(addr_from string, addr_to string, name_from string, name_to stri
 			return
 		}
 		fmt.Println("160insert chat_list succ:", id0)
-		r, err0 := db.Exec("insert into chat(addr_from,addr_to,content,img_from,img_to,time,confirm)values(?, ?,?,?,?,?,?)", addr_from, addr_to, content, img_from, img_to, strTime, "borrow")
+		r, err0 := db.Exec("insert into chat(addr_from,addr_to,content,img_from,img_to,time,confirm,product_id,deal_id)values(?, ?,?,?,?,?,?,?,?)", addr_from, addr_to, content, img_from, img_to, strTime, "borrow", id1, deal)
 		if err0 != nil {
 			fmt.Println("exec failed, ", err0)
 			return
