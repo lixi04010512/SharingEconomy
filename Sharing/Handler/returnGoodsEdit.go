@@ -27,24 +27,26 @@ func ReturnGoods(c *gin.Context) {
 		return
 	}
 	id := c.PostForm("id")
-	fmt.Println("id",id)
+	fmt.Println("id", id)
 	idInt, err := strconv.Atoi(id)
 	idInt64 := int64(idInt)
-	goodsData,_, err := config.HaveIndex(client, big.NewInt(idInt64))
+	goodsData, _, err := config.HaveIndex(client, big.NewInt(idInt64))
 
-	res, back,err := config.DoGoodsReturnMethod(client, contract, big.NewInt(idInt64),privKey)
-	message := fmt.Sprintf("你好，我是账号为%s的用户，我要归还你的%s号商品，本次归还id是%s，", LoginUser,id, back)
+	res, back, err := config.DoGoodsReturnMethod(client, contract, big.NewInt(idInt64), privKey)
+	message := fmt.Sprintf("你好，我是账号为%s的用户，我要归还你的%s号商品，本次归还id是%s，", LoginUser, id, back)
 
 	goods_owner := goodsData.Owner.String()
 	userImg, err := contract.GetUserImg(nil, goodsData.Owner)
-	img,err :=contract.GetUserImg(nil, LoginUser)
+	img, err := contract.GetUserImg(nil, LoginUser)
 	userName, _, _, _, _, err := config.GetUserMethod(contract, LoginUser)
 	name_owner, _, _, _, _, err := config.GetUserMethod(contract, goodsData.Owner)
 	fmt.Println("mess", message)
 	addr := LoginUser.Hex()
-	userImg1 :="share/"+userImg
-	img1 :="share/"+img
-	err = db.SendBorrow(addr, goods_owner, userName, name_owner, message, userImg1, img1)
+	userImg1 := "share/" + userImg
+	img1 := "share/" + img
+	backString := back.String()
+	backInt, err := strconv.Atoi(backString)
+	err = db.SendReturn(addr, goods_owner, userName, name_owner, message, userImg1, img1, idInt, backInt)
 	if err != nil {
 		respError(c, err)
 	}
@@ -74,10 +76,10 @@ func AgreeBackGoods(c *gin.Context) {
 	back := c.PostForm("backId")
 	backInt, err := strconv.Atoi(back)
 	backInt64 := int64(backInt)
-	timeStr:=time.Now().Format("2006-01-02 15:04:05")
-	goodsData,_, err := config.HaveIndex(client, big.NewInt(idInt64))
-	pledge:=goodsData.EthPledge
-	pledgeStr := pledge.String()//转成string
+	timeStr := time.Now().Format("2006-01-02 15:04:05")
+	goodsData, _, err := config.HaveIndex(client, big.NewInt(idInt64))
+	pledge := goodsData.EthPledge
+	pledgeStr := pledge.String() //转成string
 
 	//isBack,err:=contract.GetBackRec(nil,big.NewInt(idInt64),big.NewInt(backInt64))
 
@@ -96,30 +98,30 @@ func AgreeBackGoods(c *gin.Context) {
 	if !isOk {
 		log.Println("float to bigInt failed!")
 	}
-	res, err := config.AgreeBackMethod(client,contract, big.NewInt(idInt64), big.NewInt(backInt64),value,timeStr,privKey)
+	res, err := config.AgreeBackMethod(client, contract, big.NewInt(idInt64), big.NewInt(backInt64), value, timeStr, privKey)
 
 	//发送留言消息
 	message := c.PostForm("message")
-	fmt.Println("mess",message)
+	fmt.Println("mess", message)
 	fmt.Println("borrow:", res)
-	fmt.Println("value",value)
+	fmt.Println("value", value)
 
 	userImg, err := contract.GetUserImg(nil, goodsData.Owner)
-	img,err :=contract.GetUserImg(nil, goodsData.Borrowers.Borrower)
+	img, err := contract.GetUserImg(nil, goodsData.Borrowers.Borrower)
 	userName, _, _, _, _, err := config.GetUserMethod(contract, goodsData.Borrowers.Borrower)
 	name_owner, _, _, _, _, err := config.GetUserMethod(contract, goodsData.Owner)
-	fmt.Println("goodsData.Owner.String():",goodsData.Owner.String())
-	fmt.Println("goodsData.Borrowers.Borrower.String()",goodsData.Borrowers.Borrower.String())
-	fmt.Println("name_owner",name_owner)
-	fmt.Println("userName",userName)
-	fmt.Println("message",message)
-	fmt.Println("userImg",userImg)
-	fmt.Println("img",img)
-	userImg1 :="share/"+userImg
-	img1 :="share/"+img
-	err1 :=db.AgreeBorrow(goodsData.Owner.String(),goodsData.Borrowers.Borrower.String(),message,userImg1,img1)
-	if err1 !=nil {
-		fmt.Println("202err:",err1)
+	fmt.Println("goodsData.Owner.String():", goodsData.Owner.String())
+	fmt.Println("goodsData.Borrowers.Borrower.String()", goodsData.Borrowers.Borrower.String())
+	fmt.Println("name_owner", name_owner)
+	fmt.Println("userName", userName)
+	fmt.Println("message", message)
+	fmt.Println("userImg", userImg)
+	fmt.Println("img", img)
+	userImg1 := "share/" + userImg
+	img1 := "share/" + img
+	err1 := db.AgreeBorrow(goodsData.Owner.String(), goodsData.Borrowers.Borrower.String(), message, userImg1, img1)
+	if err1 != nil {
+		fmt.Println("202err:", err1)
 	}
 }
 
@@ -145,33 +147,31 @@ func DisagreeBackGoods(c *gin.Context) {
 	back := c.PostForm("backId")
 	backInt, err := strconv.Atoi(back)
 	backInt64 := int64(backInt)
-	timeStr:=time.Now().Format("2006-01-02 15:04:05")
-	goodsData,_, err := config.HaveIndex(client, big.NewInt(idInt64))
-	res, err := config.DisagreeBackMethod(client,contract, big.NewInt(idInt64), big.NewInt(backInt64),timeStr,privKey)
+	timeStr := time.Now().Format("2006-01-02 15:04:05")
+	goodsData, _, err := config.HaveIndex(client, big.NewInt(idInt64))
+	res, err := config.DisagreeBackMethod(client, contract, big.NewInt(idInt64), big.NewInt(backInt64), timeStr, privKey)
 	//_,_,err:=contract.GetBackRec(nil,big.NewInt(idInt64),big.NewInt(backInt64))
-
-
 
 	//发送留言消息
 	message := c.PostForm("message")
-	fmt.Println("mess",message)
+	fmt.Println("mess", message)
 	fmt.Println("borrow:", res)
 
 	userImg, err := contract.GetUserImg(nil, goodsData.Owner)
-	img,err :=contract.GetUserImg(nil, goodsData.Borrowers.Borrower)
+	img, err := contract.GetUserImg(nil, goodsData.Borrowers.Borrower)
 	userName, _, _, _, _, err := config.GetUserMethod(contract, goodsData.Borrowers.Borrower)
 	name_owner, _, _, _, _, err := config.GetUserMethod(contract, goodsData.Owner)
-	fmt.Println("goodsData.Owner.String():",goodsData.Owner.String())
-	fmt.Println("goodsData.Borrowers.Borrower.String()",goodsData.Borrowers.Borrower.String())
-	fmt.Println("name_owner",name_owner)
-	fmt.Println("userName",userName)
-	fmt.Println("message",message)
-	fmt.Println("userImg",userImg)
-	fmt.Println("img",img)
-	userImg1 :="share/"+userImg
-	img1 :="share/"+img
-	err1 :=db.DisagreeBorrow(goodsData.Owner.String(),goodsData.Borrowers.Borrower.String(),message,userImg1,img1)
-	if err1 !=nil {
-		fmt.Println("202err:",err1)
+	fmt.Println("goodsData.Owner.String():", goodsData.Owner.String())
+	fmt.Println("goodsData.Borrowers.Borrower.String()", goodsData.Borrowers.Borrower.String())
+	fmt.Println("name_owner", name_owner)
+	fmt.Println("userName", userName)
+	fmt.Println("message", message)
+	fmt.Println("userImg", userImg)
+	fmt.Println("img", img)
+	userImg1 := "share/" + userImg
+	img1 := "share/" + img
+	err1 := db.DisagreeBorrow(goodsData.Owner.String(), goodsData.Borrowers.Borrower.String(), message, userImg1, img1)
+	if err1 != nil {
+		fmt.Println("202err:", err1)
 	}
 }
