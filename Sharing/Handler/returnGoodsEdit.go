@@ -153,7 +153,7 @@ func DisagreeBackGoods(c *gin.Context) {
 	//_,_,err:=contract.GetBackRec(nil,big.NewInt(idInt64),big.NewInt(backInt64))
 
 	//发送留言消息
-	message := c.PostForm("message")
+	message := "正在处理，请稍等^_^"
 	fmt.Println("mess", message)
 	fmt.Println("borrow:", res)
 

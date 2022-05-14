@@ -74,11 +74,11 @@
                             <input type="hidden" id="dealId" value="{{ $value.Deal_id }}">
                             <p>{{ $value.Content }}</p>
                             {{ if eq $value.Confirm "borrow" }}
-                            <input type="button" value="同意借用" class="yes_borrow">
-                            <input type="button" value="不同意借用" class="no_borrow">
+                            <input type="button" value="同意借用" id="borrowAgree" class="yes_borrow">
+                            <input type="button" value="不同意借用" id="borrowDisagree" class="no_borrow">
                             {{ else if $value.Confirm "return" }}
-                            <input type="button" value="同意归还" class="yes_return">
-                            <input type="button" value="不同意归还" class="no_return">
+                            <input type="button" value="同意归还" id="returnAgree" class="yes_return">
+                            <input type="button" value="不同意归还" id="returnDisagree" class="no_return">
                             {{ end }}
                         </div>
                         <!-- Options -->
@@ -157,7 +157,7 @@
 <script src="share/static/js/app.js"></script>
 <script>
 
-    $("#agreeSub").click(function () {
+    $("#borrowAgree").click(function () {
         $.ajax({
             type: "POST",
             url: "/agreePost",
@@ -171,7 +171,7 @@
 </script>
 <script>
 
-    $("#disagreeSub").click(function () {
+    $("#borrowDisagree").click(function () {
 
         $.ajax({
             type: "POST",
@@ -179,6 +179,35 @@
             data: { "dealId": $("#dealId").val(), "agreeId": $("#proId").val()},
             success: function (data) {
                 alert("已拒绝交易");
+                window.location = "/select_chat_list";
+            }
+        })
+    })
+</script>
+<script>
+
+    $("#returnAgree").click(function () {
+        $.ajax({
+            type: "POST",
+            url: "/agreeBackPost",
+            data: { "backId": $("#dealId").val(), "agreeId": $("#proId").val()},
+            success: function (data) {
+                alert("交易完成，押金已返还");
+                window.location = "/select_chat_list";
+            }
+        })
+    })
+</script>
+<script>
+
+    $("#returnDisagree").click(function () {
+
+        $.ajax({
+            type: "POST",
+            url: "/disagreeBackPost",
+            data: { "backId": $("#dealId").val(), "disagreeId": $("#proId").val()},
+            success: function (data) {
+                alert("交易完成，押金不返还");
                 window.location = "/select_chat_list";
             }
         })

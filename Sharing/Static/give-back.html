@@ -130,35 +130,7 @@
             <script src="share/js/upload.js"></script>
             <script src="share/js/demo.js"></script>
 
-            <script>
 
-                $("#agreeSub").click(function () {
-                    $.ajax({
-                        type: "POST",
-                        url: "/agreeBackPost",
-                        data: { "backId": $("#myOrderId").val(), "agreeId": $("#myAgreeId").val(), "message": $("#leaveMessage").val() },
-                        success: function (data) {
-                            alert("已同意交易");
-                            window.location = "/select_chat_list";
-                        }
-                    })
-                })
-            </script>
-            <script>
-
-                $("#disagreeSub").click(function () {
-
-                    $.ajax({
-                        type: "POST",
-                        url: "/disagreeBackPost",
-                        data: { "backId": $("#myOrderId").val(), "disagreeId": $("#myAgreeId").val(), "message": $("#leaveMessage").val() },
-                        success: function (data) {
-                            alert("已拒绝交易");
-                            window.location = "/select_chat_list";
-                        }
-                    })
-                })
-            </script>
 </body>
 {{ end }}
 

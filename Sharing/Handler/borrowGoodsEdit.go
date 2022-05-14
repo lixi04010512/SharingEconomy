@@ -179,7 +179,7 @@ func AgreeBorrow(c *gin.Context) {
 	dealHash, err := config.HashMethod(client, contract, big.NewInt(idInt64), big.NewInt(dealInt64), blockNum, privKey)
 
 	//发送留言消息
-	message := c.PostForm("message")
+	message := "正在处理，请稍等^_^"
 	fmt.Println("mess", message)
 	fmt.Println("borrow:", res)
 	fmt.Println("hash", dealHash)

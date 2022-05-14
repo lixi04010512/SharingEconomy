@@ -38,7 +38,7 @@ func Select_chat_content() (todos []Chat, err error) {
 	}
 	for r.Next() {
 		todo := Chat{}
-		err = r.Scan(&todo.Id, &todo.Addr_from, &todo.Addr_to, &todo.Content, &todo.Img_from, &todo.Img_to, &todo.Time, &todo.Confirm)
+		err = r.Scan(&todo.Id, &todo.Addr_from, &todo.Addr_to, &todo.Content, &todo.Img_from, &todo.Img_to, &todo.Time, &todo.Confirm,&todo.Product_id,&todo.Deal_id)
 		if err != nil {
 			fmt.Println("64:", err)
 			return
