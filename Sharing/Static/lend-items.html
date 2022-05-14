@@ -20,6 +20,7 @@
     <link href="share/static/css/app.min.css" rel="stylesheet" type="text/css">
     <link rel="stylesheet" href="share/css/demo.css">
     <link rel="stylesheet" href="share/css/cropper.min.css">
+    <link rel="stylesheet" href="share/css/moreImg.css">
 </head>
 <body id="body" class="dark-sidebar">
 <!-- leftbar-menu -->
@@ -126,12 +127,18 @@
                                                 <div class="col-md-6">
                                                     <label for="formFileMultiple" class="form-label"> 图片上传 </label>
                                                     <!-- 上传图片的预览区域 -->
-                                                    <section class="upload-box" id="J_upload_box">
-                                                        <div class="upload" id="J_file_wrap">
-                                                            <input type="file" accept="image/*" name="myGoodsImg"
-                                                                   id="J_file" multiple="multiple">
-                                                        </div>
-                                                    </section>
+<!--                                                    <section class="upload-box" id="J_upload_box">-->
+<!--                                                        <div class="upload" id="J_file_wrap">-->
+<!--                                                            -->
+<!--                                                        </div>-->
+<!--                                                    </section>-->
+<!--                                                    <input type="file" accept="image/*" name="myGoodsImg"-->
+<!--                                                           id="J_files" multiple="multiple">-->
+                                                    <div class="input-file-box">
+                                                        <span>点击上传图片</span>
+                                                        <input type="file" name="myGoodsImg" id="uploadfile" multiple>
+                                                    </div>
+                                                    <div id="img-box"></div>
                                                     <!-- 图片裁剪工作区域 -->
                                                     <div id="J_file_box">
                                                         <img src="#" id="J_file_box_img" alt="">
@@ -219,6 +226,7 @@
 <script src="share/js/jquery-1.10.2.js"></script>
 <script src="share/js/upload.js"></script>
 <script src="share/js/demo.js"></script>
+<script src="share/js/moreImg.js"></script>
 <script>
     //鼠标移开物品名称框开始验证
     $("#goodsName").blur(function(){
