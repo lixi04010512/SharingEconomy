@@ -70,6 +70,8 @@
                 <div class="user-message">
                     <div class="message-content">
                         <div class="single-message">
+                            <input type="hidden" id="proId" value="{{ $value.Product_id }}">
+                            <input type="hidden" id="dealId" value="{{ $value.Deal_id }}">
                             <p>{{ $value.Content }}</p>
                             {{ if eq $value.Confirm "borrow" }}
                             <input type="button" value="同意" class="yes">
@@ -153,6 +155,35 @@
 <script src="js/bootstrap.bundle.min.js"></script>
 <script src="share/assets/js/jquery-3.4.1.min.js"></script>
 <script src="share/static/js/app.js"></script>
+<script>
+
+    $("#agreeSub").click(function () {
+        $.ajax({
+            type: "POST",
+            url: "/agreePost",
+            data: { "dealId": $("#dealId").val(), "agreeId": $("#proId").val()},
+            success: function (data) {
+                alert("已同意交易");
+                window.location = "/select_chat_list";
+            }
+        })
+    })
+</script>
+<script>
+
+    $("#disagreeSub").click(function () {
+
+        $.ajax({
+            type: "POST",
+            url: "/disagreePost",
+            data: { "dealId": $("#dealId").val(), "agreeId": $("#proId").val()},
+            success: function (data) {
+                alert("已拒绝交易");
+                window.location = "/select_chat_list";
+            }
+        })
+    })
+</script>
 <script>
     $(".dropdown-menu").delegate(".del", "click", function () {
         $.ajax({
