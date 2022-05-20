@@ -159,7 +159,9 @@
             <div class="shopbox" onclick="window.open('../apps-invoice/{{$vluae.OId}}','_self')">
                 <div class="shopboxL">
                     {{range $k,$v:=$vluae.GoodImg}}
+                    {{if eq $k 0}}
                     <img src={{$v}} alt="">
+                    {{end}}
                     {{end}}
 
                 </div>

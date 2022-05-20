@@ -113,10 +113,13 @@
                     <div class="col-12">
                         <div class="hero-slider-wrapper">
                             {{range  $key,$vlaue:=.goodArr1}}
+
                             <a href="../shop-product/{{$vlaue.Id}}">
                                 {{range $k,$v:=$vlaue.GoodImg}}
+                                {{if eq $k 0}}
                                 <div class="hero-slider-item d-flex bg-img"
                                     data-bg=../{{$v}}>
+                                    {{end}}
                                     {{end}}
                                     <div class="container">
                                         <div class="row">
@@ -188,7 +191,9 @@
                                                 <div class="featured-product__image">
                                                     <a href="shop-product/{{$value.Id}}">
                                                         {{ range $k ,$v:=$value.GoodImg}}
+                                                        {{if eq $k 0}}
                                                             <img src={{$v}} class="img-fluid" alt="">
+                                                        {{end}}
                                                         {{end}}
                                                     </a>
                                                 </div>
@@ -228,7 +233,9 @@
                                             <div class="grid-product__image">
                                                 <a href="shop-product/{{$value.Id}}">
                                                     {{ range $k ,$v:=$value.GoodImg}}
+                                                    {{if eq $k 0}}
                                                         <img src={{$v}} class="img-fluid" alt="">
+                                                    {{end}}
                                                     {{end}}
                                                 </a>
                                             </div>

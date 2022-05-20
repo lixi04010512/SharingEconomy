@@ -85,9 +85,11 @@
             <a href="../apps-invoice/{{$vlaue.OId}}">
                 <div class="cart-product border-bottom--medium">
                     {{range $k,$v:=$vlaue.GoodImg}}
+                    {{if eq $k 0}}
                     <div class="cart-product__image">
                         <img src={{$v}} class="img-fluid" alt="">
                     </div>
+                    {{end}}
                     {{end}}
                     <div class="cart-product__content">
                         <h3 class="title">{{$vlaue.Names}}</h3>
