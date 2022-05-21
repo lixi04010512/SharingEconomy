@@ -5,12 +5,12 @@ import (
 )
 
 type DemandDB struct {
-	DemandID    int64     `sql:"demandID" json:"demandID"     from:"demandID"`
-	DemandKinds string    `sql:"demandKinds" json:"demandKinds" from:"demandKinds"`
-	DemandName  string    `sql:"demandName" json:"demandName" from:"demandName"`
-	DemandTime  time.Time `sql:"demandTime" json:"demandTime" from:"demandTime"`
-	DemandAddr  string    `sql:"demandAddr" json:"demandAddr" from:"demandAddr"`
-	CountDemand int64     `sql:"count(demandID)" json:"countDemand" from:"countDemand"`
+	DemandID    int64     `sql:"demandID" json:"demandID"     form:"demandID"`
+	DemandKinds string    `sql:"demandKinds" json:"demandKinds" form:"demandKinds"`
+	DemandName  string    `sql:"demandName" json:"demandName" form:"demandName"`
+	DemandTime  time.Time `sql:"demandTime" json:"demandTime" form:"demandTime"`
+	DemandAddr  string    `sql:"demandAddr" json:"demandAddr" form:"demandAddr"`
+	CountDemand int64     `sql:"count(demandID)" json:"countDemand" form:"countDemand"`
 }
 
 type Chat_list struct {

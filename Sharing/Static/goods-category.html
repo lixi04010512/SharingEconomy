@@ -137,9 +137,11 @@
 
 							<a href="../shop-product/{{$value.GoodsPortStick.Id}}" class="aui-flex-links-item">
 								{{ range $k ,$v:=$value.GoodsPortStick.GoodImg}}
+								{{if eq $k 0}}
 									<div class="aui-flex-links-img">
 										<img src={{$v}} alt="">
 									</div>
+								{{end}}
 								{{end}}
 							<div class="aui-flex-links-text">{{$value.GoodsPortStick.Names}}</div>
 							</a>

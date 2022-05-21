@@ -122,14 +122,16 @@
                                                         <td>
                                                             <div class="media">
                                                                 {{range $k,$v:= $vlaue.GoodImg}}
+                                                                {{if eq $k 0}}
                                                                     <img src={{$v}} height="30"
                                                                         class="me-3 align-self-center rounded"
                                                                         alt="...">
+                                                                {{end}}
                                                                     {{end}}
                                                                     <div class="media-body align-self-center delMyId" data-id="{{ $vlaue.Id }}">
                                                                         <h6 class="m-0" name="goodsName" id="goodsName">
                                                                             {{$vlaue.Names}}</h6>
-                                                                        <a href="#" class="font-12 text-primary "
+                                                                        <a href="../shop-product/{{$vlaue.Id}}" class="font-12 text-primary "
                                                                             name="rent" >ID:
                                                                             {{$vlaue.Id}}</a>
                                                                     </div>
