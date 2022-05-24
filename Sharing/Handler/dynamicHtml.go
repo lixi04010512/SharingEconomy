@@ -47,6 +47,60 @@ type StickAll struct {
 	SticksImg      string `json:"sticksImg"'`
 	GoodsPortStick GoodsPort
 }
+type BaseController struct {
+}
+
+func (b BaseController) dynamicHtmlFun(c *gin.Context, idx int, id []int64, Speci string, webPage string) (string, common.Address, string, []GoodsPort, []GoodsPort, []GoodsPort, []GoodsPort) {
+	client, err := config.GetClient()
+	if err != nil {
+		fmt.Println(err)
+		respError(c, err)
+	}
+	contract, err := config.GetAddress(client)
+	if err != nil {
+		respError(c, err)
+	}
+	var arrIndex []GoodsPort
+	var arrUp []GoodsPort
+	var arrDown []GoodsPort
+	var arrDetails []GoodsPort
+	userName, people, _, _, _, err := config.GetUserMethod(contract, LoginUser)
+	userImg, err := contract.GetUserImg(nil, LoginUser)
+	for i := 0; i < idx; i++ {
+		//var Owner common.Address
+		//xint:=int64(rand.Intn(len(id)))
+		//xint := int64(gRand.Intn(len(id)))
+		goodData, goodData1, err3 := config.HaveIndex(client, big.NewInt(id[i]))
+		//print("图片路径",goodImg)
+		if err3 != nil {
+			fmt.Println(err3)
+		}
+		//首页展示
+		if webPage == "index" {
+			if goodData.Name != "" && goodData.Available == true && goodData.IsBorrow == false {
+				arrIndex1 := []GoodsPort{GoodsPort{Id: goodData.Id, Names: goodData.Name, Species: goodData.Species, Rent: goodData.Rent, EthPledge: goodData.EthPledge, GoodImg: goodData1.GoodImg, GoodSign: goodData1.GoodSign}}
+				arrIndex = append(arrIndex, arrIndex1...)
+			}
+		} else if webPage == "cart" || webPage == "order" {
+			//借出页展示
+			if people == goodData.Owner && goodData.Available == true {
+				arr1 := []GoodsPort{GoodsPort{Id: goodData.Id, Names: goodData.Name, Species: goodData.Species, Rent: goodData.Rent, EthPledge: goodData.EthPledge, IsBorrow: goodData.IsBorrow, GoodImg: goodData1.GoodImg, GoodSign: goodData1.GoodSign}}
+				arrUp = append(arrUp, arr1...)
+			} else if people == goodData.Owner && goodData.Available == false {
+				arr2 := []GoodsPort{GoodsPort{Id: goodData.Id, Names: goodData.Name, Species: goodData.Species, Rent: goodData.Rent, EthPledge: goodData.EthPledge, IsBorrow: goodData.IsBorrow, GoodImg: goodData1.GoodImg, GoodSign: goodData1.GoodSign}}
+				arrDown = append(arrDown, arr2...)
+			}
+		} else if webPage == "categoryDetails" {
+			//分类详情页
+			if goodData.Species == Speci {
+				arrDetails1 := []GoodsPort{GoodsPort{Id: goodData.Id, Names: goodData.Name, Rent: goodData.Rent, GoodImg: goodData1.GoodImg}}
+				arrDetails = append(arrDetails, arrDetails1...)
+			}
+		}
+	}
+
+	return userName, people, userImg, arrIndex, arrUp, arrDown, arrDetails
+}
 
 //随机不重复
 //生成count个(start,end)结束的不重复的随机数
@@ -79,19 +133,13 @@ func generateRandomNumber(start int, end int, count int) []int64 {
 }
 
 //首页-动态展示
-func addIndex(c *gin.Context) {
+func (b BaseController) addIndex(c *gin.Context) {
 	client, err := config.GetClient()
 	if err != nil {
 		fmt.Println(err)
 		respError(c, err)
 		return
 	}
-	contract, err := config.GetAddress(client)
-	if err != nil {
-		respError(c, err)
-		return
-	}
-
 	//获取id
 	id := config.HaveId(client)
 	if err != nil {
@@ -113,16 +161,10 @@ func addIndex(c *gin.Context) {
 	}
 	fmt.Println(stickArr)
 	//定义一个结构体数组
-	var arr1 []GoodsPort
+
 	var goodArr []GoodsPort
 	var goodArr1 []GoodsPort
-	//nums := make([]int64, 0)
 	nums := generateRandomNumber(0, len(id), len(id))
-	fmt.Println("len(id):", len(id))
-	//goodNums:=generateRandomNumber(0, len(id), 4)
-	fmt.Println("nums", nums)
-	//gRand := rand.New(rand.NewSource(time.Now().UnixNano()).(rand.Source64))、
-
 	//轮播
 	for j := 0; j < 3; j++ {
 
@@ -153,48 +195,28 @@ func addIndex(c *gin.Context) {
 			goodArr = append(goodArr, arr2...)
 		}
 	}
-	for i := 0; i < len(id)+1; i++ {
-		if i < len(id) {
-			//var Owner common.Address
-			//xint:=int64(rand.Intn(len(id)))
-			//xint := int64(gRand.Intn(len(id)))
-			goodData, goodData1, err3 := config.HaveIndex(client, big.NewInt(nums[i]))
-			//print("图片路径",goodImg)
-			if err3 != nil {
-				fmt.Println(err3)
+	userName, people, userImg, arr1, _, _, _ := b.dynamicHtmlFun(c, len(id), nums, "", "index")
 
-				return
-			}
-			if goodData.Name != "" && goodData.Available == true && goodData.IsBorrow == false {
-				arr2 := []GoodsPort{GoodsPort{Id: goodData.Id, Names: goodData.Name, Species: goodData.Species, Rent: goodData.Rent, EthPledge: goodData.EthPledge, GoodImg: goodData1.GoodImg, GoodSign: goodData1.GoodSign}}
-				arr1 = append(arr1, arr2...)
-			}
-
-			//goodsPort1 := goodsPort{ Names: names, Species: species, Rent: rent, EthPledge: ethPledge}
-			//fmt.Println(goodsPort{},addr)
-		} else {
-			userName, people, _, _, _, err := config.GetUserMethod(contract, LoginUser)
-			userImg, err := contract.GetUserImg(nil, LoginUser)
-			fmt.Println("res", userName)
-			if err != nil {
-				fmt.Println(err)
-				return
-			}
-			c.HTML(http.StatusOK, "Static/index.html", gin.H{
-				"goodArr":  goodArr,
-				"goodArr1": goodArr1,
-				"goodsPor": arr1,
-				"userName": userName,
-				"userImg":  userImg,
-				"address":  people,
-				"stickArr": stickArr,
-			})
-		}
+	if err != nil {
+		fmt.Println(err)
+		return
 	}
+	c.HTML(http.StatusOK, "Static/index.html", gin.H{
+		"goodArr":  goodArr,
+		"goodArr1": goodArr1,
+		"goodsPor": arr1,
+		"userName": userName,
+		"userImg":  userImg,
+		"address":  people,
+		"stickArr": stickArr,
+	})
 }
 
+//}
+//}
+
 //商品详情页展示
-func shopPorduct(c *gin.Context) {
+func (b BaseController) shopPorduct(c *gin.Context) {
 	a := c.Params.ByName("id")
 	x, err := strconv.ParseInt(a, 10, 64)
 	id := big.NewInt(x)
@@ -274,13 +296,10 @@ func goodsCategory(c *gin.Context) {
 			for i := 0; i < len(id); i++ {
 				goodData, goodData1, _ := config.HaveIndex(client, id[i])
 				if goodData.Species == StickData.Name {
-					//arr1 := []GoodsPort{GoodsPort{Id: goodData.Id, Names: goodData.Name, Species: goodData.Species, Rent: goodData.Rent, EthPledge: goodData.EthPledge, GoodImg: goodData1.GoodImg}}
-					//arr = append(arr, arr1...)
+
 					arr1 := []StickAll{StickAll{GoodsPortStick: GoodsPort{Id: goodData.Id, Names: goodData.Name, Species: goodData.Species, Rent: goodData.Rent, EthPledge: goodData.EthPledge, GoodImg: goodData1.GoodImg, GoodSign: goodData1.GoodSign}}}
 					stickArr = append(stickArr, arr1...)
-					//fmt.Println("stickA融入33",stickArr)
-					//goodsPort1 := goodsPort{ Names: names, Species: species, Rent: rent, EthPledge: ethPledge}
-					//fmt.Println(goodsPort{},addr)
+
 				}
 			}
 		} else {
@@ -300,22 +319,10 @@ func goodsCategory(c *gin.Context) {
 }
 
 //我的交易-上下架
-func CartGood(c *gin.Context) {
+func (b BaseController) CartGood(c *gin.Context) {
 	client, err := config.GetClient()
 	if err != nil {
 		fmt.Println(err)
-		respError(c, err)
-		return
-	}
-	contract, err := config.GetAddress(client)
-	if err != nil {
-		respError(c, err)
-		return
-	}
-	userName, people, _, _, _, err := config.GetUserMethod(contract, LoginUser)
-	userImg, err := contract.GetUserImg(nil, LoginUser)
-	fmt.Println("res", userName)
-	if err != nil {
 		respError(c, err)
 		return
 	}
@@ -326,100 +333,96 @@ func CartGood(c *gin.Context) {
 		respError(c, err)
 		return
 	}
-	//定义一个结构体数组
-	var arrUp []GoodsPort
-	var arrDown []GoodsPort
-	for i := 0; i < len(id)+1; i++ {
-		if i < len(id) {
-			//var addr common.Address
-			goodData, goodData1, err := config.HaveIndex(client, id[i])
-
-			if err != nil {
-				respError(c, err)
-				return
-			}
-
-			if people == goodData.Owner && goodData.Available == true {
-				arr1 := []GoodsPort{GoodsPort{Id: goodData.Id, Names: goodData.Name, Species: goodData.Species, Rent: goodData.Rent, EthPledge: goodData.EthPledge, IsBorrow: goodData.IsBorrow, GoodImg: goodData1.GoodImg, GoodSign: goodData1.GoodSign}}
-				arrUp = append(arrUp, arr1...)
-			} else if people == goodData.Owner && goodData.Available == false {
-				arr2 := []GoodsPort{GoodsPort{Id: goodData.Id, Names: goodData.Name, Species: goodData.Species, Rent: goodData.Rent, EthPledge: goodData.EthPledge, IsBorrow: goodData.IsBorrow, GoodImg: goodData1.GoodImg, GoodSign: goodData1.GoodSign}}
-				arrDown = append(arrDown, arr2...)
-			}
-		} else {
-
-			c.HTML(http.StatusOK, "Static/cart.html", gin.H{
-				"goodsUp":  arrUp,
-				"goodDown": arrDown,
-				"userName": userName,
-				"address":  people,
-				"userImg":  userImg,
-			})
-		}
+	s := make([]int64, len(id))
+	for i := 0; i < len(id); i++ {
+		x := id[i].String()
+		s[i], err = strconv.ParseInt(x, 10, 64)
 	}
+	userName, people, userImg, _, arrUp, arrDown, _ := b.dynamicHtmlFun(c, len(id), s, "", "cart")
+	c.HTML(http.StatusOK, "Static/cart.html", gin.H{
+		"goodsUp":  arrUp,
+		"goodDown": arrDown,
+		"userName": userName,
+		"address":  people,
+		"userImg":  userImg,
+	})
 }
 
 //我借出页
-func MyOrder(c *gin.Context) {
+func (b BaseController) MyOrder(c *gin.Context) {
 	client, err := config.GetClient()
 	if err != nil {
 		fmt.Println(err)
 		respError(c, err)
 		return
 	}
-	contract, err := config.GetAddress(client)
+	//获取id
+	id := config.HaveId(client)
 	if err != nil {
+		fmt.Println(err)
 		respError(c, err)
 		return
 	}
-	userName, people, _, _, _, err := config.GetUserMethod(contract, LoginUser)
-	userImg, err := contract.GetUserImg(nil, LoginUser)
-	fmt.Println("res", userName)
-	if err != nil {
-		respError(c, err)
-		return
+	s := make([]int64, len(id))
+	for i := 0; i < len(id); i++ {
+		x := id[i].String()
+		s[i], err = strconv.ParseInt(x, 10, 64)
 	}
+	userName, people, userImg, _, arrUp, _, _ := b.dynamicHtmlFun(c, len(id), s, "", "order")
+	//contract, err := config.GetAddress(client)
+	//if err != nil {
+	//	respError(c, err)
+	//	return
+	//}
+	//userName, people, _, _, _, err := config.GetUserMethod(contract, LoginUser)
+	//userImg, err := contract.GetUserImg(nil, LoginUser)
+	//fmt.Println("res", userName)
+	//if err != nil {
+	//	respError(c, err)
+	//	return
+	//}
 
-	orderId := config.HaveOrderId(client)
+	//orderId := config.HaveOrderId(client)
 	//定义一个结构体数组
-	var arrUp []GoodsPort
-	var arrDown []GoodsPort
+	//var arrUp []GoodsPort
+	//var arrDown []GoodsPort
 
-	for i := 0; i < len(orderId)+1; i++ {
-		fmt.Println("len(orderid)", len(orderId))
-		if i < len(orderId) {
-			OrderDet, _ := config.HaveOrderDit(client, orderId[i])
-			goodData, goodData1, err := config.HaveIndex(client, OrderDet.Id)
-			isBack, endTime, err := contract.GetBackRec(nil, OrderDet.Id, OrderDet.Back)
+	//for i := 0; i < len(orderId)+1; i++ {
+	//	fmt.Println("len(orderid)", len(orderId))
+	//	if i < len(orderId) {
+	//		OrderDet, _ := config.HaveOrderDit(client, orderId[i])
+	//		goodData, goodData1, err := config.HaveIndex(client, OrderDet.Id)
+	//		isBack, endTime, err := contract.GetBackRec(nil, OrderDet.Id, OrderDet.Back)
+	//
+	//		fmt.Println("goodData", goodData)
+	//		if err != nil {
+	//			respError(c, err)
+	//			return
+	//		}
+	//		fmt.Println("orderID", orderId, OrderDet.Id, OrderDet.OId, goodData.Owner, OrderDet.OrderOwner)
+	//		if people == OrderDet.OrderOwner {
+	//			arr1 := []GoodsPort{GoodsPort{IsBack: isBack, EndTime: endTime, OId: OrderDet.OId, Id: goodData.Id, Names: goodData.Name, Species: goodData.Species, Rent: goodData.Rent, EthPledge: goodData.EthPledge, IsBorrow: goodData.IsBorrow, GoodImg: goodData1.GoodImg, GoodSign: goodData1.GoodSign}}
+	//			arrUp = append(arrUp, arr1...)
+	//			fmt.Println("arrUp", arrUp)
+	//
+	//		}
+	//
+	//	} else {
 
-			fmt.Println("goodData", goodData)
-			if err != nil {
-				respError(c, err)
-				return
-			}
-			fmt.Println("orderID", orderId, OrderDet.Id, OrderDet.OId, goodData.Owner, OrderDet.OrderOwner)
-			if people == OrderDet.OrderOwner {
-				arr1 := []GoodsPort{GoodsPort{IsBack: isBack, EndTime: endTime, OId: OrderDet.OId, Id: goodData.Id, Names: goodData.Name, Species: goodData.Species, Rent: goodData.Rent, EthPledge: goodData.EthPledge, IsBorrow: goodData.IsBorrow, GoodImg: goodData1.GoodImg, GoodSign: goodData1.GoodSign}}
-				arrUp = append(arrUp, arr1...)
-				fmt.Println("arrUp", arrUp)
-
-			}
-
-		} else {
-
-			c.HTML(http.StatusOK, "Static/order.html", gin.H{
-				"goodsUp":  arrUp,
-				"goodDown": arrDown,
-				"userName": userName,
-				"address":  people,
-				"userImg":  userImg,
-			})
-		}
-	}
+	c.HTML(http.StatusOK, "Static/order.html", gin.H{
+		"goodsUp": arrUp,
+		//"goodDown": arrDown,
+		"userName": userName,
+		"address":  people,
+		"userImg":  userImg,
+	})
 }
 
+//}
+//}
+
 //分类详情页面
-func CategoryDetails(c *gin.Context) {
+func (b BaseController) CategoryDetails(c *gin.Context) {
 	Spe := c.Params
 	Speci := Spe.ByName("Species")
 	client, err := config.GetClient()
@@ -428,18 +431,19 @@ func CategoryDetails(c *gin.Context) {
 		respError(c, err)
 		return
 	}
-	contract, err := config.GetAddress(client)
-	if err != nil {
-		respError(c, err)
-		return
-	}
-	userName, people, _, _, _, err := config.GetUserMethod(contract, LoginUser)
-	userImg, err := contract.GetUserImg(nil, LoginUser)
-	fmt.Println("res", userName)
-	if err != nil {
-		respError(c, err)
-		return
-	}
+
+	//contract, err := config.GetAddress(client)
+	//if err != nil {
+	//	respError(c, err)
+	//	return
+	//}
+	//userName, people, _, _, _, err := config.GetUserMethod(contract, LoginUser)
+	//userImg, err := contract.GetUserImg(nil, LoginUser)
+	//fmt.Println("res", userName)
+	//if err != nil {
+	//	respError(c, err)
+	//	return
+	//}
 	//获取id
 	id := config.HaveId(client)
 	if err != nil {
@@ -447,32 +451,39 @@ func CategoryDetails(c *gin.Context) {
 		respError(c, err)
 		return
 	}
-	var arrDetails []GoodsPort
-	for i := 0; i < len(id)+1; i++ {
-		if i < len(id) {
-			//var addr common.Address
-			goodData, goodData1, err := config.HaveIndex(client, id[i])
-			if err != nil {
-				respError(c, err)
-				return
-			}
-
-			if goodData.Species == Speci {
-				arr1 := []GoodsPort{GoodsPort{Id: goodData.Id, Names: goodData.Name, Rent: goodData.Rent, GoodImg: goodData1.GoodImg}}
-				arrDetails = append(arrDetails, arr1...)
-			}
-			print(arrDetails)
-		} else {
-
-			c.HTML(http.StatusOK, "Static/category-details.html", gin.H{
-				"categoryDetail": arrDetails,
-				"userName":       userName,
-				"address":        people,
-				"userImg":        userImg,
-			})
-		}
+	s := make([]int64, len(id))
+	for i := 0; i < len(id); i++ {
+		x := id[i].String()
+		s[i], err = strconv.ParseInt(x, 10, 64)
 	}
+	userName, people, userImg, _, _, _, arrDetails := b.dynamicHtmlFun(c, len(id), s, Speci, "categoryDetails")
+	//var arrDetails []GoodsPort
+	//for i := 0; i < len(id)+1; i++ {
+	//	if i < len(id) {
+	//		//var addr common.Address
+	//		goodData, goodData1, err := config.HaveIndex(client, id[i])
+	//		if err != nil {
+	//			respError(c, err)
+	//			return
+	//		}
+	//
+	//		if goodData.Species == Speci {
+	//			arr1 := []GoodsPort{GoodsPort{Id: goodData.Id, Names: goodData.Name, Rent: goodData.Rent, GoodImg: goodData1.GoodImg}}
+	//			arrDetails = append(arrDetails, arr1...)
+	//		}
+	//		print(arrDetails)
+	//	} else {
+
+	c.HTML(http.StatusOK, "Static/category-details.html", gin.H{
+		"categoryDetail": arrDetails,
+		"userName":       userName,
+		"address":        people,
+		"userImg":        userImg,
+	})
 }
+
+//}
+//}
 
 //我租入的物品页面
 func Myshop(c *gin.Context) {
