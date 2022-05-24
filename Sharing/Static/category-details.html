@@ -129,13 +129,17 @@
             {{range $key,$vlaue:=.categoryDetail}}
                 <div class="col s6">
                     {{range $k,$v:=$vlaue.GoodImg}}
+                    {{ if eq $k 0}}
                     <div class="shop"><a href="../shop-product/{{$vlaue.Id}}"><img src="../{{$v}}" alt="">
                             {{end}}
+                        {{end}}
                             <h6>{{$vlaue.Names}}</h6><span>${{$vlaue.Rent}}/天</span>
                         </a>
+
                         <div style="text-align:center;padding: 12px;">
-                            <button class="button-default"
-                                onclick="window.location.href = 'shop-product.html'">去租用</button>
+                            <a href="../shop-product/{{$vlaue.Id}}">
+                                <button class="button-default">去租用</button>
+                            </a>
                         </div>
                     </div>
                 </div>
