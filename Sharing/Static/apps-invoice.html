@@ -27,112 +27,112 @@
 
 <body id="body" class="dark-sidebar">
 
-    <header>
-        <div class="header-wrapper border-bottom">
-            <div class="container space-y--15">
-                <div class="row align-items-center">
-                    <div class="col-auto">
-                        <a class="back-link" onClick="javascript :history.back(-1);"> <i class="fa fa-angle-left"></i>
-                            返回</a>
-                    </div>
-                    <div class="col d-flex justify-content-center">
-                        <div class="header-search">
-                            <div class="input-group">
-                                <h4 style="padding-top: 17px;">订单详情</h4>
-                            </div>
+<header>
+    <div class="header-wrapper border-bottom">
+        <div class="container space-y--15">
+            <div class="row align-items-center">
+                <div class="col-auto">
+                    <a class="back-link" onClick="javascript :history.back(-1);"> <i class="fa fa-angle-left"></i>
+                        返回</a>
+                </div>
+                <div class="col d-flex justify-content-center">
+                    <div class="header-search">
+                        <div class="input-group">
+                            <h4 style="padding-top: 17px;">订单详情</h4>
                         </div>
                     </div>
-                    <div class="col-auto">
-                        <!-- header menu trigger -->
-                        <button class="header-menu-trigger" id="header-menu-trigger">
-                            <i class="fas fa-align-right" style="font-size: 20px;
+                </div>
+                <div class="col-auto">
+                    <!-- header menu trigger -->
+                    <button class="header-menu-trigger" id="header-menu-trigger">
+                        <i class="fas fa-align-right" style="font-size: 20px;
                                 color: grey;"></i>
-                        </button>
-                    </div>
+                    </button>
                 </div>
             </div>
         </div>
+    </div>
 
-    </header>
+</header>
 
-    {{ template "Static/menu.html" . }}
+{{ template "Static/menu.html" . }}
 
-    <div class="page-wrapper">
+<div class="page-wrapper">
 
-        <!-- Page Content-->
-        <div class="page-content-tab">
+    <!-- Page Content-->
+    <div class="page-content-tab">
 
-            <div class="container-fluid">
+        <div class="container-fluid">
 
-                <div class="row">
-                    <div class="col-lg-10 mx-auto">
-                        <div class="card">
+            <div class="row">
+                <div class="col-lg-10 mx-auto">
+                    <div class="card">
 
-                            <div class="card-body invoice-head" style="padding-left: 0px;">
-                                <div class="cart-product__status">
-                                    {{if eq .isBack false}}
-                                    <p class="cart-product__status" style="font-size: 18px;color: #8997bd;"><span><i
-                                                class="ti ti-refresh"></i></span> 交易进行中</p>
-                                    {{else}}
-                                    <p class="cart-product__status" style="font-size: 18px;color: #8997bd;"><span><i
-                                                class="ti ti-circle-check"></i></span> 交易完成</p>
-                                    {{end}}
-                                </div>
+                        <div class="card-body invoice-head" style="padding-left: 0px;">
+                            <div class="cart-product__status">
+                                {{if eq .isBack false}}
+                                <p class="cart-product__status" style="font-size: 18px;color: #8997bd;"><span><i
+                                        class="ti ti-refresh"></i></span> 交易进行中</p>
+                                {{else}}
+                                <p class="cart-product__status" style="font-size: 18px;color: #8997bd;"><span><i
+                                        class="ti ti-circle-check"></i></span> 交易完成</p>
+                                {{end}}
                             </div>
-                            <div class="form__radios">
-                                <div class="form__radio">
-                                    <div class="aui-list-product-float-item">
-                                        <h6 class="mb-0"><b> 商品ID : {{.id}}</b></h6>
-                                        <a href="#" class="aui-list-product-fl-item">
-                                            <div class="aui-list-product-fl-img">
-                                                {{range $k,$v:=.goodImg}}
-                                                <img src=../{{$v}} alt="">
-                                                {{end}}
+                        </div>
+                        <div class="form__radios">
+                            <div class="form__radio">
+                                <div class="aui-list-product-float-item">
+                                    <h6 class="mb-0"><b> 商品ID : {{.id}}</b></h6>
+                                    <a href="#" class="aui-list-product-fl-item">
+                                        <div class="aui-list-product-fl-img">
+                                            {{range $k,$v:=.goodImg}}
+                                            <img src=../{{$v}} alt="">
+                                            {{end}}
+                                        </div>
+                                        <div class="aui-list-product-fl-text">
+                                            <h3 class="aui-list-product-fl-title">
+                                                {{.name}}</h3>
+                                            <div class="aui-list-product-fl-mes">
+
+                                                <span style="font-size: .8rem;">租金：ETH {{.rent}}/天</span>
+
                                             </div>
-                                            <div class="aui-list-product-fl-text">
-                                                <h3 class="aui-list-product-fl-title">
-                                                    {{.name}}</h3>
-                                                <div class="aui-list-product-fl-mes">
+                                            <div class="aui-list-product-fl-mes">
 
-                                                    <span style="font-size: .8rem;">租金：ETH {{.rent}}/天</span>
-
+                                                <div class="aui-btn-purchase">
+                                                    <span style="font-size: .8rem;">租用天数：{{.days}}天</span>
                                                 </div>
-                                                <div class="aui-list-product-fl-mes">
 
-                                                    <div class="aui-btn-purchase">
-                                                        <span style="font-size: .8rem;">租用天数：{{.days}}天</span>
-                                                    </div>
-
+                                            </div>
+                                            <!-- <div class="aui-list-product-fl-mes">
+                                                <div class="aui-btn-purchase">
+                                                    <span style="font-size: .8rem;">押金：ETH 12</span>
                                                 </div>
-                                                <!-- <div class="aui-list-product-fl-mes">
-                                                    <div class="aui-btn-purchase">
-                                                        <span style="font-size: .8rem;">押金：ETH 12</span>
-                                                    </div>
-                                                </div> -->
-
-                                            </div>
-                                        </a>
-                                        <span>交易编号：{{.OId}}</span>
-                                    </div>
-                                </div>
-                            </div>
-
-                            <div class="card-body">
-                                <div class="row  d-flex justify-content-md-between">
-                                    <div class="col-md-3 d-print-flex">
-                                        <div class="">
-                                            <div class="">
-                                                <h6 class="mb-0"><b>交易日期 :</b>{{.startTime}}</h6>
-                                                {{if eq .isBack false}}
-                                                <h6 class="mb-0"><b>归还日期 :</b>未归还</h6>
-                                                 {{else}}
-                                                <h6 class="mb-0"><b>归还日期 :</b>{{.endTime}}</h6>
-                                                    {{end}}
-                                            </div>
+                                            </div> -->
 
                                         </div>
+                                    </a>
+                                    <span>交易编号：{{.OId}}</span>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="card-body">
+                            <div class="row  d-flex justify-content-md-between">
+                                <div class="col-md-3 d-print-flex">
+                                    <div class="">
+                                        <div class="">
+                                            <h6 class="mb-0"><b>交易日期 :</b>{{.startTime}}</h6>
+                                            {{if eq .isBack false}}
+                                            <h6 class="mb-0"><b>归还日期 :</b>未归还</h6>
+                                            {{else}}
+                                            <h6 class="mb-0"><b>归还日期 :</b>{{.endTime}}</h6>
+                                            {{end}}
+                                        </div>
+
                                     </div>
-                                    <!--end col-->
+                                </div>
+                                <!--end col-->
 
                                 <div class="row" style="padding-top: 10px;">
                                     <div class="col-md-3 d-print-flex">
@@ -166,8 +166,8 @@
                                         <h5 class="mt-4">区块链数据 :</h5>
                                         <ul class="ps-3">
                                             <li><small class="font-12" style="word-wrap: break-word;word-break: break-all;">
-                                                 <span>交易Hash：</span>{{.dealHash}}
-                                                </small></li>
+                                                <span>交易Hash：</span>{{.dealHash}}
+                                            </small></li>
                                             <li><small class="font-12"><span>所在区块：</span>{{.blockNum}} </small></li>
                                             <li><small class="font-12"><span>交易时间戳：</span>{{.timeStamp}}</small>
                                             </li>

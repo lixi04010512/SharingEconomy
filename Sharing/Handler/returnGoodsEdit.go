@@ -44,9 +44,7 @@ func ReturnGoods(c *gin.Context) {
 	addr := LoginUser.Hex()
 	userImg1 := "share/" + userImg
 	img1 := "share/" + img
-	backString := back.String()
-	backInt, err := strconv.Atoi(backString)
-	err = db.SendReturn(addr, goods_owner, userName, name_owner, message, userImg1, img1, idInt, backInt)
+	err = db.SendBorrow(addr, goods_owner, userName, name_owner, message, userImg1, img1)
 	if err != nil {
 		respError(c, err)
 	}
@@ -153,7 +151,7 @@ func DisagreeBackGoods(c *gin.Context) {
 	//_,_,err:=contract.GetBackRec(nil,big.NewInt(idInt64),big.NewInt(backInt64))
 
 	//发送留言消息
-	message := "正在处理，请稍等^_^"
+	message := c.PostForm("message")
 	fmt.Println("mess", message)
 	fmt.Println("borrow:", res)
 

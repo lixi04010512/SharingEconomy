@@ -38,7 +38,7 @@ func Select_chat_content() (todos []Chat, err error) {
 	}
 	for r.Next() {
 		todo := Chat{}
-		err = r.Scan(&todo.Id, &todo.Addr_from, &todo.Addr_to, &todo.Content, &todo.Img_from, &todo.Img_to, &todo.Time, &todo.Confirm,&todo.Product_id,&todo.Deal_id)
+		err = r.Scan(&todo.Id, &todo.Addr_from, &todo.Addr_to, &todo.Content, &todo.Img_from, &todo.Img_to, &todo.Time)
 		if err != nil {
 			fmt.Println("64:", err)
 			return
@@ -110,7 +110,7 @@ func (chat *Chat) Insert_chat_content() (err error) {
 	times := time.Now()
 	strTime := times.Format("15:05:05")
 	fmt.Println("93allcontent:", chat.Addr_from, chat.Addr_to, chat.Img_from, chat.Img_to, chat.Content)
-	r, err := db.Exec("insert into chat(addr_from,addr_to,content,img_from,img_to,time,confirm,product_id,deal_id)values(?, ?,?,?,?,?,?,?,?)", chat.Addr_from, chat.Addr_to, chat.Content, chat.Img_from, chat.Img_to, strTime, "justchat", 0, 0)
+	r, err := db.Exec("insert into chat(addr_from,addr_to,content,img_from,img_to,time)values(?, ?,?,?,?,?)", chat.Addr_from, chat.Addr_to, chat.Content, chat.Img_from, chat.Img_to, strTime)
 	if err != nil {
 		fmt.Println("exec failed, ", err)
 		return
@@ -134,7 +134,7 @@ func (chat *Chat) Insert_chat_content() (err error) {
 }
 
 //发送借用提醒
-func SendBorrow(addr_from string, addr_to string, name_from string, name_to string, content string, img_from string, img_to string, id1 int, deal int) (err error) {
+func SendBorrow(addr_from string, addr_to string, name_from string, name_to string, content string, img_from string, img_to string) (err error) {
 	times := time.Now()
 	strTime := times.Format("15:05:05")
 	r1, err := db.Query("select * from chat_list where addr=? and owner=?", addr_to, addr_from)
@@ -163,7 +163,8 @@ func SendBorrow(addr_from string, addr_to string, name_from string, name_to stri
 			return
 		}
 		fmt.Println("160insert chat_list succ:", id0)
-		r, err0 := db.Exec("insert into chat(addr_from,addr_to,content,img_from,img_to,time,confirm,product_id,deal_id)values(?, ?,?,?,?,?,?,?,?)", addr_from, addr_to, content, img_from, img_to, strTime, "borrow", id1, deal)
+
+		r, err0 := db.Exec("insert into chat(addr_from,addr_to,content,img_from,img_to,time)values(?, ?,?,?,?,?)", addr_from, addr_to, content, img_from, img_to, strTime)
 		if err0 != nil {
 			fmt.Println("exec failed, ", err0)
 			return
@@ -187,85 +188,7 @@ func SendBorrow(addr_from string, addr_to string, name_from string, name_to stri
 		fmt.Println(r3, r4)
 		return
 	} else {
-		r, err1 := db.Exec("insert into chat(addr_from,addr_to,content,img_from,img_to,time,confirm,product_id,deal_id)values(?, ?,?,?,?,?,?,?,?)", addr_from, addr_to, content, img_from, img_to, strTime, "borrow", id1, deal)
-		if err1 != nil {
-			fmt.Println("exec failed, ", err1)
-			return
-		}
-		id1, err2 := r.LastInsertId()
-		if err2 != nil {
-			fmt.Println("exec failed, ", err2)
-			return
-		}
-		fmt.Println("insert chat succ:", id1)
-		r3, err3 := db.Exec("update chat_list set time=? where owner=? and addr =? ", strTime, addr_from, addr_to)
-		r4, err3 := db.Exec("update chat_list set time=?,no_read=no_read+1 where owner=? and addr =? ", strTime, addr_to, addr_from)
-		if err3 != nil {
-			fmt.Println("exec failed, ", err3)
-			return
-		}
-		fmt.Println(r3, r4)
-		return
-	}
-
-	return
-}
-
-//发送归还提醒
-func SendReturn(addr_from string, addr_to string, name_from string, name_to string, content string, img_from string, img_to string, id1 int, deal int) (err error) {
-	times := time.Now()
-	strTime := times.Format("15:05:05")
-	r1, err := db.Query("select * from chat_list where addr=? and owner=?", addr_to, addr_from)
-	for r1.Next() {
-		todo := Chat_list{}
-		err = r1.Scan(&todo.Id, &todo.Owner, &todo.Addr, &todo.Name, &todo.Img, &todo.Time, &todo.No_read)
-		if err != nil {
-			fmt.Println("140:", err)
-			return
-		}
-		id = todo.Id
-		fmt.Println("144id:", id)
-	}
-	fmt.Println("strconv.Itoa(id):", strconv.Itoa(id))
-	if strconv.Itoa(id) == "0" {
-		r, err2 := db.Exec("insert into chat_list(owner,addr,name,img,time,no_read)values(?, ?,?,?,?,?)", addr_from, addr_to, name_to, img_to, strTime, 0)
-		r2, err2 := db.Exec("insert into chat_list(owner,addr,name,img,time,no_read)values(?, ?,?,?,?,?)", addr_to, addr_from, name_from, img_from, strTime, 0)
-		if err2 != nil {
-			fmt.Println("exec failed, ", err)
-			return
-		}
-		fmt.Println(r2)
-		id0, err1 := r.LastInsertId()
-		if err1 != nil {
-			fmt.Println("exec failed, ", err)
-			return
-		}
-		fmt.Println("243insert chat_list succ:", id0)
-		r, err0 := db.Exec("insert into chat(addr_from,addr_to,content,img_from,img_to,time,confirm,product_id,deal_id)values(?, ?,?,?,?,?,?,?,?)", addr_from, addr_to, content, img_from, img_to, strTime, "return", id1, deal)
-		if err0 != nil {
-			fmt.Println("exec failed, ", err0)
-			return
-		}
-		id1, err1 := r.LastInsertId()
-		if err1 != nil {
-			fmt.Println("exec failed, ", err1)
-			return
-		}
-		fmt.Println("insert chat succ:", id1)
-		r3, err3 := db.Exec("update chat_list set time=? where owner=? and addr =? ", strTime, addr_from, addr_to)
-		r4, err4 := db.Exec("update chat_list set time=?,no_read=no_read+1 where owner=? and addr =? ", strTime, addr_to, addr_from)
-		if err3 != nil {
-			fmt.Println("exec failed, ", err3)
-			return
-		}
-		if err4 != nil {
-			fmt.Println("exec failed, ", err4)
-			return
-		}
-		fmt.Println(r3, r4)
-		return
-	} else {
-		r, err1 := db.Exec("insert into chat(addr_from,addr_to,content,img_from,img_to,time,confirm,product_id,deal_id)values(?, ?,?,?,?,?,?)", addr_from, addr_to, content, img_from, img_to, strTime, "return", id1, deal)
+		r, err1 := db.Exec("insert into chat(addr_from,addr_to,content,img_from,img_to,time)values(?, ?,?,?,?,?)", addr_from, addr_to, content, img_from, img_to, strTime)
 		if err1 != nil {
 			fmt.Println("exec failed, ", err1)
 			return

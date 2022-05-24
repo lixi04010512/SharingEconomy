@@ -26,9 +26,9 @@ func BorrowGoods(c *gin.Context) {
 		respError(c, err)
 		return
 	}
-	id1 := c.PostForm("id")
-	fmt.Println("id", id1)
-	idInt, err := strconv.Atoi(id1)
+	id := c.PostForm("id")
+	fmt.Println("id", id)
+	idInt, err := strconv.Atoi(id)
 	idInt64 := int64(idInt)
 	goodsData, _, err := config.HaveIndex(client, big.NewInt(idInt64))
 	rent := goodsData.Rent
@@ -59,7 +59,7 @@ func BorrowGoods(c *gin.Context) {
 		log.Println("float to bigInt failed!")
 	}
 	res, deal, _, err := config.BorrowGoodsMethod(client, contract, big.NewInt(idInt64), big.NewInt(borrowDaysInt64), valueWei, privKey)
-	message := fmt.Sprintf("你好，我是账号为%s的用户，我想借用你的%s号商品%s天，本次交易id是%s，", LoginUser, id1, borrowDays, deal)
+	message := fmt.Sprintf("你好，我是账号为%s的用户，我想借用你的%s号商品%s天，本次交易id是%s，", LoginUser, id, borrowDays, deal)
 
 	goods_owner := goodsData.Owner.String()
 	userImg, err := contract.GetUserImg(nil, goodsData.Owner)
@@ -70,9 +70,7 @@ func BorrowGoods(c *gin.Context) {
 	addr := LoginUser.Hex()
 	userImg1 := "share/" + userImg
 	img1 := "share/" + img
-	dealString := deal.String()
-	dealInt, err := strconv.Atoi(dealString)
-	err = db.SendBorrow(addr, goods_owner, userName, name_owner, message, img1, userImg1, idInt, dealInt)
+	err = db.SendBorrow(addr, goods_owner, userName, name_owner, message, img1, userImg1)
 	if err != nil {
 		respError(c, err)
 	}
@@ -179,7 +177,7 @@ func AgreeBorrow(c *gin.Context) {
 	dealHash, err := config.HashMethod(client, contract, big.NewInt(idInt64), big.NewInt(dealInt64), blockNum, privKey)
 
 	//发送留言消息
-	message := "正在处理，请稍等^_^"
+	message := c.PostForm("message")
 	fmt.Println("mess", message)
 	fmt.Println("borrow:", res)
 	fmt.Println("hash", dealHash)

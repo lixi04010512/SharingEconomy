@@ -31,7 +31,7 @@
             <div class="chat-user--info d-flex align-items-center">
                 <!-- Back Button -->
                 <div class="back-button">
-                    <a class="back-link" onClick="javascript :history.back(-1);">
+                    <a  class="back-link" onClick="javascript :history.back(-1);">
                         <svg class="bi bi-arrow-left-short" width="32" height="32" viewBox="0 0 16 16"
                              fill="currentColor" xmlns="http://www.w3.org/2000/svg">
                             <path fill-rule="evenodd"
@@ -52,8 +52,7 @@
 
 <div class="page-content-wrapper py-3" id="chat-wrapper">
     <div class="container">
-        <div class="chat-content-wrap" data-owner="{{ .owners }}" data-addr="{{ .addrs }}" data-img="{{ .imgs }}"
-             data-img1="{{ .img }}">
+        <div class="chat-content-wrap" data-owner="{{ .owners }}" data-addr="{{ .addrs }}" data-img="{{ .imgs }}" data-img1="{{ .img }}">
             {{ $addr1 := .addrs }}
             {{ $owner1 := .owners }}
             {{ $img_owner := .img }}
@@ -70,16 +69,7 @@
                 <div class="user-message">
                     <div class="message-content">
                         <div class="single-message">
-                            <input type="hidden" id="proId" value="{{ $value.Product_id }}">
-                            <input type="hidden" id="dealId" value="{{ $value.Deal_id }}">
                             <p>{{ $value.Content }}</p>
-                            {{ if eq $value.Confirm "borrow" }}
-                            <input type="button" value="同意借用" id="borrowAgree" class="yes_borrow">
-                            <input type="button" value="不同意借用" id="borrowDisagree" class="no_borrow">
-                            {{ else if $value.Confirm "return" }}
-                            <input type="button" value="同意归还" id="returnAgree" class="yes_return">
-                            <input type="button" value="不同意归还" id="returnDisagree" class="no_return">
-                            {{ end }}
                         </div>
                         <!-- Options -->
                         <div class="dropstart">
@@ -156,64 +146,6 @@
 <script src="share/assets/js/jquery-3.4.1.min.js"></script>
 <script src="share/static/js/app.js"></script>
 <script>
-
-    $("#borrowAgree").click(function () {
-        $.ajax({
-            type: "POST",
-            url: "/agreePost",
-            data: { "dealId": $("#dealId").val(), "agreeId": $("#proId").val()},
-            success: function (data) {
-                alert("已同意交易");
-                window.location = "/select_chat_list";
-            }
-        })
-    })
-</script>
-<script>
-
-    $("#borrowDisagree").click(function () {
-
-        $.ajax({
-            type: "POST",
-            url: "/disagreePost",
-            data: { "dealId": $("#dealId").val(), "agreeId": $("#proId").val()},
-            success: function (data) {
-                alert("已拒绝交易");
-                window.location = "/select_chat_list";
-            }
-        })
-    })
-</script>
-<script>
-
-    $("#returnAgree").click(function () {
-        $.ajax({
-            type: "POST",
-            url: "/agreeBackPost",
-            data: { "backId": $("#dealId").val(), "agreeId": $("#proId").val()},
-            success: function (data) {
-                alert("交易完成，押金已返还");
-                window.location = "/select_chat_list";
-            }
-        })
-    })
-</script>
-<script>
-
-    $("#returnDisagree").click(function () {
-
-        $.ajax({
-            type: "POST",
-            url: "/disagreeBackPost",
-            data: { "backId": $("#dealId").val(), "disagreeId": $("#proId").val()},
-            success: function (data) {
-                alert("交易完成，押金不返还");
-                window.location = "/select_chat_list";
-            }
-        })
-    })
-</script>
-<script>
     $(".dropdown-menu").delegate(".del", "click", function () {
         $.ajax({
             type: "POST",
@@ -232,8 +164,8 @@
                 "addr_from": $(".chat-content-wrap").data("owner"),
                 "addr_to": $(".chat-content-wrap").data("addr"),
                 "content": $(".form-control").val(),
-                "img_from": $(".chat-content-wrap").data("img"),
-                "img_to": $(".chat-content-wrap").data("img1"),
+                "img_from":$(".chat-content-wrap").data("img"),
+                "img_to":$(".chat-content-wrap").data("img1"),
             },
             success: function () {
                 location.reload();
